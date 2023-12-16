@@ -4,18 +4,19 @@
 
 
 ::-webkit-scrollbar{
-  width: 2px;
+  width: 5px;
   background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb{
- background-color: white; 
+  border-radius: 10px;
+ background-color: #2563eb; 
 }
 
 ::-webkit-scrollbar-track{
   color: transparent;
   background-color: transparent;
-  background: #2563eb;
+  background: white;
 }
 
 body {
