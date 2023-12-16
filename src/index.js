@@ -10,6 +10,7 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
+import Courses from "./pages/Courses";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +28,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: <ContactUs/>,
+        element: <ContactUs />,
+      },
+      {
+        path: "/courses",
+        element: <Courses />,
       },
       {
         path: "/signup",
