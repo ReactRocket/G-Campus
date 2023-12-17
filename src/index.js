@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
+
 import Home from "./pages/Home";
 import Error from "./pages/Error";
 import SignUp from "./pages/SignUp";
@@ -12,6 +13,9 @@ import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Courses from "./pages/Courses";
+
+import StudentDashboard from "./modules/student/pages/Dashboard";
+import StudentHome from "./modules/student/pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +50,16 @@ const router = createBrowserRouter([
       {
         path: "/forgot",
         element: <Forgot />,
+      },
+    ],
+  },
+  {
+    path: "/student",
+    element: <StudentDashboard />,
+    children: [
+      {
+        path: "",
+        element: <StudentHome />,
       },
     ],
   },
