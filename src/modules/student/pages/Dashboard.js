@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLoaderData } from "react-router-dom";
 
-function Dashboard({ student }) {
-  const [isSideOpen, setIsSideOpen] = useState(
-    localStorage.getItem("isSideOpen")
-  );
+export default function Dashboard({ student }) {
+  const SideOpen = useLoaderData();
+
+  const [isSideOpen, setIsSideOpen] = useState(SideOpen);
 
   const handleSidebar = () => {
     if (isSideOpen === false) {
@@ -29,9 +29,9 @@ function Dashboard({ student }) {
               : "lg:block hidden"
           } h-screen shadow-lg lg:block w-80`}>
           <div className="h-full bg-white">
-            <div className="flex items-center justify-around pt-6 ml-8">
+            <div className="flex items-center lg:justify-start justify-around pt-6 ml-8">
               <p className="text-xl font-bold">Student Dashboard</p>
-              <p onClick={handleSidebar}>
+              <p onClick={handleSidebar} className="lg:hidden">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -46,7 +46,7 @@ function Dashboard({ student }) {
             <nav className="mt-6">
               <div>
                 <Link
-                  className="flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-800 transition-colors duration-200 border-l-4 border-purple-500"
+                  className="flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-800 transition-colors duration-200 border-l-4 border-blue-500"
                   to="/student">
                   <span className="text-left">
                     <svg
@@ -190,4 +190,11 @@ function Dashboard({ student }) {
   );
 }
 
-export default Dashboard;
+export const sideBarFlag = async () => {
+  const isSideOpen = localStorage.getItem("isSideOpen");
+  if (isSideOpen === null) {
+    return false;
+  } else {
+    return isSideOpen;
+  }
+};

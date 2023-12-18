@@ -14,9 +14,10 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Courses from "./pages/Courses";
 
-import StudentDashboard from "./modules/student/pages/Dashboard";
+import StudentDashboard, {
+  sideBarFlag,
+} from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
-
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
   {
     path: "/student",
     element: <StudentDashboard />,
+    loader: sideBarFlag,
     children: [
       {
         path: "",
