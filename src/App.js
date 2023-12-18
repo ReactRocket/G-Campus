@@ -6,7 +6,9 @@ function App() {
   return (
     <>
       <Navbar NavLink={NavLink} />
+
       <Outlet />
+
       <Footer NavLink={NavLink} />
     </>
   );

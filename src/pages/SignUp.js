@@ -4,20 +4,20 @@ import sign_up from "../resources/images/sign_up.svg";
 
 function SignUp() {
   return (
-    <div className="h-screen w-full">
-      <div className="flex flex-wrap w-full">
-        <div className="w-1/2">
+    <div className=" w-full overflow-y-scroll">
+      <div className="flex justify-center items-center sm:flex-col lg:flex-row w-full">
+        <div className="hidden lg:w-1/2 w-full sm:block   justify-center items-center">
           <img
-            className="hidden object-cover w-full h-screen md:block"
+            className="hidden object-cover w-full h-full sm:block"
             src={sign_up}
             alt="Sign up"
           />
         </div>
-        <div class="w-1/2 p-6 sm:p-12">
-          <div class="mt-12 flex flex-col items-center">
-            <h1 class="text-2xl xl:text-3xl font-extrabold">Sign up</h1>
+        <div class="lg:w-1/2 w-full p-6 h-full sm:p-12">
+          <div class=" flex flex-col items-center w-full">
+            <h1 class="mt-5 sm:mt-0 text-2xl xl:text-3xl font-extrabold">Sign up</h1>
             <div class="w-full flex-1 mt-8">
-              <div class="mx-auto max-w-xs">
+              <div class=" mx-auto max-w-xs">
                 <input
                   class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="text"
@@ -92,7 +92,7 @@ function SignUp() {
                       />
                     </svg>
                   </div>
-                  <span class="ml-4">Google</span>
+                  <span class="ml-4 hidden lg:block">Google</span>
                 </button>
 
                 <button class="w-1/3 max-w-xs font-bold shadow-sm rounded-lg py-3 bg-blue-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
@@ -108,7 +108,7 @@ function SignUp() {
                       <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
                     </svg>
                   </div>
-                  <span class="ml-4">Facebook</span>
+                  <span class="ml-4  hidden lg:block">Facebook</span>
                 </button>
               </div>
             </div>
