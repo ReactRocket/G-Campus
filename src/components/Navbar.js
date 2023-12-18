@@ -1,130 +1,103 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Logo from "../resources/images/Logo.svg";
 
 function Navbar({ NavLink }) {
+  const location = useLocation();
+  const path = location.pathname;
+
   return (
-    <header className="text-white bg-blue-500 body-font">
-      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <Link
-          className="flex title-font font-medium items-center text-white mb-4 md:mb-0"
-          to="/">
-          <svg
-          className="scale-150 pt-2"
-            xmlns="http://www.w3.org/2000/svg"
-            // xmlns:xlink="http://www.w3.org/1999/xlink"
-            width="50"
-            zoomAndPan="magnify"
-            viewBox="0 0 375 374.999991"
-            height="50"
-            preserveAspectRatio="xMidYMid meet"
-            version="1.0">
-            <path
-              fill="#f8f9fa"
-              d="M 161.511719 157.464844 C 161.511719 171.929688 173.28125 183.699219 187.746094 183.699219 C 196.632812 183.699219 204.496094 179.253906 209.242188 172.472656 L 187.742188 172.472656 L 187.742188 151.648438 L 227.203125 151.648438 C 228.933594 145.128906 229.871094 138.285156 229.902344 131.226562 L 187.742188 131.226562 C 173.277344 131.230469 161.511719 143 161.511719 157.464844 Z M 161.511719 157.464844 "
-              fillOpacity="0.79"
-              fillRule="nonzero"
-            />
-            <path
-              fill="#f8f9fa"
-              d="M 140.6875 157.464844 C 140.6875 131.515625 161.796875 110.40625 187.742188 110.40625 L 227.289062 110.40625 L 207.28125 90.402344 C 196.316406 79.433594 178.539062 79.433594 167.574219 90.402344 L 120.019531 137.957031 C 109.054688 148.921875 109.054688 166.699219 120.019531 177.664062 L 153.917969 211.558594 C 164.234375 210.949219 174.027344 208.402344 182.941406 204.277344 C 159.242188 201.867188 140.6875 181.792969 140.6875 157.464844 Z M 140.6875 157.464844 "
-              fillOpacity="0.79"
-              fillRule="nonzero"
-            />
-            <path
-              fill="#e9ecef"
-              d="M 169.007812 139.128906 C 174.179688 145.679688 180.535156 151.257812 187.742188 155.542969 L 187.742188 151.652344 L 234.800781 151.652344 L 234.800781 163.949219 C 245 162.085938 254.402344 157.953125 262.46875 152.097656 C 261.398438 146.914062 258.855469 141.976562 254.835938 137.957031 L 248.113281 131.234375 L 187.742188 131.234375 C 180.410156 131.230469 173.773438 134.257812 169.007812 139.128906 Z M 169.007812 139.128906 "
-              fillOpacity="0.79"
-              fillRule="nonzero"
-            />
-            <path
-              fill="#e9ecef"
-              d="M 187.742188 110.40625 L 227.289062 110.40625 L 207.285156 90.402344 C 196.320312 79.433594 178.542969 79.433594 167.574219 90.402344 L 154.664062 103.3125 C 155.222656 109.320312 156.5625 115.105469 158.578125 120.558594 C 166.601562 114.207031 176.738281 110.40625 187.742188 110.40625 Z M 187.742188 110.40625 "
-              fillOpacity="0.79"
-              fillRule="nonzero"
-            />
-            <path
-              fill="#dee2e6"
-              d="M 227.289062 110.40625 L 226.234375 109.351562 C 226.160156 109.351562 226.085938 109.347656 226.011719 109.347656 C 221.664062 109.347656 217.402344 109.714844 213.253906 110.40625 Z M 227.289062 110.40625 "
-              fillOpacity="0.79"
-              fillRule="nonzero"
-            />
-            <path
-              fill="#dee2e6"
-              d="M 187.742188 204.523438 C 171.714844 204.523438 157.539062 196.464844 149.035156 184.195312 C 149.015625 184.910156 149.003906 185.632812 149.003906 186.351562 C 149.003906 194.796875 150.367188 202.921875 152.878906 210.523438 L 167.574219 225.21875 C 178.542969 236.183594 196.320312 236.183594 207.285156 225.21875 L 212.855469 219.648438 L 212.855469 197.246094 C 205.582031 201.851562 196.972656 204.523438 187.742188 204.523438 Z M 187.742188 204.523438 "
-              fillOpacity="0.79"
-              fillRule="nonzero"
-            />
-            <path
-              fill="#dee2e6"
-              d="M 254.839844 137.957031 L 248.113281 131.230469 L 187.742188 131.230469 C 173.277344 131.230469 161.507812 143 161.507812 157.464844 C 161.507812 171.933594 173.277344 183.699219 187.742188 183.699219 C 196.628906 183.699219 204.492188 179.253906 209.242188 172.476562 L 187.742188 172.476562 L 187.742188 151.648438 L 234.800781 151.648438 L 234.800781 197.699219 L 254.835938 177.664062 C 265.804688 166.699219 265.804688 148.921875 254.839844 137.957031 Z M 254.839844 137.957031 "
-              fillOpacity="0.79"
-              fillRule="nonzero"
-            />
-            <path
-              fill="#adb5bd"
-              d="M 161.511719 157.464844 C 161.511719 161.535156 162.441406 165.390625 164.105469 168.832031 C 164.058594 168.195312 164.027344 167.550781 164.027344 166.898438 C 164.027344 152.433594 175.796875 140.664062 190.261719 140.664062 L 257.214844 140.664062 C 256.492188 139.726562 255.703125 138.816406 254.839844 137.957031 L 248.117188 131.230469 L 187.742188 131.230469 C 173.277344 131.230469 161.511719 143 161.511719 157.464844 Z M 161.511719 157.464844 "
-              fillOpacity="0.24"
-              fillRule="nonzero"
-            />
-          </svg>
-          <span className="text-xl">G-Campus</span>
-        </Link>
-        <nav className="md:ml-auto md:mr-auto flex flex-wrap font-medium font-sans items-center text-base justify-center">
-          {NavLink.map((navlink) => {
-            return (
-              <Link
-                className="mr-5 hover:text-white"
-                to={navlink?.link}
-                key={navlink?.id}>
-                {navlink?.name}
+    <div class="px-4 mx-auto  lg:px-6">
+      <div class="relative py-6 ">
+        <nav
+          class="relative flex items-center justify-between sm:h-12 py-5 md:justify-center"
+          aria-label="Global"
+        >
+          <div class="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
+            <div class="flex items-center justify-between w-full md:w-auto">
+              <Link to="/" className="w-28">
+                <span class="sr-only">G-Campus</span>
+                <img class="w-full" src={Logo} alt="logo" />
               </Link>
-            );
-          })}
+              <div class="flex items-center -mr-2 md:hidden">
+                <button
+                  class="inline-flex items-center justify-center p-2 text-gray-400 bg-gray-50 rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-50"
+                  type="button"
+                  aria-expanded="false"
+                >
+                  <span class="sr-only">Open main menu</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                    class="w-6 h-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="hidden md:flex md:space-x-10 list-none">
+            {NavLink.map((navlink) => {
+              return (
+                <li className="">
+                  <Link
+                    key={navlink.id}
+                    to={navlink.link}
+                    className={
+                      path === navlink.link
+                        ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
+                        : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out"
+                    }
+                    target=""
+                  >
+                    {navlink.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </div>
+          <div class="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+            <div class=" flex justify-center items-center rounded-full shadow">
+              <Link
+                to="/login"
+                class={`inline-flex items-center px-4 py-2 text-base ${
+                  path === "/login"
+                    ? "bg-blue-500 text-white font-bold"
+                    : "bg-white text-blue-500 font-bold"
+                } border border-transparent rounded-full transition-all duration-500 ease-in-out  cursor-pointer font-base  `}
+              >
+                Sign In
+              </Link>
+              <span className="text-blue-500 font-bold">
+                {path !== "/login" && path !== "/signup" ? "|" : ` `}
+              </span>
+              <Link
+                to="/signup"
+                class={`inline-flex items-center px-4 py-2 text-base 
+                ${
+                  path === "/signup"
+                    ? "bg-blue-500 text-white font-bold"
+                    : "bg-white text-blue-500 font-bold"
+                }
+                border border-transparent transition-all duration-500 ease-linear rounded-full cursor-pointer font-base  `}
+              >
+                Sign up
+              </Link>
+            </div>
+          </div>
         </nav>
-        <Link
-          className="inline-flex items-center bg-blue-700 border-0 py-1.5 px-3 focus:outline-none hover:bg-blue-900 rounded text-base mt-4 md:mt-0"
-          to="/login">
-          <p className="mr-2">Login</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            className="bi bi-box-arrow-in-left"
-            viewBox="0 0 16 16">
-            <path
-              fillRule="evenodd"
-              d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z"
-            />
-            <path
-              fillRule="evenodd"
-              d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"
-            />
-          </svg>
-        </Link>
-        <Link
-          className="inline-flex items-center bg-blue-700 border-0 py-1.5 px-3 focus:outline-none hover:bg-blue-900 rounded text-base mt-4 md:mt-0 lg:ml-2"
-          to="/signup">
-          <p className="mr-2">Sign Up</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            className="bi bi-box-arrow-in-left"
-            viewBox="0 0 16 16">
-            <path
-              fillRule="evenodd"
-              d="M10 3.5a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 1 1 0v2A1.5 1.5 0 0 1 9.5 14h-8A1.5 1.5 0 0 1 0 12.5v-9A1.5 1.5 0 0 1 1.5 2h8A1.5 1.5 0 0 1 11 3.5v2a.5.5 0 0 1-1 0z"
-            />
-            <path
-              fillRule="evenodd"
-              d="M4.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H14.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"
-            />
-          </svg>
-        </Link>
       </div>
-    </header>
+      <hr />
+    </div>
   );
 }
 

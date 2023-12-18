@@ -17,6 +17,7 @@ import Courses from "./pages/Courses";
 import StudentDashboard from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
