@@ -6,69 +6,69 @@ function Login() {
   return (
     <div className="min-h-screen w-full">
       <div className="flex sm:flex-col-reverse lg:flex-row justify-center items-center lg:flex-wrap w-full h-full overflow-y-scroll">
-        <div class="lg:w-1/2 w-full h-full p-6 sm:p-12">
-          <div class=" flex flex-col items-center">
-            <h1 class="mt-5 lg:mt-0 text-2xl xl:text-3xl font-extrabold">Sign In</h1>
-            <div class="w-full flex-1 mt-8">
+        <div className="lg:w-1/2 w-full h-full p-6 sm:p-12">
+          <div className=" flex flex-col items-center">
+            <h1 className="mt-5 lg:mt-0 text-2xl xl:text-3xl font-extrabold">Sign In</h1>
+            <div className="w-full flex-1 mt-8">
 
-              <div class="mx-auto max-w-xs">
+              <div className="mx-auto max-w-xs">
                 <input
-                  class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="email"
                   placeholder="Email"
                 />
 
                 <input
-                  class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="password"
                   placeholder="Password"
                 />
-                <button class="mt-5 tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                <button className="mt-5 tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="16"
                     height="16"
                     fill="currentColor"
-                    class="w-6 h-6 -ml-2 bi bi-box-arrow-in-right"
+                    className="w-6 h-6 -ml-2 bi bi-box-arrow-in-right"
                     viewBox="0 0 16 16"
                   >
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"
                     />
                     <path
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                       d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
                     />
                   </svg>
-                  <span class="ml-3">Sign In</span>
+                  <span className="ml-3">Sign In</span>
                 </button>
-                <p class="mt-6 text-xs flex justify-between text-gray-600 text-center">
+                <p className="mt-6 text-xs flex justify-between text-gray-600 text-center">
                   <Link
                     to="/forgot"
-                    class="w-full btn btn-sm btn-link sm:w-auto"
+                    className="w-full btn btn-sm btn-link sm:w-auto"
                   >
                     Forgot password?
                   </Link>
                   <Link
                     to="/signup"
-                    class="w-full btn btn-sm btn-link sm:w-auto"
+                    className="w-full btn btn-sm btn-link sm:w-auto"
                   >
                     Create an account
                   </Link>
                 </p>
               </div>
 
-              <div class="my-12 border-b text-center">
-                <div class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+              <div className="my-12 border-b text-center">
+                <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
                   Or Sign In with
                 </div>
               </div>
 
-              <div class="flex flex-col items-center">
-                <button class="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-blue-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
-                  <div class="bg-white p-2 rounded-full">
-                    <svg class="w-4" viewBox="0 0 533.5 544.3">
+              <div className="flex flex-col items-center">
+                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-blue-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                  <div className="bg-white p-2 rounded-full">
+                    <svg className="w-4" viewBox="0 0 533.5 544.3">
                       <path
                         d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z"
                         fill="#4285f4"
@@ -87,23 +87,23 @@ function Login() {
                       />
                     </svg>
                   </div>
-                  <span class="ml-4">Sign In with Google</span>
+                  <span className="ml-4">Sign In with Google</span>
                 </button>
 
-                <button class="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-blue-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5">
-                  <div class="bg-white text-blue-600 p-1 rounded-full">
+                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-blue-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline mt-5">
+                  <div className="bg-white text-blue-600 p-1 rounded-full">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
                       fill="currentColor"
-                      class="bi bi-facebook w-6 h-6"
+                      className="bi bi-facebook w-6 h-6"
                       viewBox="0 0 16 16"
                     >
                       <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
                     </svg>
                   </div>
-                  <span class="ml-4">Sign In Facebook</span>
+                  <span className="ml-4">Sign In Facebook</span>
                 </button>
               </div>
 
