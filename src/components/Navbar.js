@@ -82,7 +82,6 @@ function Navbar({ NavLink }) {
                     </div>
                   </div>
                 </div>
-
                 <button
                   for="drawer-toggle"
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -101,7 +100,7 @@ function Navbar({ NavLink }) {
               </div>
             </div>
           </div>
-          <div class="hidden md:flex md:space-x-10 list-none">
+          <div class="hidden md:flex md:space-x-10 h- list-none">
             {NavLink.map((navlink) => {
               return (
                 <li className="">
