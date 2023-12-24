@@ -189,10 +189,12 @@ function Registration() {
         </div>
         <div className="w-[55%] flex justify-center items-center bg-slate-50">
           <form className="w-[90%] m-auto h-[90%]">
-            <h1 className="w-[100%] text-2xl font-medium">G-Campus Admission Form</h1>
+            <h1 className="w-[100%] text-2xl font-medium">
+              G-Campus Admission Form
+            </h1>
             <p>Enter your admission infromation</p>
-            <div className="grid grid-cols-3 mt-5">
-              <h1 className="col-span-3 text-xl h-10">Name</h1>
+            <div className="grid grid-cols-3 mt-5  h-[17%]">
+              <h1 className="col-span-3 text-lg font-normal h-8">Name :</h1>
               <div>
                 <input
                   type="text"
@@ -224,7 +226,76 @@ function Registration() {
                 <label htmlFor="lastName">Last Name</label>
               </div>
             </div>
-            <div></div>
+            <div className="grid grid-cols-3 mt-5  h-[17%]">
+              <h1 className="col-span-3 text-lg font-normal h-8">
+                Birth Information :
+              </h1>
+              <div>
+                <input
+                  type="date"
+                  pattern="[0-9]{10}"
+                  id="dob"
+                  name="dob"
+                  className="border text-lg px-2 py-1 rounded border-black block focus:border-sky-700 focus:ring-1 placeholder:text-sky-700 outline-none w-[90%]"
+                />
+                <label htmlFor="dob">Date Of Birth</label>
+              </div>
+              <div>
+                <select
+                  name="gender"
+                  id="gender"
+                  className="border text-lg px-2 py-1 rounded border-black block focus:border-sky-700 focus:ring-1 placeholder:text-sky-700 outline-none w-[90%]">
+                  <option value="default">-- Select Your Gender --</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+                <label htmlFor="gender">Gender</label>
+              </div>
+              <div>
+                <select
+                  name="bloodgroup"
+                  id="bloodgroup"
+                  className="border text-lg px-2 py-1 rounded border-black block focus:border-sky-700 focus:ring-1 placeholder:text-sky-700 outline-none w-[90%]">
+                  <option value="default">-- Select Your Group --</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                </select>
+                <label htmlFor="bloodgroup">Blood Group</label>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 mt-5  h-[17%]">
+              <h1 className="col-span-2 text-lg font-normal h-8">Contact :</h1>
+              <div>
+                <input
+                  type="number"
+                  pattern="[0-9]{10}"
+                  id="phoneNo"
+                  name="phoneNo"
+                  className=" [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border text-lg px-2 py-1 rounded border-black block focus:border-sky-700 focus:ring-1 placeholder:text-sky-700 outline-none w-[92%]"
+                />
+                <label htmlFor="phoneNo">Phone No</label>
+              </div>
+              <div>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="border text-lg px-2 py-1 rounded border-black block focus:border-sky-700 focus:ring-1 placeholder:text-sky-700 outline-none  w-[92%]"
+                />
+                <label htmlFor="email">Email</label>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 mt-5  h-[17%]">
+              <button type="reset">Reset</button>
+              <button type="button" onClick={handleNext}>Next</button>
+            </div>
           </form>
         </div>
       </div>
