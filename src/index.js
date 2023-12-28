@@ -5,8 +5,8 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
-// redux store 
-import { Provider } from 'react-redux';
+// redux store
+import { Provider } from "react-redux";
 import store from "./app/store";
 
 import Home from "./pages/Home";
@@ -17,12 +17,12 @@ import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Courses from "./pages/Courses";
-import Test from "./test"
 
 import StudentDashboard, {
   sideBarFlag,
 } from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
+import Registration from "./pages/test/Registration";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +58,10 @@ const router = createBrowserRouter([
         path: "/forgot",
         element: <Forgot />,
       },
+      {
+        path: "/test",
+        element: <Registration />,
+      },
     ],
   },
   {
@@ -68,19 +72,6 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <StudentHome />,
-      },
-    ],
-  },
-
-  // this is for testing purposes only
-  {
-    path: "/test",
-    element: <Test />,
-    loader: sideBarFlag,
-    children: [
-      {
-        // path: "",
-        // element: <StudentHome />,
       },
     ],
   },
