@@ -1,7 +1,6 @@
 const connectToMySQL = require("./connection"); // mysql connection
 const express = require("express"); // for the server
 const bodyParser = require("body-parser"); // for parsing and reading json data
-const { v4: uuidv4 } = require("uuid"); // unique id generate
 const cors = require("cors")
 
 const connection = connectToMySQL(); // connecting the database
