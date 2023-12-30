@@ -5,6 +5,10 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 
+// redux store
+import { Provider } from "react-redux";
+import store from "./app/store";
+
 import Home from "./pages/Home";
 import Error from "./pages/Error";
 import SignUp from "./pages/SignUp";
@@ -18,6 +22,7 @@ import StudentDashboard, {
   sideBarFlag,
 } from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
+import Registration from "./pages/test/Registration";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +58,10 @@ const router = createBrowserRouter([
         path: "/forgot",
         element: <Forgot />,
       },
+      {
+        path: "/test",
+        element: <Registration />,
+      },
     ],
   },
   {
@@ -71,7 +80,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 

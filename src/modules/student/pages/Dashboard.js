@@ -28,7 +28,7 @@ export default function Dashboard({ student }) {
               ? "lg:block block z-50 absolute"
               : "lg:block hidden"
           } h-screen shadow-lg lg:block w-80`}>
-          <div className="h-full bg-white">
+          <div className="h-full bg-blue-300">
             <div className="flex items-center lg:justify-start justify-around pt-6 ml-8">
               <p className="text-xl font-bold">Student Dashboard</p>
               <p onClick={handleSidebar} className="lg:hidden">

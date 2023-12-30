@@ -4,76 +4,76 @@ import sign_up from "../resources/images/sign_up.svg";
 
 function SignUp() {
   return (
-    <div className="h-screen w-full">
-      <div className="flex flex-wrap w-full">
-        <div className="w-1/2">
+    <div className=" w-full overflow-y-scroll">
+      <div className="flex justify-center items-center sm:flex-col lg:flex-row w-full">
+        <div className="hidden lg:w-1/2 w-full sm:block   justify-center items-center">
           <img
-            className="hidden object-cover w-full h-screen md:block"
+            className="hidden object-cover w-full h-full sm:block"
             src={sign_up}
             alt="Sign up"
           />
         </div>
-        <div class="w-1/2 p-6 sm:p-12">
-          <div class="mt-12 flex flex-col items-center">
-            <h1 class="text-2xl xl:text-3xl font-extrabold">Sign up</h1>
-            <div class="w-full flex-1 mt-8">
-              <div class="mx-auto max-w-xs">
+        <div className="lg:w-1/2 w-full p-6 h-full sm:p-12">
+          <div className=" flex flex-col items-center w-full">
+            <h1 className="mt-5 sm:mt-0 text-2xl xl:text-3xl font-extrabold">Sign up</h1>
+            <div className="w-full flex-1 mt-8">
+              <div className=" mx-auto max-w-xs">
                 <input
-                  class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="text"
                   placeholder="Full Name"
                 />
 
                 <input
-                  class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="phone"
                   placeholder="Phone"
                 />
                 <input
-                  class="w-full px-8 py-4 mt-5 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
+                  className="w-full px-8 py-4 mt-5 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="email"
                   placeholder="Email"
                 />
 
                 <input
-                  class="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
+                  className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
                   type="password"
                   placeholder="Password"
                 />
-                <button class="mt-5 tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                <button className="mt-5 tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                   <svg
-                    class="w-6 h-6 -ml-2"
+                    className="w-6 h-6 -ml-2"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                   >
                     <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
                     <circle cx="8.5" cy="7" r="4" />
                     <path d="M20 8v6M23 11h-6" />
                   </svg>
-                  <span class="ml-3">Sign up</span>
+                  <span className="ml-3">Sign up</span>
                 </button>
-                <p class="mt-3 text-xs flex justify-end text-gray-600 text-center">
+                <p className="mt-3 text-xs flex justify-end text-gray-600 text-center">
                   <Link
                     to="/login"
-                    class="w-full btn btn-sm btn-link sm:w-auto"
+                    className="w-full btn btn-sm btn-link sm:w-auto"
                   >
                     Already have an account?
                   </Link>
                 </p>
               </div>
 
-              <div class="my-6 border-b text-center">
-                <div class="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
+              <div className="my-6 border-b text-center">
+                <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
                   Or Sign up with
                 </div>
               </div>
-              <div class="flex flex-row justify-center gap-5 items-center">
-                <button class="w-1/3 max-w-xs font-bold shadow-sm rounded-lg py-3 bg-blue-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
-                  <div class="bg-white p-2 rounded-full">
-                    <svg class="w-4" viewBox="0 0 533.5 544.3">
+              <div className="flex flex-row justify-center gap-5 items-center">
+                <button className="w-1/3 max-w-xs font-bold shadow-sm rounded-lg py-3 bg-blue-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                  <div className="bg-white p-2 rounded-full">
+                    <svg className="w-4" viewBox="0 0 533.5 544.3">
                       <path
                         d="M533.5 278.4c0-18.5-1.5-37.1-4.7-55.3H272.1v104.8h147c-6.1 33.8-25.7 63.7-54.4 82.7v68h87.7c51.5-47.4 81.1-117.4 81.1-200.2z"
                         fill="#4285f4"
@@ -92,23 +92,23 @@ function SignUp() {
                       />
                     </svg>
                   </div>
-                  <span class="ml-4">Google</span>
+                  <span className="ml-4 hidden lg:block">Google</span>
                 </button>
 
-                <button class="w-1/3 max-w-xs font-bold shadow-sm rounded-lg py-3 bg-blue-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
-                  <div class="bg-white text-blue-600 p-1 rounded-full">
+                <button className="w-1/3 max-w-xs font-bold shadow-sm rounded-lg py-3 bg-blue-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
+                  <div className="bg-white text-blue-600 p-1 rounded-full">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
                       height="16"
                       fill="currentColor"
-                      class="bi bi-facebook w-6 h-6"
+                      className="bi bi-facebook w-6 h-6"
                       viewBox="0 0 16 16"
                     >
                       <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951" />
                     </svg>
                   </div>
-                  <span class="ml-4">Facebook</span>
+                  <span className="ml-4  hidden lg:block">Facebook</span>
                 </button>
               </div>
             </div>
