@@ -27,7 +27,9 @@ function Navbar({ NavLink }) {
                   <input type="checkbox" readOnly checked={isMenuOpen ? true : false} id="drawer-toggle" className="relative sr-only peer" />
                   <div className="fixed top-0 left-0 z-20 w-64 h-full transition-all duration-500 transform -translate-x-full bg-white shadow-lg peer-checked:translate-x-0">
                     <div className="px-6 py-4">
-                      <Link to="/" className="w-28">
+                      <Link to="/" className="w-28"
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
                         <span className="sr-only">G-Campus</span>
                         <img className="w-3/2" src={Logo} alt="logo" />
                       </Link>
