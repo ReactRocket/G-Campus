@@ -56,7 +56,7 @@ function Footer({ NavLink }) {
           </div>
           <div className="lg:w-1/4 md:w-1/2 mt-10 w-full px-4">
             <h2 className="title-font font-bold text-blue-500 tracking-widest text-sm mb-3">
-              Contact us
+              Connect with us
             </h2>
             <div className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
               <div className="relative w-40 mt-5 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">

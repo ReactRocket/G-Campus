@@ -2,7 +2,7 @@ import React from "react";
 
 function ContactUs() {
   return (
-    <div className="h-screen w-full">
+    <div className="h-full w-full">
       <section className="text-gray-600 body-font relative">
         <div className="absolute inset-0 bg-gray-300">
           <iframe
