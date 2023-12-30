@@ -29,6 +29,11 @@ const NavLink = [
     name: "About",
     link: "/about",
   },
+  {
+    id: "04",
+    name: "Contact",
+    link: "/contact",
+  },
 ];
 
 export default App;
