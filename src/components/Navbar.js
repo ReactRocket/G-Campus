@@ -33,10 +33,11 @@ function Navbar({ NavLink }) {
                       </Link>
                       <hr />
                       <div className="list-none text-center mt-5">
-                        {NavLink.map((navlink,i) => {
+                        {NavLink.map((navlink, i) => {
                           return (
                             <li className="" key={i}>
                               <Link
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
                                 key={navlink.id}
                                 to={navlink.link}
                                 className={
@@ -55,6 +56,7 @@ function Navbar({ NavLink }) {
                       <div className="text-center pt-5">
                         <div className=" flex justify-between items-center w-full rounded-full shadow">
                           <Link
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
                             to="/login"
                             className={`w-1/2 inline-flex items-center px-4 py-2 text-base ${path === "/login"
                               ? "bg-blue-500 text-white font-bold"
@@ -67,6 +69,8 @@ function Navbar({ NavLink }) {
                             {path !== "/login" && path !== "/signup" ? "|" : ` `}
                           </span>
                           <Link
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+
                             to="/signup"
                             className={`w-1/2 inline-flex items-center px-4 py-2 text-base 
                 ${path === "/signup"
@@ -101,7 +105,7 @@ function Navbar({ NavLink }) {
             </div>
           </div>
           <div className="hidden md:flex md:space-x-10 h- list-none">
-            {NavLink.map((navlink,i) => {
+            {NavLink.map((navlink, i) => {
               return (
                 <li className="" key={i}>
                   <Link

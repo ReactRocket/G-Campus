@@ -18,7 +18,7 @@ const Marquee = ({ data }) => {
     return (
         <div>
             <marquee
-                className="shadow-[inset_0px_20px_20px_10px_#00000024] h-52 rounded-lg p-5 w-full text-red-500 font-semibold"
+                className="shadow-[inset_0px_20px_20px_10px_#00000024] h-52 rounded-lg p-5 w-full text-gray-500 font-semibold"
                 behavior="scroll"
                 direction="up"
                 scrollamount="5"

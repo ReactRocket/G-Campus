@@ -32,7 +32,7 @@ function Footer({ NavLink }) {
       <hr className=" px-4" />
       <div className="container px-5 py-24 mx-auto">
         <div className="flex justify-between flex-wrap md:text-left text-center order-first ">
-          <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+          <div className="lg:w-1/4 md:w-1/2 w-full px-4 lg:block hidden">
 
             <h2 className="title-font font-bold text-blue-500 tracking-widest text-sm mb-2">
               Our Pages :
@@ -54,22 +54,22 @@ function Footer({ NavLink }) {
           <div className="lg:w-1/2 md:w-1/2 w-full px-4 ">
             <Marquee data={notices} />
           </div>
-          <div className="lg:w-1/4 md:w-1/2 w-full px-4 md:block hidden">
+          <div className="lg:w-1/4 md:w-1/2 mt-10 w-full px-4">
             <h2 className="title-font font-bold text-blue-500 tracking-widest text-sm mb-3">
               Contact us
             </h2>
             <div className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
-              <div className="relative w-40 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
+              <div className="relative w-40 mt-5 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
                 <label
                   htmlFor="footer-field"
-                  className="leading-7  text-sm text-gray-700">
+                  className="leading-7  text-sm text-gray-700 hidden md:bloack">
                   Email
                 </label>
                 <input
                   type="email"
                   id="footer-field"
                   name="footer-field"
-                  placeholder="Connect with us..."
+                  placeholder="Email"
                   className="w-full bg-gray-200 rounded border bg-opacity-40 border-blue-700 focus:ring-2 focus:ring-blue-700 focus:border-gray-300 text-base outline-none text-gray-900 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
@@ -77,7 +77,7 @@ function Footer({ NavLink }) {
                 Send
               </button>
             </div>
-            <p className="text-gray-500 text-sm mt-2 md:text-left text-center">
+            <p className="text-gray-500 text-sm pt-5 md:text-left text-center">
               Contact us to give feedback
             </p>
           </div>
