@@ -113,10 +113,13 @@ deptId,classId)
 '2019','85','SMT GN Pandya','2021','80',104,1112);
 
 create table feedbacks(
-fullname varchar(20) primary key, 
-email varchar(40) not null,
+srno int primary key auto_increment,
+fullname varchar(20) not null, 
+email varchar(40) unique,
 phone varchar(10) not null,
 message varchar(255) not null
 );
 
+-- drop table feedbacks;
 
+select * from feedbacks;
