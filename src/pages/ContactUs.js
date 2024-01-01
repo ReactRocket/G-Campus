@@ -29,6 +29,7 @@ function ContactUs() {
           let response = res.data;
           if (response.isSuccess) {
             alert("Thank you! Your message has been successfully sent");
+            setFormData({ fullname: "", email: "", phone: "", message: "" });
           } else {
             // alert("Oops! Something went wrong. Please try again later.");
             switch (response.displayMessage.code) {
