@@ -14,20 +14,23 @@ function Navbar({ NavLink }) {
           className="relative flex items-center justify-between sm:h-12 sm:py-5 md:justify-center"
           aria-label="Global"
         >
-          <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
-            <div className="flex items-center justify-between w-full md:w-auto">
+          <div className="flex lg:w-auto   w-full items-center flex-1 md:absolute md:inset-y-0 md:left-0">
+            <div className="flex items-center justify-between  w-full lg:w-auto">
               <Link to="/" className="w-28">
                 <span className="sr-only">G-Campus</span>
                 <img className="w-full" src={Logo} alt="logo" />
               </Link>
-              <div className="flex items-center -mr-2 md:hidden">
+              <div className="flex items-center justify-end w-3/4  -mr-2 lg:hidden">
 
                 {/* <!-- side menu --> */}
                 <div className="flex ">
                   <input type="checkbox" readOnly checked={isMenuOpen ? true : false} id="drawer-toggle" className="relative sr-only peer" />
                   <div className="fixed top-0 left-0 z-20 w-64 h-full transition-all duration-500 transform -translate-x-full bg-white shadow-lg peer-checked:translate-x-0">
                     <div className="px-6 py-4">
-                      <Link to="/" className="w-28">
+                      <Link to="/" className="w-28"
+
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                      >
                         <span className="sr-only">G-Campus</span>
                         <img className="w-3/2" src={Logo} alt="logo" />
                       </Link>
@@ -104,7 +107,7 @@ function Navbar({ NavLink }) {
               </div>
             </div>
           </div>
-          <div className="hidden md:flex md:space-x-10 h- list-none">
+          <div className="hidden lg:flex lg:space-x-10 h- list-none">
             {NavLink.map((navlink, i) => {
               return (
                 <li className="" key={i}>
@@ -124,7 +127,7 @@ function Navbar({ NavLink }) {
               );
             })}
           </div>
-          <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
+          <div className="hidden lg:absolute lg:flex lg:items-center lg:justify-end lg:inset-y-0 lg:right-0">
             <div className=" flex justify-center items-center rounded-full shadow">
               <Link
                 to="/login"
