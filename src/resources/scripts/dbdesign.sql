@@ -91,10 +91,12 @@ twelfthPassingYear Year not null,
 twelfthPercentage varchar(5) not null,
 deptId int not null,
 classId int not null,
-status varchar(10) default "active"
+status varchar(10) default "inactive"
 );
 
 -- select * from students;
+ 
+-- drop table students;
 
 insert into students
 (sid,fname,mname,lname,dob,gender,blood,
@@ -109,3 +111,15 @@ deptId,classId)
 '9876543210',
 'web.developers.2021.2024@gmail.com','Gurukrupa',
 '2019','85','SMT GN Pandya','2021','80',104,1112);
+
+create table feedbacks(
+srno int primary key auto_increment,
+fullname varchar(20) not null, 
+email varchar(40) unique,
+phone varchar(10) not null,
+message varchar(255) not null
+);
+
+-- drop table feedbacks;
+
+select * from feedbacks;
