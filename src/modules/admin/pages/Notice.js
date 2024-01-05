@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import Modal from "../components/Modal";
 
-const Notice = () => {
+const Notice = ({ title, img, time, msg }) => {
   const [isModal, setIsModal] = useState(false);
 
   const handleModal = () => {
@@ -9,84 +10,16 @@ const Notice = () => {
   return (
     <>
       {isModal && (
-        <div className=" justify-center items-center flex ">
-          <div className="">
-            <div className="  ">
-              <div className="h-96 w-96 bg-white fixed top-0 left-0 px-10 md:mt-20 md:left md:p-0 lg:left-[40%] mt-[20%]  ">
-                <form className="bg-blue-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 ">
-                  <div className="mb-4">
-                    <label
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                     
-                    >
-                      Tittle
-                    </label>
-                    <input
-                      name="title"
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="title"
-                      type="text"
-                      placeholder="title"
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                      htmlFor="email"
-                    >
-                      Link
-                    </label>
-                    <input
-                      name="link"
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                      id="link"
-                      type="link"
-                      placeholder="link"
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                      htmlFor="description"
-                    >
-                      Description
-                    </label>
-                    <textarea
-                      name="description"
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                      id="description"
-                      type="text"
-                      placeholder="Type here..."
-                    />
-                  </div>
-
-                  <div className="flex items-center justify-between">
-                    <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                      type="submit"
-                    >
-                      Save
-                    </button>
-                    <button
-                    onClick={handleModal}
-                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                      type="button"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+        <>
+          <Modal isModal={isModal} setIsModal={setIsModal} />
+        </>
       )}
       <div className="h-screen w-screen">
-        <div className="m-7 flex justify-between">
-          <h1 className=" text-3xl font-bold  text-center ">Notice</h1>
+        <div className="h-[10%] flex justify-between items-center">
+          <h1 className=" text-3xl mx-5 font-bold  text-center ">Notice</h1>
           <button
             onClick={handleModal}
-            className="bg-blue-400 rounded-xl px-5  flex justify-center items-center gap-2"
+            className="bg-blue-600 rounded-xl px-5 p-2 mx-5 bold text-white  flex justify-center items-center gap-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -102,6 +35,96 @@ const Notice = () => {
 
             <span>New</span>
           </button>
+        </div>
+        <div className="h-[90% ] w-full  grid place-items-center px-10">
+          <div className="w-full p-10 bg-gray-100 dark:bg-gray-800 rounded-xl mx-auto border  shadow-sm">
+            <div className="inline-flex items-center justify-between w-full">
+              <h3 className="font-bold text-xl sm:text-2xl text-gray-800 dark:text-white">
+                {/* title ? title : "Notification" */}
+                {title || "Notification"}
+              </h3>
+            </div>
+            <p className="mt-8 font-medium text-gray-500 text-sm sm:text-base dark:text-white">
+              Today
+            </p>
+            <div className="mt-2 px-6 py-4 bg-white rounded-lg shadow hover:bg-blue-100   w-full">
+              <div className=" inline-flex items-center justify-between w-full">
+                <div className="inline-flex items-center">
+                  <img
+                    src={
+                      img ||
+                      "https://cdn-icons-png.flaticon.com/128/763/763812.png"
+                    }
+                    alt="Training Icon"
+                    className="w-6 h-6 mr-3"
+                  />
+                  <h3 className="font-bold text-base text-gray-800">
+                    Training
+                  </h3>
+                </div>
+                <p className="text-xs text-gray-500">{time || "No Time"}</p>
+              </div>
+              <p className="mt-1 text-sm">{msg || "Your msg.."}</p>
+            </div>
+            <div className="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full hover:bg-blue-100 ">
+              <div className=" inline-flex items-center justify-between w-full">
+                <div className="inline-flex items-center">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/893/893257.png"
+                    alt="Messages Icon"
+                    className="w-6 h-6 mr-3"
+                  />
+                  <h3 className="font-bold text-base text-gray-800">
+                    Messages
+                  </h3>
+                </div>
+                <p className="text-xs text-gray-500">1 hour </p>
+              </div>
+              <p className="mt-1 text-sm">You have a new message</p>
+            </div>
+            <p className="mt-8 font-medium text-gray-500 dark:text-white text-sm sm:text-base">
+              Yesterday
+            </p>
+            <div className="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full hover:bg-blue-100">
+              <div className=" inline-flex items-center justify-between w-full">
+                <div className="inline-flex items-center">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/6863/6863272.png"
+                    alt="Form Icon"
+                    className="w-6 h-6 mr-3"
+                  />
+                  <h3 className="font-bold text-base text-gray-800">Forms</h3>
+                </div>
+                <p className="text-xs text-gray-500">12:47</p>
+              </div>
+              <p className="mt-1 text-sm">
+                Remember about filling out the COVID-19 from before the next
+                appointment tomorrow
+              </p>
+            </div>
+            <div className="mt-2 px-6 py-4 bg-white rounded-lg shadow w-full hover:bg-blue-100">
+              <div className=" inline-flex items-center justify-between w-full">
+                <div className="inline-flex items-center">
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/128/763/763812.png"
+                    alt="Training Icon"
+                    className="w-6 h-6 mr-3"
+                  />
+                  <h3 className="font-bold text-base text-gray-800">
+                    Training
+                  </h3>
+                </div>
+                <p className="text-xs text-gray-500">12:43</p>
+              </div>
+              <p className="mt-1 text-sm">
+                We're glad you've decided to use our training system! Let's now
+                set a complete of things
+              </p>
+            </div>
+            <button className="w-full mt-4 border py-3 hover:text-white font-bold text-center gap-4 hover:bg-red-500  rounded-xl">
+              Clear all notifications
+            </button>
+          </div>
         </div>
       </div>
     </>
