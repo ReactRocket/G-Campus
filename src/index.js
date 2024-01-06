@@ -24,6 +24,9 @@ import StudentDashboard, {
 import StudentHome from "./modules/student/pages/Home";
 import Registration from "./pages/test/Registration";
 
+import AdminDashboard from "./modules/admin/pages/Dashboard"
+import { onLoadAdminAuth } from "./modules/admin/pages/Dashboard";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -74,6 +77,17 @@ const router = createBrowserRouter([
         element: <StudentHome />,
       },
     ],
+  },
+  {
+    path: "/admin",
+    element: <AdminDashboard />,
+    loader: onLoadAdminAuth,
+    // children: [
+    //   {
+    //     path: "",
+    //     // element:,
+    //   },
+    // ],
   },
 ]);
 

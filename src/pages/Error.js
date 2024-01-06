@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Error() {
+  const navigate = useNavigate();
   return (
     <div className="w-full h-screen flex flex-col lg:flex-row items-center justify-center space-y-16 lg:space-y-0 space-x-8 2xl:space-x-0">
       <div className="w-full lg:w-1/2 flex flex-col items-center justify-center lg:px-2 xl:px-0 text-center">
@@ -14,8 +15,8 @@ function Error() {
         <p className="text-lg md:text-xl lg:text-2xl text-gray-500 my-12">
           Sorry, the page you are looking for could not be found.
         </p>
-        <Link
-          to="/"
+        <button
+          onClick={() => navigate(-1)}
           className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded transition duration-150"
           title="Return Home">
           <svg
@@ -28,8 +29,8 @@ function Error() {
               d="M9.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L7.414 9H15a1 1 0 110 2H7.414l2.293 2.293a1 1 0 010 1.414z"
               clipRule="evenodd"></path>
           </svg>
-          <span>Return Home</span>
-        </Link>
+          <span>Back</span>
+        </button>
       </div>
       <div className="w-1/2 lg:h-full flex lg:items-end justify-center p-4">
         <svg
@@ -38,7 +39,7 @@ function Error() {
           data-name="Layer 1"
           viewBox="0 0 1120.59226 777.91584"
         //   xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
+        >
           <title>not found</title>
           <circle cx="212.59226" cy="103" r="64" fill="#ff6584"></circle>
           <path
