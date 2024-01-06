@@ -6,11 +6,12 @@ import Noitce from "./pages/Noitce";
 function App() {
   return (
     <>
-      {/* <Navbar NavLink={NavLink} />
+      <Navbar NavLink={NavLink} />
 
       <Outlet />
-      <Footer NavLink={NavLink} /> */}
-      <Noitce />
+      <Footer NavLink={NavLink} />
+      {/* <Noitce /> */}
+
       
     </>
   );
