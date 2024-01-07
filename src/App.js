@@ -1,18 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Noitce from "./pages/Noitce";
 
 function App() {
   return (
     <>
       <Navbar NavLink={NavLink} />
-
       <Outlet />
       <Footer NavLink={NavLink} />
-      {/* <Noitce /> */}
-
-      
     </>
   );
 }

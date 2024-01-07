@@ -1,5 +1,8 @@
 import React from 'react'
 import BCA_IMG from '../resources/images/about/bca.jpg'
+import BCOM_IMG from '../resources/images/about/bcom.jpg'
+import BBA_IMG from '../resources/images/about/bba.jpg'
+import { Link } from 'react-router-dom'
 function Courses() {
   return (
     <>
@@ -10,110 +13,113 @@ function Courses() {
             <h3 className="mb-3 text-xl font-bold text-indigo-600">BCA</h3>
             <div className="relative">
               <img className="w-full rounded-xl" src={BCA_IMG} alt="Colors" />
-              <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">FREE</p>
             </div>
-            <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">Javascript Bootcamp for Absolute Beginners</h1>
+            <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">Bachelor's of Computer Application</h1>
             <div className="my-4">
-              <div className="flex space-x-1 items-center">
+              <div className="flex space-x-1 items-center mb-1.5">
                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </span>
-                <p>1:34:23 Minutes</p>
+                <p>3 Years</p>
               </div>
-              <div className="flex space-x-1 items-center">
+              <div className="flex space-x-1 items-center mb-1.5">
                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </span>
-                <p>3 Parts</p>
+                <p>6 Semesters</p>
               </div>
-              <div className="flex space-x-1 items-center">
+              <div className="flex space-x-1 items-center mb-1.5">
                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                   </svg>
                 </span>
-                <p>Vanilla JS</p>
+                <p>Web/App Development</p>
               </div>
-              <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Buy Lesson</button>
+              <Link to="/courses/bca">
+                <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">View More</button>
+              </Link>
             </div>
           </div>
           <div className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
-            <h3 className="mb-3 text-xl font-bold text-indigo-600">Intermediate</h3>
+            <h3 className="mb-3 text-xl font-bold text-indigo-600">BCOM</h3>
             <div className="relative">
-              <img className="w-full rounded-xl" src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80" alt="Colors" />
-              <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">$12</p>
-              <p className="absolute top-0 right-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-tr-lg rounded-bl-lg">%20 Discount</p>
+              <img className="w-full rounded-xl" src={BCOM_IMG} alt="Colors" />
             </div>
-            <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">Write a Gatsby plugin using Typescript</h1>
+            <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">Bachelor's of Commerce</h1>
+            <h1>&nbsp;</h1>
             <div className="my-4">
-              <div className="flex space-x-1 items-center">
+              <div className="flex space-x-1 items-center mb-1.5">
                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </span>
-                <p>1:34:23 Minutes</p>
+                <p>3 Years</p>
               </div>
-              <div className="flex space-x-1 items-center">
+              <div className="flex space-x-1 items-center mb-1.5">
                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </span>
-                <p>3 Parts</p>
+                <p>6 Semesters</p>
               </div>
-              <div className="flex space-x-1 items-center">
+              <div className="flex space-x-1 items-center mb-1.5">
                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                   </svg>
                 </span>
-                <p>TypeScript</p>
+                <p>Accounting/Banking</p>
               </div>
-              <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Start Watching Now</button>
+              <Link to="/courses/bcom">
+                <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">View More</button>
+              </Link>
             </div>
           </div>
           <div className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
-            <h3 className="mb-3 text-xl font-bold text-indigo-600">Beginner Friendly</h3>
+            <h3 className="mb-3 text-xl font-bold text-indigo-600">BBA</h3>
             <div className="relative">
-              <img className="w-full rounded-xl" src="https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80" alt="Colors" />
-              <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">$50</p>
+              <img className="w-full rounded-xl" src={BBA_IMG} alt="Colors" />
             </div>
-            <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">Advanced React Native for Sustainability</h1>
+            <h1 className="mt-4 text-gray-800 text-2xl font-bold cursor-pointer">Bachelor's of Business Administration</h1>
             <div className="my-4">
-              <div className="flex space-x-1 items-center">
+              <div className="flex space-x-1 items-center mb-1.5">
                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </span>
-                <p>1:34:23 Minutes</p>
+                <p>3 Years</p>
               </div>
-              <div className="flex space-x-1 items-center">
+              <div className="flex space-x-1 items-center mb-1.5">
                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                 </span>
-                <p>3 Parts</p>
+                <p>6 Semesters</p>
               </div>
-              <div className="flex space-x-1 items-center">
+              <div className="flex space-x-1 items-center mb-1.5">
                 <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 mb-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-600 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                   </svg>
                 </span>
-                <p>Vanilla JS</p>
+                <p>Business Management</p>
               </div>
-              <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">Buy Lesson</button>
+              <Link to="/courses/bba">
+                <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">View More</button>
+              </Link>
             </div>
-          </div>
-        </div>
-      </div>
+          </div >
+        </div >
+      </div >
     </>
   )
 }
