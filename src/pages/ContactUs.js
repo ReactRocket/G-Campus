@@ -32,14 +32,7 @@ function ContactUs() {
             setFormData({ fullname: "", email: "", phone: "", message: "" });
           } else {
             // alert("Oops! Something went wrong. Please try again later.");
-            switch (response.displayMessage.code) {
-              case "ER_DUP_ENTRY":
-                alert("Your already connected with us. Thank You!");
-                break;
-
-              default:
-                break;
-            }
+            alert(response.displayMessage);
             setFormData({ fullname: "", email: "", phone: "", message: "" });
           }
         });

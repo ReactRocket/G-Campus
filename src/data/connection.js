@@ -1,15 +1,9 @@
 var mysql = require("mysql");
-var connection = mysql.createConnection({
+var pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "@1302Ram",
+  password: "1101",
   database: "gcampus",
 });
 
-function connectToMySQL() {
-  connection.connect();
-  console.log("conneted to MySQL");
-  return connection;
-}
-
-module.exports = connectToMySQL;
+module.exports = pool;
