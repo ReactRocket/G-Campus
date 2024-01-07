@@ -120,7 +120,7 @@ router.get("/allfeedbacks", (req, res) => {
 
 // remove all feedbacks
 router.delete("/deleteAll", (req, res) => {
-  let query = "update feedbacks set status = 'inactive'";
+  let query = "update feedbacks set status = 'inactive' where status = 'active'";
   pool.getConnection((err, connection) => {
     connection.query(query, (err, data, fields) => {
       if (err) {
@@ -143,7 +143,8 @@ router.delete("/deleteOne", (req, res) => {
       isSuccess: false,
     });
   } else {
-    let query = "update feedbacks set status = 'inactive' where srno=" + feedbackNo;
+    let query =
+      "update feedbacks set status = 'inactive' where srno=" + feedbackNo;
     pool.getConnection((err, connection) => {
       connection.query(query, (err, data, fields) => {
         if (err) {
