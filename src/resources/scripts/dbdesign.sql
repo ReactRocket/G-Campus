@@ -1,8 +1,8 @@
 -- run commands one after one
 
-create database gcampus;
+-- create database gcampus;
 
-use gcampus;
+-- use gcampus;
 
 create table departments(
 deptId int primary key,
@@ -117,9 +117,13 @@ srno int primary key auto_increment,
 fullname varchar(20) not null, 
 email varchar(40) unique,
 phone varchar(10) not null,
-message varchar(255) not null
+message varchar(255) not null,
+status varchar(10) default "active" 
 );
 
 -- drop table feedbacks;
 
+update feedbacks set status = "inactive";
+
 select * from feedbacks;
+delete from feedbacks where srno = 1;

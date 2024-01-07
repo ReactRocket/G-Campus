@@ -10,6 +10,10 @@ function ContactUs() {
     message: "",
   });
 
+  const emptyFormData = () => {
+    setFormData({ fullname: "", email: "", phone: "", message: "" });
+  };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -21,19 +25,17 @@ function ContactUs() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = validateForm(formData);
-    console.log(result);
     if (result) {
       await axios
-        .post("http://localhost:5000/feedbacks", formData)
+        .post("http://localhost:5000/feedbacks/insert", formData)
         .then((res) => {
           let response = res.data;
           if (response.isSuccess) {
             alert("Thank you! Your message has been successfully sent");
-            setFormData({ fullname: "", email: "", phone: "", message: "" });
+            emptyFormData();
           } else {
-            // alert("Oops! Something went wrong. Please try again later.");
             alert(response.displayMessage);
-            setFormData({ fullname: "", email: "", phone: "", message: "" });
+            emptyFormData();
           }
         });
     }
@@ -87,7 +89,7 @@ function ContactUs() {
               </label>
               <input
                 placeholder="Enter Your Email"
-                type="email"
+                type="text"
                 id="email"
                 name="email"
                 // required

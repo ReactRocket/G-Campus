@@ -9,7 +9,7 @@ const {
 const pool = require("../connection");
 
 // insert feedbacks
-router.post("/insert", (req, res) => {
+router.post("/insert", async (req, res) => {
   let fullname = req.body.fullname.trim();
   let email = req.body.email.trim();
   let phone = req.body.phone.trim();
@@ -50,7 +50,7 @@ router.post("/insert", (req, res) => {
       "','" +
       message +
       "')";
-    pool.getConnection((err, connection) => {
+    await pool.getConnection((err, connection) => {
       connection.query(query, (err, data, fields) => {
         if (err) {
           switch (err.code) {
@@ -95,9 +95,9 @@ router.post("/insert", (req, res) => {
 });
 
 // get all feedbacks
-router.get("/allfeedbacks", (req, res) => {
+router.get("/allfeedbacks", async (req, res) => {
   let query = "select * from feedbacks";
-  pool.getConnection((err, connection) => {
+  await pool.getConnection((err, connection) => {
     connection.query(query, (err, data, fields) => {
       if (err) {
         res.json({ displayMessage: err, data: "", isSuccess: false });
@@ -119,9 +119,10 @@ router.get("/allfeedbacks", (req, res) => {
 });
 
 // remove all feedbacks
-router.delete("/deleteAll", (req, res) => {
-  let query = "update feedbacks set status = 'inactive' where status = 'active'";
-  pool.getConnection((err, connection) => {
+router.delete("/deleteAll", async(req, res) => {
+  let query =
+    "update feedbacks set status = 'inactive' where status = 'active'";
+  await pool.getConnection((err, connection) => {
     connection.query(query, (err, data, fields) => {
       if (err) {
         res.json({ displayMessage: err, data: "", isSuccess: false });
@@ -133,7 +134,7 @@ router.delete("/deleteAll", (req, res) => {
   });
 });
 
-router.delete("/deleteOne", (req, res) => {
+router.delete("/deleteOne", async (req, res) => {
   let feedbackNo = req.body.srno.trim();
 
   if (isBlank(feedbackNo)) {
@@ -145,7 +146,7 @@ router.delete("/deleteOne", (req, res) => {
   } else {
     let query =
       "update feedbacks set status = 'inactive' where srno=" + feedbackNo;
-    pool.getConnection((err, connection) => {
+    await pool.getConnection((err, connection) => {
       connection.query(query, (err, data, fields) => {
         if (err) {
           res.json({ displayMessage: err, data: "", isSuccess: false });
