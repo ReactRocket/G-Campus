@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import team from '../resources/images/team.svg'
+import team from '../resources/images/College-img.jpg'
 
 function AboutUs() {
   return (

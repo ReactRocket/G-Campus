@@ -25,7 +25,12 @@ import StudentHome from "./modules/student/pages/Home";
 import Registration from "./pages/test/Registration";
 
 import AdminDashboard from "./modules/admin/pages/Dashboard"
-import { onLoadAdminAuth } from "./modules/admin/pages/Dashboard";
+import Main from "./modules/admin/pages/Main";
+import Student from "./modules/admin/pages/Student";
+import Faculty from "./modules/admin/pages/Faculty";
+import Notice from "./modules/admin/pages/Notice";
+import Feedback from "./modules/admin/pages/Feedback";
+import Gallery from "./modules/admin/pages/Gallery";
 
 const router = createBrowserRouter([
   {
@@ -78,16 +83,38 @@ const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/admin",
     element: <AdminDashboard />,
-    loader: onLoadAdminAuth,
-    // children: [
-    //   {
-    //     path: "",
-    //     // element:,
-    //   },
-    // ],
+    // loader: onLoadAdminAuth,
+    children: [
+      {
+        index: "admin",
+        element: <Main />
+      },
+      {
+        path: "student",
+        element: <Student />
+
+      },
+      {
+        path: "faculty",
+        element: <Faculty />,
+      },
+      {
+        path: "notice",
+        element: <Notice />,
+      },
+      {
+        path: "feedback",
+        element: <Feedback />,
+      },
+      {
+        path: "gallery",
+        element: <Gallery />,
+      },
+    ],
   },
 ]);
 
