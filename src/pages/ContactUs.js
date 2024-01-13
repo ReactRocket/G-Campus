@@ -26,18 +26,26 @@ function ContactUs() {
     e.preventDefault();
     let result = validateForm(formData);
     if (result) {
-      await axios
-        .post("http://localhost:5000/feedbacks/insert", formData)
-        .then((res) => {
-          let response = res.data;
-          if (response.isSuccess) {
-            alert("Thank you! Your message has been successfully sent");
-            emptyFormData();
-          } else {
-            alert(response.displayMessage);
-            emptyFormData();
-          }
-        });
+      try {
+        await axios
+          .post("http://localhost:5000/feedbacks/insert", formData)
+          .then((res) => {
+            let response = res.data;
+            if (response.isSuccess) {
+              if (response.displayMessage) {
+                alert(response.displayMessage);
+                emptyFormData();
+              } else {
+                alert("Thank you! Your message has been successfully sent");
+                emptyFormData();
+              }
+            } else {
+              alert(response.displayMessage);
+            }
+          });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
   return (
@@ -75,7 +83,7 @@ function ContactUs() {
                 type="text"
                 id="fullname"
                 name="fullname"
-                // required
+                display-message="Full Name"
                 onChange={handleChange}
                 value={formData?.fullname}
                 className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out hover:border-sky-600  "
@@ -92,7 +100,7 @@ function ContactUs() {
                 type="text"
                 id="email"
                 name="email"
-                // required
+                display-message="Email Address"
                 onChange={handleChange}
                 value={formData?.email}
                 className="w-full bg-white rounded hover:border-sky-600  border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
@@ -110,7 +118,7 @@ function ContactUs() {
                 pattern="[0-9]{10}"
                 id="phone"
                 name="phone"
-                // required
+                display-message="Phone Number"
                 onChange={handleChange}
                 value={formData?.phone}
                 className=" [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none w-full bg-white rounded border border-gray-300 hover:border-sky-600  focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
@@ -126,7 +134,7 @@ function ContactUs() {
                 placeholder="Type Here.."
                 id="message"
                 name="message"
-                // required
+                display-message="Message"
                 onChange={handleChange}
                 value={formData?.message}
                 className="w-full bg-white rounded border border-gray-300 hover:border-sky-600   focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>

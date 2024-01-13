@@ -58,7 +58,7 @@ router.post("/insert", async (req, res) => {
               res.json({
                 displayMessage: "Your already connected with us. Thank You!",
                 data: "",
-                isSuccess: false,
+                isSuccess: true,
               });
               break;
             case "ER_WRONG_VALUE_COUNT_ON_ROW":
