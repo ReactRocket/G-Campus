@@ -13,8 +13,10 @@ export function validateForm(dataObj) {
       }
     } else if (isBlank(value)) {
       flag = false;
-      alert("Please enter the " + key);
-      document.getElementById(key).focus();
+      let element = document.getElementById(key);
+      let displayMessage = element.getAttribute("display-message");
+      alert("Please enter the " + displayMessage);
+      element.focus();
       break;
     } else {
       flag = true;
@@ -26,7 +28,7 @@ export function validateForm(dataObj) {
 export function validatePhone(formData) {
   var phoneno = /^\d{10}$/;
   if (formData.phone === null || formData.phone === "") {
-    alert("Please enter the Phone");
+    alert("Please enter the Phone Number");
     document.getElementById("phone").focus();
     return false;
   } else if (formData.phone.match(phoneno)) {
@@ -40,7 +42,7 @@ export function validatePhone(formData) {
 
 export function validateEmail(formData) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  let emailAddress = formData.email
+  let emailAddress = formData.email;
   if (!isBlank(emailAddress)) {
     if (emailAddress.match(emailRegex)) {
       return true;
@@ -54,25 +56,14 @@ export function validateEmail(formData) {
     document.getElementById("email").focus();
     return false;
   }
-  // if (formData.email === null || formData.email === "") {
-  //   alert("Please enter the Email Address");
-  //   document.getElementById("email").focus();
-  //   return false;
-  // } else if (formData.phone.match(email)) {
-  //   return true;
-  // } else {
-  //   alert("Please enter the a valid Email Address.");
-  //   document.getElementById("email").focus();
-  //   return false;
-  // }
 }
 
-function isBlank(string) {
-  if (string === "" || string === null) {
+export function isBlank(string) {
+  if (string === "" || string === null || string === "default") {
     return true;
   } else {
     return false;
   }
 }
 
-module.export = { validateForm, validatePhone, validateEmail };
+module.export = { validateForm, validatePhone, validateEmail, isBlank };
