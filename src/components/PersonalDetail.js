@@ -97,7 +97,7 @@ function PersonalDetail({
       <div className="w-1/2  justify-center items-center lg:flex hidden">
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="w-[80%] h-[80%]"
+          className="w-[85%] h-[80%]"
           data-name="Layer 1"
           width="1050.8619"
           height="704.35284"
@@ -266,15 +266,15 @@ function PersonalDetail({
         </svg>
       </div>
       <div className="lg:w-1/2 w-full">
-        <div className="w-full h-full">
-          <div className="mt-4 text-2xl font-medium w-full">
+        <div className="w-full h-full lg:m-0 m-auto lg:block flex flex-col justify-center items-center">
+          <div className="mt-4 text-2xl font-medium lg:w-full w-[85%]">
             Registration Form
           </div>
-          <div className="text-md">Enter your basic information</div>
-          <div className="grid grid-cols-3 gap-x-6 gap-y-4 lg:mt-2 p-2">
+          <div className="text-md lg:w-full w-[85%]">Enter your basic information</div>
+          <div className="lg:grid grid-cols-3 gap-x-6 gap-y-4 lg:mt-2 py-2 w-full flex flex-col justify-center items-center">
             {/* first name */}
-            <div className="lg:col-span-1 col-span-3">
-              <label htmlFor="fullname" className="block">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+              <label htmlFor="fname" className="block">
                 First Name
               </label>
               <input
@@ -283,11 +283,11 @@ function PersonalDetail({
                 id="fname"
                 display-message="First Name"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]"
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-full"
               />
             </div>
             {/* middle name */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="mname" className="block">
                 Middle Name
               </label>
@@ -297,11 +297,11 @@ function PersonalDetail({
                 name="mname"
                 display-message="Middle Name"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]"
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-full"
               />
             </div>
             {/* last name */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="lname" className="block">
                 Last Name
               </label>
@@ -311,11 +311,11 @@ function PersonalDetail({
                 id="lname"
                 display-message="Last Name"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]"
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-full"
               />
             </div>
             {/* email address */}
-            <div className="lg:col-span-2 col-span-3">
+            <div className="lg:col-span-2 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="email" className="block">
                 Email
               </label>
@@ -325,11 +325,11 @@ function PersonalDetail({
                 name="email"
                 display-message="Email Address"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[97%] w-[90%]"
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[97%] w-full"
               />
             </div>
             {/* gender */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="gender" className="block">
                 Gender
               </label>
@@ -338,7 +338,7 @@ function PersonalDetail({
                 id="gender"
                 display-message="Gender"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] appearance-none">
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-full appearance-none">
                 <option value="default">--select gender--</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -346,7 +346,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* date of birth */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="dob" className="block">
                 DOB
               </label>
@@ -356,11 +356,11 @@ function PersonalDetail({
                 id="dob"
                 display-message="Date Of Birth"
                 onChange={handleChange}
-                className="text-md p-1.5 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] appearance-none uppercase"
+                className="text-md p-1.5 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-full appearance-none uppercase"
               />
             </div>
             {/* blood group */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="blood" className="block">
                 Blood Group
               </label>
@@ -369,7 +369,7 @@ function PersonalDetail({
                 id="blood"
                 display-message="Blood Group"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] appearance-none">
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-full appearance-none">
                 <option value="default">--select blood--</option>
                 <option value="A+">A+</option>
                 <option value="B+">B+</option>
@@ -382,7 +382,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* phone number */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="phone" className="block">
                 Phone
               </label>
@@ -392,11 +392,11 @@ function PersonalDetail({
                 id="phone"
                 display-message="Phone Number"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
               />
             </div>
             {/* Address */}
-            <div className="lg:col-span-3 col-span-3">
+            <div className="lg:col-span-3 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="address" className="block">
                 Address
               </label>
@@ -406,11 +406,11 @@ function PersonalDetail({
                 name="address"
                 display-message="Residential Address"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[97%] w-[90%]"
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[97%] w-full"
               />
             </div>
             {/* country */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="country" className="block">
                 Country
               </label>
@@ -419,7 +419,7 @@ function PersonalDetail({
                 id="country"
                 display-message="Country"
                 onChange={handleState}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] appearance-none">
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-full appearance-none">
                 <option value="default">--select country--</option>
                 {typeof countries === "object"
                   ? countries?.map((country) => {
@@ -436,7 +436,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* state */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="state" className="block">
                 State
               </label>
@@ -445,7 +445,7 @@ function PersonalDetail({
                 id="state"
                 display-message="State"
                 onChange={handleCity}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] appearance-none">
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-full appearance-none">
                 <option value="default">--select state--</option>
                 {typeof state === "object"
                   ? state?.map((state) => {
@@ -462,7 +462,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* city */}
-            <div className="lg:col-span-1 col-span-3 lg:mb-3">
+            <div className="lg:col-span-1 col-span-3 lg:mb-3 lg:w-auto w-[85%]">
               <label htmlFor="city" className="block">
                 City
               </label>
@@ -471,7 +471,7 @@ function PersonalDetail({
                 id="city"
                 display-message="City"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]  appearance-none">
+                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-full  appearance-none">
                 <option value="default">--select city--</option>
                 {typeof city === "object"
                   ? city?.map((city) => {
@@ -484,18 +484,18 @@ function PersonalDetail({
                   : ""}
               </select>
             </div>
-            <div className="lg:col-start-2 lg:col-end-3 col-span-3">
+            <div className="lg:col-start-2 lg:col-end-3 col-span-3 lg:w-auto w-[85%]">
               <button
                 type="button"
                 onClick={handlePrevious}
-                className="bg-blue-200 outline-none lg:w-[95%] w-[90%] p-1.5 text-lg rounded">
-                Previos
+                className="bg-blue-400 text-white outline-none lg:w-[95%] w-full p-1.5 text-lg rounded">
+                Previous
               </button>
             </div>
-            <div className="lg:col-start-3 lg:col-end-4 col-span-3">
+            <div className="lg:col-start-3 lg:col-end-4 col-span-3 lg:w-auto w-[85%]">
               <button
                 type="button"
-                className="bg-blue-200 outline-none lg:w-[95%] w-[90%] p-1.5 text-lg rounded"
+                className="bg-blue-400 text-white outline-none lg:w-[95%] w-full p-1.5 text-lg rounded"
                 onClick={handleNext}>
                 Next
               </button>
