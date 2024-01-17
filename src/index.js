@@ -11,12 +11,13 @@ import store from "./app/store";
 
 import Home from "./pages/Home";
 import Error from "./pages/Error";
-import SignUp from "./pages/SignUp";
+// import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import Courses from "./pages/Courses";
+import Register from "./pages/Register"
 
 import StudentDashboard, {
   sideBarFlag,
@@ -24,7 +25,7 @@ import StudentDashboard, {
 import StudentHome from "./modules/student/pages/Home";
 import Registration from "./pages/test/Registration";
 
-import AdminDashboard from "./modules/admin/pages/Dashboard"
+import AdminDashboard from "./modules/admin/pages/Dashboard";
 import Main from "./modules/admin/pages/Main";
 import Student from "./modules/admin/pages/Student";
 import Faculty from "./modules/admin/pages/Faculty";
@@ -36,7 +37,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/signup",
-        element: <SignUp />,
+        element: <Register />,
       },
       {
         path: "/login",
@@ -83,7 +83,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
   {
     path: "/admin",
     element: <AdminDashboard />,
@@ -91,12 +90,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: "admin",
-        element: <Main />
+        element: <Main />,
       },
       {
         path: "student",
-        element: <Student />
-
+        element: <Student />,
       },
       {
         path: "faculty",
@@ -115,6 +113,10 @@ const router = createBrowserRouter([
         element: <Gallery />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Error />,
   },
 ]);
 
