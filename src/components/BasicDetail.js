@@ -24,9 +24,9 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
       <div className="lg:w-1/2 w-full flex justify-center items-center flex-col">
         <div className="lg:w-[75%] w-[90%] lg:mt-0 mt-4">
           <h1 className="lg:text-2xl text-xl mb-4 text-blue-500">
-            Welcome to G-Campus Registration :
+            Welcome to G-Campus Registration
           </h1>
-          <h1 className="lg:text-lg text-base mb-2">
+          <h1 className="lg:text-lg text-base mb-2 lg:block hidden">
             We are thrilled to welcome you to Our College. The journey towards
             your higher education starts here, and we are excited to be a part
             of this important chapter in your life.
@@ -37,8 +37,6 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
           </h1>
         </div>
         <div className="lg:w-[75%] lg:py-4 lg:m-0 mt-3 w-[90%] lg:block flex justify-center items-center flex-col">
-          {/* <div className="mt-4 text-2xl font-medium w-full">Department</div> */}
-          {/* <div className="text-md w-full">Please select department</div> */}
           <div className="lg:mt-4 mb-3 w-full">
             <select
               name="deptId"
