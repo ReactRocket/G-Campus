@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import personaldetail from "../resources/images/personal-details.svg";
+import { useNavigate } from "react-router-dom";
 
 function PersonalDetail({
   display,
@@ -10,6 +12,7 @@ function PersonalDetail({
   const [countries, setCountries] = useState(null);
   const [state, setState] = useState(null);
   const [city, setCity] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchCountry().then((data) => {
@@ -29,30 +32,36 @@ function PersonalDetail({
       redirect: "follow",
     })
       .then((res) => res.json())
-      .then((data) => data);
+      .then((data) => data)
+      .catch(() => {
+        navigate("/network");
+      });
   };
 
   const handleState = async (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    // console.log(formData);
     let selectElement = e.target;
     let id = selectElement.options[selectElement.selectedIndex].id;
-
-    setState(
-      await fetch(
-        "https://api.countrystatecity.in/v1/countries/" + id + "/states",
-        {
-          method: "GET",
-          headers: {
-            "X-CSCAPI-KEY":
-              "QzNVT0FaeUlPU0FlSlNEWHl6ZjR1V1BEYlFuSmF5eWhybk4xMFN0NA==",
-          },
-          redirect: "follow",
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => data)
-    );
+    try {
+      setState(
+        await fetch(
+          "https://api.countrystatecity.in/v1/countries/" + id + "/states",
+          {
+            method: "GET",
+            headers: {
+              "X-CSCAPI-KEY":
+                "QzNVT0FaeUlPU0FlSlNEWHl6ZjR1V1BEYlFuSmF5eWhybk4xMFN0NA==",
+            },
+            redirect: "follow",
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => data)
+      );
+    } catch (error) {
+      // error should be impliment
+      navigate("/network");
+    }
   };
 
   const handleCity = async (e) => {
@@ -62,25 +71,29 @@ function PersonalDetail({
     let contry = document.getElementById("country");
     let countryId = contry.options[contry.selectedIndex].id;
 
-    setCity(
-      await fetch(
-        "https://api.countrystatecity.in/v1/countries/" +
-          countryId +
-          "/states/" +
-          id +
-          "/cities",
-        {
-          method: "GET",
-          headers: {
-            "X-CSCAPI-KEY":
-              "QzNVT0FaeUlPU0FlSlNEWHl6ZjR1V1BEYlFuSmF5eWhybk4xMFN0NA==",
-          },
-          redirect: "follow",
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => data)
-    );
+    try {
+      setCity(
+        await fetch(
+          "https://api.countrystatecity.in/v1/countries/" +
+            countryId +
+            "/states/" +
+            id +
+            "/cities",
+          {
+            method: "GET",
+            headers: {
+              "X-CSCAPI-KEY":
+                "QzNVT0FaeUlPU0FlSlNEWHl6ZjR1V1BEYlFuSmF5eWhybk4xMFN0NA==",
+            },
+            redirect: "follow",
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => data)
+      );
+    } catch (error) {
+      navigate("/network");
+    }
   };
 
   const handleChange = (e) => {
@@ -95,9 +108,9 @@ function PersonalDetail({
     <div
       className={`w-full h-full absolute ${display} lg:flex-row flex-col lg:overflow-hidden overflow-scroll`}>
       <div className="w-1/2  justify-center items-center lg:flex hidden">
-        <svg
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="w-[80%] h-[80%]"
+          className="w-[85%] h-[80%]"
           data-name="Layer 1"
           width="1050.8619"
           height="704.35284"
@@ -263,18 +276,25 @@ function PersonalDetail({
             transform="translate(-74.56905 -97.82358)"
             fill="#3f3d56"
           />
-        </svg>
+        </svg> */}
+        <img
+          src={personaldetail}
+          className="rounded w-[80%] h-[95%]"
+          alt="college side view"
+        />
       </div>
       <div className="lg:w-1/2 w-full">
-        <div className="w-full h-full">
-          <div className="mt-4 text-2xl font-medium w-full">
+        <div className="w-full h-full lg:m-0 m-auto lg:block flex flex-col justify-center items-center">
+          <div className="mt-4 text-2xl font-medium lg:w-full w-[85%]">
             Registration Form
           </div>
-          <div className="text-md">Enter your basic information</div>
-          <div className="grid grid-cols-3 gap-x-6 gap-y-4 lg:mt-2 p-2">
+          <div className="text-md lg:w-full w-[85%]">
+            Enter your basic information
+          </div>
+          <div className="lg:grid grid-cols-3 gap-x-6 gap-y-4 lg:mt-2 py-2 w-full flex flex-col justify-center items-center">
             {/* first name */}
-            <div className="lg:col-span-1 col-span-3">
-              <label htmlFor="fullname" className="block">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+              <label htmlFor="fname" className="block">
                 First Name
               </label>
               <input
@@ -283,11 +303,12 @@ function PersonalDetail({
                 id="fname"
                 display-message="First Name"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]"
+                placeholder="First Name"
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-grey-200 focus:bg-gray-200"
               />
             </div>
             {/* middle name */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="mname" className="block">
                 Middle Name
               </label>
@@ -297,11 +318,12 @@ function PersonalDetail({
                 name="mname"
                 display-message="Middle Name"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]"
+                placeholder="Middle Name"
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-grey-200 focus:bg-gray-200"
               />
             </div>
             {/* last name */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="lname" className="block">
                 Last Name
               </label>
@@ -311,11 +333,12 @@ function PersonalDetail({
                 id="lname"
                 display-message="Last Name"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]"
+                placeholder="Last Name"
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-grey-200 focus:bg-gray-200"
               />
             </div>
             {/* email address */}
-            <div className="lg:col-span-2 col-span-3">
+            <div className="lg:col-span-2 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="email" className="block">
                 Email
               </label>
@@ -325,11 +348,12 @@ function PersonalDetail({
                 name="email"
                 display-message="Email Address"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[97%] w-[90%]"
+                placeholder="Email Address"
+                className="text-md p-2 rounded-md outline-none lg:w-[97%] w-full border-2 border-grey-200 focus:bg-gray-200"
               />
             </div>
             {/* gender */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="gender" className="block">
                 Gender
               </label>
@@ -338,7 +362,7 @@ function PersonalDetail({
                 id="gender"
                 display-message="Gender"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] appearance-none">
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full appearance-none border-2 border-grey-200 focus:bg-gray-200">
                 <option value="default">--select gender--</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -346,7 +370,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* date of birth */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="dob" className="block">
                 DOB
               </label>
@@ -356,11 +380,11 @@ function PersonalDetail({
                 id="dob"
                 display-message="Date Of Birth"
                 onChange={handleChange}
-                className="text-md p-1.5 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] appearance-none uppercase"
+                className="text-md p-1.5 rounded-md outline-none lg:w-[95%] w-full appearance-none uppercase border-2 border-grey-200 focus:bg-gray-200"
               />
             </div>
             {/* blood group */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="blood" className="block">
                 Blood Group
               </label>
@@ -369,7 +393,7 @@ function PersonalDetail({
                 id="blood"
                 display-message="Blood Group"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] appearance-none">
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full appearance-none border-2 border-grey-200 focus:bg-gray-200">
                 <option value="default">--select blood--</option>
                 <option value="A+">A+</option>
                 <option value="B+">B+</option>
@@ -382,7 +406,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* phone number */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="phone" className="block">
                 Phone
               </label>
@@ -391,12 +415,13 @@ function PersonalDetail({
                 name="phone"
                 id="phone"
                 display-message="Phone Number"
-                onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                onBlur={handleChange}
+                placeholder="Phone Number"
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-grey-200 focus:bg-gray-200"
               />
             </div>
             {/* Address */}
-            <div className="lg:col-span-3 col-span-3">
+            <div className="lg:col-span-3 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="address" className="block">
                 Address
               </label>
@@ -406,11 +431,12 @@ function PersonalDetail({
                 name="address"
                 display-message="Residential Address"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[97%] w-[90%]"
+                placeholder="Residential Address"
+                className="text-md p-2 rounded-md outline-none lg:w-[97%] w-full border-2 border-grey-200 focus:bg-gray-200"
               />
             </div>
             {/* country */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="country" className="block">
                 Country
               </label>
@@ -419,7 +445,7 @@ function PersonalDetail({
                 id="country"
                 display-message="Country"
                 onChange={handleState}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] appearance-none">
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full appearance-none border-2 border-grey-200 focus:bg-gray-200">
                 <option value="default">--select country--</option>
                 {typeof countries === "object"
                   ? countries?.map((country) => {
@@ -436,7 +462,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* state */}
-            <div className="lg:col-span-1 col-span-3">
+            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="state" className="block">
                 State
               </label>
@@ -445,7 +471,7 @@ function PersonalDetail({
                 id="state"
                 display-message="State"
                 onChange={handleCity}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%] appearance-none">
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full appearance-none border-2 border-grey-200 focus:bg-gray-200">
                 <option value="default">--select state--</option>
                 {typeof state === "object"
                   ? state?.map((state) => {
@@ -462,7 +488,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* city */}
-            <div className="lg:col-span-1 col-span-3 lg:mb-3">
+            <div className="lg:col-span-1 col-span-3 lg:mb-3 lg:w-auto w-[85%]">
               <label htmlFor="city" className="block">
                 City
               </label>
@@ -471,7 +497,7 @@ function PersonalDetail({
                 id="city"
                 display-message="City"
                 onChange={handleChange}
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]  appearance-none">
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full  appearance-none border-2 border-grey-200 focus:bg-gray-200">
                 <option value="default">--select city--</option>
                 {typeof city === "object"
                   ? city?.map((city) => {
@@ -484,18 +510,18 @@ function PersonalDetail({
                   : ""}
               </select>
             </div>
-            <div className="lg:col-start-2 lg:col-end-3 col-span-3">
+            <div className="lg:col-start-2 lg:col-end-3 col-span-3 lg:w-auto w-[85%]">
               <button
                 type="button"
                 onClick={handlePrevious}
-                className="bg-blue-200 outline-none lg:w-[95%] w-[90%] p-1.5 text-lg rounded">
-                Previos
+                className="bg-blue-400 text-white outline-none lg:w-[95%] w-full p-1.5 text-lg rounded">
+                Previous
               </button>
             </div>
-            <div className="lg:col-start-3 lg:col-end-4 col-span-3">
+            <div className="lg:col-start-3 lg:col-end-4 col-span-3 lg:w-auto w-[85%]">
               <button
                 type="button"
-                className="bg-blue-200 outline-none lg:w-[95%] w-[90%] p-1.5 text-lg rounded"
+                className="bg-blue-400 text-white outline-none lg:w-[95%] w-full p-1.5 text-lg rounded"
                 onClick={handleNext}>
                 Next
               </button>

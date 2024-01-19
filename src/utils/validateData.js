@@ -15,7 +15,7 @@ export function validateForm(dataObj) {
       flag = false;
       let element = document.getElementById(key);
       let displayMessage = element.getAttribute("display-message");
-      alert("Please enter the " + displayMessage);
+      alert("Please enter valid the " + displayMessage);
       element.focus();
       break;
     } else {
@@ -59,11 +59,17 @@ export function validateEmail(formData) {
 }
 
 export function isBlank(string) {
-  if (string === "" || string === null || string === "default") {
+  if (
+    string === "" ||
+    string === null ||
+    string === "default" ||
+    string.length < 2
+  ) {
     return true;
   } else {
     return false;
   }
 }
+
 
 module.export = { validateForm, validatePhone, validateEmail, isBlank };
