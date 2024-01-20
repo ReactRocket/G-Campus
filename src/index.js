@@ -16,7 +16,12 @@ import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
+
 import Courses from "./pages/Courses";
+import Bca from './pages/Bca'
+import Bcom from './pages/Bcom'
+import Business from './pages/Business'
+
 import Register from "./pages/Register"
 
 import StudentDashboard, {
@@ -32,6 +37,7 @@ import Faculty from "./modules/admin/pages/Faculty";
 import Notice from "./modules/admin/pages/Notice";
 import Feedback from "./modules/admin/pages/Feedback";
 import Gallery from "./modules/admin/pages/Gallery";
+
 
 const router = createBrowserRouter([
   {
@@ -51,10 +57,6 @@ const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
-        path: "/courses",
-        element: <Courses />,
-      },
-      {
         path: "/signup",
         element: <Register />,
       },
@@ -70,6 +72,22 @@ const router = createBrowserRouter([
         path: "/test",
         element: <Registration />,
       },
+      {
+        path: "/courses",
+        element: <Courses />,
+      },
+      {
+        path: "/courses/bca",
+        element: <Bca />,
+      },
+      {
+        path: "/courses/bcom",
+        element: <Bcom />,
+      },
+      {
+        path: "/courses/bba",
+        element: <Business />,
+      }
     ],
   },
   {
