@@ -149,7 +149,7 @@ const AdminPanel = ({ isMenuOpen, setIsMenuOpen }) => {
                     </button>
                 </div>
             </aside>
-            <div className="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+            <div className="ml-auto  lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
                 <div className="sticky top-0 h-16 border-b bg-white dark:bg-gray-800 dark:border-gray-700 lg:py-2.5">
                     <div className="flex items-center justify-between space-x-4 px-6 2xl:container">
                         <h5 hidden className="text-2xl font-medium text-gray-600 lg:block dark:text-white">{greet("Admin")}</h5>
@@ -250,12 +250,11 @@ const AdminPanel = ({ isMenuOpen, setIsMenuOpen }) => {
                     </div>
                 </div>
 
-                <div onClick={() => setIsMenuOpen(false)} className="px-6 pt-6 2xl:container">
-                    <div
-                        className="flex h-[80vh] items-center justify-center rounded-xl border-2 border-dashed border-gray-300 dark:border-gray-600"
-                    >
+                <div onClick={() => setIsMenuOpen(false)} className=" h-screen w-full 2xl:container overflow-y-scroll">
+                      <div className='h-full w-full mb-10'>
+
                         <Outlet />
-                    </div>
+                      </div>
                 </div>
             </div>
         </div>

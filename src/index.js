@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 
 import Home from "./pages/Home";
-import Error from "./pages/Error";
+// import Error from "./pages/Error";
 // import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
@@ -18,17 +18,13 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 
 import Courses from "./pages/Courses";
-import Bca from './pages/Bca'
-import Bcom from './pages/Bcom'
-import Business from './pages/Business'
-
 import Register from "./pages/Register"
 
 import StudentDashboard, {
   sideBarFlag,
 } from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
-import Registration from "./pages/test/Registration";
+// import Registration from "./pages/test/Registration";
 
 import AdminDashboard from "./modules/admin/pages/Dashboard";
 import Main from "./modules/admin/pages/Main";
@@ -37,7 +33,6 @@ import Faculty from "./modules/admin/pages/Faculty";
 import Notice from "./modules/admin/pages/Notice";
 import Feedback from "./modules/admin/pages/Feedback";
 import Gallery from "./modules/admin/pages/Gallery";
-
 
 const router = createBrowserRouter([
   {
@@ -72,22 +67,6 @@ const router = createBrowserRouter([
         path: "/test",
         element: <Registration />,
       },
-      {
-        path: "/courses",
-        element: <Courses />,
-      },
-      {
-        path: "/courses/bca",
-        element: <Bca />,
-      },
-      {
-        path: "/courses/bcom",
-        element: <Bcom />,
-      },
-      {
-        path: "/courses/bba",
-        element: <Business />,
-      }
     ],
   },
   {
@@ -131,6 +110,10 @@ const router = createBrowserRouter([
         element: <Gallery />,
       },
     ],
+  },
+  {
+    path: "/network",
+    element: <NetworkIssue />,
   },
   {
     path: "*",

@@ -135,8 +135,7 @@ function AboutUs() {
                               <div className="h-32 w-32">
                                 <img
                                   src="https://cdn.tuk.dev/assets/photo-1564061170517-d3907caa96ea.jfif"
-                                  alt="Display Picture of Andres Berlin"
-                                  role="img"
+                                  alt="Display of Andres Berlin"
                                   className="rounded-full object-cover h-full w-full shadow-md"
                                 />
                               </div>
@@ -244,8 +243,7 @@ function AboutUs() {
                               <div className="h-32 w-32">
                                 <img
                                   src="https://cdn.tuk.dev/assets/photo-1530577197743-7adf14294584.jfif"
-                                  alt="Display Picture of Silene Tokyo"
-                                  role="img"
+                                  alt="Display of Silene Tokyo"
                                   className="rounded-full object-cover h-full w-full shadow-md"
                                 />
                               </div>
@@ -354,8 +352,7 @@ function AboutUs() {
                               <div className="h-32 w-32">
                                 <img
                                   src="https://cdn.tuk.dev/assets/photo-1530577197743-7adf14294584.jfif"
-                                  alt="Display Picture of Silene Tokyo"
-                                  role="img"
+                                  alt="Display of Silene Tokyo"
                                   class="rounded-full object-cover h-full w-full shadow-md"
                                 />
                               </div>

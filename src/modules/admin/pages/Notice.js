@@ -14,7 +14,7 @@ const Notice = ({ title, img, time, msg }) => {
           <Modal isModal={isModal} setIsModal={setIsModal} />
         </>
       )}
-      <div className="h-screen w-screen">
+      <div className="h-full w-full">
         <div className="h-[10%] flex justify-between items-center">
           <h1 className=" text-3xl mx-5 font-bold  text-center ">Notice</h1>
           <button
