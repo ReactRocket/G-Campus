@@ -16,8 +16,9 @@ import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
+
 import Courses from "./pages/Courses";
-import Register from "./pages/Register";
+import Register from "./pages/Register"
 
 import StudentDashboard, {
   sideBarFlag,
@@ -32,9 +33,6 @@ import Faculty from "./modules/admin/pages/Faculty";
 import Notice from "./modules/admin/pages/Notice";
 import Feedback from "./modules/admin/pages/Feedback";
 import Gallery from "./modules/admin/pages/Gallery";
-
-import Error from "./errors/Error_404";
-import NetworkIssue from "./errors/NetworkIssue";
 
 const router = createBrowserRouter([
   {
@@ -54,10 +52,6 @@ const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
-        path: "/courses",
-        element: <Courses />,
-      },
-      {
         path: "/signup",
         element: <Register />,
       },
@@ -68,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/forgot",
         element: <Forgot />,
+      },
+      {
+        path: "/test",
+        element: <Registration />,
       },
     ],
   },
