@@ -34,6 +34,11 @@ import Notice from "./modules/admin/pages/Notice";
 import Feedback from "./modules/admin/pages/Feedback";
 import Gallery from "./modules/admin/pages/Gallery";
 
+//  Courses
+import Bca from "./pages/Bca"
+import Business from './pages/Business'
+import Bcom from './pages/Bcom'
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +57,21 @@ const router = createBrowserRouter([
         element: <ContactUs />,
       },
       {
+        path: "/courses",
+        element: <Courses />,
+      },
+      {
+        path: "/courses/bca",
+        element: <Bca/>,
+      },
+      {
+        path: "/courses/bba",
+        element: <Business/>,
+      },{
+        path: "/courses/bcom",
+        element: <Bcom/>,
+      },
+      {
         path: "/signup",
         element: <Register />,
       },
@@ -63,10 +83,10 @@ const router = createBrowserRouter([
         path: "/forgot",
         element: <Forgot />,
       },
-      {
-        path: "/test",
-        element: <Registration />,
-      },
+      // {
+      //   path: "/test",
+      //   element: <Registration />,
+      // },
     ],
   },
   {
@@ -111,14 +131,14 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/network",
-    element: <NetworkIssue />,
-  },
-  {
-    path: "*",
-    element: <Error />,
-  },
+  // {
+  //   path: "/network",
+  //   element: <NetworkIssue />,
+  // },
+  // {
+  //   path: "*",
+  //   element: <Error />,
+  // },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
