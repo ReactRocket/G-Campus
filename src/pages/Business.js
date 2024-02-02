@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React from "react";
 import bba1 from "../resources/images/bba/bba1.svg";
 import bba2 from "../resources/images/bba/bb2.svg";

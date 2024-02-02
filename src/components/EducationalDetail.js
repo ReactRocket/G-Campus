@@ -1,7 +1,16 @@
 import React from "react";
 import personaldocuments from "../resources/images/personal-documents.svg";
 
-function EducationalDetail({ display, handlePrevious }) {
+function EducationalDetail({ display, handlePrevious, formData, setFormData }) {
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    console.log(formData);
+  };
+ 
   return (
     <div
       className={`w-full h-full absolute ${display} lg:flex-row flex-col lg:overflow-hidden overflow-scroll`}>
@@ -101,7 +110,9 @@ function EducationalDetail({ display, handlePrevious }) {
           <div className="mt-4 text-2xl font-medium lg:w-full w-[85%]">
             Educational Details
           </div>
-          <div className="text-md lg:w-full w-[85%]">Enter your education details</div>
+          <div className="text-md lg:w-full w-[85%]">
+            Enter your education details
+          </div>
           <div className="lg:grid grid-cols-2 gap-x-6 gap-y-4 lg:mt-2 mt w-full flex flex-col justify-center items-center">
             <div className="col-span-2 lg:text-lg lg:w-auto w-[85%]">
               10<sup>th</sup> Education :
@@ -116,6 +127,7 @@ function EducationalDetail({ display, handlePrevious }) {
                 id="tenthSchool"
                 display-message="Tenth School Name"
                 placeholder="10th School Name"
+                onChange={handleChange}
                 className="text-md p-2 rounded-md outline-none lg:w-[97%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
@@ -129,6 +141,7 @@ function EducationalDetail({ display, handlePrevious }) {
                 id="tenthPassingYear"
                 display-message="Tenth Passing Year"
                 placeholder="10th Passing Year"
+                onChange={handleChange}
                 className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
@@ -142,6 +155,7 @@ function EducationalDetail({ display, handlePrevious }) {
                 id="tenthPercentage"
                 display-message="Tenth Percentage"
                 placeholder="10th Percentage"
+                onChange={handleChange}
                 className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
@@ -158,6 +172,7 @@ function EducationalDetail({ display, handlePrevious }) {
                 name="twelfthSchool"
                 dipslay-message="Twelfth School Name"
                 placeholder="12th School Name"
+                onChange={handleChange}
                 className="text-md p-2 rounded-md outline-none lg:w-[97%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
@@ -171,6 +186,7 @@ function EducationalDetail({ display, handlePrevious }) {
                 name="twelfthPassingYear"
                 display-message="Twelfth Passing Year"
                 placeholder="12th Passing Year"
+                onChange={handleChange}
                 className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
@@ -184,21 +200,22 @@ function EducationalDetail({ display, handlePrevious }) {
                 name="twelfthPercentage"
                 display-message="Twelfth Percentage"
                 placeholder="12th Percentage"
+                onChange={handleChange}
                 className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
-            <div className="lg:col-span-1 col-span-2 lg:mt-4 w-[85%]">
+            <div className="lg:col-span-1 col-span-2 lg:mt-4 lg:w-auto w-[85%]">
               <button
                 type="button"
-                className="bg-blue-200 outline-none lg:w-[95%] w-full p-1.5 text-lg rounded"
+                className="bg-blue-400 outline-none lg:w-[95%] w-full p-1.5 text-lg rounded"
                 onClick={handlePrevious}>
                 Previous
               </button>
             </div>
-            <div className="lg:col-span-1 col-span-2 lg:mt-4 w-[85%]">
+            <div className="lg:col-span-1 col-span-2 lg:mt-4 lg:w-auto w-[85%]">
               <button
-                type="button"
-                className="bg-blue-200 outline-none lg:w-[95%] w-full p-1.5 text-lg rounded">
+                type="submit"
+                className="bg-blue-400 outline-none lg:w-[95%] w-full p-1.5 text-lg rounded">
                 Register
               </button>
             </div>
