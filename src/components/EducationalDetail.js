@@ -1,11 +1,21 @@
 import React from "react";
+import personaldocuments from "../resources/images/personal-documents.svg";
 
-function EducationalDetail({ display, handlePrevious }) {
+function EducationalDetail({ display, handlePrevious, formData, setFormData }) {
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    console.log(formData);
+  };
+ 
   return (
     <div
       className={`w-full h-full absolute ${display} lg:flex-row flex-col lg:overflow-hidden overflow-scroll`}>
       <div className="w-1/2  justify-center items-center lg:flex hidden">
-        <svg
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-[80%] h-[80%]"
           data-name="Layer 1"
@@ -87,19 +97,27 @@ function EducationalDetail({ display, handlePrevious }) {
           <circle cx="160.60365" cy="92.50295" r="17" fill="#f2f2f2" />
           <circle cx="98.60365" cy="581.50295" r="17" fill="#f2f2f2" />
           <circle cx="489.60365" cy="158.50295" r="17" fill="#f2f2f2" />
-        </svg>
+        </svg> */}
+        <img
+          src={personaldocuments}
+          className="rounded w-[80%] h-[80%]"
+          alt="college side view"
+        />
+        <img src="" alt="" />
       </div>
       <div className="lg:w-1/2 w-full">
-        <div className="w-full h-full">
-          <div className="mt-4 text-2xl font-medium w-full">
+        <div className="w-full h-full lg:block flex flex-col justify-center items-center">
+          <div className="mt-4 text-2xl font-medium lg:w-full w-[85%]">
             Educational Details
           </div>
-          <div className="text-md">Enter your education details</div>
-          <div className="grid grid-cols-2 gap-x-6 gap-y-4 lg:mt-2 p-2">
-            <div className="col-span-2 lg:text-lg">
+          <div className="text-md lg:w-full w-[85%]">
+            Enter your education details
+          </div>
+          <div className="lg:grid grid-cols-2 gap-x-6 gap-y-4 lg:mt-2 mt w-full flex flex-col justify-center items-center">
+            <div className="col-span-2 lg:text-lg lg:w-auto w-[85%]">
               10<sup>th</sup> Education :
             </div>
-            <div className="col-span-2">
+            <div className="col-span-2 lg:w-auto w-[85%]">
               <label htmlFor="tenthSchool" className="block">
                 School Name
               </label>
@@ -108,10 +126,12 @@ function EducationalDetail({ display, handlePrevious }) {
                 name="tenthSchool"
                 id="tenthSchool"
                 display-message="Tenth School Name"
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[97%] w-[90%]"
+                placeholder="10th School Name"
+                onChange={handleChange}
+                className="text-md p-2 rounded-md outline-none lg:w-[97%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
-            <div className="lg:col-span-1 col-span-2">
+            <div className="lg:col-span-1 col-span-2 lg:w-auto w-[85%]">
               <label htmlFor="tenthPassingYear" className="block">
                 Passing Year
               </label>
@@ -120,11 +140,13 @@ function EducationalDetail({ display, handlePrevious }) {
                 name="tenthPassingYear"
                 id="tenthPassingYear"
                 display-message="Tenth Passing Year"
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]"
+                placeholder="10th Passing Year"
+                onChange={handleChange}
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
-            <div className="lg:col-span-1 col-span-2">
-              <label htmlFor="fullname" className="block">
+            <div className="lg:col-span-1 col-span-2 lg:w-auto w-[85%]">
+              <label htmlFor="tenthPercentage" className="block">
                 Percentage (%)
               </label>
               <input
@@ -132,13 +154,15 @@ function EducationalDetail({ display, handlePrevious }) {
                 name="tenthPercentage"
                 id="tenthPercentage"
                 display-message="Tenth Percentage"
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]"
+                placeholder="10th Percentage"
+                onChange={handleChange}
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
-            <div className="col-span-2 lg:text-lg">
+            <div className="col-span-2 lg:text-lg lg:w-auto w-[85%]">
               12<sup>th</sup> Education :
             </div>
-            <div className="col-span-2">
+            <div className="col-span-2 lg:w-auto w-[85%]">
               <label htmlFor="twelfthSchool" className="block">
                 School Name
               </label>
@@ -147,10 +171,12 @@ function EducationalDetail({ display, handlePrevious }) {
                 id="twelfthSchool"
                 name="twelfthSchool"
                 dipslay-message="Twelfth School Name"
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[97%] w-[90%]"
+                placeholder="12th School Name"
+                onChange={handleChange}
+                className="text-md p-2 rounded-md outline-none lg:w-[97%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
-            <div className="lg:col-span-1 col-span-2">
+            <div className="lg:col-span-1 col-span-2 lg:w-auto w-[85%]">
               <label htmlFor="twelfthPassingYear" className="block">
                 Passing Year
               </label>
@@ -159,10 +185,12 @@ function EducationalDetail({ display, handlePrevious }) {
                 id="twelfthPassingYear"
                 name="twelfthPassingYear"
                 display-message="Twelfth Passing Year"
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]"
+                placeholder="12th Passing Year"
+                onChange={handleChange}
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
-            <div className="lg:col-span-1 col-span-2">
+            <div className="lg:col-span-1 col-span-2 lg:w-auto w-[85%]">
               <label htmlFor="twelfthPercentage" className="block">
                 Percentage (%)
               </label>
@@ -171,21 +199,23 @@ function EducationalDetail({ display, handlePrevious }) {
                 id="twelfthPercentage"
                 name="twelfthPercentage"
                 display-message="Twelfth Percentage"
-                className="text-md p-2 bg-gray-200 rounded-sm outline-none lg:w-[95%] w-[90%]"
+                placeholder="12th Percentage"
+                onChange={handleChange}
+                className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-gray-200 focus:bg-gray-200"
               />
             </div>
-            <div className="lg:col-span-1 col-span-2 lg:mt-4">
+            <div className="lg:col-span-1 col-span-2 lg:mt-4 lg:w-auto w-[85%]">
               <button
                 type="button"
-                className="bg-blue-200 outline-none lg:w-[95%] w-[90%] p-1.5 text-lg rounded"
+                className="bg-blue-400 outline-none lg:w-[95%] w-full p-1.5 text-lg rounded"
                 onClick={handlePrevious}>
                 Previous
               </button>
             </div>
-            <div className="lg:col-span-1 col-span-2 lg:mt-4">
+            <div className="lg:col-span-1 col-span-2 lg:mt-4 lg:w-auto w-[85%]">
               <button
-                type="button"
-                className="bg-blue-200 outline-none lg:w-[95%] w-[90%] p-1.5 text-lg rounded">
+                type="submit"
+                className="bg-blue-400 outline-none lg:w-[95%] w-full p-1.5 text-lg rounded">
                 Register
               </button>
             </div>

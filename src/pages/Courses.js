@@ -40,7 +40,7 @@ function Courses() {
                 </span>
                 <p>Web/App Development</p>
               </div>
-              <Link to="/courses/bca">
+              <Link to="bca">
                 <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">View More</button>
               </Link>
             </div>
@@ -77,7 +77,7 @@ function Courses() {
                 </span>
                 <p>Accounting/Banking</p>
               </div>
-              <Link to="/courses/bcom">
+              <Link to="bcom">
                 <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">View More</button>
               </Link>
             </div>
@@ -113,7 +113,7 @@ function Courses() {
                 </span>
                 <p>Business Management</p>
               </div>
-              <Link to="/courses/bba">
+              <Link to="bba">
                 <button className="mt-4 text-xl w-full text-white bg-indigo-600 py-2 rounded-xl shadow-lg">View More</button>
               </Link>
             </div>

@@ -3,6 +3,7 @@ import BasicDetail from "../components/BasicDetail";
 import PersonalDetail from "../components/PersonalDetail";
 import EducationalDetail from "../components/EducationalDetail";
 import { validateForm } from "../utils/validateData";
+import axios from "axios";
 
 function Register() {
   const [pages, setPages] = useState(1);
@@ -19,21 +20,31 @@ function Register() {
   });
 
   const changeFormData = () => {
-    setFormData({
-      ...formData,
-      fname: "",
-      mname: "",
-      lname: "",
-      email: "",
-      gender: "",
-      dob: "",
-      blood: "",
-      phone: "",
-      address: "",
-      country: "",
-      state: "",
-      city: "",
-    });
+    pages === 1
+      ? setFormData({
+          ...formData,
+          fname: "",
+          mname: "",
+          lname: "",
+          email: "",
+          gender: "",
+          dob: "",
+          blood: "",
+          phone: "",
+          address: "",
+          country: "",
+          state: "",
+          city: "",
+        })
+      : setFormData({
+          ...formData,
+          tenthSchool: "",
+          tenthPassingYear: "",
+          tenthPercent: "",
+          twelfthSchool: "",
+          twelfthPassingYear: "",
+          twelfthPercent: "",
+        });
   };
 
   useEffect(() => {
@@ -67,9 +78,33 @@ function Register() {
     console.log(formData);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(formData);
+
+    let result = validateForm(formData);
+    console.log(result);
+    if (result) {
+      try {
+        await axios
+          .post("http://localhost:5000/students/insert", formData)
+          .then((res) => {
+            let response = res.data;
+            if (response.isSuccess) {
+                alert(response.displayMessage);
+            } else {
+              alert(response.displayMessage);
+            }
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
   return (
     <div className="h-full w-full">
-      <form className="lg:h-[600px] h-screen relative">
+      <form className="lg:h-[600px] h-screen relative" onSubmit={handleSubmit}>
         <BasicDetail
           display={pages === 1 ? "flex" : "hidden"}
           handleNext={handleNext}
