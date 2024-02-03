@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function NetworkIssue() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (navigator.onLine) navigate(-1);
+  }, [navigate]);
 
   const handleClick = () => {
     navigate(-1);

@@ -18,7 +18,7 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 
 import Courses from "./pages/Courses";
-import Register from "./pages/Register"
+import Register from "./pages/Register";
 
 import StudentDashboard, {
   sideBarFlag,
@@ -31,13 +31,16 @@ import Main from "./modules/admin/pages/Main";
 import Student from "./modules/admin/pages/Student";
 import Faculty from "./modules/admin/pages/Faculty";
 import Notice from "./modules/admin/pages/Notice";
-import Feedback from "./modules/admin/pages/Feedback";
+import Feedback, { loadData } from "./modules/admin/pages/Feedback";
 import Gallery from "./modules/admin/pages/Gallery";
 
+import Error from "./errors/Error_404";
+import NetworkIssue from "./errors/NetworkIssue";
+
 //  Courses
-import Bca from "./pages/Bca"
-import Business from './pages/Business'
-import Bcom from './pages/Bcom'
+import Bca from "./pages/Bca";
+import Business from "./pages/Business";
+import Bcom from "./pages/Bcom";
 
 const router = createBrowserRouter([
   {
@@ -62,14 +65,15 @@ const router = createBrowserRouter([
       },
       {
         path: "/courses/bca",
-        element: <Bca/>,
+        element: <Bca />,
       },
       {
         path: "/courses/bba",
-        element: <Business/>,
-      },{
+        element: <Business />,
+      },
+      {
         path: "/courses/bcom",
-        element: <Bcom/>,
+        element: <Bcom />,
       },
       {
         path: "/signup",
@@ -124,6 +128,7 @@ const router = createBrowserRouter([
       {
         path: "feedback",
         element: <Feedback />,
+        loader: loadData,
       },
       {
         path: "gallery",
@@ -131,14 +136,14 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/network",
-  //   element: <NetworkIssue />,
-  // },
-  // {
-  //   path: "*",
-  //   element: <Error />,
-  // },
+  {
+    path: "/network",
+    element: <NetworkIssue />,
+  },
+  {
+    path: "*",
+    element: <Error />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

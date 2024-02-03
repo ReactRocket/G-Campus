@@ -1,8 +1,10 @@
 import axios from "axios";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { validateForm } from "../utils/validateData";
 
 function ContactUs() {
+  const buttonRef = useRef(null);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullname: "",
     email: "",
@@ -19,13 +21,17 @@ function ContactUs() {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    console.log(formData);
+    // console.log(formData);
   };
 
+
+  // form submit logic and submit button loading and disablity  
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = validateForm(formData);
     if (result) {
+      setLoading(true);
+      buttonRef.current.setAttribute("disabled", true);
       try {
         await axios
           .post("http://localhost:5000/feedbacks/insert", formData)
@@ -35,12 +41,18 @@ function ContactUs() {
               if (response.displayMessage) {
                 alert(response.displayMessage);
                 emptyFormData();
+                setLoading(false);
+                buttonRef.current.removeAttribute("disabled", false);
               } else {
                 alert("Thank you! Your message has been successfully sent");
+                setLoading(false);
                 emptyFormData();
+                buttonRef.current.removeAttribute("disabled", false);
               }
             } else {
               alert(response.displayMessage);
+              setLoading(false);
+              buttonRef.current.removeAttribute("disabled", false);
             }
           });
       } catch (error) {
@@ -48,6 +60,7 @@ function ContactUs() {
       }
     }
   };
+
   return (
     <div className="h-full w-full">
       <section className="text-gray-600 body-font relative">
@@ -139,8 +152,16 @@ function ContactUs() {
                 value={formData?.message}
                 className="w-full bg-white rounded border border-gray-300 hover:border-sky-600   focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
             </div>
-            <button className="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg hover:shadow">
-              Submit
+            <button
+              ref={buttonRef}
+              className="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg hover:shadow flex justify-center items-center">
+              <div
+                className={`w-8 h-8 rounded-full border-4 border-r-slate-300 border-slate-50 ${
+                  loading === true ? "animate-spin block" : "hidden"
+                }`}></div>
+              <p className={`${loading === true ? "hidden" : "block"}`}>
+                Submit
+              </p>
             </button>
           </form>
         </div>

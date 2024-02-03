@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React from "react";
 import bcom1 from "../resources/images/bcom/bcom1.svg";
 import bcom2 from "../resources/images/bcom/bcom2.svg";
