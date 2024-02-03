@@ -356,7 +356,7 @@ function AboutUs() {
                                   src="https://cdn.tuk.dev/assets/photo-1530577197743-7adf14294584.jfif"
                                   alt="Display Picture of Silene Tokyo"
                                   role="img"
-                                  class="rounded-full object-cover h-full w-full shadow-md"
+                                  className="rounded-full object-cover h-full w-full shadow-md"
                                 />
                               </div>
                             </div>

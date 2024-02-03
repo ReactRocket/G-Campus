@@ -24,15 +24,15 @@ function Register() {
       fname: "",
       mname: "",
       lname: "",
-      dob: "",
-      gender: "",
-      blood: "",
-      address: "",
-      city: "",
-      state: "",
-      country: "",
-      phone: "",
       email: "",
+      gender: "",
+      dob: "",
+      blood: "",
+      phone: "",
+      address: "",
+      country: "",
+      state: "",
+      city: "",
     });
   };
 
