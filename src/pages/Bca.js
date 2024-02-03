@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-redundant-roles */
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React from "react";
 import img1 from "../resources/images/bca/pic1.svg";
 import img2 from "../resources/images/bca/pic2.svg";

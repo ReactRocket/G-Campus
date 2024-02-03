@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRef, useState } from "react";
 import { validateForm } from "../utils/validateData";
+import { sendEmail } from "../utils/EmailSend";
 
 function ContactUs() {
   const buttonRef = useRef(null);
@@ -24,8 +25,7 @@ function ContactUs() {
     // console.log(formData);
   };
 
-
-  // form submit logic and submit button loading and disablity  
+  // form submit logic and submit button loading and disablity
   const handleSubmit = async (e) => {
     e.preventDefault();
     let result = validateForm(formData);
@@ -44,6 +44,10 @@ function ContactUs() {
                 setLoading(false);
                 buttonRef.current.removeAttribute("disabled", false);
               } else {
+                sendEmail({
+                  to_name: formData.fullname,
+                  to_email: formData.email,
+                });
                 alert("Thank you! Your message has been successfully sent");
                 setLoading(false);
                 emptyFormData();
