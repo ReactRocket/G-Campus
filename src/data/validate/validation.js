@@ -42,7 +42,9 @@ function isString(string) {
 }
 
 function isBlank(string) {
-  if (string === "" || string === null) {
+  if (!string) return true;
+  let trimmedString = string.trim();
+  if (trimmedString === "" || trimmedString === null) {
     return true;
   } else {
     return false;

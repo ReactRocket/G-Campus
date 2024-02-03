@@ -50,7 +50,7 @@ router.post("/insert", async (req, res) => {
       "','" +
       message +
       "')";
-    await pool.getConnection((err, connection) => {
+    pool.getConnection((err, connection) => {
       connection.query(query, (err, data, fields) => {
         if (err) {
           switch (err.code) {
@@ -96,30 +96,34 @@ router.post("/insert", async (req, res) => {
 
 // get all feedbacks
 router.get("/allfeedbacks", async (req, res) => {
-  let query = "select * from feedbacks";
-  await pool.getConnection((err, connection) => {
-    connection.query(query, (err, data, fields) => {
-      if (err) {
-        res.json({ displayMessage: err, data: "", isSuccess: false });
-      } else {
-        if (data.length > 0) {
-          res.json({ displayMessage: "", data: data, isSuccess: true });
+  pool.getConnection((err, connection) => {
+    if (err) {
+      res.json({ displayMessage: err, data: "", isSuccess: false });
+    } else {
+      let query = "select * from feedbacks";
+      connection.query(query, (err, data, fields) => {
+        if (err) {
+          res.json({ displayMessage: err, data: "", isSuccess: false });
         } else {
-          res.json({
-            displayMessage: "No Data Found",
-            data: "",
-            isSuccess: true,
-          });
+          if (data.length > 0) {
+            res.json({ displayMessage: "", data: data, isSuccess: true });
+          } else {
+            res.json({
+              displayMessage: "No Data Found",
+              data: "",
+              isSuccess: true,
+            });
+          }
         }
-      }
-    });
-    connection.release();
+      });
+      connection.release();
+    }
   });
   // pool.end();
 });
 
 // remove all feedbacks
-router.delete("/deleteAll", async(req, res) => {
+router.delete("/deleteAll", async (req, res) => {
   let query =
     "update feedbacks set status = 'inactive' where status = 'active'";
   await pool.getConnection((err, connection) => {
@@ -135,7 +139,7 @@ router.delete("/deleteAll", async(req, res) => {
 });
 
 router.delete("/deleteOne", async (req, res) => {
-  let feedbackNo = req.body.srno.trim();
+  let feedbackNo = req.body.srno;
 
   if (isBlank(feedbackNo)) {
     res.json({

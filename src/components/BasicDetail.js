@@ -44,7 +44,7 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
               onChange={handleChange}
               display-message="Department"
               className="text-md bg-gray-200 rounded p-2 outline-none w-full appearance-none">
-              <option value="101">-- Select a department --</option>
+              <option value="default">-- Select a department --</option>
               <option value="101">
                 Admission for Bachelor in Commerce - Gujarati Medium
               </option>

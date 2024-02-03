@@ -16,6 +16,7 @@ import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
+
 import Courses from "./pages/Courses";
 import Register from "./pages/Register";
 
@@ -30,11 +31,16 @@ import Main from "./modules/admin/pages/Main";
 import Student from "./modules/admin/pages/Student";
 import Faculty from "./modules/admin/pages/Faculty";
 import Notice from "./modules/admin/pages/Notice";
-import Feedback from "./modules/admin/pages/Feedback";
+import Feedback, { loadData } from "./modules/admin/pages/Feedback";
 import Gallery from "./modules/admin/pages/Gallery";
 
 import Error from "./errors/Error_404";
 import NetworkIssue from "./errors/NetworkIssue";
+
+//  Courses
+import Bca from "./pages/Bca";
+import Business from "./pages/Business";
+import Bcom from "./pages/Bcom";
 
 const router = createBrowserRouter([
   {
@@ -58,6 +64,18 @@ const router = createBrowserRouter([
         element: <Courses />,
       },
       {
+        path: "/courses/bca",
+        element: <Bca />,
+      },
+      {
+        path: "/courses/bba",
+        element: <Business />,
+      },
+      {
+        path: "/courses/bcom",
+        element: <Bcom />,
+      },
+      {
         path: "/signup",
         element: <Register />,
       },
@@ -69,6 +87,10 @@ const router = createBrowserRouter([
         path: "/forgot",
         element: <Forgot />,
       },
+      // {
+      //   path: "/test",
+      //   element: <Registration />,
+      // },
     ],
   },
   {
@@ -106,6 +128,7 @@ const router = createBrowserRouter([
       {
         path: "feedback",
         element: <Feedback />,
+        loader: loadData,
       },
       {
         path: "gallery",

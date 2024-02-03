@@ -12,7 +12,7 @@ function App() {
   );
 }
 
-const NavLink = [
+const NavLink = [ 
   {
     id: "01",
     name: "Home",
