@@ -121,7 +121,7 @@ const AdminPanel = ({ isMenuOpen, setIsMenuOpen }) => {
   };
 
   return (
-    <div className="bg-gray-100 dark:bg-gray-900">
+    <div className="dark:bg-gray-900">
       <aside
         className={`fixed top-0 z-10  flex h-screen w-full flex-col justify-between border-r bg-white px-6 pb-3 transition duration-300 md:w-4/12 ${
           !isMenuOpen && "ml-[-100%]"
@@ -296,7 +296,7 @@ const AdminPanel = ({ isMenuOpen, setIsMenuOpen }) => {
         </div>
         <div
           onClick={() => setIsMenuOpen(false)}
-          className="w-full 2xl:container overflow-y-scroll h-auto">
+          className="w-full 2xl:container overflow-y-scroll">
           <Outlet />
         </div>
       </div>
