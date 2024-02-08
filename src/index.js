@@ -9,23 +9,24 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./app/store";
 
+// pages
 import Home from "./pages/Home";
-// import Error from "./pages/Error";
-// import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
-
 import Courses from "./pages/Courses";
 import Register from "./pages/Register";
+import SignUpMessage from "./pages/test/SignUpMessage";
+//
 
+// student
 import StudentDashboard, {
   sideBarFlag,
 } from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
-// import Registration from "./pages/test/Registration";
 
+// admin
 import AdminDashboard from "./modules/admin/pages/Dashboard";
 import Main from "./modules/admin/pages/Main";
 import Student from "./modules/admin/pages/Student";
@@ -34,6 +35,7 @@ import Notice from "./modules/admin/pages/Notice";
 import Feedback, { loadData } from "./modules/admin/pages/Feedback";
 import Gallery from "./modules/admin/pages/Gallery";
 
+// errors
 import Error from "./errors/Error_404";
 import NetworkIssue from "./errors/NetworkIssue";
 
@@ -87,11 +89,11 @@ const router = createBrowserRouter([
         path: "/forgot",
         element: <Forgot />,
       },
-      // {
-      //   path: "/test",
-      //   element: <Registration />,
-      // },
     ],
+  },
+  {
+    path: "/signupmessage",
+    element: <SignUpMessage />,
   },
   {
     path: "/student",

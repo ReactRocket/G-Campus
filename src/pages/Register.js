@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import BasicDetail from "../components/BasicDetail";
 import PersonalDetail from "../components/PersonalDetail";
 import EducationalDetail from "../components/EducationalDetail";
 import { validateForm } from "../utils/validateData";
 import axios from "axios";
+import { sendEmail } from "../utils/EmailSend";
 
 function Register() {
+  const naviagate = useNavigate();
+  const buttonRef = useRef();
+  const [loading, setLoading] = useState(false);
   const [pages, setPages] = useState(1);
   const [isPageDirty, setIsPageDirty] = useState(false);
   const [formData, setFormData] = useState({
@@ -85,15 +90,26 @@ function Register() {
     let result = validateForm(formData);
     console.log(result);
     if (result) {
+      setLoading(true);
+      // buttonRef.current.setAttribute("disabled", true);
       try {
         await axios
           .post("http://localhost:5000/students/insert", formData)
           .then((res) => {
             let response = res.data;
             if (response.isSuccess) {
-                alert(response.displayMessage);
+              sendEmail({
+                to_name: formData.fname + " " + formData.lname,
+                to_email: formData.email,
+              });
+              alert(response.displayMessage);
+              setLoading(false);
+              naviagate("/signupmessage");
+              // buttonRef.current.removeAttribute("disabled", false);
             } else {
               alert(response.displayMessage);
+              setLoading(false);
+              // buttonRef.current.removeAttribute("disabled", false);
             }
           });
       } catch (error) {
@@ -124,6 +140,8 @@ function Register() {
           handlePrevious={handlePrevious}
           formData={formData}
           setFormData={setFormData}
+          refrence={buttonRef}
+          loading={loading}
         />
       </form>
     </div>

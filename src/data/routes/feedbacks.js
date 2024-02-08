@@ -100,7 +100,7 @@ router.get("/allfeedbacks", async (req, res) => {
     if (err) {
       res.json({ displayMessage: err, data: "", isSuccess: false });
     } else {
-      let query = "select * from feedbacks";
+      let query = "select * from feedbacks where status = 'active'";
       connection.query(query, (err, data, fields) => {
         if (err) {
           res.json({ displayMessage: err, data: "", isSuccess: false });
@@ -123,9 +123,9 @@ router.get("/allfeedbacks", async (req, res) => {
 });
 
 // remove all feedbacks
-router.delete("/deleteAll", async (req, res) => {
+router.post("/deleteAll", async (req, res) => {
   let query =
-    "update feedbacks set status = 'inactive' where status = 'active'";
+    "update feedbacks set status = 'inactive'";
   await pool.getConnection((err, connection) => {
     connection.query(query, (err, data, fields) => {
       if (err) {
@@ -138,7 +138,7 @@ router.delete("/deleteAll", async (req, res) => {
   });
 });
 
-router.delete("/deleteOne", async (req, res) => {
+router.post("/deleteOne", async (req, res) => {
   let feedbackNo = req.body.srno;
 
   if (isBlank(feedbackNo)) {
