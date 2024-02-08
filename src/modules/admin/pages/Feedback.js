@@ -1,60 +1,69 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useLoaderData } from "react-router-dom";
 import deleteImage from "../../../resources/images/delete.svg";
+
 // import Table from "../components/Table";
 
 const Feedback = () => {
   const [Feedbacks, setFeedbacks] = useState(useLoaderData());
 
-  // const navigate = useNavigate();
-
-  // const header = ["#", "Name", "Email", "Phone", "Message", "Time"];
-
-  // const loadData = async () => {
-  //   try {
-  //     return await axios
-  //       .get("http://localhost:5000/feedbacks/allfeedbacks")
-  //       .then((res) => {
-  //         // console.log(res.data);
-  //         return res.data;
-  //       });
-  //   } catch (error) {
-  //     console.error(error);
-  //     return [];
-  //   }
-  // };
-
-  useEffect(() => {
-    // loadData().then((response) => {
-    //   if (response.isSuccess) {
-    //     if (response.data) setFeedbacks(response.data);
-    //   } else {
-    //     navigate("/network");
-    //   }
-    // });
-    // }, [navigate]);
-  }, []);
-
   const handleClick = async (e) => {
-    console.log(e.target.id);
+    // console.log(e.target.id);
     let srno = e.target.id;
     let data = { srno: srno };
     // e.target.value !== undefined ? srno = e.target.value :
     try {
       await axios
-        .delete("http://localhost:5000/feedbacks/deleteOne", data)
+        .post("http://localhost:5000/feedbacks/deleteOne", data)
         .then((res) => res.data)
-        .then((response) => {
+        .then(async (response) => {
           // delete login has to build
-          if (!response.isSuccess) alert(response.displayMessage);
+          if (!response.isSuccess) {
+            alert(response.displayMessage);
+          } else {
+            const data = await loadData();
+            setFeedbacks(data);
+          }
         });
-    } catch (error) {}
+    } catch (error) {
+      alert("something went Wrong!");
+    }
+  };
+
+  const handleClearAll = async () => {
+    try {
+      await axios
+        .post("http://localhost:5000/feedbacks/deleteAll")
+        .then((res) => res.data)
+        .then(async (response) => {
+          // delete login has to build
+          if (!response.isSuccess) {
+            alert(response.displayMessage);
+          } else {
+            const data = await loadData();
+            setFeedbacks(data);
+          }
+        });
+    } catch (error) {
+      alert("something went Wrong!");
+    }
   };
 
   return (
-    <div className="h-auto w-[95%] m-auto my-4">
-      <h1 className="text-2xl font-semibold font-sans">Feedbacks</h1>
+    <div className="h-auto w-[95%] m-auto my-4 bg-white">
+      <nav className="flex">
+        <h1 className="lg:w-[92%] md:w-4/5 w-3/4 text-2xl font-semibold font-sans">
+          Feedbacks
+        </h1>
+        {Feedbacks.length > 0 && (
+          <button
+            className="lg:w-[8%] md:w-1/5 w-1/4 bg-blue-300 rounded-md font-medium"
+            onClick={handleClearAll}>
+            Clear All
+          </button>
+        )}
+      </nav>
       <section className="mt-5 grid gap-y-5">
         {/* {Feedbacks} */}
         {Feedbacks.length > 0
@@ -81,46 +90,12 @@ const Feedback = () => {
                         alt="delete svg icon"
                         id={feedback.srno}
                       />
-                      {/* <svg
-                        value={feedback.srno}
-                        onClick={handleClick}
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="22"
-                        fill="#082f49"
-                        className="bi bi-trash3-fill"
-                        viewBox="0 0 16 16">
-                        <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-                      </svg> */}
                     </button>
                   </div>
                 </div>
               );
             })
           : `No Feedbacks`}
-        {/* <div className="h-16 rounded-md flex bg-sky-300">
-          <div className="w-[95%]">
-            <div className="h-1/2 lg:pl-4 font-semibold pt-1">
-              kishore - kishoresunchu412@gmail.com
-            </div>
-            <div className="h-1/2 lg:pl-4 font-normal capitalize">
-              outside of map function
-            </div>
-          </div>
-          <div className="w-[5%]">
-            <button className="w-full h-full flex justify-center items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="22"
-                fill="#082f49"
-                className="bi bi-trash3-fill"
-                viewBox="0 0 16 16">
-                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-              </svg>
-            </button>
-          </div>
-        </div> */}
       </section>
     </div>
   );
