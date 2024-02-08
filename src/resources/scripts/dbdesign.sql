@@ -1,8 +1,8 @@
 -- run commands one after one
 
-create database gcampus;
+-- create database gcampus;
 
-use gcampus;
+-- use gcampus;
 
 create table departments(
 deptId int primary key,
@@ -71,7 +71,7 @@ insert into faculties (facultyId,fname,lname,gender,qualification,classId) value
 -- select * from faculties;
 
 create table students(
-sid int primary key,
+sid int primary key auto_increment,
 fname varchar(20) not null,
 mname varchar(20) not null,
 lname varchar(20) not null,
@@ -91,21 +91,39 @@ twelfthPassingYear Year not null,
 twelfthPercentage varchar(5) not null,
 deptId int not null,
 classId int not null,
-status varchar(10) default "active"
+status varchar(10) default "inactive"
 );
 
 -- select * from students;
+ 
+-- drop table students;
 
 insert into students
-(sid,fname,mname,lname,dob,gender,blood,
+(fname,mname,lname,dob,gender,blood,
 address,city,state,phone,email,
 tenthSchool,tenthPassingYear,tenthPercentage,
 twelfthSchool,twelfthPassingYear,twelfthPercentage,
 deptId,classId)
  values 
-(202410001,
-'ayush','sanju','kishore','2024-01-01',
+('ayush','sanju','kishore','2024-01-01',
 'Male','A+','Bhestan','Surat','Gujarat',
 '9876543210',
 'web.developers.2021.2024@gmail.com','Gurukrupa',
 '2019','85','SMT GN Pandya','2021','80',104,1112);
+
+
+create table feedbacks(
+srno int primary key auto_increment,
+fullname varchar(20) not null, 
+email varchar(40) unique,
+phone varchar(10) not null,
+message varchar(255) not null,
+status varchar(10) default "active" 
+);
+
+-- drop table feedbacks;
+
+update feedbacks set status = "inactive";
+
+select * from feedbacks;
+delete from feedbacks where srno = 1;

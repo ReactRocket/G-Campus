@@ -1,9 +1,6 @@
-const connectToMySQL = require("./connection"); // mysql connection
 const express = require("express"); // for the server
 const bodyParser = require("body-parser"); // for parsing and reading json data
-const cors = require("cors")
-
-const connection = connectToMySQL(); // connecting the database
+const cors = require("cors");
 
 const server = express(); // starting the server
 
@@ -15,12 +12,5 @@ server.listen(port, () => {
   console.log("server started at localhost " + port);
 });
 
-server.get("/test", (req, res) => {
-  connection.query("select * from departments", (err, data, fields) => {
-    if (err) {
-      res.json({ displayMessage: err, data: "", isSuccess: false });
-    } else {
-      res.json({ displayMessage: "", data: data, isSuccess: true });
-    }
-  });
-});
+server.use("/feedbacks", require("./routes/feedbacks"));
+server.use("/students", require("./routes/students"));

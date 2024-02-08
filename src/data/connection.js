@@ -1,15 +1,9 @@
-var mysql = require("mysql");
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "110103",
-  database: "gcampus",
+var mysql = require("mysql2");
+var pool = mysql.createPool({
+  host: "sql.freedb.tech",
+  user: "freedb_ask_developers",
+  password: "nEy%P*St5Y$cbFH",
+  database: "freedb_G-Campus",
 });
 
-function connectToMySQL() {
-  connection.connect();
-  console.log("conneted to MySQL");
-  return connection;
-}
-
-module.exports = connectToMySQL;
+module.exports = pool;

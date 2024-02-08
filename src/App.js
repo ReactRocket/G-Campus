@@ -8,12 +8,11 @@ function App() {
       <Navbar NavLink={NavLink} />
       <Outlet />
       <Footer NavLink={NavLink} />
-      
     </>
   );
 }
 
-const NavLink = [
+const NavLink = [ 
   {
     id: "01",
     name: "Home",
