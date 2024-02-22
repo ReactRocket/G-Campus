@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import CollegeLogo from "../../resources/images/logo-no-background2.png";
 
 function SignUpMessage() {
   const naviagate = useNavigate();
+  useEffect(() => {
+    setTimeout(() => {
+      naviagate("/");
+    },10000);
+  }, [naviagate]);
+
   return (
     <main className="h-screen bg-gray-100-200">
       <section className="w-full flex justify-center items-center flex-col lg:pt-8 md:pt-6 pt-3 gap-y-3">

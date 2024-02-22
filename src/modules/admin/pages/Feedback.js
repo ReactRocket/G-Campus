@@ -32,22 +32,23 @@ const Feedback = () => {
   };
 
   const handleClearAll = async () => {
-    try {
-      await axios
-        .post("http://localhost:5000/feedbacks/deleteAll")
-        .then((res) => res.data)
-        .then(async (response) => {
-          // delete login has to build
-          if (!response.isSuccess) {
-            alert(response.displayMessage);
-          } else {
-            const data = await loadData();
-            setFeedbacks(data);
-          }
-        });
-    } catch (error) {
-      alert("something went Wrong!");
-    }
+    if (window.confirm("Are really wanna delete all the feedbacks?"))
+      try {
+        await axios
+          .post("http://localhost:5000/feedbacks/deleteAll")
+          .then((res) => res.data)
+          .then(async (response) => {
+            // delete login has to build
+            if (!response.isSuccess) {
+              alert(response.displayMessage);
+            } else {
+              const data = await loadData();
+              setFeedbacks(data);
+            }
+          });
+      } catch (error) {
+        alert("something went Wrong!");
+      }
   };
 
   return (
