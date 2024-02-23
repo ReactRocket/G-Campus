@@ -1,16 +1,20 @@
 import React from "react";
+import { useLoaderData } from "react-router-dom";
 import Logo from "../resources/images/cap-1266204.svg";
-import college_img1 from "../resources/images/College-img1.jpg"
-import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg"
-import home_img2 from "../resources/illustrations/home/college campus-amico.svg"
-import home_img3 from "../resources/illustrations/home/Modern life-rafiki.svg"
-import team_1 from '../resources/illustrations/home/team-1.jpg'
-import team_2 from '../resources/illustrations/home/team-2.jpg'
-import team_3 from '../resources/illustrations/home/team-3.jpg'
+import college_img1 from "../resources/images/College-img1.jpg";
+import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg";
+import home_img2 from "../resources/illustrations/home/college campus-amico.svg";
+import home_img3 from "../resources/illustrations/home/Modern life-rafiki.svg";
+import team_1 from "../resources/illustrations/home/team-1.jpg";
+import team_2 from "../resources/illustrations/home/team-2.jpg";
+import team_3 from "../resources/illustrations/home/team-3.jpg";
+import axios from "axios";
+
 function Home() {
+  const StudentCount = useLoaderData();
+
   return (
     <div>
-
       <main>
         {/* Hero section */}
         <section className="px-8 pt-6 pb-2 text-center md:py-16">
@@ -24,14 +28,14 @@ function Home() {
                 Welcome to G-Campus, for aspiring business and IT leaders!
               </h1>
               <p className="mt-6 max-w-3xl text-xl">
-                G-Campus fosters a vibrant and dynamic learning environment where students pursuing BCA, BCom, and BBA degrees.
+                G-Campus fosters a vibrant and dynamic learning environment
+                where students pursuing BCA, BCom, and BBA degrees.
               </p>
               <form className="mt-6 flex flex-col gap-2 sm:flex-row">
                 <div>
                   <label
                     htmlFor="email"
-                    className="sr-only block text-sm font-semibold text-heading"
-                  >
+                    className="sr-only block text-sm font-semibold text-heading">
                     Courses
                   </label>
                   <input
@@ -44,14 +48,17 @@ function Home() {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition duration-200 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:text-white dark:focus:ring-white/80"
-                >
+                  className="inline-flex cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition duration-200 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:text-white dark:focus:ring-white/80">
                   Search
                 </button>
               </form>
             </div>
             <div className="mt-12 md:px-2">
-              <img className="h-auto w-full rounded-lg" src={college_img1} alt="college" />
+              <img
+                className="h-auto w-full rounded-lg"
+                src={college_img1}
+                alt="college"
+              />
             </div>
           </div>
         </section>
@@ -60,48 +67,103 @@ function Home() {
         <section className="text-gray-600 body-font">
           <div className="container px-5 pt-24 mx-auto">
             <div className="flex flex-col text-center w-full mb-20">
-              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">Master Cleanse Reliac Heirloom</h1>
-              <p className="lg:w-2/3 mx-auto leading-relaxed text-base">Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical gentrify, subway tile poke farm-to-table. Franzen you probably haven't heard of them man bun deep jianbing selfies heirloom prism food truck ugh squid celiac humblebrag.</p>
+              <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+                Master Cleanse Reliac Heirloom
+              </h1>
+              <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
+                Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
+                gentrify, subway tile poke farm-to-table. Franzen you probably
+                haven't heard of them man bun deep jianbing selfies heirloom
+                prism food truck ugh squid celiac humblebrag.
+              </p>
             </div>
             <div className="flex flex-wrap -m-4 text-center">
-              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
                 <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="text-indigo-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
-                    <path d="M8 17l4 4 4-4m-4-5v9"></path>
-                    <path d="M20.88 18.09A5 5 0 0018 9h-1.26A8 8 0 103 16.29"></path>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-calculator text-indigo-500 w-12 h-12 mb-3 inline-block"
+                    viewBox="0 0 16 16">
+                    <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                    <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                   </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">2.7K</h2>
-                  <p className="leading-relaxed">Downloads</p>
+                  <h2 className="title-font font-medium text-3xl text-gray-900">
+                    {StudentCount.BCOM_GUJ}
+                  </h2>
+                  <p className="leading-relaxed">BCOM (GUJARATI)</p>
                 </div>
               </div>
-              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
                 <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="text-indigo-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
-                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
-                    <circle cx="9" cy="7" r="4"></circle>
-                    <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-calculator text-indigo-500 w-12 h-12 mb-3 inline-block"
+                    viewBox="0 0 16 16">
+                    <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
+                    <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                   </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">1.3K</h2>
-                  <p className="leading-relaxed">Users</p>
+                  <h2 className="title-font font-medium text-3xl text-gray-900">
+                    {StudentCount.BCOM_ENG}
+                  </h2>
+                  <p className="leading-relaxed">BCOM (ENGLISH)</p>
                 </div>
               </div>
-              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
                 <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="text-indigo-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
-                    <path d="M3 18v-6a9 9 0 0118 0v6"></path>
-                    <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"></path>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-briefcase text-indigo-500 w-12 h-12 mb-3 inline-block"
+                    viewBox="0 0 16 16">
+                    <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5" />
                   </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">74</h2>
-                  <p className="leading-relaxed">Files</p>
+                  <h2 className="title-font font-medium text-3xl text-gray-900">
+                    {StudentCount.BBA}
+                  </h2>
+                  <p className="leading-relaxed">BBA</p>
                 </div>
               </div>
-              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
+              <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
                 <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="text-indigo-500 w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    className="bi bi-laptop text-indigo-500 w-12 h-12 mb-3 inline-block"
+                    viewBox="0 0 16 16">
+                    <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5" />
+                  </svg>
+                  <h2 className="title-font font-medium text-3xl text-gray-900">
+                    {StudentCount.BCA}
+                  </h2>
+                  <p className="leading-relaxed">BCA</p>
+                </div>
+              </div>
+              <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
+                <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    className="text-indigo-500 w-12 h-12 mb-3 inline-block"
+                    viewBox="0 0 24 24">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                   </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">46</h2>
-                  <p className="leading-relaxed">Places</p>
+                  <h2 className="title-font font-medium text-3xl text-gray-900">
+                    {StudentCount.Total}
+                  </h2>
+                  <p className="leading-relaxed">TOTAL</p>
                 </div>
               </div>
             </div>
@@ -118,9 +180,17 @@ function Home() {
                   Dynamic Student Showcase
                 </h2>
                 <p className="mt-4 text-lg text-justify">
-                  Implement a visually appealing and dynamic student showcase prominently on the home page of G-Campus. This feature should highlight the diverse talents and achievements of students through a rotating carousel or grid display. Include high-quality images, brief bios, and links to individual student profiles, allowing visitors to learn more about each student's academic journey, extracurricular activities, and notable accomplishments. This dynamic showcase can be updated regularly to reflect the evolving achievements of the student body, fostering a sense of pride and community engagement.
+                  Implement a visually appealing and dynamic student showcase
+                  prominently on the home page of G-Campus. This feature should
+                  highlight the diverse talents and achievements of students
+                  through a rotating carousel or grid display. Include
+                  high-quality images, brief bios, and links to individual
+                  student profiles, allowing visitors to learn more about each
+                  student's academic journey, extracurricular activities, and
+                  notable accomplishments. This dynamic showcase can be updated
+                  regularly to reflect the evolving achievements of the student
+                  body, fostering a sense of pride and community engagement.
                 </p>
-
               </div>
               <div className="rounded-3xl bg-layer-2  p-8 md:col-span-2">
                 {/* <h2 className="bg-gradient-to-r bg-clip-text text-2xl font-semibold text-gradient gradient-cotton-candy md:text-3xl">
@@ -130,11 +200,7 @@ function Home() {
                   All of your stats are displayed in an easy to understand
                   dashboard. Make decisions with confidence.
                 </p> */}
-                <img
-                  className="bg-cover"
-                  src={home_img1}
-                  alt=""
-                />
+                <img className="bg-cover" src={home_img1} alt="" />
               </div>
             </div>
 
@@ -148,20 +214,25 @@ function Home() {
                   All of your stats are displayed in an easy to understand
                   dashboard. Make decisions with confidence.
                 </p> */}
-                <img
-                  className=""
-                  src={home_img2}
-                  alt=""
-                />
+                <img className="" src={home_img2} alt="" />
               </div>
               <div className="flex flex-col rounded-3xl bg-layer-2 p-8">
                 <h2 className="bg-gradient-to-r font-sans text-2xl font-semibold text-gradient gradient-peach md:text-3xl">
                   Interactive Campus Map with Student Spotlights
                 </h2>
                 <p className="mt-4 text-lg text-justify">
-                  Enhance the user experience by integrating an interactive campus map on the home page that not only provides a visual layout of the college grounds but also incorporates pop-ups or markers linked to specific student achievements or projects. When users hover over designated areas, they can access information about the outstanding contributions of students associated with that location. This interactive feature not only showcases individual accomplishments but also allows prospective students, parents, and other visitors to explore the campus and discover the vibrant student community at G-Campus.
+                  Enhance the user experience by integrating an interactive
+                  campus map on the home page that not only provides a visual
+                  layout of the college grounds but also incorporates pop-ups or
+                  markers linked to specific student achievements or projects.
+                  When users hover over designated areas, they can access
+                  information about the outstanding contributions of students
+                  associated with that location. This interactive feature not
+                  only showcases individual accomplishments but also allows
+                  prospective students, parents, and other visitors to explore
+                  the campus and discover the vibrant student community at
+                  G-Campus.
                 </p>
-
               </div>
             </div>
 
@@ -169,11 +240,22 @@ function Home() {
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               <div className="flex flex-col rounded-3xl bg-layer-2 p-8">
                 <h2 className="bg-gradient-to-r font-sans text-2xl font-semibold text-gradient gradient-peach md:text-3xl">
-                  Live Social Feed Aggregator                </h2>
+                  Live Social Feed Aggregator{" "}
+                </h2>
                 <p className="mt-4 text-lg text-justify">
-                  Foster a sense of community and real-time engagement by incorporating a live social feed aggregator on the home page. This feature should aggregate posts, photos, and updates from various social media platforms using relevant hashtags or user mentions associated with G-Campus. By curating content directly from students' social media accounts, the website can provide an authentic and dynamic glimpse into campus life. This real-time feed not only showcases the students' daily experiences but also promotes a sense of connectivity and inclusivity among the college community. Ensure that the feed is moderated to maintain a positive and supportive online environment.
+                  Foster a sense of community and real-time engagement by
+                  incorporating a live social feed aggregator on the home page.
+                  This feature should aggregate posts, photos, and updates from
+                  various social media platforms using relevant hashtags or user
+                  mentions associated with G-Campus. By curating content
+                  directly from students' social media accounts, the website can
+                  provide an authentic and dynamic glimpse into campus life.
+                  This real-time feed not only showcases the students' daily
+                  experiences but also promotes a sense of connectivity and
+                  inclusivity among the college community. Ensure that the feed
+                  is moderated to maintain a positive and supportive online
+                  environment.
                 </p>
-
               </div>
               <div className="rounded-3xl bg-layer-2 p-8 md:col-span-2">
                 {/* <h2 className="bg-gradient-to-r text-2xl font-semibold text-gradient gradient-cotton-candy md:text-3xl">
@@ -183,18 +265,13 @@ function Home() {
                   All of your stats are displayed in an easy to understand
                   dashboard. Make decisions with confidence.
                 </p> */}
-                <img
-                  className=""
-                  src={home_img3}
-                  alt=""
-                />
+                <img className="" src={home_img3} alt="" />
               </div>
             </div>
           </div>
         </section>
 
         {/* Testimonial section */}
-
 
         <div className="pb-20">
           <div className="xl:container mx-auto px-6 md:px-12">
@@ -203,8 +280,9 @@ function Home() {
                 Our Team
               </h2>
               <p className="text-gray-600 dark:text-gray-300">
-                Tailus prides itself not only on award-winning technology, but also on the talent of its
-                people of some of the brightest minds and most experienced executives in business.
+                Tailus prides itself not only on award-winning technology, but
+                also on the talent of its people of some of the brightest minds
+                and most experienced executives in business.
               </p>
             </div>
             <div className="grid gap-6 px-4 sm:px-0 sm:grid-cols-2 md:grid-cols-3 ">
@@ -219,12 +297,18 @@ function Home() {
                 />
                 <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
                   <div>
-                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">Hentoni Doe</h4>
-                    <span className="block text-sm text-gray-500">CEO-Founder</span>
+                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
+                      Hentoni Doe
+                    </h4>
+                    <span className="block text-sm text-gray-500">
+                      CEO-Founder
+                    </span>
                   </div>
-                  <p className="mt-8 text-gray-300 dark:text-gray-600">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+                  <p className="mt-8 text-gray-300 dark:text-gray-600">
+                    Quae labore quia tempora dolor impedit. Possimus, sint
+                    ducimus ipsam?
+                  </p>
                 </div>
-
               </div>
               <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
                 <img
@@ -237,12 +321,18 @@ function Home() {
                 />
                 <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
                   <div>
-                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">Hentoni Doe</h4>
-                    <span className="block text-sm text-gray-500">CEO-Founder</span>
+                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
+                      Hentoni Doe
+                    </h4>
+                    <span className="block text-sm text-gray-500">
+                      CEO-Founder
+                    </span>
                   </div>
-                  <p className="mt-8 text-gray-300 dark:text-gray-600">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+                  <p className="mt-8 text-gray-300 dark:text-gray-600">
+                    Quae labore quia tempora dolor impedit. Possimus, sint
+                    ducimus ipsam?
+                  </p>
                 </div>
-
               </div>
               <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
                 <img
@@ -255,18 +345,22 @@ function Home() {
                 />
                 <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
                   <div>
-                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">Hentoni Doe</h4>
-                    <span className="block text-sm text-gray-500">CEO-Founder</span>
+                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
+                      Hentoni Doe
+                    </h4>
+                    <span className="block text-sm text-gray-500">
+                      CEO-Founder
+                    </span>
                   </div>
-                  <p className="mt-8 text-gray-300 dark:text-gray-600">Quae labore quia tempora dolor impedit. Possimus, sint ducimus ipsam?</p>
+                  <p className="mt-8 text-gray-300 dark:text-gray-600">
+                    Quae labore quia tempora dolor impedit. Possimus, sint
+                    ducimus ipsam?
+                  </p>
                 </div>
-
               </div>
-
             </div>
           </div>
         </div>
-
       </main>
     </div>
   );
@@ -274,3 +368,40 @@ function Home() {
 
 export default Home;
 
+export async function loader() {
+  let data = { Total: 0, BCOM_GUJ: 0, BCOM_ENG: 0, BBA: 0, BCA: 0 };
+  try {
+    return await axios
+      .get("http://localhost:5000/students/coursewisestudents")
+      .then((res) => res.data)
+      .then(async (response) => {
+        if (!response.isSuccess) {
+          return data;
+        } else {
+          let responseData = await response.data;
+          responseData.map((row) => {
+            data.Total = row.Total;
+            switch (row.deptId) {
+              case 101:
+                data.BCOM_GUJ = row.count;
+                break;
+              case 102:
+                data.BCOM_ENG = row.count;
+                break;
+              case 103:
+                data.BBA = row.count;
+                break;
+              default:
+                data.BCA = row.count;
+                break;
+            }
+            return data;
+          });
+          return data;
+        }
+      });
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+}
