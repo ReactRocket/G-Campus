@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useLocation } from "react-router-dom";
 import Logo from "../resources/images/Logo.svg";
 import Marquee from "./Marquee";
 
@@ -27,6 +27,8 @@ const notices = [
 ]
 
 function Footer({ NavLink }) {
+  const location = useLocation()
+ 
   return (
     <footer className="text-gray-500 bg-white body-font">
       <hr className=" px-4" />
@@ -42,7 +44,7 @@ function Footer({ NavLink }) {
                 return (
                   <li key={navlink?.id}>
                     <Link
-                      className="text-gray-700 hover:text-blue-500 font-semibold"
+                      className={` hover:text-blue-500 font-semibold ${location.pathname == navlink.link ? "underline text-blue-500" : "text-gray-700"}`}
                       to={navlink?.link}>
                       {navlink?.name}
                     </Link>
