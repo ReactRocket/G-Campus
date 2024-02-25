@@ -127,3 +127,5 @@ update feedbacks set status = "inactive";
 
 select * from feedbacks;
 delete from feedbacks where srno = 1;
+
+select * from departments;

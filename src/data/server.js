@@ -4,6 +4,12 @@ const cors = require("cors");
 
 const server = express(); // starting the server
 
+server.use((_req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+  next();
+});
+
 server.use(bodyParser.json()); // using the body-parser
 server.use(cors()); // using cors to prevent the cors error
 
@@ -14,3 +20,4 @@ server.listen(port, () => {
 
 server.use("/feedbacks", require("./routes/feedbacks"));
 server.use("/students", require("./routes/students"));
+server.use("/faculties", require("./routes/faculty"));

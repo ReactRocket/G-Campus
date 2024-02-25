@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.inputBarcodeField::-webkit-calendar-picker-indicator {
+  display:none !important;
+}
 
 ::-webkit-scrollbar{
   width: 5px;

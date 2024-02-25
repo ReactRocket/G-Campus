@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 
 // pages
-import Home,{loader} from "./pages/Home";
+import Home, { loader } from "./pages/Home";
 import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
@@ -30,7 +30,7 @@ import StudentHome from "./modules/student/pages/Home";
 import AdminDashboard from "./modules/admin/pages/Dashboard";
 import Main from "./modules/admin/pages/Main";
 import Student from "./modules/admin/pages/Student";
-import Faculty from "./modules/admin/pages/Faculty";
+import Faculty, { facultyLoader } from "./modules/admin/pages/Faculty";
 import Notice from "./modules/admin/pages/Notice";
 import Feedback, { loadData } from "./modules/admin/pages/Feedback";
 import Gallery from "./modules/admin/pages/Gallery";
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: loader
+        loader: loader,
       },
       {
         path: "/about",
@@ -123,6 +123,7 @@ const router = createBrowserRouter([
       {
         path: "faculty",
         element: <Faculty />,
+        loader: facultyLoader
       },
       {
         path: "notice",
