@@ -42,9 +42,15 @@ function Home() {
                     id="Courses"
                     name="courses"
                     type="text"
+                    list="courses"
                     placeholder="Courses"
                     className="block  w-full rounded-xl border-2 border-layer-3 bg-muted-1 px-4 py-2.5 font-semibold text-heading placeholder:text-text/50 focus:border-primary focus:outline-none focus:ring-0 sm:text-sm"
                   />
+                  <datalist id="courses">
+                    <option value="BCOM" />
+                    <option value="BBA" />
+                    <option value="BCA" />
+                  </datalist>
                 </div>
                 <button
                   type="submit"
@@ -78,7 +84,7 @@ function Home() {
               </p>
             </div>
             <div className="flex flex-wrap -m-4 text-center">
-              <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
+              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                 <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -93,28 +99,10 @@ function Home() {
                   <h2 className="title-font font-medium text-3xl text-gray-900">
                     {StudentCount.BCOM_GUJ}
                   </h2>
-                  <p className="leading-relaxed">BCOM (GUJARATI)</p>
+                  <p className="leading-relaxed">BCOM</p>
                 </div>
               </div>
-              <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
-                <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    className="bi bi-calculator text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16">
-                    <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
-                    <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
-                  </svg>
-                  <h2 className="title-font font-medium text-3xl text-gray-900">
-                    {StudentCount.BCOM_ENG}
-                  </h2>
-                  <p className="leading-relaxed">BCOM (ENGLISH)</p>
-                </div>
-              </div>
-              <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
+              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                 <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +119,7 @@ function Home() {
                   <p className="leading-relaxed">BBA</p>
                 </div>
               </div>
-              <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
+              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                 <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +136,7 @@ function Home() {
                   <p className="leading-relaxed">BCA</p>
                 </div>
               </div>
-              <div className="p-4 md:w-1/5 sm:w-1/2 w-full">
+              <div className="p-4 md:w-1/4 sm:w-1/2 w-full">
                 <div className="border-2 border-gray-200 px-4 py-6 rounded-lg">
                   <svg
                     fill="none"
@@ -369,7 +357,7 @@ function Home() {
 export default Home;
 
 export async function loader() {
-  let data = { Total: 0, BCOM_GUJ: 0, BCOM_ENG: 0, BBA: 0, BCA: 0 };
+  let data = { Total: 0, BCOM_GUJ: 0, BBA: 0, BCA: 0 };
   try {
     return await axios
       .get("http://localhost:5000/students/coursewisestudents")
@@ -382,11 +370,8 @@ export async function loader() {
           responseData.map((row) => {
             data.Total = row.Total;
             switch (row.deptId) {
-              case 101:
+              case 101 || 102:
                 data.BCOM_GUJ = row.count;
-                break;
-              case 102:
-                data.BCOM_ENG = row.count;
                 break;
               case 103:
                 data.BBA = row.count;
@@ -399,9 +384,12 @@ export async function loader() {
           });
           return data;
         }
+      })
+      .catch((err) => {
+        return [];
       });
   } catch (error) {
     console.error(error);
-    return [];
+    return data;
   }
 }
