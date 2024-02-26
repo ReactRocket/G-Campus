@@ -1,5 +1,6 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, {useState} from "react";
+import { Link, useLoaderData,useNavigate } from "react-router-dom";
+
 import Logo from "../resources/images/cap-1266204.svg";
 import college_img1 from "../resources/images/College-img1.jpg";
 import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg";
@@ -12,6 +13,19 @@ import axios from "axios";
 
 function Home() {
   const StudentCount = useLoaderData();
+  
+  const [selectedCourse, setSelectedCourse] = useState('');
+  const navigate = useNavigate();
+
+  
+
+  const handleSearch = () => {
+    if (selectedCourse) {
+      
+      navigate(`/courses/${selectedCourse}`);
+    }
+   
+  }
 
   return (
     <div>
@@ -44,7 +58,8 @@ function Home() {
                     name="courses"
                     type="text"
                     list="courses"
-                    placeholder="Courses"
+                    placeholder="Select course"
+                    onChange={(event) => setSelectedCourse(event.target.value)}
                     className="block  w-full rounded-xl border-2 border-layer-3 bg-muted-1 px-4 py-2.5 font-semibold text-heading placeholder:text-text/50 focus:border-primary focus:outline-none focus:ring-0 sm:text-sm"
                   />
                   <datalist id="courses">
@@ -54,6 +69,7 @@ function Home() {
                   </datalist>
                 </div>
                 <button
+                onClick={handleSearch}
                   type="submit"
                   className="inline-flex cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition duration-200 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:text-white dark:focus:ring-white/80"
                 >
@@ -76,13 +92,20 @@ function Home() {
           <div className="container px-5 pt-24 mx-auto">
             <div className="flex flex-col text-center w-full mb-20">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-                Master Cleanse Reliac Heirloom
+              Invest in Your Future: Explore Our Undergraduate Programs
               </h1>
               <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
-                Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-                gentrify, subway tile poke farm-to-table. Franzen you probably
-                haven't heard of them man bun deep jianbing selfies heirloom
-                prism food truck ugh squid celiac humblebrag.
+                Embark on your academic journey at G-campus and explore our
+                diverse range of undergraduate programs! We offer the{" "}
+                 <Link to="/courses/bcom" className="text-indigo-500 hover:underline font-semibold"> Bachelor
+                of Commerce (BCOM)</Link>{" "}
+                  for a comprehensive understanding of
+                business, the {" "} <Link to="/courses/bca" className="text-indigo-500 hover:underline font-semibold">Bachelor of Computer Applications (BCA)</Link> for
+                mastering the world of technology, and the {" "}
+                <Link to="/courses/bba" className="text-indigo-500 hover:underline font-semibold">Bachelor of Business Administration (BBA) </Link>
+                to hone your leadership and management skills. Choose your path
+                and become a well-equipped professional in today's dynamic
+                world.
               </p>
             </div>
             <div className="flex flex-wrap -m-4 text-center">
