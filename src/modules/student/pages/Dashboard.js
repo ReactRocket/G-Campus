@@ -1,200 +1,334 @@
-import React, { useState } from "react";
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
+import Logo from "../../../resources/images/logo-no-background2.png";
+import Profile from "../../../resources/illustrations/student_dashboard/profile.svg";
+import Loader from "../components/Loader";
+import greet from "../utils/Greeting";
 
-export default function Dashboard({ student }) {
-  const SideOpen = useLoaderData();
+const asideMenuList = [
+  {
+    icon: (
+      <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
+          className="fill-current text-blue-400 dark:fill-slate-600"
+        ></path>
+        <path
+          d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
+          className="fill-current text-blue-200 group-hover:text-blue-300"
+        ></path>
+        <path
+          d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
+          className="fill-current group-hover:text-blue-300"
+        ></path>
+      </svg>
+    ),
+    text: "Dashboard",
+    path: "/student",
+  },
+  {
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          className="fill-current text-gray-600 group-hover:text-blue-600"
+          fillRule="evenodd"
+          d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+          clipRule="evenodd"
+        />
+        <path
+          className="fill-current text-gray-300 group-hover:text-blue-300"
+          d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
+        />
+      </svg>
+    ),
+    text: "Documents",
+    path: "/student/documents",
+  },
+  {
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          className="fill-current text-gray-600 group-hover:text-blue-600"
+          fillRule="evenodd"
+          d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+          clipRule="evenodd"
+        />
+        <path
+          className="fill-current text-gray-300 group-hover:text-blue-300"
+          d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
+        />
+      </svg>
+    ),
+    text: "Reports",
+    path: "/student/reports",
+  },
+  {
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="w-5 h-5"
+      >
+        <path
+          className="fill-current text-gray-600 group-hover:text-blue-600"
+          fillRule="evenodd"
+          d="M2.25 5.25a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3V15a3 3 0 0 1-3 3h-3v.257c0 .597.237 1.17.659 1.591l.621.622a.75.75 0 0 1-.53 1.28h-9a.75.75 0 0 1-.53-1.28l.621-.622a2.25 2.25 0 0 0 .659-1.59V18h-3a3 3 0 0 1-3-3V5.25Zm1.5 0v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5Z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ),
+    text: "Exams",
+    path: "/student/exams",
+  },
+  {
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          className="fill-current text-gray-300 group-hover:text-blue-300"
+          d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"
+        />
+        <path
+          className="fill-current text-gray-600 group-hover:text-blue-600"
+          fillRule="evenodd"
+          d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ),
+    text: "Payment",
+    path: "/student/payment",
+  },
+];
 
-  const [isSideOpen, setIsSideOpen] = useState(SideOpen);
+const Dashboard = () => {
+  const [IsMenuOpen, setIsMenuOpen] = useState(false);
+  const [IsLoading, setIsLoading] = useState(false);
+  const { pathname } = useLocation();
+  useEffect(() => {
+    setIsLoading(true);
 
-  const handleSidebar = () => {
-    if (isSideOpen === false) {
-      localStorage.setItem("isSideOpen", !isSideOpen);
-      setIsSideOpen(true);
-    } else {
-      localStorage.setItem("isSideOpen", !isSideOpen);
-      setIsSideOpen(false);
-    }
-  };
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, [pathname]);
 
   return (
-    <main className="relative h-screen overflow-hidden bg-gray-100">
-      <div
-        className={`flex items-start justify-between lg:static md:static ${
-          isSideOpen === true ? "relative" : ""
-        }`}>
-        <div
-          className={` ${
-            isSideOpen === true
-              ? "lg:block block z-50 absolute"
-              : "lg:block hidden"
-          } h-screen shadow-lg lg:block w-80`}>
-          <div className="h-full bg-blue-300">
-            <div className="flex items-center lg:justify-start justify-around pt-6 ml-8">
-              <p className="text-xl font-bold">Student Dashboard</p>
-              <p onClick={handleSidebar} className="lg:hidden">
+    <div className="">
+      <aside
+        className={`fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] ${
+          !IsMenuOpen && "ml-[-100%] "
+        }`}
+      >
+        <div>
+          <div className="-mx-6 px-6 py-4 border-b h-16 md:grid place-content-center hidden ">
+            <Link to="/" title="home">
+              <img src={Logo} className="h-full " alt="tailus logo" />
+            </Link>
+          </div>
+
+          <div className="mt-20 lg:mt-10 text-center">
+            <img
+              src={Profile}
+              alt=""
+              className="w-24 h-24 m-auto rounded-full object-cover  lg:w-28 lg:h-28"
+            />
+            <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
+              Student Name
+            </h5>
+            <span className="hidden text-gray-400 lg:block">TYBCA</span>
+          </div>
+
+          <ul className="space-y-2 tracking-wide mt-8">
+            {asideMenuList?.map((menu,index) => {
+              return (
+                <li onClick={() => setIsMenuOpen(false)} key={index}>
+                  <Link
+                    to={menu.path}
+                    aria-label={menu.text}
+                    className={`relative px-4 py-3 flex items-center space-x-4 rounded-xl ${
+                      menu.path === pathname
+                        ? "bg-gradient-to-r from-blue-600 to-blue-400 text-white"
+                        : "text-gray-600 "
+                    }  `}
+                  >
+                    {menu.icon}
+                    <span className="-mr-1 font-medium">{menu.text}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+
+        <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
+          <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+              />
+            </svg>
+            <span className="group-hover:text-gray-700">Logout</span>
+          </button>
+        </div>
+      </aside>
+      <div className=" ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%] max-h-screen">
+        <div className="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
+          <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
+            <h5 hidden className="text-2xl text-gray-600 font-medium lg:block">
+              {greet()}
+            </h5>
+            <button
+              className="w-12 h-16 -mr-2 border-r lg:hidden"
+              onClick={() => setIsMenuOpen(!IsMenuOpen)}
+            >
+              {IsMenuOpen ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-x-lg"
-                  viewBox="0 0 16 16">
-                  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                  className="h-6 w-6 my-auto text-gray-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18 18 6M6 6l12 12"
+                  />
                 </svg>
-              </p>
-            </div>
-            <nav className="mt-6">
-              <div>
-                <Link
-                  className="flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-800 transition-colors duration-200 border-l-4 border-blue-500"
-                  to="/student">
-                  <span className="text-left">
-                    <svg
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      viewBox="0 0 1792 1792"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1472 992v480q0 26-19 45t-45 19h-384v-384h-256v384h-384q-26 0-45-19t-19-45v-480q0-1 .5-3t.5-3l575-474 575 474q1 2 1 6zm223-69l-62 74q-8 9-21 11h-3q-13 0-21-7l-692-577-692 577q-12 8-24 7-13-2-21-11l-62-74q-8-10-7-23.5t11-21.5l719-599q32-26 76-26t76 26l244 204v-195q0-14 9-23t23-9h192q14 0 23 9t9 23v408l219 182q10 8 11 21.5t-7 23.5z"></path>
-                    </svg>
-                  </span>
-                  <span className="mx-2 text-sm font-normal">Home</span>
-                </Link>
-                <Link
-                  className="flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800"
-                  to="/student">
-                  <span className="text-left">
-                    <svg
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      viewBox="0 0 2048 1792"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1070 1178l306-564h-654l-306 564h654zm722-282q0 182-71 348t-191 286-286 191-348 71-348-71-286-191-191-286-71-348 71-348 191-286 286-191 348-71 348 71 286 191 191 286 71 348z"></path>
-                    </svg>
-                  </span>
-                  <span className="mx-2 text-sm font-normal">
-                    Refered Projects
-                    <span className="w-4 h-2 p-1 ml-4 text-xs text-gray-400 bg-gray-200 rounded-lg">
-                      0
-                    </span>
-                  </span>
-                </Link>
-                <Link
-                  className="flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800"
-                  to="/student">
-                  <span className="text-left">
-                    <svg
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      viewBox="0 0 1792 1792"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path d="M1728 608v704q0 92-66 158t-158 66h-1216q-92 0-158-66t-66-158v-960q0-92 66-158t158-66h320q92 0 158 66t66 158v32h672q92 0 158 66t66 158z"></path>
-                    </svg>
-                  </span>
-                  <span className="mx-4 text-sm font-normal">Resources</span>
-                </Link>
-                <Link
-                  className="flex items-center justify-start w-full p-2 pl-6 my-2 text-gray-400 transition-colors duration-200 border-l-4 border-transparent hover:text-gray-800"
-                  to="/student">
-                  <span className="text-left">
-                    <svg
-                      width="20"
-                      height="20"
-                      fill="currentColor"
-                      viewBox="0 0 2048 1792"
-                      xmlns="http://www.w3.org/2000/svg">
-                      <path d="M580 461q0-41-25-66t-66-25q-43 0-76 25.5t-33 65.5q0 39 33 64.5t76 25.5q41 0 66-24.5t25-65.5zm743 507q0-28-25.5-50t-65.5-22q-27 0-49.5 22.5t-22.5 49.5q0 28 22.5 50.5t49.5 22.5q40 0 65.5-22t25.5-51zm-236-507q0-41-24.5-66t-65.5-25q-43 0-76 25.5t-33 65.5q0 39 33 64.5t76 25.5q41 0 65.5-24.5t24.5-65.5zm635 507q0-28-26-50t-65-22q-27 0-49.5 22.5t-22.5 49.5q0 28 22.5 50.5t49.5 22.5q39 0 65-22t26-51zm-266-397q-31-4-70-4-169 0-311 77t-223.5 208.5-81.5 287.5q0 78 23 152-35 3-68 3-26 0-50-1.5t-55-6.5-44.5-7-54.5-10.5-50-10.5l-253 127 72-218q-290-203-290-490 0-169 97.5-311t264-223.5 363.5-81.5q176 0 332.5 66t262 182.5 136.5 260.5zm592 561q0 117-68.5 223.5t-185.5 193.5l55 181-199-109q-150 37-218 37-169 0-311-70.5t-223.5-191.5-81.5-264 81.5-264 223.5-191.5 311-70.5q161 0 303 70.5t227.5 192 85.5 263.5z"></path>
-                    </svg>
-                  </span>
-                  <span className="mx-4 text-sm font-normal">
-                    Store feedback
-                  </span>
-                </Link>
-              </div>
-            </nav>
-          </div>
-        </div>
-        <div className="flex flex-col w-full md:space-y-4 -z-0">
-          <header className="z-40 flex items-center justify-between w-full h-16">
-            <div className="block ml-6 lg:hidden">
-              <button
-                className="flex items-center p-2 text-gray-500 bg-white rounded-full shadow text-md"
-                onClick={handleSidebar}>
+              ) : (
                 <svg
-                  width="20"
-                  height="20"
-                  className="text-gray-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 my-auto"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
+            </button>
+            <div className="flex space-x-4">
+              {/* <!--search bar --> */}
+              <div hidden className="md:block">
+                <div className="relative flex items-center text-gray-400 focus-within:text-blue-400">
+                  <span className="absolute left-4 h-6 flex items-center pr-3 border-r border-gray-300">
+                    <svg
+                      xmlns="http://ww50w3.org/2000/svg"
+                      className="w-4 fill-current"
+                      viewBox="0 0 35.997 36.004"
+                    >
+                      <path
+                        id="Icon_awesome-search"
+                        data-name="search"
+                        d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z"
+                      ></path>
+                    </svg>
+                  </span>
+                  <input
+                    type="search"
+                    name="leadingIcon"
+                    id="leadingIcon"
+                    placeholder="Search here"
+                    className="w-full pl-14 pr-4 py-2.5 rounded-xl text-sm text-gray-600 outline-none border border-gray-300 focus:border-blue-300 transition"
+                  />
+                </div>
+              </div>
+              {/* <!--/search bar --> */}
+              <button
+                aria-label="search"
+                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200 md:hidden"
+              >
+                <svg
+                  xmlns="http://ww50w3.org/2000/svg"
+                  className="w-4 mx-auto fill-current text-gray-600"
+                  viewBox="0 0 35.997 36.004"
+                >
+                  <path
+                    id="Icon_awesome-search"
+                    data-name="search"
+                    d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z"
+                  ></path>
+                </svg>
+              </button>
+              <button
+                aria-label="chat"
+                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 m-auto text-gray-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
+                  />
+                </svg>
+              </button>
+              <button
+                aria-label="notification"
+                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 m-auto text-gray-600"
+                  viewBox="0 0 20 20"
                   fill="currentColor"
-                  viewBox="0 0 1792 1792"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path>
+                >
+                  <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
                 </svg>
               </button>
             </div>
-            <div className="relative z-20 flex flex-col justify-end h-full px-3 md:w-full">
-              <div className="relative flex items-center justify-end w-full p-1 space-x-4">
-                <button className="flex items-center p-2 text-gray-400 bg-white rounded-full shadow hover:text-gray-700 text-md">
-                  <svg
-                    width="20"
-                    height="20"
-                    className=""
-                    fill="currentColor"
-                    viewBox="0 0 1792 1792"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1520 1216q0-40-28-68l-208-208q-28-28-68-28-42 0-72 32 3 3 19 18.5t21.5 21.5 15 19 13 25.5 3.5 27.5q0 40-28 68t-68 28q-15 0-27.5-3.5t-25.5-13-19-15-21.5-21.5-18.5-19q-33 31-33 73 0 40 28 68l206 207q27 27 68 27 40 0 68-26l147-146q28-28 28-67zm-703-705q0-40-28-68l-206-207q-28-28-68-28-39 0-68 27l-147 146q-28 28-28 67 0 40 28 68l208 208q27 27 68 27 42 0 72-31-3-3-19-18.5t-21.5-21.5-15-19-13-25.5-3.5-27.5q0-40 28-68t68-28q15 0 27.5 3.5t25.5 13 19 15 21.5 21.5 18.5 19q33-31 33-73zm895 705q0 120-85 203l-147 146q-83 83-203 83-121 0-204-85l-206-207q-83-83-83-203 0-123 88-209l-88-88q-86 88-208 88-120 0-204-84l-208-208q-84-84-84-204t85-203l147-146q83-83 203-83 121 0 204 85l206 207q83 83 83 203 0 123-88 209l88 88q86-88 208-88 120 0 204 84l208 208q84 84 84 204z"></path>
-                  </svg>
-                </button>
-                <button className="flex items-center p-2 text-gray-400 bg-white rounded-full shadow hover:text-gray-700 text-md">
-                  <svg
-                    width="20"
-                    height="20"
-                    className="text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 1792 1792"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M912 1696q0-16-16-16-59 0-101.5-42.5t-42.5-101.5q0-16-16-16t-16 16q0 73 51.5 124.5t124.5 51.5q16 0 16-16zm816-288q0 52-38 90t-90 38h-448q0 106-75 181t-181 75-181-75-75-181h-448q-52 0-90-38t-38-90q50-42 91-88t85-119.5 74.5-158.5 50-206 19.5-260q0-152 117-282.5t307-158.5q-8-19-8-39 0-40 28-68t68-28 68 28 28 68q0 20-8 39 190 28 307 158.5t117 282.5q0 139 19.5 260t50 206 74.5 158.5 85 119.5 91 88z"></path>
-                  </svg>
-                </button>
-                <span className="w-1 h-8 bg-gray-200 rounded-lg"></span>
-                <Link to="/student" className="relative block">
-                  {/* <img
-                    alt="profil"
-                    src="/images/person/1.jpg"
-                    className="mx-auto object-cover rounded-full h-10 w-10 "
-                  /> */}
+          </div>
+        </div>
 
-                  {/* image will be fetched from db for which is uploaded by student at admission time */}
-                </Link>
-                <button className="flex items-center text-gray-500 text-md">
-                  {student?.username}
-                  {/* student name come from the db */}
-                  {/* <svg
-                    width="20"
-                    height="20"
-                    className="ml-2 text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 1792 1792"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M1408 704q0 26-19 45l-448 448q-19 19-45 19t-45-19l-448-448q-19-19-19-45t19-45 45-19h896q26 0 45 19t19 45z"></path>
-                  </svg> */}
-                </button>
-              </div>
+        <div className="h-[100vh-4rem] w-full">
+          {IsLoading ? (
+            <div className="h-screen w-full overflow-y-hidden bg-cover">
+              <Loader />{" "}
             </div>
-          </header>
-          <Outlet />
+          ) : (
+            <Outlet />
+          )}
         </div>
       </div>
-    </main>
+    </div>
   );
-}
-
-export const sideBarFlag = async () => {
-  const isSideOpen = localStorage.getItem("isSideOpen");
-  if (isSideOpen === null) {
-    return false;
-  } else {
-    return isSideOpen;
-  }
 };
+
+export default Dashboard;
