@@ -21,10 +21,12 @@ import SignUpMessage from "./pages/test/SignUpMessage";
 //
 
 // student
-import StudentDashboard, {
-  sideBarFlag,
-} from "./modules/student/pages/Dashboard";
+import StudentDashboard from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
+import Document from "./modules/student/pages/Document";
+import Exam from "./modules/student/pages/Exam";
+import Payment from "./modules/student/pages/Payment";
+import Report from "./modules/student/pages/Report";
 
 // admin
 import AdminDashboard from "./modules/admin/pages/Dashboard";
@@ -99,11 +101,26 @@ const router = createBrowserRouter([
   {
     path: "/student",
     element: <StudentDashboard />,
-    loader: sideBarFlag,
     children: [
       {
         path: "",
         element: <StudentHome />,
+      },
+      {
+        path: "documents",
+        element: <Document />,
+      },
+      {
+        path: "reports",
+        element: <Report />,
+      },
+      {
+        path: "exams",
+        element: <Exam />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
       },
     ],
   },
@@ -123,7 +140,7 @@ const router = createBrowserRouter([
       {
         path: "faculty",
         element: <Faculty />,
-        loader: facultyLoader
+        loader: facultyLoader,
       },
       {
         path: "notice",
