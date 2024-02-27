@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-      {loading && <Loader />}
+      {loading && <Loader loading={loading} />}
       <ScrollToTop />
       <Navbar NavLink={NavLink} />
       <Outlet className="overflow-hidden" />
