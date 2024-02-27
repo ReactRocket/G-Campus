@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 
 // pages
+import Test from "./pages/Test";
 import Home, { loader } from "./pages/Home";
 import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/test",
+        element: <Test />,
+       
+      },
       {
         path: "/",
         element: <Home />,
