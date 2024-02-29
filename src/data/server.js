@@ -21,3 +21,4 @@ server.listen(port, () => {
 server.use("/feedbacks", require("./routes/feedbacks"));
 server.use("/students", require("./routes/students"));
 server.use("/faculties", require("./routes/faculty"));
+server.use("/departments", require("./routes/departments"));
