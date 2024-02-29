@@ -49,6 +49,19 @@ const NavLink = [
     name: "Contact",
     link: "/contact",
   },
+  {
+    id: "05",
+    name: "More",
+    link: [
+      {"Step":"/step"},
+      {"Cell/Club":"/Club"},
+      {"Student Corner":"/student_corner"},
+      {"News":"/news"},
+      {"Events":"/events"},
+      {"Gallery":"/gallery"},
+      {"Saptadhara":"/saptadhara"},
+    ],
+  },
 ];
 
 export default App;

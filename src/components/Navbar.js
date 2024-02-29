@@ -6,6 +6,7 @@ import Logo2 from "../resources/images/logo-no-background2.png";
 
 function Navbar({ NavLink }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [MoreOptionToggle, setMoreOptionToggle] = useState(false);
   const location = useLocation();
   const path = location.pathname;
 
@@ -45,23 +46,92 @@ function Navbar({ NavLink }) {
                       <hr className="w-[90%] my-5 " />
                       <div className="list-none text-center mt-5">
                         {NavLink.map((navlink, i) => {
-                          return (
-                            <li className="" key={i}>
-                              <Link
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                key={navlink.id}
-                                to={navlink.link}
-                                className={
-                                  path === navlink.link
-                                    ? "mx-4 text-base font-bold  pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                                    : " mx-4 text-center pb-2 leading-loose text-gray-500 hover: hover:border-blue-500 hover:transition-colors duration-300 ease-in-out"
-                                }
-                                target=""
-                              >
-                                {navlink.name}
-                              </Link>
-                            </li>
-                          );
+                          if (navlink.name == "More") {
+                            return (
+                              <li>
+                                <button
+                                  id="dropdownNavbarLink"
+                                  data-dropdown-toggle="dropdownNavbar"
+                                  class="text-gray-700 hover:bg-gray-50 border-b border-gray-100 md:hover:bg-transparent md:border-0 pl-3 pr-4 py-2 md:hover:text-blue-700 md:p-0 font-medium flex items-center justify-between w-full md:w-auto"
+                                >
+                                  Dropdown{" "}
+                                  <svg
+                                    class="w-4 h-4 ml-1"
+                                    fill="currentColor"
+                                    viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      fill-rule="evenodd"
+                                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                      clip-rule="evenodd"
+                                    ></path>
+                                  </svg>
+                                </button>
+                                {/* <!-- Dropdown menu --> */}
+                                <div
+                                  id="dropdownNavbar"
+                                  class="hidden bg-white text-base z-10 list-none divide-y divide-gray-100 rounded shadow my-4 w-44"
+                                >
+                                  <ul
+                                    class="py-1"
+                                    aria-labelledby="dropdownLargeButton"
+                                  >
+                                    <li>
+                                      <a
+                                        href="#"
+                                        class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                                      >
+                                        Dashboard
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a
+                                        href="#"
+                                        class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                                      >
+                                        Settings
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a
+                                        href="#"
+                                        class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                                      >
+                                        Earnings
+                                      </a>
+                                    </li>
+                                  </ul>
+                                  <div class="py-1">
+                                    <a
+                                      href="#"
+                                      class="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                                    >
+                                      Sign out
+                                    </a>
+                                  </div>
+                                </div>
+                              </li>
+                            );
+                          } else {
+                            return (
+                              <li className="" key={i}>
+                                <Link
+                                  onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                  key={navlink.id}
+                                  to={navlink.link}
+                                  className={
+                                    path === navlink.link
+                                      ? "mx-4 text-base font-bold  pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
+                                      : " mx-4 text-center pb-2 leading-loose text-gray-500 hover: hover:border-blue-500 hover:transition-colors duration-300 ease-in-out"
+                                  }
+                                  target=""
+                                >
+                                  {navlink.name}
+                                </Link>
+                              </li>
+                            );
+                          }
                         })}
                       </div>
                       <div className="text-center pt-5">
@@ -141,22 +211,91 @@ function Navbar({ NavLink }) {
           </div>
           <div className="hidden lg:flex lg:space-x-10 h- list-none">
             {NavLink.map((navlink, i) => {
-              return (
-                <li className="" key={i}>
-                  <Link
-                    key={navlink.id}
-                    to={navlink.link}
-                    className={
-                      path === navlink.link
-                        ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                        : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out"
-                    }
-                    target=""
+              if (navlink.name === "More") {
+                return (
+                  <details
+                    className="mx-4 relative"
+                    onClick={() => setMoreOptionToggle(!MoreOptionToggle)}
                   >
-                    {navlink.name}
-                  </Link>
-                </li>
-              );
+                    <summary className=" relative flex justify-center items-center gap-2 cursor-pointer ">
+                      <span className="text-center  leading-loose text-gray-500  hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out border-b-2 border-transparent">
+                        More
+                      </span>
+                      {MoreOptionToggle ? (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-chevron-up"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"
+                          />
+                        </svg>
+                      ) : (
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-chevron-down"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
+                          />
+                        </svg>
+                      )}
+                    </summary>
+                    <div className="absolute z-50 border min-w-[15vw] min-h-[20vh] bg-gray-50 shadow-sm rounded-lg mt-3 p-2">
+                      <ul>
+                        {navlink.link.map((val, i) => {
+                          for (const key in val) {
+                            if (Object.hasOwnProperty.call(val, key)) {
+                              return (
+                                <li className={key==="Student Corner" && "border-b-2 pb-2"} key={i}>
+                                  <Link
+                                    key={i}
+                                    to={val[key]}
+                                    className={
+                                      path === val[key]
+                                        ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
+                                        : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out inline"
+                                    }
+                                  >
+                                    {key}
+                                  </Link>
+                                </li>
+                              );
+                            }
+                          }
+                        })}
+                      </ul>
+                    </div>
+                  </details>
+                );
+              } else {
+                return (
+                  <li className="" key={i}>
+                    <Link
+                      key={navlink.id}
+                      to={navlink.link}
+                      className={
+                        path === navlink.link
+                          ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
+                          : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out"
+                      }
+                      target=""
+                    >
+                      {navlink.name}
+                    </Link>
+                  </li>
+                );
+              }
             })}
           </div>
           <div className="hidden lg:absolute lg:flex lg:items-center lg:justify-end lg:inset-y-0 lg:right-0">
