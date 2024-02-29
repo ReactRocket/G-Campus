@@ -61,6 +61,11 @@ function ContactUs() {
           });
       } catch (error) {
         console.log(error);
+        if (error.code === "ERR_NETWORK") {
+          alert("Please Check your Internet connection!");
+          setLoading(false);
+          buttonRef.current.removeAttribute("disabled", false);
+        }
       }
     }
   };

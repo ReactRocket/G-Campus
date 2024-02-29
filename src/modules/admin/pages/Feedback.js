@@ -1,14 +1,30 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate, useLoaderData } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate} from "react-router-dom";
 import deleteImage from "../../../resources/images/delete.svg";
 
 // import Table from "../components/Table";
 
 const Feedback = () => {
-  const [Feedbacks, setFeedbacks] = useState(useLoaderData());
+  const [isLoading, setIsLoading] = useState(true);
+  const [Feedbacks, setFeedbacks] = useState([]);
+  // const feedback = useLoaderData()
+
+  useEffect(() => {
+    setTimeout(() => {
+      loadData()
+        .then((response) => {
+          setIsLoading(false);
+          setFeedbacks(response);
+        })
+        .catch((err) => {
+          setIsLoading(false);
+        });
+    }, 2000);
+  }, []);
 
   const handleClick = async (e) => {
+    setIsLoading(true);
     // console.log(e.target.id);
     let srno = e.target.id;
     let data = { srno: srno };
@@ -20,8 +36,10 @@ const Feedback = () => {
         .then(async (response) => {
           // delete login has to build
           if (!response.isSuccess) {
+            setIsLoading(false);
             alert(response.displayMessage);
           } else {
+            setIsLoading(false);
             const data = await loadData();
             setFeedbacks(data);
           }
@@ -32,15 +50,18 @@ const Feedback = () => {
   };
 
   const handleClearAll = async () => {
+    if (window.confirm("Are really wanna delete all the feedbacks?"))
+      setIsLoading(true);
     try {
       await axios
         .post("http://localhost:5000/feedbacks/deleteAll")
         .then((res) => res.data)
         .then(async (response) => {
-          // delete login has to build
           if (!response.isSuccess) {
+            setIsLoading(false);
             alert(response.displayMessage);
           } else {
+            setIsLoading(false);
             const data = await loadData();
             setFeedbacks(data);
           }
@@ -50,7 +71,11 @@ const Feedback = () => {
     }
   };
 
-  return (
+  return isLoading ? (
+    <div className="h-full flex justify-center items-center">
+      <div className="w-16 h-16 rounded-full border-4 animate-spin border-t-gray-600"></div>
+    </div>
+  ) : (
     <div className="h-auto w-[95%] m-auto my-4 bg-white">
       <nav className="flex">
         <h1 className="lg:w-[92%] md:w-4/5 w-3/4 text-2xl font-semibold font-sans">

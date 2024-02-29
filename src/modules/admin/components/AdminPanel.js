@@ -25,6 +25,21 @@ const fields = [
     ),
   },
   {
+    text: "Department",
+    link: "/admin/department",
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        className="bi bi-building-fill group-hover:text-cyan-300 hover:text-cyan-400"
+        viewBox="0 0 16 16">
+        <path d="M3 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h3v-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V16h3a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zm1 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5M4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM7.5 5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5m2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zM4.5 8h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5m2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5" />
+      </svg>
+    ),
+  },
+  {
     text: "Student",
     link: "/admin/student",
     svg: (
@@ -56,6 +71,21 @@ const fields = [
     ),
   },
   {
+    text: "Feedback",
+    link: "/admin/feedback",
+    svg: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        className="bi bi-chat-right-text-fill group-hover:text-cyan-300 hover:text-cyan-400"
+        viewBox="0 0 16 16">
+        <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM3.5 3h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1m0 2.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1m0 2.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1" />
+      </svg>
+    ),
+  },
+  {
     text: "Notices",
     link: "/admin/notice",
     svg: (
@@ -67,37 +97,6 @@ const fields = [
         className="bi bi-bell-fill   group-hover:text-cyan-300 hover:text-cyan-400"
         viewBox="0 0 16 16">
         <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
-      </svg>
-    ),
-  },
-  {
-    text: "Feedback",
-    link: "/admin/feedback",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        className="bi bi-chat-right-text-fill   group-hover:text-cyan-300 hover:text-cyan-400"
-        viewBox="0 0 16 16">
-        <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM3.5 3h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1m0 2.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1 0-1m0 2.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1" />
-      </svg>
-    ),
-  },
-  {
-    text: "Gallery",
-    link: "/admin/gallery",
-    svg: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        className="bi bi-images hover:text-cyan-400 group-hover:text-cyan-300"
-        viewBox="0 0 16 16">
-        <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
-        <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z" />
       </svg>
     ),
   },
@@ -195,8 +194,8 @@ const AdminPanel = ({ isMenuOpen, setIsMenuOpen }) => {
           </button>
         </div>
       </aside>
-      <div className="ml-auto  lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
-        <div className="sticky top-0 h-16 border-b bg-white dark:bg-gray-800 dark:border-gray-700 lg:py-2.5">
+      <div className="ml-auto h-screen lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
+        <div className="sticky top-0 h-[10%] border-b bg-white dark:bg-gray-800 dark:border-gray-700 lg:py-2.5">
           <div className="flex items-center justify-between space-x-4 px-6 2xl:container">
             <h5
               hidden
@@ -296,7 +295,7 @@ const AdminPanel = ({ isMenuOpen, setIsMenuOpen }) => {
         </div>
         <div
           onClick={() => setIsMenuOpen(false)}
-          className="w-full 2xl:container overflow-y-scroll">
+          className="w-full 2xl:container h-[90%] overflow-y-scroll">
           <Outlet />
         </div>
       </div>

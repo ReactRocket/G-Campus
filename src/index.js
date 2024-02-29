@@ -10,7 +10,7 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 
 // pages
-import Home from "./pages/Home";
+import Home, { loader } from "./pages/Home";
 import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
 import AboutUs from "./pages/AboutUs";
@@ -21,10 +21,12 @@ import SignUpMessage from "./pages/test/SignUpMessage";
 //
 
 // student
-import StudentDashboard, {
-  sideBarFlag,
-} from "./modules/student/pages/Dashboard";
+import StudentDashboard from "./modules/student/pages/Dashboard";
 import StudentHome from "./modules/student/pages/Home";
+import Document from "./modules/student/pages/Document";
+import Exam from "./modules/student/pages/Exam";
+import Payment from "./modules/student/pages/Payment";
+import Report from "./modules/student/pages/Report";
 
 // admin
 import AdminDashboard from "./modules/admin/pages/Dashboard";
@@ -32,8 +34,9 @@ import Main from "./modules/admin/pages/Main";
 import Student from "./modules/admin/pages/Student";
 import Faculty from "./modules/admin/pages/Faculty";
 import Notice from "./modules/admin/pages/Notice";
-import Feedback, { loadData } from "./modules/admin/pages/Feedback";
-import Gallery from "./modules/admin/pages/Gallery";
+import Feedback from "./modules/admin/pages/Feedback";
+import Department from "./modules/admin/pages/Department";
+// import Gallery from "./modules/admin/pages/Gallery";
 
 // errors
 import Error from "./errors/Error_404";
@@ -52,6 +55,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: loader,
       },
       {
         path: "/about",
@@ -98,11 +102,26 @@ const router = createBrowserRouter([
   {
     path: "/student",
     element: <StudentDashboard />,
-    loader: sideBarFlag,
     children: [
       {
         path: "",
         element: <StudentHome />,
+      },
+      {
+        path: "documents",
+        element: <Document />,
+      },
+      {
+        path: "reports",
+        element: <Report />,
+      },
+      {
+        path: "exams",
+        element: <Exam />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
       },
     ],
   },
@@ -122,6 +141,7 @@ const router = createBrowserRouter([
       {
         path: "faculty",
         element: <Faculty />,
+        // loader: facultyLoader,
       },
       {
         path: "notice",
@@ -130,11 +150,11 @@ const router = createBrowserRouter([
       {
         path: "feedback",
         element: <Feedback />,
-        loader: loadData,
+        // loader: loadData,
       },
       {
-        path: "gallery",
-        element: <Gallery />,
+        path: "department",
+        element: <Department />,
       },
     ],
   },

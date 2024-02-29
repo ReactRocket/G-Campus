@@ -123,7 +123,11 @@ status varchar(10) default "active"
 
 -- drop table feedbacks;
 
-update feedbacks set status = "inactive";
 
 select * from feedbacks;
-delete from feedbacks where srno = 1;
+update feedbacks set status = 'active';
+
+select * from departments;
+select d.deptId, d.deptName, d.medium, concat(f.fname," ",f.lname) as headOfDept, count(s.sid)  from departments d, faculties f,students s where d.headOfDept = f.facultyId and d.deptId = s.deptId group by s.deptId;
+
+select * from faculties where status = 'active';
