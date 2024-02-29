@@ -1,12 +1,31 @@
-import React, { useState } from "react";
-import { useNavigate, useLoaderData } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+// import { useNavigate, useLoaderData } from "react-router-dom";
 import axios from "axios";
+import Card from "../components/test/Card";
 
 const Faculty = () => {
-  const [Faculties, setFaculties] = useState(useLoaderData());
-  console.log(Faculties);
+  const [isLoading, setIsLoading] = useState(true);
+  const [Faculties, setFaculties] = useState([]);
 
-  return (
+  useEffect(() => {
+    setTimeout(() => {
+      facultyLoader()
+        .then((response) => {
+          setIsLoading(false);
+          setFaculties(response.data);
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          setFaculties([]);
+        });
+    }, 2000);
+  }, []);
+
+  return isLoading ? (
+    <div className="h-full flex justify-center items-center">
+      <div className="w-16 h-16 rounded-full border-4 animate-spin border-t-gray-600"></div>
+    </div>
+  ) : (
     <div className="h-auto w-[95%] m-auto my-4">
       <nav className="flex">
         <h1 className="lg:w-[93%] md:w-[85%] w-3/4 text-2xl font-semibold font-sans">
@@ -28,12 +47,12 @@ const Faculty = () => {
       </nav>
       <section className="h-full mt-5 grid gap-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {Faculties.length > 0
-          ? Faculties.map((faculty) => {
-              return(
-                  <div className="bg-gray-200">
-                    {/* faculty card should be implement */}
-                    {faculty.fname}
-                  </div>
+          ? Faculties.map((faculty,i) => {
+              return (
+                // <div className="bg-gray-200" key={faculty.facultyId}>
+                //   {faculty.fname}
+                // </div>
+                <Card faculty={faculty} key={i}/>
               );
             })
           : `No Faculties`}
@@ -42,19 +61,24 @@ const Faculty = () => {
   );
 };
 
-export async function facultyLoader() {
+export function facultyLoader() {
   try {
-    return await axios
+    return axios
       .get("http://localhost:5000/faculties/allfaculties")
       .then((res) => res.data)
       .then((response) => {
-        if (!response.isSuccess) {
-          const navigate = useNavigate();
-          navigate("/network");
-          return [];
-        } else {
-          return response.data;
-        }
+        // if (!response.isSuccess) {
+        //   const navigate = useNavigate();
+        //   navigate("/network");
+        //   return [];
+        // } else {
+        //   return response.data;
+        // }
+        return response;
+      })
+      .catch((err) => {
+        console.error(err);
+        return [];
       });
   } catch (error) {
     console.error(error);

@@ -123,7 +123,7 @@ function Home() {
                     <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                   </svg>
                   <h2 className="title-font font-medium text-3xl text-gray-900">
-                    {StudentCount.BCOM_GUJ}
+                    {StudentCount.BCOM}
                   </h2>
                   <p className="leading-relaxed">BCOM</p>
                 </div>
@@ -387,7 +387,7 @@ function Home() {
 export default Home;
 
 export async function loader() {
-  let data = { Total: 0, BCOM_GUJ: 0, BBA: 0, BCA: 0 };
+  let data = { Total: 0, BCOM: 0, BBA: 0, BCA: 0 };
   try {
     return await axios
       .get("http://localhost:5000/students/coursewisestudents")
@@ -399,11 +399,11 @@ export async function loader() {
           let responseData = await response.data;
           responseData.map((row) => {
             data.Total = row.Total;
-            switch (row.deptId) {
-              case 101 || 102:
-                data.BCOM_GUJ = row.count;
+            switch (row.deptId.toString()) {
+              case '101' || '102':
+                data.BCOM = row.count;
                 break;
-              case 103:
+              case '103':
                 data.BBA = row.count;
                 break;
               default:
