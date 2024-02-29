@@ -7,6 +7,8 @@ import Loader from "./components/Loader";
 
 function App() {
   const [loading, setLoading] = useState(false);
+  const [MoreOptionToggle, setMoreOptionToggle] = useState(false);
+
 
   const { pathname } = useLocation();
 
@@ -21,9 +23,9 @@ function App() {
     <>
       {loading && <Loader loading={loading} />}
       <ScrollToTop />
-      <Navbar NavLink={NavLink} />
+      <Navbar NavLink={NavLink} MoreOptionToggle={MoreOptionToggle} setMoreOptionToggle={setMoreOptionToggle}  />
       <Outlet className="overflow-hidden" />
-      <Footer NavLink={NavLink} />
+      <Footer NavLink={NavLink} MoreOptionToggle={MoreOptionToggle} setMoreOptionToggle={setMoreOptionToggle}  />
     </>
   );
 }
