@@ -10,7 +10,6 @@ import { Provider } from "react-redux";
 import store from "./app/store";
 
 // pages
-import Test from "./pages/Test";
 import Home, { loader } from "./pages/Home";
 import Login from "./pages/Login";
 import Forgot from "./pages/Forgot";
@@ -33,10 +32,11 @@ import Report from "./modules/student/pages/Report";
 import AdminDashboard from "./modules/admin/pages/Dashboard";
 import Main from "./modules/admin/pages/Main";
 import Student from "./modules/admin/pages/Student";
-import Faculty, { facultyLoader } from "./modules/admin/pages/Faculty";
+import Faculty from "./modules/admin/pages/Faculty";
 import Notice from "./modules/admin/pages/Notice";
-import Feedback, { loadData } from "./modules/admin/pages/Feedback";
-import Gallery from "./modules/admin/pages/Gallery";
+import Feedback from "./modules/admin/pages/Feedback";
+import Department from "./modules/admin/pages/Department";
+// import Gallery from "./modules/admin/pages/Gallery";
 
 // errors
 import Error from "./errors/Error_404";
@@ -52,11 +52,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      {
-        path: "/test",
-        element: <Test />,
-       
-      },
       {
         path: "/",
         element: <Home />,
@@ -146,7 +141,7 @@ const router = createBrowserRouter([
       {
         path: "faculty",
         element: <Faculty />,
-        loader: facultyLoader,
+        // loader: facultyLoader,
       },
       {
         path: "notice",
@@ -155,11 +150,11 @@ const router = createBrowserRouter([
       {
         path: "feedback",
         element: <Feedback />,
-        loader: loadData,
+        // loader: loadData,
       },
       {
-        path: "gallery",
-        element: <Gallery />,
+        path: "department",
+        element: <Department />,
       },
     ],
   },
