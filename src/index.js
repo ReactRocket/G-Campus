@@ -18,7 +18,15 @@ import ContactUs from "./pages/ContactUs";
 import Courses from "./pages/Courses";
 import Register from "./pages/Register";
 import SignUpMessage from "./pages/test/SignUpMessage";
-//
+
+//more pages
+import Club from "./pages/more/Club";
+import Event from "./pages/more/Event";
+import Gallery from "./pages/more/Gallery";
+import News from "./pages/more/News";
+import Saptadhara from "./pages/more/Saptadhara";
+import Step from "./pages/more/Step";
+import StudentCorner from "./pages/more/StudentCorner";
 
 // student
 import StudentDashboard from "./modules/student/pages/Dashboard";
@@ -92,6 +100,36 @@ const router = createBrowserRouter([
       {
         path: "/forgot",
         element: <Forgot />,
+      },
+
+      // more pages
+      {
+        path: "/club",
+        element: <Club />,
+      },
+      {
+        path: "/event",
+        element: <Event />,
+      },
+      {
+        path: "/gallery",
+        element: <Gallery />,
+      },
+      {
+        path: "/news",
+        element: <News />,
+      },
+      {
+        path: "/saptadhara",
+        element: <Saptadhara />,
+      },
+      {
+        path: "/step",
+        element: <Step />,
+      },
+      {
+        path: "/student-corner",
+        element: <StudentCorner />,
       },
     ],
   },

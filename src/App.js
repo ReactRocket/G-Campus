@@ -9,11 +9,11 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [MoreOptionToggle, setMoreOptionToggle] = useState(false);
 
-
   const { pathname } = useLocation();
 
   useEffect(() => {
     setLoading(true);
+    setMoreOptionToggle(false);
     setTimeout(() => {
       setLoading(false);
     }, 3000);
@@ -23,9 +23,17 @@ function App() {
     <>
       {loading && <Loader loading={loading} />}
       <ScrollToTop />
-      <Navbar NavLink={NavLink} MoreOptionToggle={MoreOptionToggle} setMoreOptionToggle={setMoreOptionToggle}  />
+      <Navbar
+        NavLink={NavLink}
+        MoreOptionToggle={MoreOptionToggle}
+        setMoreOptionToggle={setMoreOptionToggle}
+      />
       <Outlet className="overflow-hidden" />
-      <Footer NavLink={NavLink} MoreOptionToggle={MoreOptionToggle} setMoreOptionToggle={setMoreOptionToggle}  />
+      <Footer
+        NavLink={NavLink}
+        MoreOptionToggle={MoreOptionToggle}
+        setMoreOptionToggle={setMoreOptionToggle}
+      />
     </>
   );
 }
@@ -55,13 +63,13 @@ const NavLink = [
     id: "05",
     name: "More",
     link: [
-      {"Step":"/step"},
-      {"Cell/Club":"/Club"},
-      {"Student Corner":"/student_corner"},
-      {"News":"/news"},
-      {"Events":"/events"},
-      {"Gallery":"/gallery"},
-      {"Saptadhara":"/saptadhara"},
+      { Step: "/step" },
+      { "Cell/Club": "/club" },
+      { "Student Corner": "/student-corner" },
+      { News: "/news" },
+      { Events: "/event" },
+      { Gallery: "/gallery" },
+      { Saptadhara: "/saptadhara" },
     ],
   },
 ];

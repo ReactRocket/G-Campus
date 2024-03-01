@@ -23,6 +23,10 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    setMoreOptionToggle(false);
+  });
+
   return (
     <div className="px-4 mx-auto  lg:px-6">
       <div className="relative sm:py-6 ">
@@ -37,7 +41,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                 <img className="w-full" src={Logo2} alt="logo" />
               </Link>
               <div className="flex items-center justify-end w-3/4  -mr-2 lg:hidden">
-                {/* <!-- side menu --> */}
+                {/* <!-- Mobile view --> */}
                 <div className="flex ">
                   <input
                     type="checkbox"
@@ -63,9 +67,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                             return (
                               <details
                                 className="mx-4 relative"
-                                onClick={() =>
-                                  setMoreOptionToggle(!MoreOptionToggle)
-                                }
+                                open={MoreOptionToggle}
                               >
                                 <summary className="  flex justify-center items-center gap-2 cursor-pointer ">
                                   <span className="text-center  leading-loose text-gray-500  hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out border-b-2 border-transparent">
@@ -110,6 +112,12 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                         ) {
                                           return (
                                             <li
+                                              onClick={() => {
+                                                setMoreOptionToggle(
+                                                  !MoreOptionToggle
+                                                );
+                                                setIsMenuOpen(!isMenuOpen);
+                                              }}
                                               className={
                                                 key === "Student Corner" &&
                                                 "border-b-2 pb-2"
@@ -117,15 +125,12 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                               key={i}
                                             >
                                               <Link
-                                                onClick={() =>
-                                                  setIsMenuOpen(!isMenuOpen)
-                                                }
                                                 key={i}
                                                 to={val[key]}
                                                 className={
                                                   path === val[key]
-                                                    ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                                                    : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out inline"
+                                                    ? "mx-4 text-base font-bold  pb-2 list-none  text-blue-600 "
+                                                    : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:text-blue-600"
                                                 }
                                               >
                                                 {key}
@@ -235,14 +240,13 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
               </div>
             </div>
           </div>
+
+          {/* // desktop view */}
           <div className="hidden lg:flex lg:space-x-10 h- list-none">
             {NavLink.map((navlink, i) => {
               if (navlink.name === "More") {
                 return (
-                  <details
-                    className="mx-4 relative"
-                    onClick={() => setMoreOptionToggle(!MoreOptionToggle)}
-                  >
+                  <details className="mx-4 relative" open={MoreOptionToggle}>
                     <summary className=" relative flex justify-center items-center gap-2 cursor-pointer ">
                       <span className="text-center  leading-loose text-gray-500  hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out border-b-2 border-transparent">
                         More
@@ -284,6 +288,9 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                             if (Object.hasOwnProperty.call(val, key)) {
                               return (
                                 <li
+                                  onClick={() => {
+                                    setMoreOptionToggle(!MoreOptionToggle);
+                                  }}
                                   className={
                                     key === "Student Corner" &&
                                     "border-b-2 pb-2"
@@ -295,8 +302,8 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                     to={val[key]}
                                     className={
                                       path === val[key]
-                                        ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                                        : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out inline"
+                                        ? "mx-4 text-base font-bold  pb-2 list-none  text-blue-600 "
+                                        : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:text-blue-600"
                                     }
                                   >
                                     {key}
