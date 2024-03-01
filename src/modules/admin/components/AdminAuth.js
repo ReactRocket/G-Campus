@@ -16,6 +16,7 @@ export const AdminAuth = () => {
     e.preventDefault()
     const email = e.target.email.value;
     const password = e.target.password.value;
+    
     if (email === 'admin@gmail.com' && password === 'Admin123') {
       dispatch(setSession(email, 'admin'))
       sessionStorage.setItem('admin', email)
