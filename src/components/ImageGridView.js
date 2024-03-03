@@ -30,7 +30,10 @@ const ImageGridView = ({ title, description, data }) => {
                       NJ GROUP (UDHNA)
                     </h1>
                     <p class="leading-relaxed">
-                    NJ Group Udhna is offering a program named STEP (which could stand for various things like Student Training and Employment Program, Skills Training and Enhancement Program, etc.).
+                      NJ Group Udhna is offering a program named STEP (which
+                      could stand for various things like Student Training and
+                      Employment Program, Skills Training and Enhancement
+                      Program, etc.).
                     </p>
                   </div>
                 </div>
