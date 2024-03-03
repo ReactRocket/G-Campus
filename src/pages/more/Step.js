@@ -45,7 +45,43 @@ const committeeMemberArray = [
   },
 ];
 
-const stepImageData = [step1, step2, step3, step4, step5];
+const title = "THE STEP PROGRAM";
+const subTitle = "NJ GROUP (UDHNA)";
+const description =
+  "NJ Group Udhna is offering a program named STEP (which could stand for various things like Student Training and Employment Program, Skills Training and Enhancement Program, etc.).";
+
+const stepImageData = [
+  {
+    src: step1,
+    title: title,
+    subTitle: subTitle,
+    description: description,
+  },
+  {
+    src: step2,
+    title: title,
+    subTitle: subTitle,
+    description: description,
+  },
+  {
+    src: step3,
+    title: title,
+    subTitle: subTitle,
+    description: description,
+  },
+  {
+    src: step4,
+    title: title,
+    subTitle: subTitle,
+    description: description,
+  },
+  {
+    src: step5,
+    title: title,
+    subTitle: subTitle,
+    description: description,
+  },
+];
 
 const Step = () => {
   return (
@@ -53,7 +89,7 @@ const Step = () => {
       <section class="flex flex-col justify-center antialiased bg-gray-100 text-gray-600 min-h-screen p-4">
         <div class="h-full">
           {/* <!-- Table --> */}
-          <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+          <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-md border border-gray-200 ">
             <header class="px-5 py-4 border-b border-gray-100">
               <h2 class="font-semibold text-gray-800 uppercase">
                 COMMITTEE MEMBERS
