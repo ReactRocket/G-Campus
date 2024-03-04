@@ -7,12 +7,11 @@ var mysql = require("mysql2");
 //   database: "freedb_G-Campus",
 // });
 
-
 var pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "2002",
+  password: "2003",
+
   database: "gcampus",
 });
-
 module.exports = pool;

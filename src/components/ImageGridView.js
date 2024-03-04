@@ -13,24 +13,24 @@ const ImageGridView = ({ title, description, data }) => {
           </p>
         </div>
         <div class="flex flex-wrap -m-4">
-          {data?.map((src) => {
+          {data?.map((item) => {
             return (
-              <div class="lg:w-1/3 sm:w-1/2 p-4 cursor-pointer">
-                <div class="flex relative">
+              <div class="lg:w-1/3 sm:w-1/2 p-4 cursor-pointer ">
+                <div class="flex relative ">
                   <img
                     alt="gallery"
-                    class="absolute inset-0 w-full h-full object-cover object-center"
-                    src={src || "https://dummyimage.com/600x360"}
+                    class="absolute inset-0 w-full h-full object-cover object-center rounded-md"
+                    src={item.src || "https://dummyimage.com/600x360"}
                   />
-                  <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100">
+                  <div class="px-8 py-10 relative z-10 w-full border-4 border-gray-200 bg-white opacity-0 hover:opacity-100 rounded-md">
                     <h2 class="tracking-widest text-sm title-font font-medium text-indigo-500 mb-1">
-                      THE STEP PROGRAM
+                      {item.title || "Title"}
                     </h2>
                     <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
-                      NJ GROUP (UDHNA)
+                      {item.subTitle || "Sub-Title"}
                     </h1>
                     <p class="leading-relaxed">
-                    NJ Group Udhna is offering a program named STEP (which could stand for various things like Student Training and Employment Program, Skills Training and Enhancement Program, etc.).
+                      {item.description || "Description"}
                     </p>
                   </div>
                 </div>
