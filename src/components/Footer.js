@@ -54,11 +54,11 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                             width="16"
                             height="16"
                             fill="currentColor"
-                            class="bi bi-chevron-up"
+                            className="bi bi-chevron-up"
                             viewBox="0 0 16 16"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"
                             />
                           </svg>
@@ -68,11 +68,11 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                             width="16"
                             height="16"
                             fill="currentColor"
-                            class="bi bi-chevron-down"
+                            className="bi bi-chevron-down"
                             viewBox="0 0 16 16"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
                             />
                           </svg>
@@ -216,7 +216,7 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                 width="16"
                 height="16"
                 fill="currentColor"
-                class="bi bi-twitter-x"
+                className="bi bi-twitter-x"
                 viewBox="0 0 16 16"
               >
                 <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
