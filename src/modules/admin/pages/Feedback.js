@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import deleteImage from "../../../resources/images/delete.svg";
 
 // import Table from "../components/Table";
@@ -50,24 +50,25 @@ const Feedback = () => {
   };
 
   const handleClearAll = async () => {
-    if (window.confirm("Are really wanna delete all the feedbacks?"))
+    if (window.confirm("Are really wanna delete all the feedbacks?")) {
       setIsLoading(true);
-    try {
-      await axios
-        .post("http://localhost:5000/feedbacks/deleteAll")
-        .then((res) => res.data)
-        .then(async (response) => {
-          if (!response.isSuccess) {
-            setIsLoading(false);
-            alert(response.displayMessage);
-          } else {
-            setIsLoading(false);
-            const data = await loadData();
-            setFeedbacks(data);
-          }
-        });
-    } catch (error) {
-      alert("something went Wrong!");
+      try {
+        await axios
+          .post("http://localhost:5000/feedbacks/deleteAll")
+          .then((res) => res.data)
+          .then(async (response) => {
+            if (!response.isSuccess) {
+              setIsLoading(false);
+              alert(response.displayMessage);
+            } else {
+              setIsLoading(false);
+              const data = await loadData();
+              setFeedbacks(data);
+            }
+          });
+      } catch (error) {
+        alert("something went Wrong!");
+      }
     }
   };
 

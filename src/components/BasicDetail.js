@@ -1,18 +1,25 @@
 import React from "react";
 import CollegeImage from "../resources/images/college-image.svg";
 import { Link } from "react-router-dom";
+import { validateForm } from "../utils/validateData";
 
 function BasicDetail({ display, handleNext, formData, setFormData }) {
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-    console.log(formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let data = new FormData(e.target);
+    let formObject = Object.fromEntries(data.entries());
+    if (validateForm(formObject)) {
+      setFormData({
+        ...formObject,
+      });
+      handleNext()
+    }
+    // console.log(formData);
   };
 
   return (
-    <div
+    <form
+      onSubmit={handleSubmit}
       className={`w-full h-full absolute ${display} lg:flex-row flex-col lg:overflow-hidden overflow-scroll`}>
       <div className="lg:w-1/2 w-full justify-center items-center flex">
         <img
@@ -41,7 +48,7 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
             <select
               name="deptId"
               id="deptId"
-              onChange={handleChange}
+              // onChange={handleChange}
               display-message="Department"
               className="text-md bg-gray-200 rounded p-2 outline-none w-full appearance-none">
               <option value="default">-- Select a department --</option>
@@ -61,8 +68,8 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
           </div>
           <div className="lg:w-auto w-full">
             <button
-              type="button"
-              onClick={handleNext}
+              type="submit"
+              // onClick={handleSubmit}
               className="bg-blue-400 outline-none w-full p-1.5 text-lg rounded text-white">
               Next
             </button>
@@ -77,7 +84,7 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
 
