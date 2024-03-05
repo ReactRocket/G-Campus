@@ -65,7 +65,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                         {NavLink.map((navlink, i) => {
                           if (navlink.name === "More") {
                             return (
-                              <details
+                              <details key={i}
                                 className="mx-4 relative"
                                 open={MoreOptionToggle}
                               >
@@ -111,7 +111,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                           Object.hasOwnProperty.call(val, key)
                                         ) {
                                           return (
-                                            <li
+                                            <li key={i}
                                               onClick={() => {
                                                 setMoreOptionToggle(
                                                   !MoreOptionToggle
@@ -119,10 +119,10 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                                 setIsMenuOpen(!isMenuOpen);
                                               }}
                                               className={
-                                                key === "Student Corner" &&
-                                                "border-b-2 pb-2"
+                                                key === "Student Corner" ?
+                                                "border-b-2 pb-2" : ""
                                               }
-                                              key={i}
+                                             
                                             >
                                               <Link
                                                 key={i}
@@ -179,9 +179,9 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                             Sign In
                           </Link>
                           <span className="text-blue-500 font-bold">
-                            {path !== "/login" && path !== "/signup"
+                            {(path !== "/login" && path !== "/signup")
                               ? "|"
-                              : ` `}
+                              : ""}
                           </span>
                           <Link
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -246,7 +246,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
             {NavLink.map((navlink, i) => {
               if (navlink.name === "More") {
                 return (
-                  <details className="mx-4 relative" open={MoreOptionToggle}>
+                  <details key={i} className="mx-4 relative" open={MoreOptionToggle}>
                     <summary className=" relative flex justify-center items-center gap-2 cursor-pointer ">
                       <span className="text-center  leading-loose text-gray-500  hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out border-b-2 border-transparent">
                         More
@@ -287,15 +287,15 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                           for (const key in val) {
                             if (Object.hasOwnProperty.call(val, key)) {
                               return (
-                                <li
+                                <li key={i}
                                   onClick={() => {
                                     setMoreOptionToggle(!MoreOptionToggle);
                                   }}
                                   className={
-                                    key === "Student Corner" &&
-                                    "border-b-2 pb-2"
+                                    key === "Student Corner" ?
+                                    "border-b-2 pb-2":""
                                   }
-                                  key={i}
+                                  
                                 >
                                   <Link
                                     key={i}
@@ -350,7 +350,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                 Sign In
               </Link>
               <span className="text-blue-500 font-bold">
-                {path !== "/login" && path !== "/signup" ? "|" : ` `}
+                {(path !== "/login" && path !== "/signup" )? "|" : ""}
               </span>
               <Link
                 to="/signup"
