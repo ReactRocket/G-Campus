@@ -11,7 +11,7 @@ const Business = () => {
       <div className="overflow-hidden px-6">
         <div className="mx-auto mt-7 w-full max-w-6xl lg:mt-14">
           <main className="my-14 lg:mt-20">
-            <h1 className="font-display w relative z-10 mt-4 text-lg font-bold leading-tight tracking-tight text-heading lg:mt-8 lg:text-3xl">
+            <h1 className="text-lg text-center underline underline-offset-2 font-bold leading-tight tracking-tight text-heading lg:mt-8 lg:text-3xl pb-10">
               The Bachelor of Business Administration (BBA):
             </h1>
 
@@ -22,7 +22,7 @@ const Business = () => {
                     <div className="relative items-center gap-12 m-auto lg:inline-flex">
                       <div className="max-w-xl text-center lg:text-left">
                         <div>
-                          <p className="text-2xl font-medium tracking-tight text-blue-400 sm:text-3xl">
+                          <p className="text-2xl font-medium tracking-tight text-blue-600 sm:text-3xl">
                             Bachelor of Business Administration (BBA)
                           </p>
                           <p className="max-w-xl text-lg mt-4 tracking-tight text-gray-600">
@@ -71,7 +71,7 @@ const Business = () => {
                           >
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-bold leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-bold leading-6 text-blue-600">
                                   Business Communication
                                 </p>
                               </div>
@@ -84,7 +84,7 @@ const Business = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-bold leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-bold leading-6 text-blue-600">
                                   Business Law
                                 </p>
                               </div>
@@ -98,7 +98,7 @@ const Business = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-bold leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-bold leading-6 text-blue-600">
                                   Sales and Consumer Protection
                                 </p>
                               </div>
@@ -111,7 +111,7 @@ const Business = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-bold  leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-bold  leading-6 text-blue-600">
                                   Presentation skills
                                 </p>
                               </div>
@@ -157,7 +157,7 @@ const Business = () => {
                         <div className="max-w-xl">
                           <div>
                             <p className="text-xl font-medium tracking-tight text-blue-500 sm:text-2xl">
-                              "Unlock Your Future with BCA: Igniting the Spark
+                              "Unlock Your Future with BBA: Igniting the Spark
                               of Technological Excellence"
                             </p>
                           </div>
@@ -169,7 +169,7 @@ const Business = () => {
                           >
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                                   Connect with Industry Leaders:
                                 </p>
                               </div>
@@ -182,7 +182,7 @@ const Business = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                                   "Shape the Future, One Business Strategy at a
                                   Time:
                                 </p>
@@ -196,7 +196,7 @@ const Business = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                                   Empower Your Career Journey:
                                 </p>
                               </div>
@@ -209,7 +209,7 @@ const Business = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                                   Where Passion Meets Profession:
                                 </p>
                               </div>
@@ -241,7 +241,7 @@ const Business = () => {
                       >
                         <li>
                           <div>
-                            <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                            <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                               Best Labs
                             </p>
                           </div>
@@ -253,12 +253,12 @@ const Business = () => {
                         </li>
                         <li>
                           <div>
-                            <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                            <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                               Faculty support
                             </p>
                           </div>
                           <div className="mt-2 text-base text-gray-500">
-                            Our BCA faculty is a symphony of expertise, with
+                            Our BBA faculty is a symphony of expertise, with
                             each teacher contributing their unique notes of
                             knowledge and experience.
                           </div>
@@ -281,20 +281,20 @@ const Business = () => {
                       >
                         <li>
                           <div>
-                            <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                            <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                               Placement
                             </p>
                           </div>
                           <div className="mt-2 text-base text-gray-500">
                             Benefit from our strong ties with the industry. Our
                             college actively collaborates with renowned tech
-                            companies,our BCA graduates are on from the moment
+                            companies,our BBA graduates are on from the moment
                             they step into the job market.
                           </div>
                         </li>
                         <li>
                           <div>
-                            <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                            <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                               Activites
                             </p>
                           </div>

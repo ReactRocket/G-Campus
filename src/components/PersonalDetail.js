@@ -124,15 +124,15 @@ function PersonalDetail({
       </div>
       <div className="lg:w-1/2 w-full">
         <div className="w-full h-full lg:m-0 m-auto lg:block flex flex-col justify-center items-center">
-          <div className="mt-4 text-2xl font-medium lg:w-full w-[85%]">
+          <div className="pt-4 text-blue-600 text-3xl font-medium lg:w-full w-[85%]">
             Registration Form
           </div>
-          <div className="text-md lg:w-full w-[85%]">
+          <div className="text-md py-1 text-gray-500 lg:w-full w-[85%]">
             Enter your basic information
           </div>
-          <div className="lg:grid grid-cols-3 gap-x-6 gap-y-4 lg:mt-2 py-2 w-full flex flex-col justify-center items-center">
+          <div className="lg:grid grid-cols-3 gap-x-6 gap-y-4 lg:mt-2 p-2 w-full flex flex-col justify-center items-center">
             {/* first name */}
-            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
               <label htmlFor="fname" className="block">
                 First Name
               </label>
@@ -147,7 +147,7 @@ function PersonalDetail({
               />
             </div>
             {/* middle name */}
-            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
               <label htmlFor="mname" className="block">
                 Middle Name
               </label>
@@ -162,7 +162,7 @@ function PersonalDetail({
               />
             </div>
             {/* last name */}
-            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
               <label htmlFor="lname" className="block">
                 Last Name
               </label>
@@ -177,7 +177,7 @@ function PersonalDetail({
               />
             </div>
             {/* email address */}
-            <div className="lg:col-span-2 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-2 col-span-3 text-gray-500 lg:w-auto w-[85%]">
               <label htmlFor="email" className="block">
                 Email
               </label>
@@ -192,7 +192,7 @@ function PersonalDetail({
               />
             </div>
             {/* gender */}
-            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
               <label htmlFor="gender" className="block">
                 Gender
               </label>
@@ -209,7 +209,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* date of birth */}
-            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
               <label htmlFor="dob" className="block">
                 DOB
               </label>
@@ -223,7 +223,7 @@ function PersonalDetail({
               />
             </div>
             {/* blood group */}
-            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
               <label htmlFor="blood" className="block">
                 Blood Group
               </label>
@@ -245,7 +245,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* phone number */}
-            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
               <label htmlFor="phone" className="block">
                 Phone
               </label>
@@ -260,7 +260,7 @@ function PersonalDetail({
               />
             </div>
             {/* Address */}
-            <div className="lg:col-span-3 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-3 text-gray-500 col-span-3 lg:w-auto w-[85%]">
               <label htmlFor="address" className="block">
                 Address
               </label>
@@ -275,7 +275,7 @@ function PersonalDetail({
               />
             </div>
             {/* country */}
-            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
               <label htmlFor="country" className="block">
                 Country
               </label>
@@ -301,7 +301,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* state */}
-            <div className="lg:col-span-1 col-span-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
               <label htmlFor="state" className="block">
                 State
               </label>
@@ -327,7 +327,7 @@ function PersonalDetail({
               </select>
             </div>
             {/* city */}
-            <div className="lg:col-span-1 col-span-3 lg:mb-3 lg:w-auto w-[85%]">
+            <div className="lg:col-span-1 col-span-3 text-gray-500 lg:mb-3 lg:w-auto w-[85%]">
               <label htmlFor="city" className="block">
                 City
               </label>
@@ -353,14 +353,14 @@ function PersonalDetail({
               <button
                 type="button"
                 onClick={handlePrevious}
-                className="bg-blue-400 text-white outline-none lg:w-[95%] w-full p-1.5 text-lg rounded">
+                className="tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                 Previous
               </button>
             </div>
             <div className="lg:col-start-3 lg:col-end-4 col-span-3 lg:w-auto w-[85%]">
               <button
                 type="submit"
-                className="bg-blue-400 text-white outline-none lg:w-[95%] w-full p-1.5 text-lg rounded">
+                className="tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
                 Next
               </button>
             </div>

@@ -31,15 +31,15 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
   const location = useLocation();
 
   return (
-    <footer className="text-gray-500 bg-white body-font">
+    <footer className="text-gray-500  bg-white body-font">
       <hr className=" px-4" />
-      <div className="container px-5 py-24 mx-auto">
+      <div className="min-h-[50vh] container px-5 py-24 mx-auto">
         <div className="flex justify-between flex-wrap md:text-left text-center order-first ">
-          <div className="lg:w-1/4 md:w-1/2 w-full px-4 lg:block hidden">
-            <h2 className="title-font font-bold text-blue-500 tracking-widest text-sm mb-2">
-              Our Pages :
+          <div className="lg:w-1/4 md:w-1/2 w-full px-4 lg:flex flex-col justify-start items-start hidden">
+            <h2 className="title-font font-bold text-blue-500 tracking-widest text-md pb-2">
+              Our Pages
             </h2>
-            <nav className="list-none mb-10">
+            <nav className="list-none ">
               {NavLink.map((navlink, i) => {
                 if (navlink.name === "More") {
                   return (
@@ -168,14 +168,14 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
           </div>
         </div>
       </div>
-      <div className="bg-gray-200 ">
-        <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
-          <Link className="w-1/4 flex title-font font-medium items-center md:justify-start justify-center text-gray-500">
+      <div className="bg-gray-200 min-h-[10vh] overflow-hidden flex justify-center items-center">
+        <div className=" p-5 w-full   mx-auto flex items-center sm:flex-row flex-col">
+          <Link className="h-full w-1/4 flex title-font font-medium items-center md:justify-start justify-center text-gray-500">
             <img className="scale-150 pt-2 w-16 " src={Logo} alt="logo" />
 
             {/* <span className="text-3xl text-gray-400 hover:text-blue-500 transition-all duration-500 hidden lg:block">G-Campus</span> */}
           </Link>
-          <p className="w-1/2 text-lg text-center text-gray-400 sm:ml-6 sm:mt-0 mt-4">
+          <p className="h-full w-1/2 text-lg text-center text-gray-400 sm:ml-6 sm:mt-0 mt-4">
             © {Date().slice(10, 15)} G-CAMPUS —
             <a
               href="https://twitter.com/ASK_DEVELOPERS"
@@ -186,7 +186,7 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
               @ASK_DEVELOPERS
             </a>
           </p>
-          <span className="w-1/4 inline-flex gap-3 sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-end">
+          <span className="h-full w-1/4 inline-flex gap-3 sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-end">
             <a
               className="text-gray-400"
               href="mailto:web.developers.2021.2024@gmail.com"

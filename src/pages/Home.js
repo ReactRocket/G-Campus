@@ -5,9 +5,6 @@ import axios from "axios";
 import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg";
 import home_img3 from "../resources/illustrations/home/Modern life-rafiki.svg";
 import home_img2 from "../resources/illustrations/home/college campus-amico.svg";
-import team_1 from "../resources/illustrations/home/team-1.jpg";
-import team_2 from "../resources/illustrations/home/team-2.jpg";
-import team_3 from "../resources/illustrations/home/team-3.jpg";
 import college_img1 from "../resources/images/College-img1.jpg";
 import Logo from "../resources/images/cap-1266204.svg";
 
@@ -308,96 +305,7 @@ function Home() {
           </div>
         </section>
 
-        {/* Testimonial section */}
-
-        <div className="pb-20">
-          <div className="xl:container mx-auto px-6 md:px-12">
-            <div className="mb-16 sm:px-28 w-full text-center flex flex-col justify-center">
-              <h2 className="mb-4 text-2xl font-bold text-gray-800 dark:text-white md:text-5xl">
-                Our Team
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300">
-                Tailus prides itself not only on award-winning technology, but
-                also on the talent of its people of some of the brightest minds
-                and most experienced executives in business.
-              </p>
-            </div>
-            <div className="grid gap-6 px-4 sm:px-0 sm:grid-cols-2 md:grid-cols-3 ">
-              <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
-                <img
-                  className="mx-auto h-[26rem] w-full grayscale object-cover object-top ransition duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                  src={team_1}
-                  alt="woman"
-                  loading="lazy"
-                  width="640"
-                  height="805"
-                />
-                <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
-                  <div>
-                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
-                      Hentoni Doe
-                    </h4>
-                    <span className="block text-sm text-gray-500">
-                      CEO-Founder
-                    </span>
-                  </div>
-                  <p className="mt-8 text-gray-300 dark:text-gray-600">
-                    Quae labore quia tempora dolor impedit. Possimus, sint
-                    ducimus ipsam?
-                  </p>
-                </div>
-              </div>
-              <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
-                <img
-                  className="mx-auto h-[26rem] w-full grayscale object-cover object-top ransition duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                  src={team_2}
-                  alt="woman"
-                  loading="lazy"
-                  width="640"
-                  height="805"
-                />
-                <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
-                  <div>
-                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
-                      Hentoni Doe
-                    </h4>
-                    <span className="block text-sm text-gray-500">
-                      CEO-Founder
-                    </span>
-                  </div>
-                  <p className="mt-8 text-gray-300 dark:text-gray-600">
-                    Quae labore quia tempora dolor impedit. Possimus, sint
-                    ducimus ipsam?
-                  </p>
-                </div>
-              </div>
-              <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
-                <img
-                  className="mx-auto h-[26rem] w-full grayscale object-cover object-top transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                  src={team_3}
-                  alt="woman"
-                  loading="lazy"
-                  width="640"
-                  height="805"
-                />
-                <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
-                  <div>
-                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
-                      Hentoni Doe
-                    </h4>
-                    <span className="block text-sm text-gray-500">
-                      CEO-Founder
-                    </span>
-                  </div>
-                  <p className="mt-8 text-gray-300 dark:text-gray-600">
-                    Quae labore quia tempora dolor impedit. Possimus, sint
-                    ducimus ipsam?
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      
       </main>
     </div>
   );

@@ -40,8 +40,10 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                 <span className="sr-only">G-Campus</span>
                 <img className="w-full" src={Logo2} alt="logo" />
               </Link>
-              <div className="flex items-center justify-end w-3/4  -mr-2 lg:hidden">
+
                 {/* <!-- Mobile view --> */}
+
+              <div className="flex items-center justify-end w-3/4  -mr-2 lg:hidden">
                 <div className="flex ">
                   <input
                     type="checkbox"
@@ -70,7 +72,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                 open={MoreOptionToggle}
                               >
                                 <summary className="  flex justify-center items-center gap-2 cursor-pointer ">
-                                  <span className="text-center  leading-loose text-gray-500  hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out border-b-2 border-transparent">
+                                  <span className="text-center  leading-loose text-gray-500   hover:text-blue-500 hover:transition-colors duration-300 ease-in-out ">
                                     More
                                   </span>
                                   {MoreOptionToggle ? (
@@ -153,8 +155,8 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                   to={navlink.link}
                                   className={
                                     path === navlink.link
-                                      ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                                      : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out"
+                                      ? "mx-4 text-base font-bold  pb-2 list-none hover:text-blue-600 text-blue-600"
+                                      : " mx-4 text-center pb-2 leading-loose text-gray-500  hover:text-blue-500 hover:transition-colors duration-300 ease-in-out"
                                   }
                                   target=""
                                 >

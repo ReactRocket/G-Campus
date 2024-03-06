@@ -86,73 +86,73 @@ const stepImageData = [
 const Step = () => {
   return (
     <>
-      <section class="flex flex-col justify-center antialiased bg-gray-100 text-gray-600 min-h-screen p-4">
-        <div class="h-full">
+      <section className="flex flex-col justify-center antialiased bg-gray-100 text-gray-600 min-h-screen p-4">
+        <div className="h-full">
           {/* <!-- Table --> */}
-          <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-md border border-gray-200 ">
-            <header class="px-5 py-4 border-b border-gray-100">
-              <h2 class="font-semibold text-gray-800 uppercase">
+          <div className="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-md border border-gray-200 ">
+            <header className="px-5 py-4 border-b border-gray-100">
+              <h2 className="font-semibold text-gray-800 uppercase">
                 COMMITTEE MEMBERS
               </h2>
             </header>
-            <div class="p-3">
-              <div class="overflow-x-auto">
-                <table class="table-auto w-full">
-                  <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+            <div className="p-3">
+              <div className="overflow-x-auto">
+                <table className="table-auto w-full">
+                  <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                     <tr>
-                      <th class="p-2 whitespace-nowrap">
-                        <div class="font-semibold text-left">Name</div>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-left">Name</div>
                       </th>
-                      <th class="p-2 whitespace-nowrap">
-                        <div class="font-semibold text-left">Designation</div>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-left">Designation</div>
                       </th>
-                      <th class="p-2 whitespace-nowrap">
-                        <div class="font-semibold text-left">Batch</div>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-left">Batch</div>
                       </th>
-                      <th class="p-2 whitespace-nowrap">
-                        <div class="font-semibold text-center">Connect</div>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-center">Connect</div>
                       </th>
                     </tr>
                   </thead>
-                  <tbody class="text-sm divide-y divide-gray-100">
-                    {committeeMemberArray?.map((member) => {
+                  <tbody className="text-sm divide-y divide-gray-100">
+                    {committeeMemberArray?.map((member,key) => {
                       return (
-                        <tr>
-                          <td class="p-2 whitespace-nowrap">
-                            <div class="flex items-center">
-                              <div class="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
+                        <tr key={key}>
+                          <td className="p-2 whitespace-nowrap">
+                            <div className="flex items-center">
+                              <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
                                 <img
-                                  class="rounded-full"
+                                  className="rounded-full"
                                   src="https://www.pngfind.com/pngs/m/676-6764065_default-profile-picture-transparent-hd-png-download.png"
                                   width="40"
                                   height="40"
                                   alt="Alex Shatov"
                                 />
                               </div>
-                              <div class="font-medium text-gray-800">
+                              <div className="font-medium text-gray-800">
                                 {member.name}
                               </div>
                             </div>
                           </td>
-                          <td class="p-2 whitespace-nowrap">
-                            <div class="text-left">{member.designation}</div>
+                          <td className="p-2 whitespace-nowrap">
+                            <div className="text-left">{member.designation}</div>
                           </td>
-                          <td class="p-2 whitespace-nowrap">
-                            <div class="text-left font-medium text-gray-500">
+                          <td className="p-2 whitespace-nowrap">
+                            <div className="text-left font-medium text-gray-500">
                               {member.batch}
                             </div>
                           </td>
-                          <td class="p-2 whitespace-nowrap ">
+                          <td className="p-2 whitespace-nowrap ">
                             <a
                               href="mailto:"
-                              class="text-lg flex justify-center items-center"
+                              className="text-lg flex justify-center items-center"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="16"
                                 height="16"
                                 fill="currentColor"
-                                class="bi bi-envelope-at-fill hover:fill-blue-600 focus:fill-blue-600"
+                                className="bi bi-envelope-at-fill hover:fill-blue-600 focus:fill-blue-600"
                                 viewBox="0 0 16 16"
                               >
                                 <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803 3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671" />
