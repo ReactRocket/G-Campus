@@ -139,7 +139,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                           );
                                         }
                                       }
-                                    })}
+                                    },[])}
                                   </ul>
                                 </div>
                               </details>
@@ -312,7 +312,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                               );
                             }
                           }
-                        })}
+                        },[])}
                       </ul>
                     </div>
                   </details>
