@@ -43,9 +43,9 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
               {NavLink.map((navlink, i) => {
                 if (navlink.name === "More") {
                   return (
-                    <details className="mx-4 relative" open={MoreOptionToggle}>
+                    <details key={i} className="mx-4 relative" open={MoreOptionToggle}>
                       <summary className="  flex justify-start items-center gap-2 cursor-pointer ">
-                        <span className="text-center  leading-loose text-gray-500  hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out border-b-2 border-transparent">
+                        <span className="text-center  leading-loose text-gray-500   hover:text-blue-500 hover:transition-colors duration-300 ease-in-out">
                           More
                         </span>
                         {MoreOptionToggle ? (
@@ -84,15 +84,15 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                             for (const key in val) {
                               if (Object.hasOwnProperty.call(val, key)) {
                                 return (
-                                  <li
+                                  <li key={i}
                                     onClick={() => {
                                       setMoreOptionToggle(!MoreOptionToggle);
                                     }}
                                     className={
-                                      key === "Student Corner" &&
-                                      "border-b-2 pb-2"
+                                      key === "Student Corner" ?
+                                      "border-b-2 pb-2" : " "
                                     }
-                                    key={i}
+                                   
                                   >
                                     <Link
                                       key={i}
@@ -122,8 +122,8 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                         to={navlink.link}
                         className={
                           location.pathname === navlink.link
-                            ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                            : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out"
+                            ? "mx-4 text-base font-bold  pb-2 list-none  hover:text-blue-600 text-blue-600"
+                            : " mx-4 text-center pb-2 leading-loose text-gray-500   hover:text-blue-500 hover:transition-colors duration-300 ease-in-out"
                         }
                         target=""
                       >

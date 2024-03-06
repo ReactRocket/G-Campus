@@ -1,12 +1,32 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../connection");
+const path = require("path");
 const {
   isEmail,
-  // isPhone,
+  isPhone,
   // isString,
   isBlank,
 } = require("../validate/validation");
+
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "src/images");
+  },
+  filename: function (req, file, cb) {
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({ storage: storage });
+const uploadImg = upload.single("profilePic");
+
+// router.use("/uploads", express.static("uploads"));
 
 // get all students data
 router.get("/allstudents", (req, res) => {
@@ -66,7 +86,7 @@ router.get("/student", (req, res) => {
   }
 });
 
-router.post("/insert", (req, res) => {
+router.post("/insert", uploadImg, (req, res) => {
   let fname = req.body.fname;
   let mname = req.body.mname;
   let lname = req.body.lname;
@@ -85,6 +105,7 @@ router.post("/insert", (req, res) => {
   let twelfthPassingYear = req.body.twelfthPassingYear;
   let twelfthPercentage = req.body.twelfthPercentage;
   let deptId = req.body.deptId;
+  let imagePath = req.file.filename;
 
   // let result =
   //   isBlank(fname) &&
@@ -118,6 +139,18 @@ router.post("/insert", (req, res) => {
       isSuccess: false,
     });
   } else if (isBlank(lname)) {
+    res.json({
+      displayMessage: "Please enter a last name",
+      data: "",
+      isSuccess: false,
+    });
+  } else if (!isEmail(email)) {
+    res.json({
+      displayMessage: "Please enter a last name",
+      data: "",
+      isSuccess: false,
+    });
+  } else if (!isPhone(phone)) {
     res.json({
       displayMessage: "Please enter a last name",
       data: "",
@@ -189,9 +222,15 @@ router.post("/insert", (req, res) => {
       data: "",
       isSuccess: false,
     });
+  } else if (isBlank(imagePath)) {
+    res.json({
+      displayMessage: "Please upload a image",
+      data: "",
+      isSuccess: false,
+    });
   } else {
     let query =
-      "insert into students (fname,mname,lname,dob,gender,blood,address,city,state,phone,email,tenthSchool,tenthPassingYear,tenthPercentage,twelfthSchool,twelfthPassingYear,twelfthPercentage,deptId) values ('" +
+      "insert into students (fname,mname,lname,dob,gender,blood,address,city,state,phone,email,tenthSchool,tenthPassingYear,tenthPercentage,twelfthSchool,twelfthPassingYear,twelfthPercentage,deptId, profile) values ('" +
       fname +
       "','" +
       mname +
@@ -227,7 +266,9 @@ router.post("/insert", (req, res) => {
       twelfthPercentage +
       "'," +
       deptId +
-      ")";
+      ",'" +
+      imagePath +
+      "')";
     pool.getConnection((err, connection) => {
       connection.query(query, (err, data, fields) => {
         if (err) {
@@ -332,6 +373,37 @@ router.get("/coursewisestudents", (req, res) => {
   });
 });
 
+router.post("/insertProfile", uploadImg, (req, res) => {
+  let imagePath = req.file.filename;
+  // console.log();
+  let query = "insert into temp (profile) values ('" + imagePath + "')";
+  pool.getConnection((err, connection) => {
+    connection.query(query, (err, data, fields) => {
+      if (err) {
+        connection.release();
+        res.json({ displayMessage: err, data: "", isSuccess: false });
+      } else {
+        res.json({ displayMessage: "", data: data, isSuccess: true });
+      }
+    });
+    connection.release();
+  });
+  // res.send(imagePath);
+});
 
+router.get("/getProfile", (req, res) => {
+  let query = "select * from temp";
+  pool.getConnection((err, connection) => {
+    connection.query(query, (err, data, fields) => {
+      if (err) {
+        connection.release();
+        res.json({ displayMessage: err, data: "", isSuccess: false });
+      } else {
+        res.json({ displayMessage: "", data: data, isSuccess: true });
+      }
+    });
+    connection.release();
+  });
+});
 
 module.exports = router;
