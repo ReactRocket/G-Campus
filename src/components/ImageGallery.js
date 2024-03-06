@@ -28,21 +28,21 @@ const ImageGallery = ({ title, subTitle, images }) => {
           setZoomToggle={setZoomToggle}
         />
       )}
-      <section class="text-gray-600 body-font ">
-        <div class=" px-5 py-10 mx-auto ">
-          <div class="flex flex-col text-center w-full mb-10">
-            <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+      <section className="text-gray-600 body-font ">
+        <div className=" px-5 py-10 mx-auto ">
+          <div className="flex flex-col text-center w-full mb-10">
+            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
               {title || "Title"}
             </h1>
-            <p class="lg:w-2/3 mx-auto leading-relaxed text-base">
+            <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
               {subTitle || "Sub Title"}
             </p>
           </div>
-          <div class="flex flex-wrap border-2 rounded-md">
-            {images?.map((src) => {
+          <div className="flex flex-wrap border-2 rounded-md">
+            {images?.map((src,key) => {
               return (
-                <div class="lg:w-1/3 sm:w-1/2 p-4  ">
-                  <div class="flex  ">
+                <div key={key} className="lg:w-1/3 sm:w-1/2 p-4  ">
+                  <div className="flex  ">
                     <img
                       onClick={(e) => {
                         setZoomToggle(!zoomToggle);
@@ -50,7 +50,7 @@ const ImageGallery = ({ title, subTitle, images }) => {
                       }}
                       title="Click to zoom in"
                       alt="gallery"
-                      class="scale-100  hover:scale-105 transition-all duration-1000   w-full h-full object-cover object-center rounded-md cursor-zoom-in ease-linear"
+                      className="scale-100  hover:scale-105 transition-all duration-1000   w-full h-full object-cover object-center rounded-md cursor-zoom-in ease-linear"
                       src={src || "https://dummyimage.com/600x360"}
                     />
                   </div>

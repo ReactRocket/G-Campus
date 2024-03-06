@@ -163,7 +163,7 @@ function ContactUs() {
             </div>
             <button
               ref={buttonRef}
-              className="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg hover:shadow flex justify-center items-center">
+              className="tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
               <div
                 className={`w-8 h-8 rounded-full border-4 border-r-slate-300 border-slate-50 ${
                   loading === true ? "animate-spin block" : "hidden"

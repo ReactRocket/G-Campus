@@ -4,7 +4,7 @@ import Sign_In from "../resources/images/Sign_In.jpg";
 
 function Login() {
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-[50vh] w-full">
       <div className="flex sm:flex-col-reverse lg:flex-row justify-center items-center lg:flex-wrap w-full h-full overflow-y-scroll">
         <div className="lg:w-1/2 w-full h-full p-6 sm:p-12">
           <div className=" flex flex-col items-center">
@@ -59,13 +59,13 @@ function Login() {
                 </p>
               </div>
 
-              <div className="my-12 border-b text-center">
+              {/* <div className="my-12 border-b text-center">
                 <div className="leading-none px-2 inline-block text-sm text-gray-600 tracking-wide font-medium bg-white transform translate-y-1/2">
                   Or Sign In with
                 </div>
-              </div>
+              </div> */}
 
-              <div className="flex flex-col items-center">
+              {/* <div className="flex flex-col items-center">
                 <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-blue-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
                   <div className="bg-white p-2 rounded-full">
                     <svg className="w-4" viewBox="0 0 533.5 544.3">
@@ -105,7 +105,7 @@ function Login() {
                   </div>
                   <span className="ml-4">Sign In Facebook</span>
                 </button>
-              </div>
+              </div> */}
 
 
 

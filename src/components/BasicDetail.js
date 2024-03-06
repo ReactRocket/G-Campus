@@ -12,7 +12,7 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
       setFormData({
         ...formObject,
       });
-      handleNext()
+      handleNext();
     }
     // console.log(formData);
   };
@@ -20,7 +20,8 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`w-full h-full absolute ${display} lg:flex-row flex-col lg:overflow-hidden overflow-scroll`}>
+      className={`w-full h-full absolute ${display} lg:flex-row flex-col lg:overflow-hidden overflow-scroll`}
+    >
       <div className="lg:w-1/2 w-full justify-center items-center flex">
         <img
           src={CollegeImage}
@@ -30,15 +31,15 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
       </div>
       <div className="lg:w-1/2 w-full flex justify-center items-center flex-col">
         <div className="lg:w-[75%] w-[90%] lg:mt-0 mt-4">
-          <h1 className="lg:text-2xl text-xl mb-4 text-blue-500">
+          <h1 className="lg:text-2xl font-semibold text-xl mb-4 text-blue-600">
             Welcome to G-Campus Registration
           </h1>
-          <h1 className="lg:text-lg text-base mb-2 lg:block hidden">
+          <h1 className="text-gray-500 lg:text-lg text-base mb-2 lg:block hidden">
             We are thrilled to welcome you to Our College. The journey towards
             your higher education starts here, and we are excited to be a part
             of this important chapter in your life.
           </h1>
-          <h1 className="lg:text-lg text-base">
+          <h1 className="text-gray-500 lg:text-lg text-base">
             Please complete the registration form below to ensure a seamless
             enrollment process.
           </h1>
@@ -50,7 +51,8 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
               id="deptId"
               // onChange={handleChange}
               display-message="Department"
-              className="text-md bg-gray-200 rounded p-2 outline-none w-full appearance-none">
+              className="text-md bg-gray-200 text-gray-500 font-semibold rounded p-3 cursor-pointer outline-none w-full appearance-none"
+            >
               <option value="default">-- Select a department --</option>
               <option value="101">
                 Admission for Bachelor in Commerce - Gujarati Medium
@@ -70,14 +72,20 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
             <button
               type="submit"
               // onClick={handleSubmit}
-              className="bg-blue-400 outline-none w-full p-1.5 text-lg rounded text-white">
+              className="tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+            >
               Next
             </button>
           </div>
           <div>
-            <div className="mt-2">
+            <div
+              className="mt-2 text-gray-500"
+            >
               Already have an account?{" "}
-              <Link to="/login" className="text-blue-300 font-medium">
+              <Link
+                to="/login"
+                className="text-blue-600 underline underline-offset-2 font-medium"
+              >
                 Login
               </Link>
             </div>

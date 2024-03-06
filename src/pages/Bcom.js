@@ -12,7 +12,7 @@ const Bcom = () => {
       <div className="overflow-hidden px-6">
         <div className="mx-auto mt-7 w-full max-w-6xl lg:mt-14">
           <main className="my-14 lg:mt-20">
-            <h1 className="font-display flex  w relative z-10 mt-4 text-lg  font-bold leading-tight tracking-tight text-heading lg:mt-8 lg:text-3xl">
+            <h1 className="text-lg text-center underline underline-offset-2 font-bold leading-tight tracking-tight text-heading lg:mt-8 lg:text-3xl">
               Bachelor of Commerce (BCOM)
             </h1>
 
@@ -23,7 +23,7 @@ const Bcom = () => {
                     <div className="relative items-center gap-12 m-auto lg:inline-flex">
                       <div className="max-w-xl text-center lg:text-left">
                         <div>
-                          <p className="text-2xl font-medium tracking-tight text-blue-400 sm:text-3xl">
+                          <p className="text-2xl font-medium tracking-tight text-blue-600 sm:text-3xl">
                             Bachelor of Commerce
                           </p>
                           <p className="max-w-xl text-xl mt-4  tracking-tight text-gray-600">
@@ -74,7 +74,7 @@ const Bcom = () => {
                           >
                             <li>
                               <div>
-                                <p className="mt-5 text-xl font-bold leading-6 text-blue-400">
+                                <p className="mt-5 text-xl font-bold leading-6 text-blue-600">
                                   Account
                                 </p>
                               </div>
@@ -88,7 +88,7 @@ const Bcom = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-bold leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-bold leading-6 text-blue-600">
                                   Statistics
                                 </p>
                               </div>
@@ -102,7 +102,7 @@ const Bcom = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-2xl font-bold leading-6 text-blue-400">
+                                <p className="mt-5 text-2xl font-bold leading-6 text-blue-600">
                                   Economics
                                 </p>
                               </div>
@@ -116,7 +116,7 @@ const Bcom = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-2xl  font-semibold leading-6 text-blue-400">
+                                <p className="mt-5 text-2xl  font-semibold leading-6 text-blue-600">
                                   Marketing
                                 </p>
                               </div>
@@ -171,7 +171,7 @@ const Bcom = () => {
                           >
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                                   Connect with Industry Leaders:
                                 </p>
                               </div>
@@ -184,7 +184,7 @@ const Bcom = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                                   "Influence the Future, One Business Insight at
                                   a Time:"
                                 </p>
@@ -198,7 +198,7 @@ const Bcom = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                                   Empower Your Career Journey:
                                 </p>
                               </div>
@@ -212,7 +212,7 @@ const Bcom = () => {
                             </li>
                             <li>
                               <div>
-                                <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                                <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                                   Where Passion Meets Profession:
                                 </p>
                               </div>
@@ -245,7 +245,7 @@ const Bcom = () => {
                       >
                         <li>
                           <div>
-                            <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                            <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                               Best Labs
                             </p>
                           </div>
@@ -257,7 +257,7 @@ const Bcom = () => {
                         </li>
                         <li>
                           <div>
-                            <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                            <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                               Faculty support
                             </p>
                           </div>
@@ -285,7 +285,7 @@ const Bcom = () => {
                       >
                         <li>
                           <div>
-                            <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                            <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                               Placement
                             </p>
                           </div>
@@ -298,7 +298,7 @@ const Bcom = () => {
                         </li>
                         <li>
                           <div>
-                            <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                            <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                               Activites
                             </p>
                           </div>

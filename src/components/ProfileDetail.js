@@ -96,17 +96,17 @@ function ProfileDetail({ display, handlePrevious, formData, setFormData }) {
               <p className="opacity-60 text-sm">click to upload picture</p>
             </label>
           </div>
-          <div className="lg:w-full w-[85%] flex lg:flex-row flex-col justify-around items-center mt-4">
+          <div className="lg:w-full w-[85%] flex gap-5 flex-col justify-around items-center mt-4">
             <button
               type="button"
               onClick={handlePrevious}
-              className="bg-blue-400 text-white outline-none lg:w-[45%] w-full p-1.5 text-lg rounded">
+              className="tracking-wide font-semibold bg-blue-500 text-gray-100 w-[70%] py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
               Previous
             </button>
             <button
               ref={buttonRef}
               type="submit"
-              className="bg-blue-400 text-white outline-none flex justify-center items-center lg:w-[45%] w-full p-1.5 text-lg rounded lg:mt-0 mt-4">
+              className="tracking-wide font-semibold bg-blue-500 text-gray-100 w-[70%] py-3 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
               <div
                 className={`w-8 h-8  rounded-full border-4 border-r-slate-300 border-slate-50 ${
                   loading === true ? "animate-spin block" : "hidden"

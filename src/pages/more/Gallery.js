@@ -20,21 +20,19 @@ import P2 from "../../resources/images/gallery/Lifting Tournament/P2.jpeg";
 import P3 from "../../resources/images/gallery/Lifting Tournament/P3.jpeg";
 
 // Handicraft Competition
-import H1 from "../../resources/images/gallery/Handicraft Competition/H1.jpeg"
-import H2 from "../../resources/images/gallery/Handicraft Competition/H2.jpeg"
-import H3 from "../../resources/images/gallery/Handicraft Competition/H3.jpeg"
+import H1 from "../../resources/images/gallery/Handicraft Competition/H1.jpeg";
+import H2 from "../../resources/images/gallery/Handicraft Competition/H2.jpeg";
+import H3 from "../../resources/images/gallery/Handicraft Competition/H3.jpeg";
 
 //154th GANDHI JAYANTI
-import A37 from "../../resources/images/gallery/GANDHI JAYANTI/A37.jpeg"
-import A38 from "../../resources/images/gallery/GANDHI JAYANTI/A38.jpeg"
-import A39 from "../../resources/images/gallery/GANDHI JAYANTI/A39.jpeg"
+import A37 from "../../resources/images/gallery/GANDHI JAYANTI/A37.jpeg";
+import A38 from "../../resources/images/gallery/GANDHI JAYANTI/A38.jpeg";
+import A39 from "../../resources/images/gallery/GANDHI JAYANTI/A39.jpeg";
 
 // SWACHHTA HI SEVA
-import A32 from "../../resources/images/gallery/SWACHHTA HI SEVA/A32.jpeg"
-import A33 from "../../resources/images/gallery/SWACHHTA HI SEVA/A33.jpeg"
-import A34 from "../../resources/images/gallery/SWACHHTA HI SEVA/A34.jpeg"
-
-
+import A32 from "../../resources/images/gallery/SWACHHTA HI SEVA/A32.jpeg";
+import A33 from "../../resources/images/gallery/SWACHHTA HI SEVA/A33.jpeg";
+import A34 from "../../resources/images/gallery/SWACHHTA HI SEVA/A34.jpeg";
 
 const GalleryArrayData = [
   {
@@ -72,15 +70,16 @@ const GalleryArrayData = [
 const Gallery = () => {
   return (
     <>
-      <section class="flex flex-col justify-center antialiased bg-gray-100 text-gray-600 min-h-screen p-4">
+      <section className="flex flex-col justify-center antialiased bg-gray-100 text-gray-600 min-h-screen p-4">
         <h1 className="text-5xl font-semibold text-center my-10">
           COLLEGE ACTIVITIES:2023-24
         </h1>
 
         <div className="flex justify-center items-center flex-col gap-10 ">
-          {GalleryArrayData.map((item) => {
+          {GalleryArrayData.map((item, key) => {
             return (
               <ImageGallery
+                key={key}
                 title={item.title}
                 subTitle={item.subTitle}
                 images={item.images}
