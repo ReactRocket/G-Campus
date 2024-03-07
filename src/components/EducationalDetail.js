@@ -61,7 +61,7 @@ function EducationalDetail({
   return (
     <form
       onSubmit={handleSubmit}
-      className={`w-full h-full  absolute ${display} lg:flex-row flex-col lg:overflow-hidden overflow-scroll`}
+      className={`w-full h-full   absolute ${display} lg:flex-row flex-col lg:overflow-hidden overflow-scroll`}
     >
       <div className="w-1/2  justify-center items-center lg:flex hidden">
         <img
@@ -73,13 +73,13 @@ function EducationalDetail({
       </div>
       <div className="lg:w-1/2 w-full">
         <div className="w-full h-full lg:block flex flex-col justify-center items-center px-3">
-          <div className="pt-4 text-3xl text-blue-600  font-medium lg:w-full w-[85%]">
+          <div className="pt-4 text-3xl text-blue-600  font-medium lg:w-full w-full">
             Educational Details
           </div>
-          <div className="py-1 text-md text-gray-500 lg:w-full w-[85%]">
+          <div className="py-1 text-md text-gray-500 lg:w-full w-full">
             Enter your education details
           </div>
-          <div className="flex flex-col justify-center items-center gap-1 w-[85%] ">
+          <div className="flex flex-col justify-center items-center gap-1 w-full ">
             <fieldset className="border-2 rounded-xl p-5 lg:grid  grid-cols-2 gap-x-6 gap-y-4  w-full flex flex-col justify-center items-center ">
               <legend className="col-span-2 px-2 lg:text-lg lg:w-auto w-full">
                 10<sup>th</sup> Education

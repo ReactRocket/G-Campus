@@ -68,10 +68,10 @@ function ProfileDetail({ display, handlePrevious, formData, setFormData }) {
       </section>
       <section className="lg:w-1/2 w-full ">
         <div className="w-full h-full flex flex-col justify-start items-center">
-          <div className="mt-4 text-2xl font-medium lg:w-full w-[85%]">
+          <div className="mt-4 text-3xl text-blue-600 font-medium lg:w-full w-[85%]">
             Profile Picture
           </div>
-          <div className="text-md lg:w-full w-[85%]">
+          <div className="text-md py-1 text-gray-500 lg:w-full w-[85%]">
             upload a profile picture which used for you
           </div>
           <div className="flex lg:w-full w-[85%] items-center justify-center bg-grey-lighter mt-5">
