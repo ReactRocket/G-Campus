@@ -82,7 +82,7 @@ function Register() {
 
   return (
     <div className="h-full w-full">
-      <div className="lg:h-[600px] sm:h-[70vh] h-screen ">
+      <div className="lg:h-[600px] sm:min-h-[70vh]  h-screen mb-5">
         <BasicDetail
           display={pages === 1 ? "flex" : "hidden"}
           handleNext={handleNext}
