@@ -328,13 +328,13 @@ export function loader() {
             data.Total = row.Total;
             switch (row.deptId.toString()) {
               case "101" || "102":
-                data.BCOM = row.count;
+                data.BCOM = row.StudentCount === null ? 0 : row.StudentCount;
                 break;
               case "103":
-                data.BBA = row.count;
+                data.BBA = row.StudentCount === null ? 0 : row.StudentCount;
                 break;
               default:
-                data.BCA = row.count;
+                data.BCA = row.StudentCount === null ? 0 : row.StudentCount;
                 break;
             }
             return data;

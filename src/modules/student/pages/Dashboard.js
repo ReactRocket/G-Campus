@@ -3,7 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import Logo from "../../../resources/images/logo-no-background2.png";
 import Profile from "../../../resources/illustrations/student_dashboard/profile.svg";
 import Loader from "../components/Loader";
-import greet from "../utils/Greeting";
+import greet from "../../../utils/Greeting";
 
 const asideMenuList = [
   {
