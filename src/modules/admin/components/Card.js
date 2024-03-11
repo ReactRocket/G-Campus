@@ -1,4 +1,5 @@
 import React from "react";
+import User from "../../../images/user.png";
 
 const Card = ({ faculty }) => {
   const { fullname, gender, qualification, experience, profile } = faculty;
@@ -6,7 +7,13 @@ const Card = ({ faculty }) => {
     <div className="h-80 lg:w-[70%] w-[80%] mx-auto bg-slate-300 rounded-md flex py-4 gap-2 justify-start items-center flex-col">
       <div className="rounded-full h-[65%] bg-white">
         <img
-          src={require(`../../../../images/${profile}`)}
+          src={
+            profile !== undefined || profile !== null ? (
+              require(`../../../images/${profile}`)
+            ) : (
+              <User />
+            )
+          }
           alt="faculty profile pic"
           className="w-full h-full rounded"
         />
