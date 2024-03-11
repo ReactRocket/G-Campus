@@ -25,7 +25,7 @@ const StudentCorner = () => {
         <ul className="p-5 flex flex-col gap-2">
          {
           StudentCornerArray.map((item, index) => {
-            return <button onClick={()=> setActiveSlide(index)} className={`tracking-wide transition-all duration-300 ease-in-out focus:shadow-outline focus:outline-none h-10 w-full border-b-2 text-lg  cursor-pointer flex justify-start items-center p-5  rounded-md ${activeSlide === index ? "bg-blue-600 text-white font-bold hover:text-white" :"text-gray-500 font-semibold hover:font-bold hover:text-blue-600"}`} key={index}><span>{item}</span></button>;
+            return <button onClick={()=> setActiveSlide(index)} className={`tracking-wide transition-all duration-300 ease-in-out focus:shadow-outline focus:outline-none h-10 w-full border-b-2 text-lg  cursor-pointer flex justify-start items-center p-5  rounded-md ${activeSlide === index ? "bg-blue-600 text-white font-semibold hover:text-white " :"text-gray-500  hover:font-semibold hover:text-blue-600"}`} key={index}><span>{item}</span></button>;
           })
          }
         </ul>

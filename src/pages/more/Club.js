@@ -1,6 +1,8 @@
 import React from "react";
 import ImageGallery from "../../components/ImageGallery";
 
+import MemberTableView from "../../components/MemberTableView";
+
 // bba images
 import BBA1 from "../../resources/images/cell/ANTI RAGGING SQUAD/bba/BBA1.jpeg";
 import BBA2 from "../../resources/images/cell/ANTI RAGGING SQUAD/bba/BBA2.jpeg";
@@ -45,6 +47,45 @@ const CellArrayData = [
   },
 ];
 
+const committeeMemberArray = [
+  {
+    name: "DR. MEHUL P. DESAI",
+    designation: "PRINCIPAL",
+    batch: "BOTH",
+    connect: "MEHULDESAI@UDHNACOLLEGE.AC.IN",
+  },
+  {
+    name: "DR. MANISH M. KAYASTH",
+    designation: "VICE-PRINCIPAL",
+    batch: "BATCH-1",
+    connect: "MANISHKAYASTH@UDHNACOLLEGE.AC.IN",
+  },
+  {
+    name: "DR. TEJAS R. GHADIYALI ",
+    designation: "BCA-CO-ORDINATOR",
+    batch: "BATCH-2",
+    connect: "TEJASGHADIYALI@UDHNACOLLEGE.AC.IN",
+  },
+  {
+    name: "DR. DARSHAN M. MEHTA",
+    designation: "CO-ORDINATOR",
+    batch: "BATCH-1",
+    connect: "https://www.linkedin.com/in/mehul-p-desai-92720b191/",
+  },
+  {
+    name: "DR. VISHAL A.NAIK ",
+    designation: "CO-ORDINATOR",
+    batch: "BATCH-2",
+    connect: "https://www.linkedin.com/in/mehul-p-desai-92720b191/",
+  },
+  {
+    name: "MR. RONAK M. SHAH",
+    designation: "MEMBER",
+    batch: "BATCH-1",
+    connect: "https://www.linkedin.com/in/mehul-p-desai-92720b191/",
+  },
+];
+
 const Club = () => {
   return (
     <section className="flex flex-col justify-center antialiased bg-gray-100 text-gray-600 min-h-screen p-4">
@@ -52,6 +93,7 @@ const Club = () => {
         ANTI RAGGING CELL
       </h1>
 
+    <MemberTableView  data={committeeMemberArray} DESIGNATION BATCH/>
       <div className="flex justify-center items-center flex-col gap-10 ">
         {CellArrayData.map((item, key) => {
           return (
