@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import deleteImage from "../../../resources/images/delete.svg";
+import Loader from "./Loader";
 
 // import Table from "../components/Table";
 
@@ -73,9 +74,7 @@ const Feedback = () => {
   };
 
   return isLoading ? (
-    <div className="h-full flex justify-center items-center">
-      <div className="w-16 h-16 rounded-full border-4 animate-spin border-t-gray-600"></div>
-    </div>
+    <Loader />
   ) : (
     <div className="h-auto w-[95%] m-auto my-4 bg-white">
       <nav className="flex">

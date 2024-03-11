@@ -29,27 +29,3 @@ export const sendEmail = (emailData) => {
       // console.log(error.message);
     });
 };
-
-// let data = {
-//   to_name: "kishore sunchu",
-//   to_email: "kishoresunchu412@gmail.com",
-// };
-
-// sendEmail(data);
-
-// import emailjs from 'emailjs-com';
-// import toastr from 'toastr';
-
-// export const sendEmail = (e) => {
-//     e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
-
-//     emailjs.sendForm('service_vjjj5fh', 'template_nun3zyl', e.target, 'c-SWSrzxABxtLtcaj')
-//         .then((result) => {
-//             console.log(result);
-//             toastr.success("The data sent successfully.")
-//             // window.location.reload()
-//         }, (error) => {
-//             console.log(error.message);
-//             toastr.alert(error.message)
-//         });
-// }

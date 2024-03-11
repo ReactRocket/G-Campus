@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 // import { useNavigate, useLoaderData } from "react-router-dom";
 import axios from "axios";
-import Card from "../components/test/Card";
+import Card from "../components/Card";
+import Loader from "./Loader";
 
 const Faculty = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,9 +23,7 @@ const Faculty = () => {
   }, []);
 
   return isLoading ? (
-    <div className="h-full flex justify-center items-center">
-      <div className="w-16 h-16 rounded-full border-4 animate-spin border-t-gray-600"></div>
-    </div>
+    <Loader />
   ) : (
     <div className="h-auto w-[95%] m-auto my-4">
       <nav className="flex">
@@ -47,12 +46,12 @@ const Faculty = () => {
       </nav>
       <section className="h-full mt-5 grid gap-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {Faculties.length > 0
-          ? Faculties.map((faculty,i) => {
+          ? Faculties.map((faculty, i) => {
               return (
                 // <div className="bg-gray-200" key={faculty.facultyId}>
                 //   {faculty.fname}
                 // </div>
-                <Card faculty={faculty} key={i}/>
+                <Card faculty={faculty} key={i} />
               );
             })
           : `No Faculties`}
