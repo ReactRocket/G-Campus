@@ -23,6 +23,10 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
     };
   }, [isMenuOpen]);
 
+  useEffect(() => {
+    setMoreOptionToggle(false);
+  });
+
   return (
     <div className="px-4 mx-auto  lg:px-6">
       <div className="relative sm:py-6 ">
@@ -36,8 +40,10 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                 <span className="sr-only">G-Campus</span>
                 <img className="w-full" src={Logo2} alt="logo" />
               </Link>
+
+                {/* <!-- Mobile view --> */}
+
               <div className="flex items-center justify-end w-3/4  -mr-2 lg:hidden">
-                {/* <!-- side menu --> */}
                 <div className="flex ">
                   <input
                     type="checkbox"
@@ -61,14 +67,12 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                         {NavLink.map((navlink, i) => {
                           if (navlink.name === "More") {
                             return (
-                              <details
+                              <details key={i}
                                 className="mx-4 relative"
-                                onClick={() =>
-                                  setMoreOptionToggle(!MoreOptionToggle)
-                                }
+                                open={MoreOptionToggle}
                               >
                                 <summary className="  flex justify-center items-center gap-2 cursor-pointer ">
-                                  <span className="text-center  leading-loose text-gray-500  hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out border-b-2 border-transparent">
+                                  <span className="text-center  leading-loose text-gray-500   hover:text-blue-500 hover:transition-colors duration-300 ease-in-out ">
                                     More
                                   </span>
                                   {MoreOptionToggle ? (
@@ -77,11 +81,11 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                       width="16"
                                       height="16"
                                       fill="currentColor"
-                                      class="bi bi-chevron-up"
+                                      className="bi bi-chevron-up"
                                       viewBox="0 0 16 16"
                                     >
                                       <path
-                                        fill-rule="evenodd"
+                                        fillRule="evenodd"
                                         d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"
                                       />
                                     </svg>
@@ -91,11 +95,11 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                       width="16"
                                       height="16"
                                       fill="currentColor"
-                                      class="bi bi-chevron-down"
+                                      className="bi bi-chevron-down"
                                       viewBox="0 0 16 16"
                                     >
                                       <path
-                                        fill-rule="evenodd"
+                                        fillRule="evenodd"
                                         d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
                                       />
                                     </svg>
@@ -109,23 +113,26 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                           Object.hasOwnProperty.call(val, key)
                                         ) {
                                           return (
-                                            <li
+                                            <li key={i}
+                                              onClick={() => {
+                                                setMoreOptionToggle(
+                                                  !MoreOptionToggle
+                                                );
+                                                setIsMenuOpen(!isMenuOpen);
+                                              }}
                                               className={
-                                                key === "Student Corner" &&
-                                                "border-b-2 pb-2"
+                                                key === "Student Corner" ?
+                                                "border-b-2 pb-2" : ""
                                               }
-                                              key={i}
+                                             
                                             >
                                               <Link
-                                                onClick={() =>
-                                                  setIsMenuOpen(!isMenuOpen)
-                                                }
                                                 key={i}
                                                 to={val[key]}
                                                 className={
                                                   path === val[key]
-                                                    ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                                                    : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out inline"
+                                                    ? "mx-4 text-base font-bold  pb-2 list-none  text-blue-600 "
+                                                    : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:text-blue-600"
                                                 }
                                               >
                                                 {key}
@@ -134,7 +141,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                           );
                                         }
                                       }
-                                    })}
+                                    },[])}
                                   </ul>
                                 </div>
                               </details>
@@ -148,8 +155,8 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                   to={navlink.link}
                                   className={
                                     path === navlink.link
-                                      ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                                      : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out"
+                                      ? "mx-4 text-base font-bold  pb-2 list-none hover:text-blue-600 text-blue-600"
+                                      : " mx-4 text-center pb-2 leading-loose text-gray-500  hover:text-blue-500 hover:transition-colors duration-300 ease-in-out"
                                   }
                                   target=""
                                 >
@@ -174,9 +181,9 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                             Sign In
                           </Link>
                           <span className="text-blue-500 font-bold">
-                            {path !== "/login" && path !== "/signup"
+                            {(path !== "/login" && path !== "/signup")
                               ? "|"
-                              : ` `}
+                              : ""}
                           </span>
                           <Link
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -235,14 +242,13 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
               </div>
             </div>
           </div>
+
+          {/* // desktop view */}
           <div className="hidden lg:flex lg:space-x-10 h- list-none">
             {NavLink.map((navlink, i) => {
               if (navlink.name === "More") {
                 return (
-                  <details
-                    className="mx-4 relative"
-                    onClick={() => setMoreOptionToggle(!MoreOptionToggle)}
-                  >
+                  <details key={i} className="mx-4 relative" open={MoreOptionToggle}>
                     <summary className=" relative flex justify-center items-center gap-2 cursor-pointer ">
                       <span className="text-center  leading-loose text-gray-500  hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out border-b-2 border-transparent">
                         More
@@ -253,11 +259,11 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                           width="16"
                           height="16"
                           fill="currentColor"
-                          class="bi bi-chevron-up"
+                          className="bi bi-chevron-up"
                           viewBox="0 0 16 16"
                         >
                           <path
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"
                           />
                         </svg>
@@ -267,11 +273,11 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                           width="16"
                           height="16"
                           fill="currentColor"
-                          class="bi bi-chevron-down"
+                          className="bi bi-chevron-down"
                           viewBox="0 0 16 16"
                         >
                           <path
-                            fill-rule="evenodd"
+                            fillRule="evenodd"
                             d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
                           />
                         </svg>
@@ -283,20 +289,23 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                           for (const key in val) {
                             if (Object.hasOwnProperty.call(val, key)) {
                               return (
-                                <li
+                                <li key={i}
+                                  onClick={() => {
+                                    setMoreOptionToggle(!MoreOptionToggle);
+                                  }}
                                   className={
-                                    key === "Student Corner" &&
-                                    "border-b-2 pb-2"
+                                    key === "Student Corner" ?
+                                    "border-b-2 pb-2":""
                                   }
-                                  key={i}
+                                  
                                 >
                                   <Link
                                     key={i}
                                     to={val[key]}
                                     className={
                                       path === val[key]
-                                        ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                                        : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out inline"
+                                        ? "mx-4 text-base font-bold  pb-2 list-none  text-blue-600 "
+                                        : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:text-blue-600"
                                     }
                                   >
                                     {key}
@@ -305,7 +314,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                               );
                             }
                           }
-                        })}
+                        },[])}
                       </ul>
                     </div>
                   </details>
@@ -343,7 +352,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                 Sign In
               </Link>
               <span className="text-blue-500 font-bold">
-                {path !== "/login" && path !== "/signup" ? "|" : ` `}
+                {(path !== "/login" && path !== "/signup" )? "|" : ""}
               </span>
               <Link
                 to="/signup"

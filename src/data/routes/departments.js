@@ -8,7 +8,7 @@ router.get("/getdepartments", (req, res) => {
       res.json({ displayMessage: err, data: "", isSuccess: false });
     } else {
       let query =
-        "select d.deptId as deptId, d.deptName as deptName, d.medium as medium, concat(f.fname,' ',f.lname) as headOfDept, count(s.sid) as studentCount from departments d, faculties f,students s where d.headOfDept = f.facultyId and d.deptId = s.deptId group by s.deptId;";
+        "select * from (select d.deptId,d.deptName,d.medium,concat(f.fname,' ',f.lname) as headOfDept from departments d, faculties f where d.headOfDept = f.facultyId) as dept left join (select deptId, count(*) as StudentCount from students group by deptId) as std on std.deptId = dept.deptId;";
       connection.query(query, (err, data, fields) => {
         if (err) {
           res.json({ displayMessage: err, data: "", isSuccess: false });

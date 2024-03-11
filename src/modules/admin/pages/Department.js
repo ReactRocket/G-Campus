@@ -33,11 +33,27 @@ function Department() {
         {Departments.length > 0
           ? Departments.map((department) => {
               return (
-                <section key={department.deptId} className="border bg-slate-50 rounded-lg py-3 shadow grid gap-y-1">
-                  <div className="w-[95%] mx-auto capitalize">{department.medium} medium</div>
-                  <div className="w-[95%] mx-auto font-semibold lg:text-2xl text-xl">{department.deptName}</div>
-                  <div className="w-[95%] mx-auto capitalize lg:text-xl font-normal">{department.headOfDept} <span className="text-sm font-normal">(head of the department)</span> </div>
-                  <div className="w-[95%] mx-auto lg:text-base text-xs font-normal">{department.studentCount} Execellent students are currently studing in this department</div>
+                <section
+                  key={department.deptId}
+                  className="border bg-slate-50 rounded-lg py-3 shadow grid gap-y-1">
+                  <div className="w-[95%] mx-auto capitalize">
+                    {department.medium} medium
+                  </div>
+                  <div className="w-[95%] mx-auto font-semibold lg:text-2xl text-xl">
+                    {department.deptName}
+                  </div>
+                  <div className="w-[95%] mx-auto capitalize lg:text-xl font-normal">
+                    {department.headOfDept}{" "}
+                    <span className="text-sm font-normal">
+                      (head of the department)
+                    </span>{" "}
+                  </div>
+                  <div className="w-[95%] mx-auto lg:text-base text-xs font-normal">
+                    {department.StudentCount === null
+                      ? 0
+                      : department.StudentCount}{" "}
+                    Execellent students are currently studing in this department
+                  </div>
                 </section>
               );
             })
@@ -71,6 +87,5 @@ function loadData() {
     return [];
   }
 }
-
 
 export default Department;

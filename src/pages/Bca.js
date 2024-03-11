@@ -11,7 +11,7 @@ function Bca() {
     <div className="overflow-hidden px-6">
       <div className="mx-auto mt-7 w-full max-w-6xl lg:mt-14">
         <main className="my-14 lg:mt-20">
-      <h1 className="font-display flex  w relative z-10 mt-4 text-lg  font-bold leading-tight tracking-tight text-heading lg:mt-8 lg:text-3xl">
+      <h1 className=" text-lg text-center underline underline-offset-2 font-bold leading-tight tracking-tight text-heading lg:mt-8 lg:text-3xl">
         Bachelor of Computer Applications (BCA) 
        
       </h1>
@@ -25,7 +25,7 @@ function Bca() {
               <div className="relative items-center gap-12 m-auto lg:inline-flex">
                 <div className="max-w-xl text-center lg:text-left">
                   <div>
-                    <p className="text-2xl font-medium tracking-tight text-blue-400 sm:text-3xl">
+                    <p className="text-2xl font-medium tracking-tight text-blue-600 sm:text-3xl">
                       Bachelor of Computer Applications
                     </p>
                     <p className="max-w-xl text-lg mt-4  tracking-tight text-gray-600">
@@ -75,7 +75,7 @@ function Bca() {
                     >
                       <li>
                         <div>
-                          <p className=" text-lg font-bold leading-6 text-blue-400">
+                          <p className=" text-lg font-bold leading-6 text-blue-600">
                             HTML
                           </p>
                         </div>
@@ -88,7 +88,7 @@ function Bca() {
                       </li>
                       <li>
                         <div>
-                          <p className=" text-lg font-bold leading-6 text-blue-400">
+                          <p className=" text-lg font-bold leading-6 text-blue-600">
                             CSS
                           </p>
                         </div>
@@ -101,7 +101,7 @@ function Bca() {
                       </li>
                       <li>
                         <div>
-                          <p className=" text-lg font-bold leading-6 text-blue-400">
+                          <p className=" text-lg font-bold leading-6 text-blue-600">
                             C++
                           </p>
                         </div>
@@ -114,7 +114,7 @@ function Bca() {
                       </li>
                       <li>
                         <div>
-                          <p className=" text-lg  font-semibold leading-6 text-blue-400">
+                          <p className=" text-lg  font-semibold leading-6 text-blue-600">
                             Backend
                           </p>
                         </div>
@@ -156,7 +156,7 @@ function Bca() {
                 <div className="flex flex-col mt-6 lg:mt-0">
                   <div className="max-w-xl">
                     <div>
-                      <p className="text-xl font-medium tracking-tight text-blue-500 sm:text-2xl">
+                      <p className="text-xl font-medium tracking-tight text-blue-500 sm:text-3xl">
                         "Unlock Your Future with BCA: Igniting the Spark of
                         Technological Excellence"
                       </p>
@@ -169,7 +169,7 @@ function Bca() {
                     >
                       <li>
                         <div>
-                          <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                          <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                             Connect with Industry Leaders:
                           </p>
                         </div>
@@ -181,7 +181,7 @@ function Bca() {
                       </li>
                       <li>
                         <div>
-                          <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                          <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                             Shape the Future, One Line of Code at a Time:
                           </p>
                         </div>
@@ -194,7 +194,7 @@ function Bca() {
                       </li>
                       <li>
                         <div>
-                          <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                          <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                             Empower Your Career Journey:
                           </p>
                         </div>
@@ -207,7 +207,7 @@ function Bca() {
                       </li>
                       <li>
                         <div>
-                          <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                          <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                             Where Passion Meets Profession:
                           </p>
                         </div>
@@ -239,7 +239,7 @@ function Bca() {
                 >
                   <li>
                     <div>
-                      <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                      <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                         Best Labs
                       </p>
                     </div>
@@ -251,7 +251,7 @@ function Bca() {
                   </li>
                   <li>
                     <div>
-                      <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                      <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                         Faculty support
                       </p>
                     </div>
@@ -279,7 +279,7 @@ function Bca() {
                 >
                   <li>
                     <div>
-                      <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                      <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                         Placement
                       </p>
                     </div>
@@ -293,7 +293,7 @@ function Bca() {
                   </li>
                   <li>
                     <div>
-                      <p className="mt-5 text-lg font-medium leading-6 text-blue-400">
+                      <p className="mt-5 text-lg font-medium leading-6 text-blue-600">
                         Activites
                       </p>
                     </div>

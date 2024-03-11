@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import team from '../resources/images/College-img.jpg'
+import team from "../resources/images/College-img.jpg";
+import team_1 from "../resources/illustrations/home/team-1.jpg";
+import team_2 from "../resources/illustrations/home/team-2.jpg";
+import team_3 from "../resources/illustrations/home/team-3.jpg";
 
 function AboutUs() {
   return (
@@ -104,125 +107,98 @@ function AboutUs() {
               </div>
             </section>
 
-           
+         
 
-          
-          
-            <section className="mt-12 lg:mt-36 mx-auto max-w-3xl text-center">
-              <h2 className="font-display text-3xl font-bold text-heading lg:text-5xl text-blue-500">
-                Welcome to{" "}
-                <Link href="#" className="text-blue-700 font-bold">
-                  {" "}
-                  G-campus
-                </Link>{" "}
-                : Shaping Future Leaders and Minds
-              </h2>
-              <p className="mt-4 text-lg text-gray-600">
-                Are you passionate about academic excellence and fostering a
-                vibrant learning community? <Link href="#" className="text-blue-700 font-bold">
-                    {" "}
-                    G-campus
-                  </Link>{" "} is seeking dedicated
-                individuals who aspire to contribute to shaping the future. Join
-                us for a fulfilling educational experience, enjoy a dynamic
-                learning environment, collaborative projects, and engage with a
-                diverse and talented faculty!
-              </p>
-            </section>
+            {/* Testimonial section */}
 
-            {/* Jobs section */}
-            {/* <section className="relative mt-12 lg:mt-36">
-              <div className="relative z-10 text-sm font-semibold uppercase tracking-tight text-[#ff7b60]">
-                Async, remote worldwide
-              </div>
-              <h2 className="font-display relative z-10 mt-4 text-3xl font-bold text-heading lg:text-5xl lg:tracking-tight">
-                Open Positions
-              </h2>
-
-              <div className="relative z-10 mt-8 grid gap-x-32 gap-y-8 lg:mt-16 lg:grid-cols-2 lg:gap-y-20">
-                <div className="max-w-md">
-                  <h3 className="text-xl font-bold tracking-tight text-heading">
-                    Full Stack Developer
-                  </h3>
-                  <div className="mt-3 text-sm font-medium text-heading">
-                    $160-220k
-                  </div>
-                  <p className="mt-4">
-                    We need a full stack developer to help us build out our
-                    infrastructure, including our next-level experience. You
-                    will be responsible for collaborating with other
-                    senior-level engineers and implementing best practices in
-                    your work.
+            <div className="py-20">
+              <div className="xl:container mx-auto px-6 md:px-12">
+                <div className="mb-16 sm:px-28 w-full text-center flex flex-col justify-center">
+                  <h2 className="mb-4 text-2xl font-bold text-gray-800 dark:text-white md:text-5xl">
+                    Our Team
+                  </h2>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Tailus prides itself not only on award-winning technology,
+                    but also on the talent of its people of some of the
+                    brightest minds and most experienced executives in business.
                   </p>
-                  <a
-                    href="#"
-                    className="mt-4 inline-block text-[#2aefe6] hover:brightness-125 focus:brightness-125"
-                  >
-                    View full position
-                  </a>
                 </div>
-                <div className="max-w-md">
-                  <h3 className="text-xl font-bold tracking-tight text-heading">
-                    Product Designer
-                  </h3>
-                  <div className="mt-3 text-sm font-medium text-heading">
-                    $160-220k
+                <div className="grid gap-6 px-4 sm:px-0 sm:grid-cols-2 md:grid-cols-3 ">
+                  <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
+                    <img
+                      className="mx-auto h-[26rem] w-full grayscale object-cover object-top ransition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                      src={team_1}
+                      alt="woman"
+                      loading="lazy"
+                      width="640"
+                      height="805"
+                    />
+                    <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
+                      <div>
+                        <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
+                          Hentoni Doe
+                        </h4>
+                        <span className="block text-sm text-gray-500">
+                          CEO-Founder
+                        </span>
+                      </div>
+                      <p className="mt-8 text-gray-300 dark:text-gray-600">
+                        Quae labore quia tempora dolor impedit. Possimus, sint
+                        ducimus ipsam?
+                      </p>
+                    </div>
                   </div>
-                  <p className="mt-4">
-                    You'll be responsible for implementing best practices in
-                    infrastructure, and collaborating with other senior-level
-                    engineers to make sure that the product is always running
-                    smoothly.
-                  </p>
-                  <a
-                    href="#"
-                    className="mt-4 inline-block text-[#2aefe6] hover:brightness-125 focus:brightness-125"
-                  >
-                    View full position
-                  </a>
-                </div>
-                <div className="max-w-md">
-                  <h3 className="text-xl font-bold tracking-tight text-heading">
-                    Front End Engineer
-                  </h3>
-                  <div className="mt-3 text-sm font-medium text-heading">
-                    $160-220k
+                  <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
+                    <img
+                      className="mx-auto h-[26rem] w-full grayscale object-cover object-top ransition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                      src={team_2}
+                      alt="woman"
+                      loading="lazy"
+                      width="640"
+                      height="805"
+                    />
+                    <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
+                      <div>
+                        <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
+                          Hentoni Doe
+                        </h4>
+                        <span className="block text-sm text-gray-500">
+                          CEO-Founder
+                        </span>
+                      </div>
+                      <p className="mt-8 text-gray-300 dark:text-gray-600">
+                        Quae labore quia tempora dolor impedit. Possimus, sint
+                        ducimus ipsam?
+                      </p>
+                    </div>
                   </div>
-                  <p className="mt-4">
-                    We're looking for someone who has experience managing
-                    complex systems at scale, and we want someone who can work
-                    independently but also thrive in a collaborative
-                    environment.
-                  </p>
-                  <a
-                    href="#"
-                    className="mt-4 inline-block text-[#2aefe6] hover:brightness-125 focus:brightness-125"
-                  >
-                    View full position
-                  </a>
-                </div>
-                <div className="max-w-md">
-                  <h3 className="text-xl font-bold tracking-tight text-heading">
-                    Senior UX Designer
-                  </h3>
-                  <div className="mt-3 text-sm font-medium text-heading">
-                    $160-220k
+                  <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
+                    <img
+                      className="mx-auto h-[26rem] w-full grayscale object-cover object-top transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                      src={team_3}
+                      alt="woman"
+                      loading="lazy"
+                      width="640"
+                      height="805"
+                    />
+                    <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
+                      <div>
+                        <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
+                          Hentoni Doe
+                        </h4>
+                        <span className="block text-sm text-gray-500">
+                          CEO-Founder
+                        </span>
+                      </div>
+                      <p className="mt-8 text-gray-300 dark:text-gray-600">
+                        Quae labore quia tempora dolor impedit. Possimus, sint
+                        ducimus ipsam?
+                      </p>
+                    </div>
                   </div>
-                  <p className="mt-4">
-                    You'll be responsible for implementing best practices in
-                    infrastructure, and collaborating with other senior-level
-                    engineers to make sure that the product is always running
-                    smoothly.
-                  </p>
-                  <a
-                    href="#"
-                    className="mt-4 inline-block text-[#2aefe6] hover:brightness-125 focus:brightness-125"
-                  >
-                    View full position
-                  </a>
                 </div>
               </div>
-            </section> */}
+            </div>
           </main>
         </div>
       </div>

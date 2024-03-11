@@ -1,4 +1,4 @@
-function greet(text) {
+function greet(text = "User") {
   var currentDate = new Date();
   var currentHour = currentDate.getHours();
   if (currentHour < 12) {

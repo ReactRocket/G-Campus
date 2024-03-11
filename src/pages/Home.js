@@ -1,31 +1,41 @@
-import React, {useState} from "react";
-import { Link, useLoaderData,useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-import Logo from "../resources/images/cap-1266204.svg";
-import college_img1 from "../resources/images/College-img1.jpg";
-import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg";
-import home_img2 from "../resources/illustrations/home/college campus-amico.svg";
-import home_img3 from "../resources/illustrations/home/Modern life-rafiki.svg";
-import team_1 from "../resources/illustrations/home/team-1.jpg";
-import team_2 from "../resources/illustrations/home/team-2.jpg";
-import team_3 from "../resources/illustrations/home/team-3.jpg";
 import axios from "axios";
+import home_img1 from "../resources/illustrations/home/Coding workshop-amico.svg";
+import home_img3 from "../resources/illustrations/home/Modern life-rafiki.svg";
+import home_img2 from "../resources/illustrations/home/college campus-amico.svg";
+import college_img1 from "../resources/images/College-img1.jpg";
+import Logo from "../resources/images/cap-1266204.svg";
 
 function Home() {
-  const StudentCount = useLoaderData();
-  
-  const [selectedCourse, setSelectedCourse] = useState('');
+  // const StudentCount = useLoaderData();
+  const [StudentCount, setStudentCount] = useState({
+    Total: 4,
+    BCOM: 2,
+    BBA: 1,
+    BCA: 1,
+  });
+
+  useEffect(() => {
+    setTimeout(() => {
+      loader()
+        .then((response) => {
+          setStudentCount(response);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, 2000);
+  }, []);
+
+  const [selectedCourse, setSelectedCourse] = useState("");
   const navigate = useNavigate();
-
-  
-
   const handleSearch = () => {
     if (selectedCourse) {
-      
       navigate(`/courses/${selectedCourse}`);
     }
-   
-  }
+  };
 
   return (
     <div>
@@ -49,8 +59,7 @@ function Home() {
                 <div>
                   <label
                     htmlFor="email"
-                    className="sr-only block text-sm font-semibold text-heading"
-                  >
+                    className="sr-only block text-sm font-semibold text-heading">
                     Courses
                   </label>
                   <input
@@ -69,10 +78,9 @@ function Home() {
                   </datalist>
                 </div>
                 <button
-                onClick={handleSearch}
+                  onClick={handleSearch}
                   type="submit"
-                  className="inline-flex cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition duration-200 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:text-white dark:focus:ring-white/80"
-                >
+                  className="inline-flex cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-4 py-2.5 text-sm font-semibold text-white transition duration-200 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:text-white dark:focus:ring-white/80">
                   Search
                 </button>
               </form>
@@ -92,17 +100,29 @@ function Home() {
           <div className="container px-5 pt-24 mx-auto">
             <div className="flex flex-col text-center w-full mb-20">
               <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
-              Invest in Your Future: Explore Our Undergraduate Programs
+                Invest in Your Future: Explore Our Undergraduate Programs
               </h1>
               <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
                 Embark on your academic journey at G-campus and explore our
                 diverse range of undergraduate programs! We offer the{" "}
-                 <Link to="/courses/bcom" className="text-indigo-500 hover:underline font-semibold"> Bachelor
-                of Commerce (BCOM)</Link>{" "}
-                  for a comprehensive understanding of
-                business, the {" "} <Link to="/courses/bca" className="text-indigo-500 hover:underline font-semibold">Bachelor of Computer Applications (BCA)</Link> for
-                mastering the world of technology, and the {" "}
-                <Link to="/courses/bba" className="text-indigo-500 hover:underline font-semibold">Bachelor of Business Administration (BBA) </Link>
+                <Link
+                  to="/courses/bcom"
+                  className="text-indigo-500 hover:underline font-semibold">
+                  {" "}
+                  Bachelor of Commerce (BCOM)
+                </Link>{" "}
+                for a comprehensive understanding of business, the{" "}
+                <Link
+                  to="/courses/bca"
+                  className="text-indigo-500 hover:underline font-semibold">
+                  Bachelor of Computer Applications (BCA)
+                </Link>{" "}
+                for mastering the world of technology, and the{" "}
+                <Link
+                  to="/courses/bba"
+                  className="text-indigo-500 hover:underline font-semibold">
+                  Bachelor of Business Administration (BBA){" "}
+                </Link>
                 to hone your leadership and management skills. Choose your path
                 and become a well-equipped professional in today's dynamic
                 world.
@@ -117,8 +137,7 @@ function Home() {
                     height="16"
                     fill="currentColor"
                     className="bi bi-calculator text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16"
-                  >
+                    viewBox="0 0 16 16">
                     <path d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z" />
                     <path d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5z" />
                   </svg>
@@ -137,8 +156,7 @@ function Home() {
                     height="16"
                     fill="currentColor"
                     className="bi bi-briefcase text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16"
-                  >
+                    viewBox="0 0 16 16">
                     <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5m1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0M1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5" />
                   </svg>
                   <h2 className="title-font font-medium text-3xl text-gray-900">
@@ -155,8 +173,7 @@ function Home() {
                     height="16"
                     fill="currentColor"
                     className="bi bi-laptop text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 16 16"
-                  >
+                    viewBox="0 0 16 16">
                     <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5" />
                   </svg>
                   <h2 className="title-font font-medium text-3xl text-gray-900">
@@ -174,8 +191,7 @@ function Home() {
                     strokeLinejoin="round"
                     strokeWidth="2"
                     className="text-indigo-500 w-12 h-12 mb-3 inline-block"
-                    viewBox="0 0 24 24"
-                  >
+                    viewBox="0 0 24 24">
                     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                   </svg>
                   <h2 className="title-font font-medium text-3xl text-gray-900">
@@ -289,96 +305,7 @@ function Home() {
           </div>
         </section>
 
-        {/* Testimonial section */}
-
-        <div className="pb-20">
-          <div className="xl:container mx-auto px-6 md:px-12">
-            <div className="mb-16 sm:px-28 w-full text-center flex flex-col justify-center">
-              <h2 className="mb-4 text-2xl font-bold text-gray-800 dark:text-white md:text-5xl">
-                Our Team
-              </h2>
-              <p className="text-gray-600 dark:text-gray-300">
-                Tailus prides itself not only on award-winning technology, but
-                also on the talent of its people of some of the brightest minds
-                and most experienced executives in business.
-              </p>
-            </div>
-            <div className="grid gap-6 px-4 sm:px-0 sm:grid-cols-2 md:grid-cols-3 ">
-              <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
-                <img
-                  className="mx-auto h-[26rem] w-full grayscale object-cover object-top ransition duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                  src={team_1}
-                  alt="woman"
-                  loading="lazy"
-                  width="640"
-                  height="805"
-                />
-                <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
-                  <div>
-                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
-                      Hentoni Doe
-                    </h4>
-                    <span className="block text-sm text-gray-500">
-                      CEO-Founder
-                    </span>
-                  </div>
-                  <p className="mt-8 text-gray-300 dark:text-gray-600">
-                    Quae labore quia tempora dolor impedit. Possimus, sint
-                    ducimus ipsam?
-                  </p>
-                </div>
-              </div>
-              <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
-                <img
-                  className="mx-auto h-[26rem] w-full grayscale object-cover object-top ransition duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                  src={team_2}
-                  alt="woman"
-                  loading="lazy"
-                  width="640"
-                  height="805"
-                />
-                <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
-                  <div>
-                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
-                      Hentoni Doe
-                    </h4>
-                    <span className="block text-sm text-gray-500">
-                      CEO-Founder
-                    </span>
-                  </div>
-                  <p className="mt-8 text-gray-300 dark:text-gray-600">
-                    Quae labore quia tempora dolor impedit. Possimus, sint
-                    ducimus ipsam?
-                  </p>
-                </div>
-              </div>
-              <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
-                <img
-                  className="mx-auto h-[26rem] w-full grayscale object-cover object-top transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
-                  src={team_3}
-                  alt="woman"
-                  loading="lazy"
-                  width="640"
-                  height="805"
-                />
-                <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
-                  <div>
-                    <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
-                      Hentoni Doe
-                    </h4>
-                    <span className="block text-sm text-gray-500">
-                      CEO-Founder
-                    </span>
-                  </div>
-                  <p className="mt-8 text-gray-300 dark:text-gray-600">
-                    Quae labore quia tempora dolor impedit. Possimus, sint
-                    ducimus ipsam?
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      
       </main>
     </div>
   );
@@ -386,10 +313,10 @@ function Home() {
 
 export default Home;
 
-export async function loader() {
+export function loader() {
   let data = { Total: 0, BCOM: 0, BBA: 0, BCA: 0 };
   try {
-    return await axios
+    return axios
       .get("http://localhost:5000/students/coursewisestudents")
       .then((res) => res.data)
       .then(async (response) => {
@@ -400,14 +327,14 @@ export async function loader() {
           responseData.map((row) => {
             data.Total = row.Total;
             switch (row.deptId.toString()) {
-              case '101' || '102':
-                data.BCOM = row.count;
+              case "101" || "102":
+                data.BCOM = row.StudentCount === null ? 0 : row.StudentCount;
                 break;
-              case '103':
-                data.BBA = row.count;
+              case "103":
+                data.BBA = row.StudentCount === null ? 0 : row.StudentCount;
                 break;
               default:
-                data.BCA = row.count;
+                data.BCA = row.StudentCount === null ? 0 : row.StudentCount;
                 break;
             }
             return data;

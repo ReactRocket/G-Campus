@@ -27,28 +27,25 @@ const notices = [
   },
 ];
 
-function Footer({ NavLink ,MoreOptionToggle, setMoreOptionToggle}) {
+function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
   const location = useLocation();
 
   return (
-    <footer className="text-gray-500 bg-white body-font">
+    <footer className="text-gray-500  bg-white body-font">
       <hr className=" px-4" />
-      <div className="container px-5 py-24 mx-auto">
+      <div className="min-h-[50vh] container px-5 py-24 mx-auto">
         <div className="flex justify-between flex-wrap md:text-left text-center order-first ">
-          <div className="lg:w-1/4 md:w-1/2 w-full px-4 lg:block hidden">
-            <h2 className="title-font font-bold text-blue-500 tracking-widest text-sm mb-2">
-              Our Pages :
+          <div className="lg:w-1/4 md:w-1/2 w-full px-4 lg:flex flex-col justify-start items-start hidden">
+            <h2 className="title-font font-bold text-blue-500 tracking-widest text-md pb-2">
+              Our Pages
             </h2>
-            <nav className="list-none mb-10">
+            <nav className="list-none ">
               {NavLink.map((navlink, i) => {
                 if (navlink.name === "More") {
                   return (
-                    <details
-                      className="mx-4 relative"
-                      onClick={() => setMoreOptionToggle(!MoreOptionToggle)}
-                    >
+                    <details key={i} className="mx-4 relative" open={MoreOptionToggle}>
                       <summary className="  flex justify-start items-center gap-2 cursor-pointer ">
-                        <span className="text-center  leading-loose text-gray-500  hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out border-b-2 border-transparent">
+                        <span className="text-center  leading-loose text-gray-500   hover:text-blue-500 hover:transition-colors duration-300 ease-in-out">
                           More
                         </span>
                         {MoreOptionToggle ? (
@@ -57,11 +54,11 @@ function Footer({ NavLink ,MoreOptionToggle, setMoreOptionToggle}) {
                             width="16"
                             height="16"
                             fill="currentColor"
-                            class="bi bi-chevron-up"
+                            className="bi bi-chevron-up"
                             viewBox="0 0 16 16"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"
                             />
                           </svg>
@@ -71,11 +68,11 @@ function Footer({ NavLink ,MoreOptionToggle, setMoreOptionToggle}) {
                             width="16"
                             height="16"
                             fill="currentColor"
-                            class="bi bi-chevron-down"
+                            className="bi bi-chevron-down"
                             viewBox="0 0 16 16"
                           >
                             <path
-                              fill-rule="evenodd"
+                              fillRule="evenodd"
                               d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"
                             />
                           </svg>
@@ -87,20 +84,23 @@ function Footer({ NavLink ,MoreOptionToggle, setMoreOptionToggle}) {
                             for (const key in val) {
                               if (Object.hasOwnProperty.call(val, key)) {
                                 return (
-                                  <li
+                                  <li key={i}
+                                    onClick={() => {
+                                      setMoreOptionToggle(!MoreOptionToggle);
+                                    }}
                                     className={
-                                      key === "Student Corner" &&
-                                      "border-b-2 pb-2"
+                                      key === "Student Corner" ?
+                                      "border-b-2 pb-2" : " "
                                     }
-                                    key={i}
+                                   
                                   >
                                     <Link
                                       key={i}
                                       to={val[key]}
                                       className={
                                         location.pathname === val[key]
-                                          ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                                          : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out inline"
+                                          ? "mx-4 text-base font-bold pb-2 list-none   text-blue-600"
+                                          : " mx-4 text-center pb-2 leading-loose hover:text-blue-600"
                                       }
                                     >
                                       {key}
@@ -122,8 +122,8 @@ function Footer({ NavLink ,MoreOptionToggle, setMoreOptionToggle}) {
                         to={navlink.link}
                         className={
                           location.pathname === navlink.link
-                            ? "mx-4 text-base font-bold border-b-2 pb-2 list-none border-blue-500 hover:text-blue-600 text-blue-600"
-                            : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out"
+                            ? "mx-4 text-base font-bold  pb-2 list-none  hover:text-blue-600 text-blue-600"
+                            : " mx-4 text-center pb-2 leading-loose text-gray-500   hover:text-blue-500 hover:transition-colors duration-300 ease-in-out"
                         }
                         target=""
                       >
@@ -168,14 +168,14 @@ function Footer({ NavLink ,MoreOptionToggle, setMoreOptionToggle}) {
           </div>
         </div>
       </div>
-      <div className="bg-gray-200 ">
-        <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
-          <Link className="w-1/4 flex title-font font-medium items-center md:justify-start justify-center text-gray-500">
+      <div className="bg-gray-200 min-h-[10vh] overflow-hidden flex justify-center items-center">
+        <div className=" p-5 w-full   mx-auto flex items-center sm:flex-row flex-col">
+          <Link className="h-full w-1/4 flex title-font font-medium items-center md:justify-start justify-center text-gray-500">
             <img className="scale-150 pt-2 w-16 " src={Logo} alt="logo" />
 
             {/* <span className="text-3xl text-gray-400 hover:text-blue-500 transition-all duration-500 hidden lg:block">G-Campus</span> */}
           </Link>
-          <p className="w-1/2 text-lg text-center text-gray-400 sm:ml-6 sm:mt-0 mt-4">
+          <p className="h-full w-1/2 text-lg text-center text-gray-400 sm:ml-6 sm:mt-0 mt-4">
             © {Date().slice(10, 15)} G-CAMPUS —
             <a
               href="https://twitter.com/ASK_DEVELOPERS"
@@ -186,7 +186,7 @@ function Footer({ NavLink ,MoreOptionToggle, setMoreOptionToggle}) {
               @ASK_DEVELOPERS
             </a>
           </p>
-          <span className="w-1/4 inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-end">
+          <span className="h-full w-1/4 inline-flex gap-3 sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-end">
             <a
               className="text-gray-400"
               href="mailto:web.developers.2021.2024@gmail.com"
@@ -212,20 +212,20 @@ function Footer({ NavLink ,MoreOptionToggle, setMoreOptionToggle}) {
               rel="noopener noreferrer"
             >
               <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
                 fill="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                className="w-5 h-5"
-                viewBox="0 0 24 24"
+                className="bi bi-twitter-x"
+                viewBox="0 0 16 16"
               >
-                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
               </svg>
             </a>
           </span>
         </div>
       </div>
-      <ScrollToTopButton/>
+      <ScrollToTopButton />
     </footer>
   );
 }

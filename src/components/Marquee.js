@@ -31,8 +31,8 @@ const Marquee = ({ data }) => {
                 {
                     data ? data?.map((val, i) => {
                         return (
-                            <Link key={i} to={val.to} className='cursor-pointer block my-2 underline'>
-                                {val.text}
+                            <Link key={i} to={val.to} className='cursor-pointer  my-2 underline hover:text-blue-600 flex justify-start gap-2 items-center'>
+                              <span>  {val.text}</span> <span  className="inline-flex cursor-pointer items-center justify-center rounded-xl border-none bg-gradient-to-r from-fuchsia-600 to-indigo-600 px-2 animate-pulse text-sm font-semibold text-white transition duration-200 hover:bg-gradient-to-r hover:from-fuchsia-600 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-orange-400/80 focus:ring-offset-0 disabled:opacity-30 disabled:hover:text-white dark:focus:ring-white/80">New</span>
                             </Link>
                         )
                     }) : "No Data Available"
