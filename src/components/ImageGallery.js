@@ -31,7 +31,7 @@ const ImageGallery = ({ title, subTitle, images }) => {
       <section className="text-gray-600 body-font ">
         <div className=" px-5 py-10 mx-auto ">
           <div className="flex flex-col text-center w-full mb-10">
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">
+            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-blue-600 hover:underline underline-offset-2 cursor-pointer">
               {title || "Title"}
             </h1>
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
@@ -50,7 +50,7 @@ const ImageGallery = ({ title, subTitle, images }) => {
                       }}
                       title="Click to zoom in"
                       alt="gallery"
-                      className="scale-100  hover:scale-105 transition-all duration-1000   w-full h-full object-cover object-center rounded-md cursor-zoom-in ease-linear"
+                      className="scale-100  hover:scale-105 transition-all duration-1000 aspect-square  w-full h-full object-cover object-center rounded-md cursor-zoom-in ease-linear"
                       src={src || "https://dummyimage.com/600x360"}
                     />
                   </div>
