@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../resources/images/Logo.svg";
 import Marquee from "./Marquee";
@@ -28,7 +29,37 @@ const notices = [
 ];
 
 function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
+  const [loading, setLoading] = useState(false);
+
   const location = useLocation();
+
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      emailjs
+        .sendForm(
+          "service_8jobu1p",
+          "template_s2448br",
+          form.current,
+          "YRZEQC3wYqOWMbasL"
+        )
+        .then(
+          (result) => {
+            alert("You are now subscribed!");
+            form.current.reset();
+          },
+          (error) => {
+            alert("Something went wrong! Please try again.");
+            console.log(error.text);
+          }
+        );
+    }, 2000);
+  };
 
   return (
     <footer className="text-gray-500  bg-white body-font">
@@ -43,7 +74,11 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
               {NavLink.map((navlink, i) => {
                 if (navlink.name === "More") {
                   return (
-                    <details key={i} className="mx-4 relative" open={MoreOptionToggle}>
+                    <details
+                      key={i}
+                      className="mx-4 relative"
+                      open={MoreOptionToggle}
+                    >
                       <summary className="  flex justify-start items-center gap-2 cursor-pointer ">
                         <span className="text-center  leading-loose text-gray-500   hover:text-blue-500 hover:transition-colors duration-300 ease-in-out">
                           More
@@ -84,15 +119,16 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                             for (const key in val) {
                               if (Object.hasOwnProperty.call(val, key)) {
                                 return (
-                                  <li key={i}
+                                  <li
+                                    key={i}
                                     onClick={() => {
                                       setMoreOptionToggle(!MoreOptionToggle);
                                     }}
                                     className={
-                                      key === "Student Corner" ?
-                                      "border-b-2 pb-2" : " "
+                                      key === "Student Corner"
+                                        ? "border-b-2 pb-2"
+                                        : " "
                                     }
-                                   
                                   >
                                     <Link
                                       key={i}
@@ -142,7 +178,11 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
             <h2 className="title-font font-bold text-blue-500 tracking-widest text-sm mb-3">
               Connect with us
             </h2>
-            <div className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
+            <form
+              ref={form}
+              onSubmit={sendEmail}
+              className="flex xl:flex-nowrap md:flex-nowrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start"
+            >
               <div className="relative w-40 mt-5 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
                 <label
                   htmlFor="footer-field"
@@ -151,17 +191,28 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                   Email
                 </label>
                 <input
+                  required
                   type="email"
                   id="footer-field"
-                  name="footer-field"
+                  name="email"
                   placeholder="Email"
                   className="w-full bg-gray-200 rounded border bg-opacity-40 border-blue-700 focus:ring-2 focus:ring-blue-700 focus:border-gray-300 text-base outline-none text-gray-900 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                 />
               </div>
-              <button className="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-700 rounded">
-                Send
+              <button
+                type="submit"
+                className="w-28 tracking-wide font-semibold bg-blue-500 text-gray-100  py-2 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+              >
+                <div
+                  className={`h-6 aspect-square rounded-full border-4 border-r-slate-300 border-slate-50 ${
+                    loading === true ? "animate-spin block" : "hidden"
+                  }`}
+                ></div>
+                <p className={`${loading === true ? "hidden" : "block"}`}>
+                  Send
+                </p>
               </button>
-            </div>
+            </form>
             <p className="text-gray-500 text-sm pt-5 md:text-left text-center">
               Contact us to give feedback
             </p>

@@ -30,7 +30,7 @@ const StudentCorner = () => {
          }
         </ul>
       </aside>
-      <main className="w-3/4 h-full bg-gray-200   right-0 overflow-hidden ">
+      <main className="w-3/4 h-full bg-gray-200   right-0 overflow-y-scroll ">
             {
               activeSlide === 0 && <ENotice />
             }
