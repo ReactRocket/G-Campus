@@ -24,10 +24,10 @@ const ContactForm = () => {
   };
   return (
     <>
-      <div className="max-w-md mx-auto mt-10 bg-blue-50 border rounded   p-6">
+      <div className="max-w-md mx-auto mt-10 bg-blue-50 border-blue-500  border  rounded   p-6">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div className="">
-            <label htmlFor="course" className="">
+            <label htmlFor="course" className="block mb-2 text-slate-600">
               Select Course:
             </label>
             <select
@@ -35,7 +35,7 @@ const ContactForm = () => {
               name="course"
               value={formData.course}
               onChange={handleChange}
-              className="w-full border-blue-200 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
+              className="w-full border-blue-200 hover:border border-2 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
             >
               <option value="">Select Course</option>
               <option value="BCOM">BCOM</option>
@@ -44,35 +44,35 @@ const ContactForm = () => {
             </select>
           </div>
           <div>
-            <label htmlFor="rollno" className="block mb-1">
+            <label htmlFor="rollno" className="block mb-1 text-slate-600">
               Roll Number:
             </label>
             <input
-              type="text"
+              type="number"
               id="rollno"
               name="rollno"
               value={formData.rollno}
               onChange={handleChange}
-              className="w-full border-blue-200 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
+              className="w-full  hover:border border-2 border-blue-200 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
               placeholder="Enter Roll Number"
             />
           </div>
           <div>
-            <label htmlFor="mobile" className="block mb-1">
+            <label htmlFor="mobile" className="block mb-1  text-slate-600">
               Mobile Number:
             </label>
             <input
-              type="text"
+              type="number"
               id="mobile"
               name="mobile"
               value={formData.mobile}
               onChange={handleChange}
-              className="w-full border-blue-200 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
+              className="w-full border-blue-200 hover:border border-2 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
               placeholder="Enter Mobile Number"
             />
           </div>
           <div>
-            <label htmlFor="email" className="block mb-1">
+            <label htmlFor="email" className="block mb-1  text-slate-600">
               Email Address:
             </label>
             <input
@@ -81,12 +81,12 @@ const ContactForm = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full border-blue-200 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
+              className="w-full border-blue-200  hover:border border-2 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
               placeholder="Enter Email Address"
             />
           </div>
           <div>
-            <label htmlFor="message" className="block mb-1">
+            <label htmlFor="message" className="block mb-1  text-slate-600">
               Message:
             </label>
             <textarea
@@ -94,17 +94,23 @@ const ContactForm = () => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="w-full border-blue-200 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
+              className="w-full border-blue-200  hover:border border-2 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
               rows="4"
               placeholder="Enter your message"
             ></textarea>
           </div>
-          <div>
+          <div className="flex gap-16">
             <button
               type="submit"
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
             >
               Submit
+            </button>
+            <button
+              type="reset"
+              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600"
+            >
+             Reset
             </button>
           </div>
         </form>

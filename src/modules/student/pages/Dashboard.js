@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
-import Logo from "../../../resources/images/logo-no-background2.png";
+import React, { useEffect, useState } from "react";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import Profile from "../../../resources/illustrations/student_dashboard/profile.svg";
-import Loader from "../components/Loader";
+import Logo from "../../../resources/images/logo-no-background2.png";
 import greet from "../../../utils/Greeting";
+import Loader from "../components/Loader";
+import axios from "axios";
 
 const asideMenuList = [
   {
@@ -11,16 +12,13 @@ const asideMenuList = [
       <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
         <path
           d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
-          className="fill-current text-blue-400 dark:fill-slate-600"
-        ></path>
+          className="fill-current text-blue-400 dark:fill-slate-600"></path>
         <path
           d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
-          className="fill-current text-blue-200 group-hover:text-blue-300"
-        ></path>
+          className="fill-current text-blue-200 group-hover:text-blue-300"></path>
         <path
           d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
-          className="fill-current group-hover:text-blue-300"
-        ></path>
+          className="fill-current group-hover:text-blue-300"></path>
       </svg>
     ),
     text: "Dashboard",
@@ -32,8 +30,7 @@ const asideMenuList = [
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5"
         viewBox="0 0 20 20"
-        fill="currentColor"
-      >
+        fill="currentColor">
         <path
           className="fill-current text-gray-600 group-hover:text-blue-600"
           fillRule="evenodd"
@@ -55,8 +52,7 @@ const asideMenuList = [
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5"
         viewBox="0 0 20 20"
-        fill="currentColor"
-      >
+        fill="currentColor">
         <path
           className="fill-current text-gray-600 group-hover:text-blue-600"
           fillRule="evenodd"
@@ -78,8 +74,7 @@ const asideMenuList = [
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="currentColor"
-        className="w-5 h-5"
-      >
+        className="w-5 h-5">
         <path
           className="fill-current text-gray-600 group-hover:text-blue-600"
           fillRule="evenodd"
@@ -97,8 +92,7 @@ const asideMenuList = [
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5"
         viewBox="0 0 20 20"
-        fill="currentColor"
-      >
+        fill="currentColor">
         <path
           className="fill-current text-gray-300 group-hover:text-blue-300"
           d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"
@@ -117,14 +111,26 @@ const asideMenuList = [
 ];
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+  let sid = sessionStorage.getItem("loggedIn");
+  if (!sid) {
+    navigate("/login");
+  }
+
   const [IsMenuOpen, setIsMenuOpen] = useState(false);
+  const [Student, setStudent] = useState([]);
   const [IsLoading, setIsLoading] = useState(false);
   const { pathname } = useLocation();
+
   useEffect(() => {
     setIsLoading(true);
-
     setTimeout(() => {
-      setIsLoading(false);
+      studentLoader().then((response) => {
+        if (response.isSuccess) {
+          setStudent(response.data[0]);
+          setIsLoading(false);
+        }
+      });
     }, 3000);
   }, [pathname]);
 
@@ -133,8 +139,7 @@ const Dashboard = () => {
       <aside
         className={`fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] ${
           !IsMenuOpen && "ml-[-100%] "
-        }`}
-      >
+        }`}>
         <div>
           <div className="-mx-6 px-6 py-4 border-b h-16 md:grid place-content-center hidden ">
             <Link to="/" title="home">
@@ -155,7 +160,7 @@ const Dashboard = () => {
           </div>
 
           <ul className="space-y-2 tracking-wide mt-8">
-            {asideMenuList?.map((menu,index) => {
+            {asideMenuList?.map((menu, index) => {
               return (
                 <li onClick={() => setIsMenuOpen(false)} key={index}>
                   <Link
@@ -165,8 +170,7 @@ const Dashboard = () => {
                       menu.path === pathname
                         ? "bg-gradient-to-r from-blue-600 to-blue-400 text-white"
                         : "text-gray-600 "
-                    }  `}
-                  >
+                    }  `}>
                     {menu.icon}
                     <span className="-mr-1 font-medium">{menu.text}</span>
                   </Link>
@@ -183,8 +187,7 @@ const Dashboard = () => {
               className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+              stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -204,16 +207,14 @@ const Dashboard = () => {
             </h5>
             <button
               className="w-12 h-16 -mr-2 border-r lg:hidden"
-              onClick={() => setIsMenuOpen(!IsMenuOpen)}
-            >
+              onClick={() => setIsMenuOpen(!IsMenuOpen)}>
               {IsMenuOpen ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 my-auto text-gray-600"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -227,8 +228,7 @@ const Dashboard = () => {
                   className="h-6 w-6 my-auto"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -246,13 +246,11 @@ const Dashboard = () => {
                     <svg
                       xmlns="http://ww50w3.org/2000/svg"
                       className="w-4 fill-current"
-                      viewBox="0 0 35.997 36.004"
-                    >
+                      viewBox="0 0 35.997 36.004">
                       <path
                         id="Icon_awesome-search"
                         data-name="search"
-                        d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z"
-                      ></path>
+                        d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z"></path>
                     </svg>
                   </span>
                   <input
@@ -267,31 +265,26 @@ const Dashboard = () => {
               {/* <!--/search bar --> */}
               <button
                 aria-label="search"
-                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200 md:hidden"
-              >
+                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200 md:hidden">
                 <svg
                   xmlns="http://ww50w3.org/2000/svg"
                   className="w-4 mx-auto fill-current text-gray-600"
-                  viewBox="0 0 35.997 36.004"
-                >
+                  viewBox="0 0 35.997 36.004">
                   <path
                     id="Icon_awesome-search"
                     data-name="search"
-                    d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z"
-                  ></path>
+                    d="M35.508,31.127l-7.01-7.01a1.686,1.686,0,0,0-1.2-.492H26.156a14.618,14.618,0,1,0-2.531,2.531V27.3a1.686,1.686,0,0,0,.492,1.2l7.01,7.01a1.681,1.681,0,0,0,2.384,0l1.99-1.99a1.7,1.7,0,0,0,.007-2.391Zm-20.883-7.5a9,9,0,1,1,9-9A8.995,8.995,0,0,1,14.625,23.625Z"></path>
                 </svg>
               </button>
               <button
                 aria-label="chat"
-                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
-              >
+                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 m-auto text-gray-600"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -302,14 +295,12 @@ const Dashboard = () => {
               </button>
               <button
                 aria-label="notification"
-                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
-              >
+                className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5 m-auto text-gray-600"
                   viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
+                  fill="currentColor">
                   <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
                 </svg>
               </button>
@@ -332,3 +323,18 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+function studentLoader() {
+  let sid = sessionStorage.getItem("loggedIn");
+  let data = {
+    sid: sid,
+  };
+  return axios
+    .post("http://localhost:5000/students/student", data)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
