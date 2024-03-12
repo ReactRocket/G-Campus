@@ -1,50 +1,36 @@
 import React from "react";
 import newgif from "../resources/gifs/new-gif.gif";
 
-const NoticeCard = () => {
-  const notice = [
-    {
-      title: "S.Y.B.C.A SEM 4 Theory Examination Marks (Out of 50)",
-
-      date: "2021-11-11",
-    },
-
-    {
-      title: "S.Y.B.C.A SEM 4 Theory Examination Marks (Out of 50)",
-
-      date: "2021-11-11",
-    },
-    {
-      title: "S.Y.B.C.A SEM 4 Theory Examination Marks (Out of 50)",
- 
-      date: "2021-11-11",
-    },
-  ];
-
+const NoticeCard = ({ data }) => {
   return (
-    <>
-      <div className="h-screen w-screen grid-cols-2 px-10 py-20 flex gap-6">
-        {notice.map((val, index) => (
-          <div
-            key={index}
-            className="h-[50%] w-[40%] rounded-lg border shadow-md py-5 px-5 cursor-pointer hover:shadow-xl"
+    <div className="rounded-lg shadow-lg hover:shadow-xl cursor-pointer h-full w-full flex justify-center items-center flex-col gap-5 bg-white overflow-hidden p-10 scale-100 hover:scale-105 transition-all duration-1000 ">
+      <div className="flex justify-center items-center gap-2 text-gray-400">
+        <span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-calendar-month"
+            viewBox="0 0 16 16"
           >
-            {/* for Date */}
-            <div className="h-[6%] w-full flex justify-center py-10 items-center">
-              <input type="date" className="rounded-md p-1" value={val.date} />
-            </div>
-            {/* Image container */}
-            <div className="flex justify-center">
-              <img src={newgif} className="h-[4vh] w-auto" alt="Notice" />
-            </div>
-            {/* Title */}
-            <div className="h-[10vh] py-5 px-5  w-full text-3xl">
-              {val.title}
-            </div>
-          </div>
-        ))}
+            <path d="M2.56 11.332 3.1 9.73h1.984l.54 1.602h.718L4.444 6h-.696L1.85 11.332zm1.544-4.527L4.9 9.18H3.284l.8-2.375zm5.746.422h-.676V9.77c0 .652-.414 1.023-1.004 1.023-.539 0-.98-.246-.98-1.012V7.227h-.676v2.746c0 .941.606 1.425 1.453 1.425.656 0 1.043-.28 1.188-.605h.027v.539h.668zm2.258 5.046c-.563 0-.91-.304-.985-.636h-.687c.094.683.625 1.199 1.668 1.199.93 0 1.746-.527 1.746-1.578V7.227h-.649v.578h-.019c-.191-.348-.637-.64-1.195-.64-.965 0-1.64.679-1.64 1.886v.34c0 1.23.683 1.902 1.64 1.902.558 0 1.008-.293 1.172-.648h.02v.605c0 .645-.423 1.023-1.071 1.023m.008-4.53c.648 0 1.062.527 1.062 1.359v.253c0 .848-.39 1.364-1.062 1.364-.692 0-1.098-.512-1.098-1.364v-.253c0-.868.406-1.36 1.098-1.36z" />
+            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+          </svg>
+        </span>
+        <span>{data?.date || "Demo Date"}</span>
       </div>
-    </>
+      <img src={newgif} alt="" className="h-7" />
+      <a
+        title="Click to open the notice in a new tab."
+        href={data?.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-3xl text-gray-800 hover:text-blue-600 text-wrap"
+      >
+        {data?.title || "Demo Title"}
+      </a>
+    </div>
   );
 };
 

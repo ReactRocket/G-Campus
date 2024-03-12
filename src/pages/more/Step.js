@@ -1,10 +1,6 @@
 import React from "react";
 import ImageGridView from "../../components/ImageGridView";
-import step1 from "../../resources/images/step/step1.jpeg";
-import step2 from "../../resources/images/step/step2.jpeg";
-import step3 from "../../resources/images/step/step3.jpeg";
-import step4 from "../../resources/images/step/step4.jpeg";
-import step5 from "../../resources/images/step/step5.jpeg";
+
 import MemberTableView from "../../components/MemberTableView";
 
 const committeeMemberArray = [
@@ -53,31 +49,26 @@ const description =
 
 const stepImageData = [
   {
-    src: step1,
     title: title,
     subTitle: subTitle,
     description: description,
   },
   {
-    src: step2,
     title: title,
     subTitle: subTitle,
     description: description,
   },
   {
-    src: step3,
     title: title,
     subTitle: subTitle,
     description: description,
   },
   {
-    src: step4,
     title: title,
     subTitle: subTitle,
     description: description,
   },
   {
-    src: step5,
     title: title,
     subTitle: subTitle,
     description: description,
@@ -88,10 +79,8 @@ const Step = () => {
   return (
     <>
       <section className="flex flex-col justify-center antialiased bg-gray-100 text-gray-600 min-h-screen p-4">
-        
-          {/* <!-- Table --> */}
-         <MemberTableView data={committeeMemberArray} DESIGNATION BATCH />
-     
+        {/* <!-- Table --> */}
+        <MemberTableView data={committeeMemberArray} DESIGNATION BATCH />
       </section>
       <ImageGridView
         title={"GLIMPSES OF ACTIVITIES"}

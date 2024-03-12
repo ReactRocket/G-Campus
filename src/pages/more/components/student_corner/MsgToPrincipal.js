@@ -1,8 +1,11 @@
 import React from 'react'
+import ContactForm from "../../../../components/ContactForm"
 
 const MsgToPrincipal = () => {
   return (
-    <div>MsgToPrincipal</div>
+    <div>
+      <ContactForm />
+    </div>
   )
 }
 

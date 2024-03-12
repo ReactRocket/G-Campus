@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from "react";
+import CourseBreadcrum from "./CourseBreadcrum";
 
 const Fees = () => {
-  return (
-    <div>Fees</div>
-  )
-}
+  const [activeButton, setActiveButton] = useState(0);
 
-export default Fees
+  return (
+    <div className=" h-full w-full">
+      <CourseBreadcrum
+        activeButton={activeButton}
+        setActiveButton={setActiveButton}
+      />
+      <div className="w-full h-[90%] overflow-y-scroll"></div>
+    </div>
+  );
+};
+
+export default Fees;
