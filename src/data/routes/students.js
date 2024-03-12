@@ -9,8 +9,8 @@ const {
   isBlank,
 } = require("../validate/validation");
 
+// profile pic store
 const multer = require("multer");
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "src/images");
@@ -53,7 +53,7 @@ router.get("/allstudents", (req, res) => {
 });
 
 // get a student data
-router.get("/student", (req, res) => {
+router.post("/student", (req, res) => {
   let sid = req.body.sid;
 
   if (isBlank(sid)) {
@@ -106,25 +106,6 @@ router.post("/insert", uploadImg, (req, res) => {
   let twelfthPercentage = req.body.twelfthPercentage;
   let deptId = req.body.deptId;
   let imagePath = req.file.filename;
-
-  // let result =
-  //   isBlank(fname) &&
-  //   isBlank(lname) &&
-  //   isBlank(mname) &&
-  //   isBlank(dob) &&
-  //   isBlank(gender) &&
-  //   isBlank(blood) &&
-  //   isBlank(address) &&
-  //   isBlank(city) &&
-  //   isBlank(state) &&
-  //   isBlank(tenthSchool) &&
-  //   isBlank(tenthPassingYear) &&
-  //   isBlank(tenthPercentage) &&
-  //   isBlank(twelfthSchool) &&
-  //   isBlank(twelfthPassingYear) &&
-  //   isBlank(twelfthPercentage) &&
-  //   isBlank(deptId) &&
-  //   isBlank(classId);
 
   if (isBlank(fname)) {
     res.json({
@@ -351,7 +332,7 @@ router.post("/auth", (req, res) => {
 
 router.get("/coursewisestudents", (req, res) => {
   let query =
-    "select * from (select count(*) as Total from students) as std, (SELECT d.deptName,d.deptId, COUNT(*) as count from students s, departments d WHERE s.deptId = d.deptId GROUP BY s.deptId) as dept";
+    "SELECT * FROM (SELECT COUNT(sid) as Total FROM students) as std,(SELECT d.deptName, d.deptId, COUNT(s.sid) as StudentCount FROM students s JOIN departments d ON s.deptId = d.deptId GROUP BY s.deptId, d.deptName, d.deptId) as dept;";
   pool.getConnection((err, connection) => {
     connection.query(query, (err, data, fields) => {
       if (err) {
@@ -373,37 +354,64 @@ router.get("/coursewisestudents", (req, res) => {
   });
 });
 
-router.post("/insertProfile", uploadImg, (req, res) => {
-  let imagePath = req.file.filename;
-  // console.log();
-  let query = "insert into temp (profile) values ('" + imagePath + "')";
+router.get("/students", (req, res) => {
+  let query = "select sid from students; select * from classes";
   pool.getConnection((err, connection) => {
-    connection.query(query, (err, data, fields) => {
+    connection.query(query, (err, dbData, fields) => {
       if (err) {
         connection.release();
         res.json({ displayMessage: err, data: "", isSuccess: false });
       } else {
-        res.json({ displayMessage: "", data: data, isSuccess: true });
+        if (dbData.length > 0) {
+          res.json({
+            displayMessage: err,
+            data: { students: dbData[0], classes: dbData[1] },
+            isSuccess: false,
+          });
+        } else {
+          res.json({
+            displayMessage: "No Data Found",
+            data: "",
+            isSuccess: true,
+          });
+        }
       }
     });
     connection.release();
   });
-  // res.send(imagePath);
 });
 
-router.get("/getProfile", (req, res) => {
-  let query = "select * from temp";
-  pool.getConnection((err, connection) => {
-    connection.query(query, (err, data, fields) => {
-      if (err) {
-        connection.release();
-        res.json({ displayMessage: err, data: "", isSuccess: false });
-      } else {
-        res.json({ displayMessage: "", data: data, isSuccess: true });
-      }
-    });
-    connection.release();
-  });
-});
+// router.post("/insertProfile", uploadImg, (req, res) => {
+//   let imagePath = req.file.filename;
+//   // console.log();
+//   let query = "insert into temp (profile) values ('" + imagePath + "')";
+//   pool.getConnection((err, connection) => {
+//     connection.query(query, (err, data, fields) => {
+//       if (err) {
+//         connection.release();
+//         res.json({ displayMessage: err, data: "", isSuccess: false });
+//       } else {
+//         res.json({ displayMessage: "", data: data, isSuccess: true });
+//       }
+//     });
+//     connection.release();
+//   });
+//   // res.send(imagePath);
+// });
+
+// router.get("/getProfile", (req, res) => {
+//   let query = "select * from temp";
+//   pool.getConnection((err, connection) => {
+//     connection.query(query, (err, data, fields) => {
+//       if (err) {
+//         connection.release();
+//         res.json({ displayMessage: err, data: "", isSuccess: false });
+//       } else {
+//         res.json({ displayMessage: "", data: data, isSuccess: true });
+//       }
+//     });
+//     connection.release();
+//   });
+// });
 
 module.exports = router;
