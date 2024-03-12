@@ -10,7 +10,7 @@ var mysql = require("mysql2");
 var pool = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "2003",
+  password: "1101",
 
   database: "gcampus",
 });

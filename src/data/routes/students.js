@@ -350,27 +350,34 @@ router.post("/auth", (req, res) => {
 });
 
 router.get("/coursewisestudents", (req, res) => {
-  let query =
-    "select * from (select count(*) as Total from students) as std, (SELECT d.deptName,d.deptId, COUNT(*) as count from students s, departments d WHERE s.deptId = d.deptId GROUP BY s.deptId) as dept";
-  pool.getConnection((err, connection) => {
-    connection.query(query, (err, data, fields) => {
+  try {
+    let query =
+      "SELECT * FROM (SELECT COUNT(*) as Total FROM students) as std,(SELECT d.deptName, d.deptId, COUNT(*) as StudentCount FROM students s JOIN departments d ON s.deptId = d.deptId GROUP BY s.deptId, d.deptName, d.deptId) as dept;";
+    pool.getConnection((err, connection) => {
       if (err) {
-        connection.release();
         res.json({ displayMessage: err, data: "", isSuccess: false });
-      } else {
-        if (data.length > 0) {
-          res.json({ displayMessage: "", data: data, isSuccess: true });
-        } else {
-          res.json({
-            displayMessage: "No Data Found",
-            data: "",
-            isSuccess: true,
-          });
-        }
       }
+      connection.query(query, (err, data, fields) => {
+        if (err) {
+          connection.release();
+          res.json({ displayMessage: err, data: "", isSuccess: false });
+        } else {
+          if (data.length > 0) {
+            res.json({ displayMessage: "", data: data, isSuccess: true });
+          } else {
+            res.json({
+              displayMessage: "No Data Found",
+              data: "",
+              isSuccess: true,
+            });
+          }
+        }
+      });
+      connection.release();
     });
-    connection.release();
-  });
+  } catch (error) {
+    res.json({ displayMessage: error, data: "", isSuccess: false });
+  }
 });
 
 router.post("/insertProfile", uploadImg, (req, res) => {

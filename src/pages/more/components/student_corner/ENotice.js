@@ -1,48 +1,49 @@
 import React from "react";
 import NoticeCard from "../../../../components/NoticeCard";
+import demoPDF from "../../../../resources/pdfs/sample-pdf-file.pdf"
 const noticeArray = [
   {
     title: "S.Y.B.C.A SEM 4 Theory Examination Marks (Out of 50)",
 
     date: "March 11 2024",
-    url:"http://www.sybca.edu.in/"
+    url:demoPDF
   },
 
   {
     title: "S.Y.B.B.A SEM 4 Theory Examination Marks (Out of 30)",
 
     date: "March 9 2024",
-    url:"http://www.sybca.edu.in/"
+    url:demoPDF
   },
   {
     title: "S.Y.B.C.A SEM 4 Theory Examination Marks (Out of 50)",
 
     date: "March 9 2024",
-    url:"http://www.sybca.edu.in/"
+    url:demoPDF
   },
   {
     title: "S.Y.B.COM SEM 4 Theory Examination Marks (Out of 50)",
 
     date: "March 8 2024",
-    url:"http://www.sybca.edu.in/"
+    url:demoPDF
   },
   {
     title: "S.Y.B.B.A SEM 4 Theory Examination Marks (Out of 30)",
 
     date: "March 9 2024",
-    url:"http://www.sybca.edu.in/"
+    url:demoPDF
   },
   {
     title: "S.Y.B.C.A SEM 4 Theory Examination Marks (Out of 50)",
 
     date: "March 9 2024",
-    url:"http://www.sybca.edu.in/"
+    url:demoPDF
   },
   {
     title: "S.Y.B.COM SEM 4 Theory Examination Marks (Out of 50)",
 
     date: "March 8 2024",
-    url:"http://www.sybca.edu.in/"
+    url:demoPDF
   },
 ];
 const ENotice = () => {

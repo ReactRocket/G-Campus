@@ -1,5 +1,4 @@
 import React from "react";
-import newgif from "../resources/gifs/new-gif.gif";
 
 const NoticeCard = ({ data }) => {
   return (
@@ -20,7 +19,8 @@ const NoticeCard = ({ data }) => {
         </span>
         <span>{data?.date || "Demo Date"}</span>
       </div>
-      <img src={newgif} alt="" className="h-7" />
+      {/* <img src={newgif} alt="" className="h-7" /> */} 
+      <span className="h-7 bg-gradient-to-r animate-pulse text-gray-100 rounded-ss-sm from-pink-500 to-yellow-500 px-2 rounded-e-full rounded-s-full  font-semibold">New</span>
       <a
         title="Click to open the notice in a new tab."
         href={data?.url}
