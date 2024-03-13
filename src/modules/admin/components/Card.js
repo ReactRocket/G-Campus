@@ -4,7 +4,7 @@ import User from "../../../images/user.png";
 const Card = ({ faculty }) => {
   const { fullname, gender, qualification, experience, profile } = faculty;
   return (
-    <div className="h-80 lg:w-[70%] w-[80%] mx-auto bg-slate-300 rounded-md flex py-4 gap-2 justify-start items-center flex-col">
+    <div className="h-80 lg:w-[70%] w-[80%] mx-auto bg-white rounded-lg shadow hover:bg-blue-100 cursor-pointer scale-100 hover:scale-105 transition-all duration-1000 flex py-4 gap-2 justify-start items-center flex-col">
       <div className="rounded-full h-[65%] bg-white">
         <img
           src={
