@@ -5,6 +5,7 @@ import Logo from "../../../resources/images/logo-no-background2.png";
 import greet from "../../../utils/Greeting";
 import Loader from "../components/Loader";
 import axios from "axios";
+import StudentSkeleton from "../components/StudentSkeleton"
 
 const asideMenuList = [
   {
@@ -12,16 +13,13 @@ const asideMenuList = [
       <svg className="-ml-1 h-6 w-6" viewBox="0 0 24 24" fill="none">
         <path
           d="M6 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V8ZM6 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-1Z"
-          className="fill-current text-blue-400 dark:fill-slate-600"
-        ></path>
+          className="fill-current text-blue-400 dark:fill-slate-600"></path>
         <path
           d="M13 8a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2V8Z"
-          className="fill-current text-blue-200 group-hover:text-blue-300"
-        ></path>
+          className="fill-current text-blue-200 group-hover:text-blue-300"></path>
         <path
           d="M13 15a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-1Z"
-          className="fill-current group-hover:text-blue-300"
-        ></path>
+          className="fill-current group-hover:text-blue-300"></path>
       </svg>
     ),
     text: "Dashboard",
@@ -114,11 +112,10 @@ const asideMenuList = [
 ];
 
 const Dashboard = () => {
-  const [Student, setStudent] = useState(
-    JSON.parse(localStorage.getItem("studentInfo"))
-  );
+  const [Student, setStudent] = useState();
+  // JSON.parse(localStorage.getItem("studentInfo"))
   const [IsMenuOpen, setIsMenuOpen] = useState(false);
-  const [IsLoading, setIsLoading] = useState(false);
+  const [IsLoading, setIsLoading] = useState(true);
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -141,24 +138,29 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
+    // alert("hello");
     setIsLoading(true);
     setTimeout(() => {
       studentLoader().then((response) => {
         if (response.isSuccess) {
+          console.log(typeof response.data[0]);
           localStorage.setItem("studentInfo", JSON.stringify(response.data[0]));
+          setStudent(response.data[0]);
           setIsLoading(false);
         }
       });
     }, 3000);
   }, [pathname]);
 
-  return (
+  return IsLoading ? (
+    <StudentSkeleton IsMenuOpen={IsMenuOpen} />
+    
+  ) : (
     <div className="">
       <aside
         className={`fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] ${
           !IsMenuOpen && "ml-[-100%] "
-        }`}
-      >
+        }`}>
         <div>
           <div className="-mx-6 px-6 py-4 border-b h-16 md:grid place-content-center hidden ">
             <Link to="/" title="home">
@@ -194,8 +196,7 @@ const Dashboard = () => {
                       menu.path === pathname
                         ? "bg-gradient-to-r from-blue-600 to-blue-400 text-white"
                         : "text-gray-600 "
-                    }  `}
-                  >
+                    }  `}>
                     {menu.icon}
                     <span className="-mr-1 font-medium">{menu.text}</span>
                   </Link>
@@ -208,15 +209,13 @@ const Dashboard = () => {
         <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
           <button
             onClick={handleLogout}
-            className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
-          >
+            className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
+              stroke="currentColor">
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -236,16 +235,14 @@ const Dashboard = () => {
             </h5>
             <button
               className="w-12 h-16 -mr-2 border-r lg:hidden"
-              onClick={() => setIsMenuOpen(!IsMenuOpen)}
-            >
+              onClick={() => setIsMenuOpen(!IsMenuOpen)}>
               {IsMenuOpen ? (
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 my-auto text-gray-600"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -259,8 +256,7 @@ const Dashboard = () => {
                   className="h-6 w-6 my-auto"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
+                  stroke="currentColor">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -352,7 +348,7 @@ const Dashboard = () => {
         <div className="h-[100vh-4rem] w-full">
           {IsLoading ? (
             <div className="h-screen w-full overflow-y-hidden bg-cover">
-              <Loader />{" "}
+              <Loader />
             </div>
           ) : (
             <Outlet />
@@ -365,17 +361,18 @@ const Dashboard = () => {
 
 export default Dashboard;
 
-function studentLoader() {
+async function studentLoader() {
   let sid = sessionStorage.getItem("loggedIn");
   let data = {
     sid: sid,
   };
-  return axios
-    .post("http://localhost:5000/students/student", data)
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  try {
+    const res = await axios.post(
+      "http://localhost:5000/students/student",
+      data
+    );
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
 }

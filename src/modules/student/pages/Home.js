@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Profile from "../../../resources/illustrations/student_dashboard/profile.svg";
 
 const dptData = [
