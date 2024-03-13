@@ -333,7 +333,7 @@ router.post("/auth", (req, res) => {
 router.get("/coursewisestudents", (req, res) => {
   try {
     let query =
-      "SELECT * FROM (SELECT COUNT(sid) as Total FROM students) as std,(SELECT d.deptName, d.deptId, COUNT(s.sid) as StudentCount FROM students s JOIN departments d ON s.deptId = d.deptId GROUP BY s.deptId, d.deptName, d.deptId) as dept;";
+      "select * from (select count(sid) AS BCOM from students where deptId in (101,102)) as BCOM,(select count(sid) AS BBA from students where deptId = 103) as BBA,(select count(sid) AS BCA from students where deptId = 104) as BCA,(select count(sid) AS Total from students) as Total;";
     pool.getConnection((err, connection) => {
       connection.query(query, (err, data, fields) => {
         if (err) {
@@ -345,7 +345,7 @@ router.get("/coursewisestudents", (req, res) => {
             res.json({ displayMessage: err, data: "", isSuccess: false });
           } else {
             if (data.length > 0) {
-              res.json({ displayMessage: "", data: data, isSuccess: true });
+              res.json({ displayMessage: "", data: data[0], isSuccess: true });
             } else {
               res.json({
                 displayMessage: "No Data Found",
