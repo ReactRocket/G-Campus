@@ -11,16 +11,17 @@ import Logo from "../resources/images/cap-1266204.svg";
 function Home() {
   // const StudentCount = useLoaderData();
   const [StudentCount, setStudentCount] = useState({
-    Total: 4,
-    BCOM: 2,
-    BBA: 1,
-    BCA: 1,
+    Total: 12,
+    BCOM: 4,
+    BBA: 4,
+    BCA: 4,
   });
 
   useEffect(() => {
     setTimeout(() => {
       loader()
         .then((response) => {
+          console.log(response);
           setStudentCount(response);
         })
         .catch((err) => {
@@ -304,8 +305,6 @@ function Home() {
             </div>
           </div>
         </section>
-
-      
       </main>
     </div>
   );
@@ -313,40 +312,56 @@ function Home() {
 
 export default Home;
 
-export function loader() {
-  let data = { Total: 0, BCOM: 0, BBA: 0, BCA: 0 };
+// export function loader() {
+//   let data = { Total: 0, BCOM: 0, BBA: 0, BCA: 0 };
+//   try {
+//     return axios
+//       .get("http://localhost:5000/students/coursewisestudents")
+//       .then((res) => res.data)
+//       .then(async (response) => {
+//         if (!response.isSuccess) {
+//           return data;
+//         } else {
+//           let responseData = await response.data;
+//           responseData.map((row) => {
+//             data.Total = row.Total;
+//             switch (row.deptId.toString()) {
+//               case "101":
+//                 data.BCOM += row.StudentCount === null ? 0 : row.StudentCount;
+//                 break;
+//               case "102":
+//                 data.BCOM += row.StudentCount === null ? 0 : row.StudentCount;
+//                 break;
+//               case "103":
+//                 data.BBA += row.StudentCount === null ? 0 : row.StudentCount;
+//                 break;
+//               default:
+//                 data.BCA += row.StudentCount === null ? 0 : row.StudentCount;
+//                 break;
+//             }
+//             return data;
+//           });
+//           return data;
+//         }
+//       })
+//       .catch((err) => {
+//         return [];
+//       });
+//   } catch (error) {
+//     console.error(error);
+//     return data;
+//   }
+// }
+
+async function loader() {
+  const data = { Total: 12, BCOM: 4, BBA: 4, BCA: 4 };
   try {
-    return axios
-      .get("http://localhost:5000/students/coursewisestudents")
-      .then((res) => res.data)
-      .then(async (response) => {
-        if (!response.isSuccess) {
-          return data;
-        } else {
-          let responseData = await response.data;
-          responseData.map((row) => {
-            data.Total = row.Total;
-            switch (row.deptId.toString()) {
-              case "101" || "102":
-                data.BCOM = row.StudentCount === null ? 0 : row.StudentCount;
-                break;
-              case "103":
-                data.BBA = row.StudentCount === null ? 0 : row.StudentCount;
-                break;
-              default:
-                data.BCA = row.StudentCount === null ? 0 : row.StudentCount;
-                break;
-            }
-            return data;
-          });
-          return data;
-        }
-      })
-      .catch((err) => {
-        return [];
-      });
-  } catch (error) {
-    console.error(error);
+    const response = await axios.get(
+      "http://localhost:5000/students/coursewisestudents"
+    );
+    return response.data.data || data;
+  } catch (err) {
+    console.error("Error fetching data:", err);
     return data;
   }
 }

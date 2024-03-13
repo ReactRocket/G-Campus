@@ -34,7 +34,7 @@ function Department() {
               return (
                 <section
                   key={department.deptId}
-                  className="border bg-slate-50 rounded-lg py-3 shadow grid gap-y-1">
+                  className="border bg-white rounded-lg shadow hover:bg-blue-100 cursor-pointer scale-90 hover:scale-95 transition-all duration-1000 py-3  grid gap-y-1">
                   <div className="w-[95%] mx-auto capitalize">
                     {department.medium} medium
                   </div>
