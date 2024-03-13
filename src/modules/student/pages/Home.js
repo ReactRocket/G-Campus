@@ -9,11 +9,10 @@ const dptData = [
 ];
 
 const Home = () => {
+  const [showMore, setShowMore] = useState(false);
   const [Student, setStudent] = useState(
     JSON.parse(localStorage.getItem("studentInfo"))
   );
-
-  console.log(Student);
 
   return (
     <div>
@@ -89,26 +88,255 @@ const Home = () => {
               {Student.email}
             </a>{" "}
             <p className="mt-8 text-gray-500">
-              "Bachalor of computer applications"
+              {Student.deptId === 104 && '"Bachelor of Computer Applications"'}
+              {Student.deptId === 103 &&
+                '"Bachelor of Business Administration"'}
+              {Student.deptId === 102 &&
+                '"Bachelor of Commerce (English Medium)"'}
+              {Student.deptId === 101 &&
+                '"Bachelor of Commerce (Gujarati Medium)"'}
             </p>{" "}
-            <p className="mt-2 text-gray-500">University of Computer Science</p>{" "}
+            <p className="mt-2 text-gray-500">G-Campus College</p>{" "}
           </div>{" "}
-          <div className="mt-12 flex flex-col justify-center">
-            {" "}
-            <p className="text-gray-600 text-center font-light lg:px-16">
-              An artist of considerable range, Ryan — the name taken by
-              Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-              and records all of his own music, giving it a warm, intimate feel
-              with a solid groove structure. An artist of considerable range.
-            </p>{" "}
-            <button className="text-indigo-500 py-2 px-4  font-medium mt-4">
-              {" "}
-              Show more
-            </button>{" "}
+          <div className="mt-8 flex flex-col justify-center">
+            {showMore && (
+              <ul className="min-h-screen w-full overflow-hidden  mb-4 grid grid-cols-1 md:grid-cols-2 gap-5 transition-all duration-1000 ">
+                <fieldset className="h-full w-full border rounded-xl p-5">
+                  <legend className="px-2 text-md font-extralight uppercase">
+                    Personal Details{" "}
+                  </legend>
+                  <ul className="w-full h-full ">
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Class Id:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.classId}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Student Id:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.sid}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Department Id:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.deptId}
+                      </div>
+                    </li>
+
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        First Name:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.fname}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Middel Name:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.mname}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Last Name:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.lname}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Gender:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.gender}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Email:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.email}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Phone:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.phone}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">DOB:</div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.dob.toString().slice(0, 10)}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Blood Group:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.blood}
+                      </div>
+                    </li>
+                    <hr className="my-3" />
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Address:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.address}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        City:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.city}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        State:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.state}
+                      </div>
+                    </li>
+                  </ul>
+                </fieldset>
+                <fieldset className="h-full w-full border rounded-xl p-5">
+                  <legend className="px-2 text-md font-extralight uppercase">
+                    Educational Details{" "}
+                  </legend>
+                  <ul className="w-full h-full ">
+                    <h1 className="font-bold py-3">
+                      Secondary School Certificate(10TH)
+                    </h1>
+
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        School Name:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.tenthSchool}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Passing Year:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.tenthPassingYear}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Score:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.tenthPercentage}%
+                      </div>
+                    </li>
+
+                    <hr className="mt-3" />
+
+                    <h1 className="font-bold py-3">
+                      Higher Secondary Certificate(12TH)
+                    </h1>
+
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        School Name:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.twelfthSchool}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Passing Year:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.twelfthPassingYear}
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Score:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {Student.twelfthPercentage}%
+                      </div>
+                    </li>
+
+                    <hr className="mt-3" />
+
+                    <h1 className="font-bold py-3">
+                      {Student.deptId === 104 &&
+                        "Bachelor of Computer Applications"}
+                      {Student.deptId === 103 &&
+                        "Bachelor of Business Administration"}
+                      {Student.deptId === 102 &&
+                        "Bachelor of Commerce (English Medium)"}
+                      {Student.deptId === 101 &&
+                        "Bachelor of Commerce (Gujarati Medium)"}{" "}
+                      (UG){" "}
+                    </h1>
+
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        College Name:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {/* {Student.tenthSchool} */}G-Campus
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Passing Year:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {/* {Student.tenthPassingYear} */}~2027
+                      </div>
+                    </li>
+                    <li className="flex">
+                      <div className="w-1/3 font-semibold  uppercase">
+                        Score:
+                      </div>
+                      <div className="w-2/3 first-letter:capitalize break-words">
+                        {/* {Student.tenthPercentage}% */}-
+                      </div>
+                    </li>
+                  </ul>
+                </fieldset>
+              </ul>
+            )}
+            <button
+              onClick={() => setShowMore(!showMore)}
+              className="text-indigo-500 py-2 px-4  font-medium "
+            >
+              {showMore ? "Hide" : "Show"} Details
+            </button>
           </div>
         </div>
       </div>
-      <div className="px-6 pt-6 2xl:container">
+      {/* <div className="px-6 pt-6 2xl:container">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <div className="md:col-span-2 lg:col-span-1">
             <div className="h-full py-8 px-6 space-y-6 rounded-xl border border-gray-200 bg-white">
@@ -880,7 +1108,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
