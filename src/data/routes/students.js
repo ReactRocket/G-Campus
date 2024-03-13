@@ -56,7 +56,7 @@ router.get("/allstudents", (req, res) => {
 router.post("/student", (req, res) => {
   let sid = req.body.sid;
 
-  if (isBlank(sid)) {
+  if (!sid) {
     res.json({
       displayMessage: "Please enter a student id",
       data: "",
@@ -306,11 +306,11 @@ router.post("/auth", (req, res) => {
     });
   } else {
     let query =
-      "SELECT COUNT(*) as COUNT FROM `students` WHERE email = '" +
+      "SELECT COUNT(*) as count,verified as status,sid FROM `students` WHERE email = '" +
       email +
       "' and password='" +
       password +
-      "'";
+      "';";
     pool.getConnection((err, connection) => {
       if (err) res.json({ displayMessage: err, data: "", isSuccess: false });
       connection.query(query, (err, data, fields) => {
@@ -320,7 +320,7 @@ router.post("/auth", (req, res) => {
         } else {
           res.json({
             displayMessage: "",
-            data: data[0].COUNT,
+            data: data,
             isSuccess: true,
           });
         }
@@ -331,31 +331,45 @@ router.post("/auth", (req, res) => {
 });
 
 router.get("/coursewisestudents", (req, res) => {
-  let query =
-    "SELECT * FROM (SELECT COUNT(sid) as Total FROM students) as std,(SELECT d.deptName, d.deptId, COUNT(s.sid) as StudentCount FROM students s JOIN departments d ON s.deptId = d.deptId GROUP BY s.deptId, d.deptName, d.deptId) as dept;";
-  pool.getConnection((err, connection) => {
-    connection.query(query, (err, data, fields) => {
-      if (err) {
-        connection.release();
-        res.json({ displayMessage: err, data: "", isSuccess: false });
-      } else {
-        if (data.length > 0) {
-          res.json({ displayMessage: "", data: data, isSuccess: true });
-        } else {
-          res.json({
-            displayMessage: "No Data Found",
-            data: "",
-            isSuccess: true,
-          });
+  try {
+    let query =
+      "SELECT * FROM (SELECT COUNT(sid) as Total FROM students) as std,(SELECT d.deptName, d.deptId, COUNT(s.sid) as StudentCount FROM students s JOIN departments d ON s.deptId = d.deptId GROUP BY s.deptId, d.deptName, d.deptId) as dept;";
+    pool.getConnection((err, connection) => {
+      connection.query(query, (err, data, fields) => {
+        if (err) {
+          res.json({ displayMessage: err, data: "", isSuccess: false });
         }
-      }
+        connection.query(query, (err, data, fields) => {
+          if (err) {
+            connection.release();
+            res.json({ displayMessage: err, data: "", isSuccess: false });
+          } else {
+            if (data.length > 0) {
+              res.json({ displayMessage: "", data: data, isSuccess: true });
+            } else {
+              res.json({
+                displayMessage: "No Data Found",
+                data: "",
+                isSuccess: true,
+              });
+            }
+          }
+        });
+        connection.release();
+      });
     });
-    connection.release();
-  });
+  } catch (error) {
+    res.json({ displayMessage: error, data: "", isSuccess: false });
+  }
 });
 
-router.get("/students", (req, res) => {
-  let query = "select sid from students; select * from classes";
+router.get("/studentinfo", (req, res) => {
+  let query = "select * from students;";
+  query +=
+    "select * from (select count(sid) as unverified from students where verified = 'false') as std,( select count(sid) as verified from students where verified = 'true') as student;";
+  query +=
+    "select * from (select count(sid) AS BCOM from students where deptId in (101,102)) as BCOM,(select count(sid) AS BBA from students where deptId = 103) as BBA,(select count(sid) AS BCA from students where deptId = 104) as BCA;";
+
   pool.getConnection((err, connection) => {
     connection.query(query, (err, dbData, fields) => {
       if (err) {
@@ -365,8 +379,12 @@ router.get("/students", (req, res) => {
         if (dbData.length > 0) {
           res.json({
             displayMessage: err,
-            data: { students: dbData[0], classes: dbData[1] },
-            isSuccess: false,
+            data: {
+              students: dbData[0],
+              studentcount: dbData[1],
+              departmentwise: dbData[2],
+            },
+            isSuccess: true,
           });
         } else {
           res.json({
