@@ -13,7 +13,7 @@ const {
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "src/images");
+    cb(null, path.join(__dirname, "..", "..", "images"));
   },
   filename: function (req, file, cb) {
     cb(
@@ -105,7 +105,7 @@ router.post("/insert", uploadImg, (req, res) => {
   let twelfthPassingYear = req.body.twelfthPassingYear;
   let twelfthPercentage = req.body.twelfthPercentage;
   let deptId = req.body.deptId;
-  let imagePath = req.file.filename;
+  let { filename } = req.file;
 
   if (isBlank(fname)) {
     res.json({
@@ -203,7 +203,7 @@ router.post("/insert", uploadImg, (req, res) => {
       data: "",
       isSuccess: false,
     });
-  } else if (isBlank(imagePath)) {
+  } else if (isBlank(filename)) {
     res.json({
       displayMessage: "Please upload a image",
       data: "",
@@ -248,7 +248,7 @@ router.post("/insert", uploadImg, (req, res) => {
       "'," +
       deptId +
       ",'" +
-      imagePath +
+      filename +
       "')";
     pool.getConnection((err, connection) => {
       connection.query(query, (err, data, fields) => {
@@ -272,7 +272,7 @@ router.post("/insert", uploadImg, (req, res) => {
               });
               break;
           }
-          console.log(err);
+          // console.log(err);
           connection.release();
         } else {
           res.json({
