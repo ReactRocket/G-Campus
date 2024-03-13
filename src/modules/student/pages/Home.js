@@ -1,68 +1,95 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Profile from "../../../resources/illustrations/student_dashboard/profile.svg";
+
+const dptData = [
+  { id: 101, course: "BCOM", language: "Gujarati" },
+  { id: 102, course: "BCOM", language: "English" },
+  { id: 103, course: "BBA", language: "English" },
+  { id: 104, course: "BCA", language: "English" },
+];
 
 const Home = () => {
+  const [Student, setStudent] = useState(
+    JSON.parse(localStorage.getItem("studentInfo"))
+  );
+
+  console.log(Student);
+
   return (
     <div>
       <div className="py-16 px-8">
         <div className="p-8 bg-white shadow mt-24">
           {" "}
-          <div className="grid grid-cols-1 md:grid-cols-3">
+          <div className="grid grid-cols-1  md:grid-cols-3">
             {" "}
-            <div className="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0">
-              {" "}
+            <fieldset className="grid grid-cols-3 rounded-xl border pb-2 px-3 order-last md:order-first mt-20 md:mt-0">
+              <legend className="px-2 uppercase ">ID </legend>{" "}
               <div>
                 {" "}
-                <p className="font-bold text-gray-700 text-xl">22</p>{" "}
-                <p className="text-gray-400">Friends</p>{" "}
+                <p className="font-bold text-gray-700 text-xl">
+                  {Student.classId || 0}
+                </p>{" "}
+                <p className="text-gray-400">Class</p>{" "}
               </div>{" "}
               <div>
                 {" "}
-                <p className="font-bold text-gray-700 text-xl">10</p>{" "}
-                <p className="text-gray-400">Photos</p>{" "}
+                <p className="font-bold text-gray-700 text-xl">
+                  {Student.deptId || 0}
+                </p>{" "}
+                <p className="text-gray-400">Dept</p>{" "}
               </div>{" "}
               <div>
                 {" "}
-                <p className="font-bold text-gray-700 text-xl">89</p>{" "}
-                <p className="text-gray-400">Comments</p>{" "}
+                <p className="font-bold text-gray-700 text-xl">
+                  {Student.sid.toString().slice(4) || 0}
+                </p>{" "}
+                <p className="text-gray-400">R.No</p>{" "}
               </div>{" "}
-            </div>{" "}
+            </fieldset>{" "}
             <div className="relative">
               {" "}
-              <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-24 w-24"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  {" "}
-                  <path
-                    fillRule="evenodd"
-                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clipRule="evenodd"
-                  />
-                </svg>{" "}
+              <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center text-indigo-500 scale-100 hover:scale-105 cursor-pointer transition-transform duration-1000">
+                <img
+                  src={
+                    Student.profile
+                      ? require(`../../../images/${Student.profile}`)
+                      : Profile
+                  }
+                  alt={`${Student.fname} \n profile`}
+                  className="w-full h-full m-auto rounded-full object-cover  "
+                />
               </div>{" "}
             </div>{" "}
-            <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
+            <div className="space-x-8 py-4 flex justify-between mt-32 md:mt-0 md:justify-center">
               <button className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                 {" "}
                 Edit Profile
               </button>{" "}
               <button className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
                 {" "}
-                View Profile
+                Change Password
               </button>{" "}
             </div>{" "}
           </div>{" "}
           <div className="mt-20 text-center border-b pb-12">
             {" "}
-            <h1 className="text-4xl font-medium text-gray-700">
-              Jessica Jones, <span className="font-light text-gray-500">27</span>
+            <h1 className="text-4xl font-medium text-gray-700 flex justify-center items-center gap-3 mb-3">
+              <p className="font-light text-gray-500 first-letter:uppercase">
+                {Student.fname}
+              </p>
+
+              <p className="font-light text-gray-500 first-letter:uppercase">
+                {Student.lname}
+              </p>
             </h1>{" "}
-            <p className="font-light text-gray-600 mt-3">Bucharest, Romania</p>{" "}
+            <a
+              href={`mailto:${Student.email}`}
+              className="font-light text-blue-600 py-10"
+            >
+              {Student.email}
+            </a>{" "}
             <p className="mt-8 text-gray-500">
-              Solution Manager - Creative Tim Officer
+              "Bachalor of computer applications"
             </p>{" "}
             <p className="mt-2 text-gray-500">University of Computer Science</p>{" "}
           </div>{" "}
@@ -408,7 +435,9 @@ const Home = () => {
               <h5 className="text-xl text-gray-700">Downloads</h5>
               <div className="my-8">
                 <h1 className="text-5xl font-bold text-gray-800">64,5%</h1>
-                <span className="text-gray-500">Compared to last week $13,988</span>
+                <span className="text-gray-500">
+                  Compared to last week $13,988
+                </span>
               </div>
               <svg
                 className="w-full"
