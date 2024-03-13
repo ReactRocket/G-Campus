@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
-import Logo from "../../../resources/images/logo-no-background2.png";
+import React, { useEffect, useState, useLayoutEffect } from "react";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import Profile from "../../../resources/illustrations/student_dashboard/profile.svg";
-import Loader from "../components/Loader";
+import Logo from "../../../resources/images/logo-no-background2.png";
 import greet from "../../../utils/Greeting";
+import Loader from "../components/Loader";
+import axios from "axios";
 
 const asideMenuList = [
   {
@@ -26,105 +27,128 @@ const asideMenuList = [
     text: "Dashboard",
     path: "/student",
   },
-  {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          className="fill-current text-gray-600 group-hover:text-blue-600"
-          fillRule="evenodd"
-          d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-          clipRule="evenodd"
-        />
-        <path
-          className="fill-current text-gray-300 group-hover:text-blue-300"
-          d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
-        />
-      </svg>
-    ),
-    text: "Documents",
-    path: "/student/documents",
-  },
-  {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          className="fill-current text-gray-600 group-hover:text-blue-600"
-          fillRule="evenodd"
-          d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-          clipRule="evenodd"
-        />
-        <path
-          className="fill-current text-gray-300 group-hover:text-blue-300"
-          d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
-        />
-      </svg>
-    ),
-    text: "Reports",
-    path: "/student/reports",
-  },
-  {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="currentColor"
-        className="w-5 h-5"
-      >
-        <path
-          className="fill-current text-gray-600 group-hover:text-blue-600"
-          fillRule="evenodd"
-          d="M2.25 5.25a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3V15a3 3 0 0 1-3 3h-3v.257c0 .597.237 1.17.659 1.591l.621.622a.75.75 0 0 1-.53 1.28h-9a.75.75 0 0 1-.53-1.28l.621-.622a2.25 2.25 0 0 0 .659-1.59V18h-3a3 3 0 0 1-3-3V5.25Zm1.5 0v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5Z"
-          clipRule="evenodd"
-        />
-      </svg>
-    ),
-    text: "Exams",
-    path: "/student/exams",
-  },
-  {
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-5 w-5"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          className="fill-current text-gray-300 group-hover:text-blue-300"
-          d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"
-        />
-        <path
-          className="fill-current text-gray-600 group-hover:text-blue-600"
-          fillRule="evenodd"
-          d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
-          clipRule="evenodd"
-        />
-      </svg>
-    ),
-    text: "Payment",
-    path: "/student/payment",
-  },
+  // {
+  //   icon: (
+  //     <svg
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       className="h-5 w-5"
+  //       viewBox="0 0 20 20"
+  //       fill="currentColor">
+  //       <path
+  //         className="fill-current text-gray-600 group-hover:text-blue-600"
+  //         fillRule="evenodd"
+  //         d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+  //         clipRule="evenodd"
+  //       />
+  //       <path
+  //         className="fill-current text-gray-300 group-hover:text-blue-300"
+  //         d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
+  //       />
+  //     </svg>
+  //   ),
+  //   text: "Documents",
+  //   path: "/student/documents",
+  // },
+  // {
+  //   icon: (
+  //     <svg
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       className="h-5 w-5"
+  //       viewBox="0 0 20 20"
+  //       fill="currentColor">
+  //       <path
+  //         className="fill-current text-gray-600 group-hover:text-blue-600"
+  //         fillRule="evenodd"
+  //         d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+  //         clipRule="evenodd"
+  //       />
+  //       <path
+  //         className="fill-current text-gray-300 group-hover:text-blue-300"
+  //         d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
+  //       />
+  //     </svg>
+  //   ),
+  //   text: "Reports",
+  //   path: "/student/reports",
+  // },
+  // {
+  //   icon: (
+  //     <svg
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       viewBox="0 0 24 24"
+  //       fill="currentColor"
+  //       className="w-5 h-5">
+  //       <path
+  //         className="fill-current text-gray-600 group-hover:text-blue-600"
+  //         fillRule="evenodd"
+  //         d="M2.25 5.25a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3V15a3 3 0 0 1-3 3h-3v.257c0 .597.237 1.17.659 1.591l.621.622a.75.75 0 0 1-.53 1.28h-9a.75.75 0 0 1-.53-1.28l.621-.622a2.25 2.25 0 0 0 .659-1.59V18h-3a3 3 0 0 1-3-3V5.25Zm1.5 0v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5Z"
+  //         clipRule="evenodd"
+  //       />
+  //     </svg>
+  //   ),
+  //   text: "Exams",
+  //   path: "/student/exams",
+  // },
+  // {
+  //   icon: (
+  //     <svg
+  //       xmlns="http://www.w3.org/2000/svg"
+  //       className="h-5 w-5"
+  //       viewBox="0 0 20 20"
+  //       fill="currentColor">
+  //       <path
+  //         className="fill-current text-gray-300 group-hover:text-blue-300"
+  //         d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"
+  //       />
+  //       <path
+  //         className="fill-current text-gray-600 group-hover:text-blue-600"
+  //         fillRule="evenodd"
+  //         d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+  //         clipRule="evenodd"
+  //       />
+  //     </svg>
+  //   ),
+  //   text: "Payment",
+  //   path: "/student/payment",
+  // },
 ];
 
 const Dashboard = () => {
+  const [Student, setStudent] = useState(
+    JSON.parse(localStorage.getItem("studentInfo"))
+  );
   const [IsMenuOpen, setIsMenuOpen] = useState(false);
   const [IsLoading, setIsLoading] = useState(false);
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useLayoutEffect(() => {
+    let sid = sessionStorage.getItem("loggedIn");
+
+    return () => {
+      if (!sid) {
+        navigate("/login");
+      }
+    };
+  }, [navigate]);
+
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to log out!")) {
+      sessionStorage.removeItem("loggedIn");
+      sessionStorage.removeItem("studentInfo");
+      navigate("/login");
+    }
+  };
+
   useEffect(() => {
     setIsLoading(true);
-
     setTimeout(() => {
-      setIsLoading(false);
+      studentLoader().then((response) => {
+        if (response.isSuccess) {
+          localStorage.setItem("studentInfo", JSON.stringify(response.data[0]));
+          setIsLoading(false);
+        }
+      });
     }, 3000);
   }, [pathname]);
 
@@ -144,18 +168,23 @@ const Dashboard = () => {
 
           <div className="mt-20 lg:mt-10 text-center">
             <img
-              src={Profile}
-              alt=""
+              src={
+                Student.profile
+                  ? require(`../../../images/${Student.profile}`)
+                  : Profile
+              }
+              alt={`${Student.fname} \n profile`}
               className="w-24 h-24 m-auto rounded-full object-cover  lg:w-28 lg:h-28"
             />
-            <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
-              Student Name
+
+            <h5 className="hidden mt-4 text-xl font-semibold uppercase text-gray-600 lg:block">
+              {Student.fname + " " + Student.lname}
             </h5>
-            <span className="hidden text-gray-400 lg:block">TYBCA</span>
+            <span className="hidden text-gray-400 lg:block">{Student.sid}</span>
           </div>
 
           <ul className="space-y-2 tracking-wide mt-8">
-            {asideMenuList?.map((menu,index) => {
+            {asideMenuList?.map((menu, index) => {
               return (
                 <li onClick={() => setIsMenuOpen(false)} key={index}>
                   <Link
@@ -177,7 +206,10 @@ const Dashboard = () => {
         </div>
 
         <div className="px-6 -mx-6 pt-4 flex justify-between items-center border-t">
-          <button className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group">
+          <button
+            onClick={handleLogout}
+            className="px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"
@@ -200,7 +232,7 @@ const Dashboard = () => {
         <div className="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
           <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
             <h5 hidden className="text-2xl text-gray-600 font-medium lg:block">
-              {greet()}
+              {greet(Student.fname)}
             </h5>
             <button
               className="w-12 h-16 -mr-2 border-r lg:hidden"
@@ -240,7 +272,7 @@ const Dashboard = () => {
             </button>
             <div className="flex space-x-4">
               {/* <!--search bar --> */}
-              <div hidden className="md:block">
+              {/* <div hidden className="md:block">
                 <div className="relative flex items-center text-gray-400 focus-within:text-blue-400">
                   <span className="absolute left-4 h-6 flex items-center pr-3 border-r border-gray-300">
                     <svg
@@ -263,9 +295,9 @@ const Dashboard = () => {
                     className="w-full pl-14 pr-4 py-2.5 rounded-xl text-sm text-gray-600 outline-none border border-gray-300 focus:border-blue-300 transition"
                   />
                 </div>
-              </div>
+              </div> */}
               {/* <!--/search bar --> */}
-              <button
+              {/* <button
                 aria-label="search"
                 className="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200 md:hidden"
               >
@@ -312,7 +344,7 @@ const Dashboard = () => {
                 >
                   <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
                 </svg>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
@@ -332,3 +364,18 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+function studentLoader() {
+  let sid = sessionStorage.getItem("loggedIn");
+  let data = {
+    sid: sid,
+  };
+  return axios
+    .post("http://localhost:5000/students/student", data)
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}

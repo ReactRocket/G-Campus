@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ImageZoomView from "./ImageZoomView";
 
-const ImageGallery = ({ title, subTitle, images }) => {
+const ImageGallery = ({ title, subTitle }) => {
   const [zoomToggle, setZoomToggle] = useState(false);
   const [zoomToggleImage, setZoomToggleImage] = useState("");
 
@@ -39,9 +39,10 @@ const ImageGallery = ({ title, subTitle, images }) => {
             </p>
           </div>
           <div className="flex flex-wrap border-2 rounded-md">
-            {images?.map((src,key) => {
-              return (
-                <div key={key} className="lg:w-1/3 sm:w-1/2 p-4  ">
+            {Array(6)
+              .fill(null)
+              .map((_, index) => (
+                <div key={index} className="lg:w-1/3 sm:w-1/2 p-4  ">
                   <div className="flex  ">
                     <img
                       onClick={(e) => {
@@ -51,12 +52,11 @@ const ImageGallery = ({ title, subTitle, images }) => {
                       title="Click to zoom in"
                       alt="gallery"
                       className="scale-100  hover:scale-105 transition-all duration-1000 aspect-square  w-full h-full object-cover object-center rounded-md cursor-zoom-in ease-linear"
-                      src={src || "https://dummyimage.com/600x360"}
+                      src={`https://source.unsplash.com/500x500/?student,${title}-${index}`}
                     />
                   </div>
                 </div>
-              );
-            })}
+              ))}
           </div>
         </div>
       </section>

@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import deleteImage from "../../../resources/images/delete.svg";
+import Loader from "./Loader";
 
 // import Table from "../components/Table";
 
@@ -73,9 +74,7 @@ const Feedback = () => {
   };
 
   return isLoading ? (
-    <div className="h-full flex justify-center items-center">
-      <div className="w-16 h-16 rounded-full border-4 animate-spin border-t-gray-600"></div>
-    </div>
+    <Loader />
   ) : (
     <div className="h-auto w-[95%] m-auto my-4 bg-white">
       <nav className="flex">
@@ -84,7 +83,7 @@ const Feedback = () => {
         </h1>
         {Feedbacks.length > 0 && (
           <button
-            className="lg:w-[8%] md:w-1/5 w-1/4 bg-blue-300 rounded-md font-medium"
+            className="lg:w-[10%] md:w-1/5 w-1/4 rounded-lg shadow hover:bg-blue-500 cursor-pointer scale-90 hover:scale-95 transition-all duration-1000 bg-blue-600 text-white py-2 px-4 font-medium"
             onClick={handleClearAll}>
             Clear All
           </button>
@@ -95,7 +94,7 @@ const Feedback = () => {
         {Feedbacks.length > 0
           ? Feedbacks?.map((feedback, i) => {
               return (
-                <div className="h-16 rounded-md flex bg-sky-300" key={i}>
+                <div className="h-16 bg-white rounded-lg shadow hover:bg-blue-100 cursor-pointer scale-90 hover:scale-95 transition-all duration-1000 flex" key={i}>
                   <div className="lg:w-[95%] md:w-[90%]  w-[85%]">
                     <div className="h-1/2 lg:pl-4 pl-2 font-semibold pt-1">
                       {feedback.fullname} -{" "}

@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { validateForm } from "../utils/validateData";
 import { sendEmail } from "../utils/EmailSend";
 
 function ContactUs() {
   const buttonRef = useRef(null);
+  const form = useRef();
+
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     fullname: "",
@@ -44,11 +47,25 @@ function ContactUs() {
                 setLoading(false);
                 buttonRef.current.removeAttribute("disabled", false);
               } else {
-                sendEmail({
-                  to_name: formData.fullname,
-                  to_email: formData.email,
-                });
-                alert("Thank you! Your message has been successfully sent");
+                // emailJS system
+                emailjs
+                  .sendForm(
+                    "service_8jobu1p",
+                    "template_s2448br",
+                    form.current,
+                    "YRZEQC3wYqOWMbasL"
+                  )
+                  .then(
+                    (result) => {
+                      console.log("You are now connected!");
+                      alert(
+                        "Thank you! Your message has been successfully sent"
+                      );
+                    },
+                    (error) => {
+                      console.log(error.text);
+                    }
+                  );
                 setLoading(false);
                 emptyFormData();
                 buttonRef.current.removeAttribute("disabled", false);
@@ -82,13 +99,14 @@ function ContactUs() {
             marginWidth="0"
             title="map"
             scrolling="no"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3720.8153294278404!2d72.83883427432171!3d21.159746280522565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e2fe47b1ee1%3A0x504c1d61b4e6e422!2sUCCC%20%26%20SPBCBA%20%26%20SDHGCBCA%20%26%20IT%20College!5e0!3m2!1sen!2sin!4v1703870362272!5m2!1sen!2sin"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.516358698324!2d77.16127697432714!3d28.584282375691142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1d11d2b09007%3A0x853501a569b49e3c!2sUniversity%20of%20Delhi!5e0!3m2!1sen!2sin!4v1710258949261!5m2!1sen!2sin"
             style={{
               filter: "contrast(1.2) opacity(0.5)",
             }}></iframe>
         </div>
         <div className="container px-5 py-24 mx-auto flex ">
           <form
+            ref={form}
             className="lg:w-1/3 md:w-1/2 bg-white h-full rounded-lg p-5 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10 shadow-lg "
             onSubmit={handleSubmit}>
             <h2 className="text-gray-900 text-lg mb-1 font-medium title-font ">

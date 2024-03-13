@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import Loader from "./Loader";
 
 function Department() {
   const [isLoading, setIsLoading] = useState(true);
@@ -19,9 +20,7 @@ function Department() {
   }, []);
 
   return isLoading ? (
-    <div className="h-full flex justify-center items-center">
-      <div className="w-16 h-16 rounded-full border-4 animate-spin border-t-gray-600"></div>
-    </div>
+    <Loader />
   ) : (
     <div className="h-auto w-[95%] m-auto my-4">
       <nav className="flex">
@@ -35,7 +34,7 @@ function Department() {
               return (
                 <section
                   key={department.deptId}
-                  className="border bg-slate-50 rounded-lg py-3 shadow grid gap-y-1">
+                  className="border bg-white rounded-lg shadow hover:bg-blue-100 cursor-pointer scale-90 hover:scale-95 transition-all duration-1000 py-3  grid gap-y-1">
                   <div className="w-[95%] mx-auto capitalize">
                     {department.medium} medium
                   </div>
