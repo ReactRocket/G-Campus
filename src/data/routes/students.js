@@ -364,11 +364,12 @@ router.get("/coursewisestudents", (req, res) => {
 });
 
 router.get("/studentinfo", (req, res) => {
-  let query = "select * from students;";
+  let query =
+    "select s.sid,concat(s.fname,' ',s.lname) as name,s.dob,s.gender,s.blood,concat(s.address,',',s.city,',',s.state) as address, s.phone,s.email,s.tenthSchool,s.tenthPassingYear,s.tenthPercentage,s.twelfthSchool,s.twelfthPassingYear,s.twelfthPercentage, d.deptName,s.classId,s.profile from students s  join departments d on s.deptId=d.deptId;";
   query +=
     "select * from (select count(sid) as unverified from students where verified = 'false') as std,( select count(sid) as verified from students where verified = 'true') as student;";
   query +=
-    "select * from (select count(sid) AS BCOM from students where deptId in (101,102)) as BCOM,(select count(sid) AS BBA from students where deptId = 103) as BBA,(select count(sid) AS BCA from students where deptId = 104) as BCA;";
+    "select * from (select count(sid) AS BCOM from students where deptId in (101,102)) as BCOM,(select count(sid) AS BBA from students where deptId = 103) as BBA,(select count(sid) AS BCA from students where deptId = 104) as BCA,(select count(sid) AS TOTAL from students) as Total;";
 
   pool.getConnection((err, connection) => {
     connection.query(query, (err, dbData, fields) => {
@@ -381,8 +382,8 @@ router.get("/studentinfo", (req, res) => {
             displayMessage: err,
             data: {
               students: dbData[0],
-              studentcount: dbData[1],
-              departmentwise: dbData[2],
+              studentcount: dbData[1][0],
+              departmentwise: dbData[2][0],
             },
             isSuccess: true,
           });
