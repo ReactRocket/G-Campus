@@ -1,23 +1,27 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 
 function Department() {
   const [isLoading, setIsLoading] = useState(true);
   const [Departments, setDepartments] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
       loadData()
-        .then((respone) => {
+        .then((response) => {
           setIsLoading(false);
-          setDepartments(respone.data);
+          setDepartments(response.data);
         })
         .catch((err) => {
+          console.log(err);
           setIsLoading(false);
+          navigate("/admin/error");
         });
     }, 2500);
-  }, []);
+  }, [navigate]);
 
   return isLoading ? (
     <Loader />
@@ -68,22 +72,15 @@ function loadData() {
       .get("http://localhost:5000/departments/getdepartments")
       .then((res) => res.data)
       .then((response) => {
-        // if (!response.isSuccess) {
-        //   const navigate = useNavigate();
-        //   navigate("/network");
-        //   return [];
-        // } else {
-        //   return response.data;
-        // }
         return response;
       })
       .catch((err) => {
         console.error(err);
-        return [];
+        throw err;
       });
   } catch (error) {
     console.error(error);
-    return [];
+    throw error;
   }
 }
 

@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 // import { useNavigate, useLoaderData } from "react-router-dom";
 import axios from "axios";
 import Card from "../components/Card";
+import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 
 const Faculty = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [Faculties, setFaculties] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -17,10 +19,11 @@ const Faculty = () => {
         })
         .catch((err) => {
           setIsLoading(false);
+          navigate("/admin/error");
           setFaculties([]);
         });
     }, 2000);
-  }, []);
+  }, [navigate]);
 
   return isLoading ? (
     <Loader />
@@ -77,11 +80,11 @@ export function facultyLoader() {
       })
       .catch((err) => {
         console.error(err);
-        return [];
+        throw err;
       });
   } catch (error) {
     console.error(error);
-    return [];
+    throw error;
   }
 }
 

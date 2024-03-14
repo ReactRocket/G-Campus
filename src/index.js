@@ -44,10 +44,11 @@ import Faculty from "./modules/admin/pages/Faculty";
 import Notice from "./modules/admin/pages/Notice";
 import Feedback from "./modules/admin/pages/Feedback";
 import Department from "./modules/admin/pages/Department";
+import Error from "./modules/admin/pages/Error";
 // import Gallery from "./modules/admin/pages/Gallery";
 
 // errors
-import Error from "./errors/Error_404";
+import NotFound from "./errors/Error_404";
 import NetworkIssue from "./errors/NetworkIssue";
 
 //  Courses
@@ -166,7 +167,6 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminDashboard />,
-    // loader: onLoadAdminAuth,
     children: [
       {
         index: "admin",
@@ -194,6 +194,10 @@ const router = createBrowserRouter([
         path: "department",
         element: <Department />,
       },
+      {
+        path: "error",
+        element: <Error />,
+      },
     ],
   },
   {
@@ -202,7 +206,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    element: <Error />,
+    element: <NotFound />,
   },
 ]);
 
