@@ -9,6 +9,8 @@ import Loader from "./Loader";
 const Feedback = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [Feedbacks, setFeedbacks] = useState([]);
+  const navigate = useNavigate();
+
   // const feedback = useLoaderData()
 
   useEffect(() => {
@@ -19,10 +21,11 @@ const Feedback = () => {
           setFeedbacks(response);
         })
         .catch((err) => {
+          navigate("/admin/error");
           setIsLoading(false);
         });
     }, 2000);
-  }, []);
+  }, [navigate]);
 
   const handleClick = async (e) => {
     setIsLoading(true);
@@ -94,7 +97,9 @@ const Feedback = () => {
         {Feedbacks.length > 0
           ? Feedbacks?.map((feedback, i) => {
               return (
-                <div className="h-16 bg-white rounded-lg shadow hover:bg-blue-100 cursor-pointer scale-90 hover:scale-95 transition-all duration-1000 flex" key={i}>
+                <div
+                  className="h-16 bg-white rounded-lg shadow hover:bg-blue-100 cursor-pointer scale-90 hover:scale-95 transition-all duration-1000 flex"
+                  key={i}>
                   <div className="lg:w-[95%] md:w-[90%]  w-[85%]">
                     <div className="h-1/2 lg:pl-4 pl-2 font-semibold pt-1">
                       {feedback.fullname} -{" "}
@@ -139,10 +144,13 @@ export async function loadData() {
         } else {
           return response.data;
         }
+      })
+      .catch((err) => {
+        throw err;
       });
   } catch (error) {
     console.error(error);
-    return [];
+    throw error;
   }
 }
 
