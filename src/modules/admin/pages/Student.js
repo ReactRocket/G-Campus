@@ -5,6 +5,7 @@ import { Chart } from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
 import Loader from "./Loader";
 import { useNavigate, Link } from "react-router-dom";
+import DepartmentShortener from "../../../utils/Shortener";
 
 const Student = () => {
   const [Students, setStudents] = useState([]);
@@ -105,10 +106,10 @@ const Student = () => {
           <li className="flex justify-between items-center text-lg px-4 py-2 border-b">
             <div className="w-1/12 text-center font-semibold ">Photo</div>
             <div className="w-1/6 text-center font-semibold ">Name</div>
-            <div className="w-1/6 text-center font-semibold ">Department</div>
-            <div className="w-1/6 text-center font-semibold ">Class</div>
+            <div className="w-1/6 text-center font-semibold ">Gender</div>
             <div className="w-1/6 text-center font-semibold ">Class</div>
             <div className="w-1/5 text-center font-semibold ">Email</div>
+            <div className="w-1/6 text-center font-semibold ">Phone</div>
           </li>
           {Students?.students.map((student) => {
             return (
@@ -120,22 +121,20 @@ const Student = () => {
                     className="h-12 w-12 rounded-full cursor-pointer"
                   />
                 </div>
-
-                
-                <div className="capitalize   w-1/6 text-center truncate">
+                <div className="capitalize w-1/6 text-center truncate">
                   {student?.name}
                 </div>
-                <div className="capitalize  w-1/6 text-center truncate">
-                  {student?.deptName}
+                <div className="capitalize w-1/6 text-center truncate">
+                  {student?.gender}
                 </div>
-                <div className="capitalize  w-1/6 text-center truncate">
-                  {student?.classId}
+                <div className="capitalize w-1/6 text-center truncate">
+                  {student?.class + DepartmentShortener(student?.deptName)}
                 </div>
-                <div className="capitalize  w-1/6 text-center truncate">
-                  {student?.classId}
-                </div>
-                <div className=" w-1/5 text-center truncate">
+                <div className="capitalize w-1/5 text-center truncate">
                   {student?.email}
+                </div>
+                <div className=" w-1/6 text-center truncate">
+                  {student?.phone}
                 </div>
               </li>
             );
@@ -154,8 +153,7 @@ const Student = () => {
           <div className="lg:w-[25%] w-[90%] lg:h-full md:h-24 h-20 flex lg:flex-col  justify-evenly items-center">
             <Link
               className="lg:w-4/5 w-1/6 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to=""
-            >
+              to="">
               <div className="lg:w-[75%] w-[90%]">
                 <h1 className="font-semibold text-start lg:text-base text-sm">
                   Total Students
@@ -172,8 +170,7 @@ const Student = () => {
                 height="16"
                 fill="currentColor"
                 className="bi bi-chevron-right hover:bg-indigo-400 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path
                   fill-rule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
@@ -182,8 +179,7 @@ const Student = () => {
             </Link>
             <Link
               className="lg:w-4/5 w-1/5 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to=""
-            >
+              to="">
               <div className="lg:w-[75%] w-[90%]">
                 <h1 className="font-semibold text-start lg:text-base text-sm">
                   BCOM Students
@@ -200,8 +196,7 @@ const Student = () => {
                 height="16"
                 fill="currentColor"
                 className="bi bi-chevron-right hover:bg-indigo-200 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path
                   fill-rule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
@@ -210,8 +205,7 @@ const Student = () => {
             </Link>
             <Link
               className="lg:w-4/5 w-1/5 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to=""
-            >
+              to="">
               <div className="lg:w-[75%] w-[90%]">
                 <h1 className="font-semibold text-start lg:text-base text-sm">
                   BBA Students
@@ -228,8 +222,7 @@ const Student = () => {
                 height="16"
                 fill="currentColor"
                 className="bi bi-chevron-right hover:bg-indigo-600 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path
                   fill-rule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
@@ -238,8 +231,7 @@ const Student = () => {
             </Link>
             <Link
               className="lg:w-4/5 w-1/5 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to=""
-            >
+              to="">
               <div className="lg:w-[75%] w-[90%]">
                 <h1 className="font-semibold text-start lg:text-base text-sm">
                   BCA Students
@@ -256,8 +248,7 @@ const Student = () => {
                 height="16"
                 fill="currentColor"
                 className="bi bi-chevron-right hover:bg-indigo-600 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path
                   fill-rule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
