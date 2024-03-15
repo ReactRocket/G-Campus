@@ -40,7 +40,7 @@ const Student = () => {
     datasets: [
       {
         label: "Students",
-        backgroundColor: ["#59D5E0", "#98ABEE", "#1D24CA"],
+        backgroundColor: ["#5FBDFF", "#B7C9F2", "#A076F9"],
         borderColor: "#fff",
         data: chartData,
       },
@@ -53,7 +53,7 @@ const Student = () => {
     <main className="h-auto w-[95%] m-auto my-4">
       {/* navbar */}
       <nav className="">
-        <h1 className="lg:w-[92%] md:w-4/5 w-3/4 font-[lato] text-2xl font-semibold ">
+        <h1 className="lg:w-[92%] md:w-4/5 w-3/4 text-2xl font-semibold ">
           Students
         </h1>
       </nav>
@@ -76,23 +76,23 @@ const Student = () => {
             duration={2}
             className="lg:text-9xl text-5xl"
           />
-          <h1 className="lg:text-lg md:text-lg font-[lato] text-sm font-semibold">
+          <h1 className="lg:text-lg md:text-lg text-sm font-semibold">
             Under-verification
           </h1>
         </div>
       </section>
 
       {/* verification route section */}
-      <section className="border mt-4 flex justify-between items-center p-2 bg-sky-200 rounded-md shadow-lg">
+      <section className="border mt-4 flex justify-between items-center p-2 hover:bg-blue-300 bg-blue-200 rounded-md shadow-lg">
         <h1 className="capitalize lg:text-base text-xs">
           <span className="font-bold">
             {Students?.studentcount?.unverified ?? 0}{" "}
           </span>
-          <span className="font-semibold font-[lato]">
+          <span className="font-semibold ">
             students are under verification! click to verify
           </span>
         </h1>
-        <button className="bg-sky-700 lg:w-[6%] md:w-[10%] w-[12%] font-[lato] py-1 lg:text-lg text-xs lg:rounded-md rounded text-white">
+        <button className="bg-sky-700 lg:w-[6%] md:w-[10%] w-[12%] py-1 lg:text-lg text-xs lg:rounded-md rounded text-white">
           Verify
         </button>
       </section>
@@ -103,36 +103,38 @@ const Student = () => {
         </div>
         <ol className="w-[96%] h-[90%] m-auto overflow-x-auto">
           <li className="flex justify-between items-center text-lg px-4 py-2 border-b">
-            <div className="w-1/12 text-startfont-semibold  font-[lato]">#</div>
-            <div className="w-1/6 text-start font-semibold font-[lato]">Name</div>
-            <div className="w-1/6 text-start font-semibold font-[lato]">Department</div>
-            <div className="w-1/6 text-start font-semibold font-[lato]">Class</div>
-            <div className="w-1/6 text-start font-semibold font-[lato]">Class</div>
-            <div className="w-1/5 text-start font-semibold font-[lato]">Email</div>
+            <div className="w-1/12 text-center font-semibold ">Photo</div>
+            <div className="w-1/6 text-center font-semibold ">Name</div>
+            <div className="w-1/6 text-center font-semibold ">Department</div>
+            <div className="w-1/6 text-center font-semibold ">Class</div>
+            <div className="w-1/6 text-center font-semibold ">Class</div>
+            <div className="w-1/5 text-center font-semibold ">Email</div>
           </li>
           {Students?.students.map((student) => {
             return (
-              <li className="px-4 py-2 m-auto flex justify-between items-center border-b">
-                <div className="w-1/12 text-start font-[lato] truncate">
+              <li className="px-4 py-2 m-auto flex justify-center  border-b cursor-pointer hover:bg-blue-50">
+                <div className="w-1/12 text-center s">
                   <img
                     src={require(`../../../images/${student.profile}`)}
                     alt="student profile"
-                    className="h-12 w-12 rounded-full"
+                    className="h-12 w-12 rounded-full cursor-pointer"
                   />
                 </div>
-                <div className="capitalize font-[lato]  w-1/6 text-start truncate">
+
+                
+                <div className="capitalize   w-1/6 text-center truncate">
                   {student?.name}
                 </div>
-                <div className="capitalize font-[lato]  w-1/6 text-start truncate">
+                <div className="capitalize  w-1/6 text-center truncate">
                   {student?.deptName}
                 </div>
-                <div className="capitalize font-[lato]  w-1/6 text-start truncate">
+                <div className="capitalize  w-1/6 text-center truncate">
                   {student?.classId}
                 </div>
-                <div className="capitalize font-[lato]  w-1/6 text-start truncate">
+                <div className="capitalize  w-1/6 text-center truncate">
                   {student?.classId}
                 </div>
-                <div className=" font-[lato] w-1/5 text-start truncate">
+                <div className=" w-1/5 text-center truncate">
                   {student?.email}
                 </div>
               </li>
@@ -142,7 +144,7 @@ const Student = () => {
       </section>
 
       <section className="mt-4 flex flex-col  justify-center items-center bg-gray-100 rounded-xl shadow-2xl">
-        <h1 className="capitalize font-medium font-[lato] lg:text-2xl text-xs w-full px-4 mt-2">
+        <h1 className="capitalize font-medium lg:text-2xl text-xs w-full px-4 mt-2">
           Department wise students
         </h1>
         <div className="w-full mt-4 lg:h-96 h-full flex lg:flex-row flex-col justify-center items-center">
@@ -152,9 +154,10 @@ const Student = () => {
           <div className="lg:w-[25%] w-[90%] lg:h-full md:h-24 h-20 flex lg:flex-col  justify-evenly items-center">
             <Link
               className="lg:w-4/5 w-1/6 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to="">
+              to=""
+            >
               <div className="lg:w-[75%] w-[90%]">
-                <h1 className="font-semibold text-start font-[lato] lg:text-base text-sm">
+                <h1 className="font-semibold text-start lg:text-base text-sm">
                   Total Students
                 </h1>
                 <CountUp
@@ -168,8 +171,9 @@ const Student = () => {
                 width="16"
                 height="16"
                 fill="currentColor"
-                className="bi bi-chevron-right hover:bg-indigo-600 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16">
+                className="bi bi-chevron-right hover:bg-indigo-400 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
+                viewBox="0 0 16 16"
+              >
                 <path
                   fill-rule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
@@ -178,9 +182,10 @@ const Student = () => {
             </Link>
             <Link
               className="lg:w-4/5 w-1/5 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to="">
+              to=""
+            >
               <div className="lg:w-[75%] w-[90%]">
-                <h1 className="font-semibold text-start font-[lato] lg:text-base text-sm">
+                <h1 className="font-semibold text-start lg:text-base text-sm">
                   BCOM Students
                 </h1>
                 <CountUp
@@ -194,8 +199,9 @@ const Student = () => {
                 width="16"
                 height="16"
                 fill="currentColor"
-                className="bi bi-chevron-right hover:bg-indigo-600 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16">
+                className="bi bi-chevron-right hover:bg-indigo-200 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
+                viewBox="0 0 16 16"
+              >
                 <path
                   fill-rule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
@@ -204,9 +210,10 @@ const Student = () => {
             </Link>
             <Link
               className="lg:w-4/5 w-1/5 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to="">
+              to=""
+            >
               <div className="lg:w-[75%] w-[90%]">
-                <h1 className="font-semibold text-start font-[lato] lg:text-base text-sm">
+                <h1 className="font-semibold text-start lg:text-base text-sm">
                   BBA Students
                 </h1>
                 <CountUp
@@ -221,7 +228,8 @@ const Student = () => {
                 height="16"
                 fill="currentColor"
                 className="bi bi-chevron-right hover:bg-indigo-600 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16">
+                viewBox="0 0 16 16"
+              >
                 <path
                   fill-rule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
@@ -230,9 +238,10 @@ const Student = () => {
             </Link>
             <Link
               className="lg:w-4/5 w-1/5 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to="">
+              to=""
+            >
               <div className="lg:w-[75%] w-[90%]">
-                <h1 className="font-semibold text-start font-[lato] lg:text-base text-sm">
+                <h1 className="font-semibold text-start lg:text-base text-sm">
                   BCA Students
                 </h1>
                 <CountUp
@@ -247,7 +256,8 @@ const Student = () => {
                 height="16"
                 fill="currentColor"
                 className="bi bi-chevron-right hover:bg-indigo-600 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16">
+                viewBox="0 0 16 16"
+              >
                 <path
                   fill-rule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
