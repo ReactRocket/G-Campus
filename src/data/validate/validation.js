@@ -51,4 +51,12 @@ function isBlank(string) {
   }
 }
 
-module.exports = { isEmail, isPhone, isString, isBlank };
+function getValue(fieldname, requestBody, displayMessage) {
+  if (!(fieldname in requestBody)) {
+    throw new Error("please provide " + displayMessage);
+  } else {
+    return requestBody[fieldname];
+  }
+}
+
+module.exports = { isEmail, isPhone, isString, isBlank, getValue };

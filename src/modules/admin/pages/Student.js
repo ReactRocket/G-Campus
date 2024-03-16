@@ -1,11 +1,11 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
-import CountUp from "react-countup/";
+import React, { useEffect, useState } from "react";
 import { Chart } from "chart.js/auto";
 import { Pie } from "react-chartjs-2";
-import Loader from "./Loader";
-import { useNavigate, Link } from "react-router-dom";
+import CountUp from "react-countup/";
+import { Link, useNavigate } from "react-router-dom";
 import DepartmentShortener from "../../../utils/Shortener";
+import Loader from "./Loader";
 
 const Student = () => {
   const [Students, setStudents] = useState([]);
@@ -18,7 +18,7 @@ const Student = () => {
       studentLoader()
         .then((response) => {
           if (response.isSuccess) {
-            console.log(response.data.students);
+            // console.log(response.data.students);
             setStudents(response.data);
             setChartData([
               response.data.departmentwise.BCOM,
@@ -46,6 +46,10 @@ const Student = () => {
         data: chartData,
       },
     ],
+  };
+
+  const handleClick = () => {
+    navigate("verify");
   };
 
   return isLoading ? (
@@ -93,14 +97,18 @@ const Student = () => {
             students are under verification! click to verify
           </span>
         </h1>
-        <button className="bg-sky-700 lg:w-[6%] md:w-[10%] w-[12%] py-1 lg:text-lg text-xs lg:rounded-md rounded text-white">
+        <button
+          className="bg-sky-700 lg:w-[6%] md:w-[10%] w-[12%] py-1 lg:text-lg text-xs lg:rounded-md rounded text-white"
+          // {Students?.studentcount?.unverified <= 0 && "disabled"}
+          onClick={handleClick}>
           Verify
         </button>
       </section>
 
+      {/* student details section  */}
       <section className="h-[500px] w-full mt-10 border shadow-lg rounded-lg">
         <div className="border-b text-2xl px-5 py-2 font-semibold h-[10%]">
-          Student List
+          Active Student List
         </div>
         <ol className="w-[96%] h-[90%] m-auto overflow-x-auto">
           <li className="flex justify-between items-center text-lg px-4 py-2 border-b">
@@ -113,7 +121,9 @@ const Student = () => {
           </li>
           {Students?.students.map((student) => {
             return (
-              <li className="px-4 py-2 m-auto flex justify-center  border-b cursor-pointer hover:bg-blue-50">
+              <li
+                className="px-4 py-2 m-auto flex justify-center  border-b cursor-pointer hover:bg-blue-50"
+                key={student?.sid}>
                 <div className="w-1/12 text-center s">
                   <img
                     src={require(`../../../images/${student.profile}`)}
@@ -142,6 +152,7 @@ const Student = () => {
         </ol>
       </section>
 
+      {/* department wise students graph */}
       <section className="mt-4 flex flex-col  justify-center items-center bg-gray-100 rounded-xl shadow-2xl">
         <h1 className="capitalize font-medium lg:text-2xl text-xs w-full px-4 mt-2">
           Department wise students
@@ -172,7 +183,7 @@ const Student = () => {
                 className="bi bi-chevron-right hover:bg-indigo-400 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
                 viewBox="0 0 16 16">
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
                 />
               </svg>
@@ -198,7 +209,7 @@ const Student = () => {
                 className="bi bi-chevron-right hover:bg-indigo-200 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
                 viewBox="0 0 16 16">
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
                 />
               </svg>
@@ -224,7 +235,7 @@ const Student = () => {
                 className="bi bi-chevron-right hover:bg-indigo-600 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
                 viewBox="0 0 16 16">
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
                 />
               </svg>
@@ -250,7 +261,7 @@ const Student = () => {
                 className="bi bi-chevron-right hover:bg-indigo-600 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
                 viewBox="0 0 16 16">
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
                 />
               </svg>
@@ -258,24 +269,19 @@ const Student = () => {
           </div>
         </div>
       </section>
-
-      {/* implement from here */}
-      {/* <section className="w-full border mt-5">
-        
-      </section> */}
     </main>
   );
 };
 
-export default Student;
-
-function studentLoader() {
-  return axios
-    .get("http://localhost:5000/students/studentinfo")
-    .then((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+async function studentLoader() {
+  try {
+    const response = await axios.get(
+      "http://localhost:5000/students/studentinfo"
+    );
+    return response.data;
+  } catch (err) {
+    console.log(err);
+  }
 }
+
+export default Student;
