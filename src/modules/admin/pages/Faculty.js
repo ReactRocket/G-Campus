@@ -33,7 +33,7 @@ const Faculty = () => {
         <h1 className="lg:w-[93%] md:w-[85%] w-3/4 text-2xl font-semibold font-sans">
           Faculty
         </h1>
-        <button className="lg:w-[10%] md:w-[15%] w-1/4 rounded-lg shadow hover:bg-blue-500 cursor-pointer scale-90 hover:scale-95 transition-all duration-1000 bg-blue-600 text-white py-2 px-4 font-medium  gap-2 flex justify-center items-center">
+        <button className="lg:w-[10%] md:w-[15%] w-1/4 rounded-lg shadow-md  hover:bg-blue-500 cursor-pointer scale-90 hover:scale-95 transition-all duration-1000 bg-blue-600 text-white py-2 px-4 font-medium  gap-2 flex justify-center items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -47,7 +47,7 @@ const Faculty = () => {
           <span className="text-lg">New</span>
         </button>
       </nav>
-      <section className="h-full mt-5 grid gap-5 lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+      <section className="h-full mt-5 grid gap-5  lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {Faculties.length > 0
           ? Faculties.map((faculty, i) => {
               return (
@@ -55,6 +55,7 @@ const Faculty = () => {
                 //   {faculty.fname}
                 // </div>
                 <Card faculty={faculty} key={i} />
+
               );
             })
           : `No Faculties`}
