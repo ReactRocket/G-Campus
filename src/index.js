@@ -55,6 +55,7 @@ import NetworkIssue from "./errors/NetworkIssue";
 import Bca from "./pages/Bca";
 import Business from "./pages/Business";
 import Bcom from "./pages/Bcom";
+import Verification from "./modules/admin/components/Verification";
 
 const router = createBrowserRouter([
   {
@@ -175,6 +176,10 @@ const router = createBrowserRouter([
       {
         path: "student",
         element: <Student />,
+      },
+      {
+        path: "student/verify",
+        element: <Verification />,
       },
       {
         path: "faculty",
