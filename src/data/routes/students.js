@@ -365,7 +365,7 @@ router.get("/coursewisestudents", (req, res) => {
 
 router.get("/studentinfo", (req, res) => {
   let query =
-    "select s.sid,concat(s.fname,' ',s.lname) as name,s.dob,s.gender,s.blood,concat(s.address,',',s.city,',',s.state) as address, s.phone,s.email,s.tenthSchool,s.tenthPassingYear,s.tenthPercentage,s.twelfthSchool,s.twelfthPassingYear,s.twelfthPercentage, d.deptName,s.classId,s.profile from students s  join departments d on s.deptId=d.deptId;";
+    "select s.sid,concat(s.fname,' ',s.lname) as name,s.dob,s.gender,s.blood,concat(s.address,',',s.city,',',s.state) as address,s.phone,s.email,s.tenthSchool,s.tenthPassingYear,s.tenthPercentage,s.twelfthSchool,s.twelfthPassingYear,s.twelfthPercentage,d.deptName,c.class,s.profile from students s, departments d, classes c where s.deptId = d.deptId and s.classId = c.classId;";
   query +=
     "select * from (select count(sid) as unverified from students where verified = 'false') as std,( select count(sid) as verified from students where verified = 'true') as student;";
   query +=
