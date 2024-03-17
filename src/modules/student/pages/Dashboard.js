@@ -345,7 +345,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="h-[100vh-4rem] w-full">
+        <div className="max-h-[100vh-4rem] w-full overflow-y-hidden">
           {IsLoading ? (
             <div className="h-screen w-full overflow-y-hidden bg-cover">
               <Loader />
