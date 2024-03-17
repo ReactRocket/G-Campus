@@ -55,34 +55,41 @@ router.get("/allstudents", (req, res) => {
 
 // get a student data
 router.post("/student", (req, res) => {
-  let sid = req.body.sid;
-
-  if (!sid) {
+  try {
+    let sid = getValue("sid", req.body, "Student Id");
+    if (!sid) {
+      res.json({
+        displayMessage: "Please enter a student id",
+        data: "",
+        isSuccess: false,
+      });
+    } else {
+      let query = "select * from students where sid =" + sid;
+      pool.getConnection((err, connection) => {
+        connection.query(query, (err, data, fields) => {
+          if (err) {
+            connection.release();
+            res.json({ displayMessage: err, data: "", isSuccess: false });
+          } else {
+            if (data.length > 0) {
+              res.json({ displayMessage: "", data: data, isSuccess: true });
+            } else {
+              res.json({
+                displayMessage: "No Data Found",
+                data: "",
+                isSuccess: true,
+              });
+            }
+          }
+        });
+        connection.release();
+      });
+    }
+  } catch (error) {
     res.json({
-      displayMessage: "Please enter a student id",
+      displayMessage: error.message,
       data: "",
       isSuccess: false,
-    });
-  } else {
-    let query = "select * from students where sid =" + sid;
-    pool.getConnection((err, connection) => {
-      connection.query(query, (err, data, fields) => {
-        if (err) {
-          connection.release();
-          res.json({ displayMessage: err, data: "", isSuccess: false });
-        } else {
-          if (data.length > 0) {
-            res.json({ displayMessage: "", data: data, isSuccess: true });
-          } else {
-            res.json({
-              displayMessage: "No Data Found",
-              data: "",
-              isSuccess: true,
-            });
-          }
-        }
-      });
-      connection.release();
     });
   }
 });
@@ -309,48 +316,102 @@ router.post("/insert", uploadImg, (req, res) => {
       displayMessage: error.message,
       data: "",
       isSuccess: false,
-    })
+    });
   }
 });
 
-router.post("/auth", (req, res) => {
-  let email = req.body.email;
-  let password = req.body.password;
-
-  if (!isEmail(email)) {
-    res.json({
-      displayMessage: "Please enter a valid email",
-      data: "",
-      isSuccess: false,
-    });
-  } else if (isBlank(password)) {
-    res.json({
-      displayMessage: "Please enter a password",
-      data: "",
-      isSuccess: false,
-    });
-  } else {
-    let query =
-      "SELECT COUNT(*) as count,verified as status,sid FROM `students` WHERE email = '" +
-      email +
-      "' and password='" +
-      password +
-      "';";
-    pool.getConnection((err, connection) => {
-      if (err) res.json({ displayMessage: err, data: "", isSuccess: false });
-      connection.query(query, (err, data, fields) => {
-        if (err) {
-          connection.release();
-          res.json({ displayMessage: err, data: "", isSuccess: false });
-        } else {
-          res.json({
-            displayMessage: "",
-            data: data,
-            isSuccess: true,
-          });
-        }
+router.post("/emailverification", (req, res) => {
+  try {
+    let email = getValue("email", req.body, "Email Address");
+    if (!isEmail(email)) {
+      res.json({
+        displayMessage: "Please Provide a valid email",
+        data: "",
+        isSuccess: false,
       });
-      connection.release();
+    } else {
+      let query =
+        "select count(sid) as verified from students where email = '" +
+        email +
+        "'";
+      pool.getConnection((err, connection) => {
+        connection.query(query, (err, data, fields) => {
+          if (err) {
+            connection.release();
+            res.json({ displayMessage: err, data: "", isSuccess: false });
+          } else {
+            res.json({
+              displayMessage:
+                data[0].verified > 0
+                  ? ""
+                  : "Email already registered. Sign in or use a different email.",
+              data: data[0].verified > 0 ? true : false,
+              isSuccess: true,
+            });
+          }
+        });
+        connection.release();
+      });
+    }
+  } catch (error) {
+    res.json({
+      displayMessage: error.message,
+      data: "",
+      isSuccess: false,
+    });
+  }
+});
+
+
+// verification page
+// add faculty api
+
+router.post("/auth", (req, res) => {
+  try {
+    let email = getValue("email", req.body, "Email Address");
+    let password = getValue("password", req.body, "Password");
+
+    if (!isEmail(email)) {
+      res.json({
+        displayMessage: "Please enter a valid email",
+        data: "",
+        isSuccess: false,
+      });
+    } else if (isBlank(password)) {
+      res.json({
+        displayMessage: "Please enter a password",
+        data: "",
+        isSuccess: false,
+      });
+    } else {
+      let query =
+        "SELECT COUNT(*) as count,verified as status,sid FROM `students` WHERE email = '" +
+        email +
+        "' and password='" +
+        password +
+        "';";
+      pool.getConnection((err, connection) => {
+        if (err) res.json({ displayMessage: err, data: "", isSuccess: false });
+        connection.query(query, (err, data, fields) => {
+          if (err) {
+            connection.release();
+            res.json({ displayMessage: err, data: "", isSuccess: false });
+          } else {
+            res.json({
+              displayMessage: "",
+              data: data,
+              isSuccess: true,
+            });
+          }
+        });
+        connection.release();
+      });
+    }
+  } catch (error) {
+    res.json({
+      displayMessage: error.message,
+      data: "",
+      isSuccess: false,
     });
   }
 });
