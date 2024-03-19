@@ -94,6 +94,7 @@ router.post("/student", (req, res) => {
   }
 });
 
+// insert a student
 router.post("/insert", uploadImg, (req, res) => {
   try {
     let fname = getValue("fname", req.body, "First Name");
@@ -320,6 +321,7 @@ router.post("/insert", uploadImg, (req, res) => {
   }
 });
 
+// checking existing emails
 router.post("/emailverification", (req, res) => {
   try {
     let email = getValue("email", req.body, "Email Address");
@@ -342,10 +344,10 @@ router.post("/emailverification", (req, res) => {
           } else {
             res.json({
               displayMessage:
-                data[0].verified > 0
+                data[0].verified === 0
                   ? ""
                   : "Email already registered. Sign in or use a different email.",
-              data: data[0].verified > 0 ? true : false,
+              data: data[0].verified === 0 ? true : false,
               isSuccess: true,
             });
           }
@@ -366,6 +368,7 @@ router.post("/emailverification", (req, res) => {
 // verification page
 // add faculty api
 
+// student authentication
 router.post("/auth", (req, res) => {
   try {
     let email = getValue("email", req.body, "Email Address");
@@ -416,6 +419,7 @@ router.post("/auth", (req, res) => {
   }
 });
 
+// department wise student count
 router.get("/coursewisestudents", (req, res) => {
   try {
     let query =
@@ -449,6 +453,7 @@ router.get("/coursewisestudents", (req, res) => {
   }
 });
 
+//  all students details 
 router.get("/studentinfo", (req, res) => {
   let query =
     "select s.sid,concat(s.fname,' ',s.lname) as name,s.dob,s.gender,s.blood,concat(s.address,',',s.city,',',s.state) as address,s.phone,s.email,s.tenthSchool,s.tenthPassingYear,s.tenthPercentage,s.twelfthSchool,s.twelfthPassingYear,s.twelfthPercentage,d.deptName,c.class,s.profile from students s, departments d, classes c where s.deptId = d.deptId and s.classId = c.classId;";
@@ -489,6 +494,7 @@ router.get("/studentinfo", (req, res) => {
   });
 });
 
+// under verification students details
 router.get("/unverifiedstudent", (req, res) => {
   let query = "select * from students where verified = 'false'";
   pool.getConnection((err, connection) => {

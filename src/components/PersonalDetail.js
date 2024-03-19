@@ -102,19 +102,21 @@ function PersonalDetail({
   };
 
   const handleEmail = async (e) => {
-    let email = e.target.value;
-    // alert(email);
-    let emaildata = { email: email };
-    let respone = await axios.post(
-      "http://localhost:5000/students/emailverification",
-      emaildata
-    );
-    let responedata = await respone.data;
-    console.log(responedata);
-    if (!responedata.data) {
-      alert(responedata.displayMessage);
-    } else {
-      setEmailverification(true);
+    if (!emailverification) {
+      let email = e.target.value;
+      // alert(email);
+      let emaildata = { email: email };
+      let respone = await axios.post(
+        "http://localhost:5000/students/emailverification",
+        emaildata
+      );
+      let responedata = await respone.data;
+      console.log(responedata);
+      if (!responedata.data) {
+        alert(responedata.displayMessage);
+      } else {
+        setEmailverification(true);
+      }
     }
   };
 
@@ -127,13 +129,13 @@ function PersonalDetail({
         ...formData,
         ...formObject,
       });
-      handleNext()
+      handleNext();
     }
   };
 
   return (
     <form
-    onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       className={`w-full h-full absolute ${display} lg:flex-row flex-col lg:overflow-hidden overflow-scroll`}>
       <div className="w-1/2  justify-center items-center lg:flex hidden">
         <img
