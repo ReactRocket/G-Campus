@@ -4,10 +4,9 @@ import User from "../../../images/user.png";
 const Card = ({ faculty }) => {
   const { fullname, gender, qualification, experience, profile } = faculty;
   return (
-    <div className="h-80 lg:w-[70%] w-[80%] mx-auto border border-blue-500  bg-slate-100 rounded-lg shadow hover:bg-blue-300 cursor-pointer scale-100 hover:scale-105 transition-all duration-1000 flex py-4 gap-2 justify-start items-center flex-col">
-      <div className="rounded-full h-[65%] bg-white">
+    <div className="h-[400px] w-full border border-gray-300 shadow-lg p-3 rounded-lg flex flex-col gap-3 bg-gray-100">
+      <div className="h-3/4 w-full overflow-hidden">
         <img
-       
           src={
             profile !== undefined || profile !== null ? (
               require(`../../../images/${profile}`)
@@ -15,20 +14,21 @@ const Card = ({ faculty }) => {
               <User />
             )
           }
-          alt="faculty profile pic"
-          className="w-full h-full rounded"
+          alt="faculty profile pic "
+          className="w-full h-full rounded-lg aspect-auto object-cover scale-100 hover:scale-105 transition-transform duration-700 cursor-pointer"
         />
       </div>
-     
 
-      <div className="h-[12%] lg:w-4/5 w-[95%] truncate font-[lato]  text-2xl font-semibold">
-        {fullname} <span className="text-sm">{gender}</span>
-      </div>
-      <div className="h-[9%] lg:w-4/5 w-[95%] font-[lato] font-semibold truncate ">
-        {qualification}
-      </div>
-      <div className="h-[8%] lg:w-4/5 w-[95%] font-semibold font-[lato] truncate">
-        {experience}+ years of experience
+      <div className="h-1/4 w-full flex flex-col ">
+        <div className="truncate font-[lato]  text-2xl font-semibold">
+          {fullname} <span className="text-sm">{gender}</span>
+        </div>
+        <div className="font-[lato] font-semibold truncate ">
+          {qualification}
+        </div>
+        <div className="font-semibold font-[lato] truncate">
+          {experience}+ years of experience
+        </div>
       </div>
     </div>
   );
