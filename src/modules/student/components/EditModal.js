@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Profile from "../../../resources/illustrations/student_dashboard/profile.svg";
+import getDate from "../../../utils/GetDate";
 
 const EditModal = ({ toggle }) => {
   const [Student, setStudent] = useState(
@@ -234,7 +235,9 @@ const EditModal = ({ toggle }) => {
                   onChange={(e) =>
                     setStudent({ ...Student, [e.target.name]: e.target.value })
                   }
-                  value={Student.dob}
+                  // value={Student.dob}
+                  value={getDate(Student.dob)}
+                  // value={"2023-1-11"}
                   type="date"
                   name="dob"
                   id="dob"

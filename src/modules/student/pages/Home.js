@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Profile from "../../../resources/illustrations/student_dashboard/profile.svg";
 import EditModal from "../components/EditModal";
+import getDate from "../../../utils/GetDate";
 
 const dptData = [
   { id: 101, course: "BCOM", language: "Gujarati" },
@@ -16,7 +17,6 @@ const Home = () => {
     JSON.parse(localStorage.getItem("studentInfo"))
   );
 
-
   return (
     <div className="z-0  relative min-h-screen py-16 w-full">
       {editModalToggle ? (
@@ -27,16 +27,14 @@ const Home = () => {
             <button
               onClick={() => setEditModalToggle(true)}
               className="absolute top-5 right-5"
-              title="Edit profile"
-            >
+              title="Edit profile">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
                 fill="black"
                 className="bi bi-pencil-square"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
                 <path
                   fillRule="evenodd"
@@ -84,8 +82,7 @@ const Home = () => {
               </h1>{" "}
               <a
                 href={`mailto:${Student.email}`}
-                className="font-light text-blue-600 py-10"
-              >
+                className="font-light text-blue-600 py-10">
                 {Student.email}
               </a>{" "}
               <p className="mt-8 text-gray-500">
@@ -212,7 +209,7 @@ const Home = () => {
                           DOB:
                         </div>
                         <div className="w-2/3 first-letter:capitalize break-words">
-                          {Student.dob.toString().slice(0, 10)}
+                          {getDate(Student.dob)}
                         </div>
                       </li>
                       <li className="flex">
@@ -359,8 +356,7 @@ const Home = () => {
               )}
               <button
                 onClick={() => setShowMore(!showMore)}
-                className="text-indigo-500 py-2 px-4  font-medium "
-              >
+                className="text-indigo-500 py-2 px-4  font-medium ">
                 {showMore ? "Hide" : "Show"} Details
               </button>
             </div>
