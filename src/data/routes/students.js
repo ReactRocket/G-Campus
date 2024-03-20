@@ -364,7 +364,6 @@ router.post("/emailverification", (req, res) => {
   }
 });
 
-
 // verification page
 // add faculty api
 
@@ -453,7 +452,7 @@ router.get("/coursewisestudents", (req, res) => {
   }
 });
 
-//  all students details 
+//  all students details
 router.get("/studentinfo", (req, res) => {
   let query =
     "select s.sid,concat(s.fname,' ',s.lname) as name,s.dob,s.gender,s.blood,concat(s.address,',',s.city,',',s.state) as address,s.phone,s.email,s.tenthSchool,s.tenthPassingYear,s.tenthPercentage,s.twelfthSchool,s.twelfthPassingYear,s.twelfthPercentage,d.deptName,c.class,s.profile from students s, departments d, classes c where s.deptId = d.deptId and s.classId = c.classId;";
@@ -522,6 +521,77 @@ router.get("/unverifiedstudent", (req, res) => {
       });
     }
   });
+});
+
+router.post("/payment", (req, res) => {
+  try {
+    let sid = getValue("sid", req.body, "Student Id");
+    if (!sid) {
+      res.json({
+        displayMessage: "Please enter a student id",
+        data: "",
+        isSuccess: false,
+      });
+    } else {
+      let query =
+        "insert into student_fees (classId,sid) values ((select classId from students where sid = " +
+        sid +
+        ")," +
+        sid +
+        ")";
+      pool.getConnection((err, connection) => {
+        connection.query(query, (err, data, fields) => {
+          if (err) {
+            connection.release();
+            res.json({ displayMessage: err, data: "", isSuccess: false });
+          } else {
+            res.json({ displayMessage: "", data: data, isSuccess: true });
+          }
+        });
+        connection.release();
+      });
+    }
+  } catch (error) {
+    res.json({
+      displayMessage: error.message,
+      data: "",
+      isSuccess: false,
+    });
+  }
+});
+
+router.post("/paymentinfo", (req, res) => {
+  try {
+    let sid = getValue("sid", req.body, "Student Id");
+    if (!sid) {
+      res.json({
+        displayMessage: "Please enter a student id",
+        data: "",
+        isSuccess: false,
+      });
+    } else {
+      let query =
+        "select class,s.deptId,fees, ifnull(f.status,'false') as fees_status from students s join classes c on s.classId = c.classId left join student_fees f on s.classId = f.classId where s.sid = " +
+        sid;
+      pool.getConnection((err, connection) => {
+        connection.query(query, (err, data, fields) => {
+          if (err) {
+            connection.release();
+            res.json({ displayMessage: err, data: "", isSuccess: false });
+          } else {
+            connection.release();
+            res.json({ displayMessage: "", data: data[0], isSuccess: true });
+          }
+        });
+      });
+    }
+  } catch (error) {
+    res.json({
+      displayMessage: error.message,
+      data: "",
+      isSuccess: false,
+    });
+  }
 });
 
 // router.post("/insertProfile", uploadImg, (req, res) => {
