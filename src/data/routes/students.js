@@ -364,9 +364,6 @@ router.post("/emailverification", (req, res) => {
   }
 });
 
-// verification page
-// add faculty api
-
 // student authentication
 router.post("/auth", (req, res) => {
   try {
@@ -523,6 +520,7 @@ router.get("/unverifiedstudent", (req, res) => {
   });
 });
 
+// make payment
 router.post("/payment", (req, res) => {
   try {
     let sid = getValue("sid", req.body, "Student Id");
@@ -560,6 +558,7 @@ router.post("/payment", (req, res) => {
   }
 });
 
+// fees info
 router.post("/paymentinfo", (req, res) => {
   try {
     let sid = getValue("sid", req.body, "Student Id");
@@ -593,38 +592,5 @@ router.post("/paymentinfo", (req, res) => {
     });
   }
 });
-
-// router.post("/insertProfile", uploadImg, (req, res) => {
-//   let imagePath = req.file.filename;
-//   // console.log();
-//   let query = "insert into temp (profile) values ('" + imagePath + "')";
-//   pool.getConnection((err, connection) => {
-//     connection.query(query, (err, data, fields) => {
-//       if (err) {
-//         connection.release();
-//         res.json({ displayMessage: err, data: "", isSuccess: false });
-//       } else {
-//         res.json({ displayMessage: "", data: data, isSuccess: true });
-//       }
-//     });
-//     connection.release();
-//   });
-//   // res.send(imagePath);
-// });
-
-// router.get("/getProfile", (req, res) => {
-//   let query = "select * from temp";
-//   pool.getConnection((err, connection) => {
-//     connection.query(query, (err, data, fields) => {
-//       if (err) {
-//         connection.release();
-//         res.json({ displayMessage: err, data: "", isSuccess: false });
-//       } else {
-//         res.json({ displayMessage: "", data: data, isSuccess: true });
-//       }
-//     });
-//     connection.release();
-//   });
-// });
 
 module.exports = router;
