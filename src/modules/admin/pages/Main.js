@@ -13,7 +13,7 @@ const Main = () => {
   const [departments, setDepartments] = useState([]);
   const [feedbacks, setFeedbacks] = useState([]);
   const [chartData, setChartData] = useState([4, 1, 1]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -128,34 +128,39 @@ const Main = () => {
           </div>
         </div>
         <div className="w-[30%] h-full bg-gray-100 px-5 flex flex-col justify-evenly items-center rounded-md shadow-md shadow-gray-300">
-          <h1 className="w-full text-xl">Students</h1>
+          <h1 className="w-full text-xl">Department wise Students</h1>
           <Doughnut data={data} className="" />
         </div>
       </section>
 
       {/* head of the departmenst */}
-      <section className="mt-8 h-96 bg-slate-500">
-        <h1 className="w-full px-4 pt-2 text-xl font-semibold h-[10%]">
+      <section className="mt-8 h-96 bg-gray-100 rounded-lg shadow-md shadow-gray-300">
+        <h1 className="w-full px-4 pt-2 text-2xl font-semibold h-[10%]">
           Heads of the Department
         </h1>
         <div className="flex justify-around items-center h-[90%]">
           {departments?.principal?.map((faculty) => {
             return (
-              <div className="w-1/5 h-5/6 bg-red-400">
-                
-                {/**
-                |--------------------------------------------------
-                | design head of department cards
-                |--------------------------------------------------
-                **/}
-
-                <div className="h-3/5 w-full">
+              <div className="w-1/5 h-5/6 bg-slate-200 rounded-lg shadow-md hover:scale-105 transition-all duration-1000">
+                <div className="h-[70%] w-full">
                   <img
                     src={require(`../../../images/${faculty.profile}`)}
                     // src={user}
                     alt="faculty profle"
-                    className="h-full w-full object-contain m-auto"
+                    className="h-full object-center m-auto rounded-md"
                   />
+                </div>
+                <div className="text-sm h-[8%] w-5/6 m-auto">
+                  {faculty.experience}+ Years of experience
+                </div>
+                <div className="text-xl font-semibold h-[12%] w-5/6 m-auto truncate">
+                  {faculty.fullname}
+                  <span className="text-sm ml-1 font-medium ">
+                    ({faculty.qualification})
+                  </span>
+                </div>
+                <div className="h-[10%] w-5/6 m-auto">
+                  Department: {DepartmentShortener(faculty.deptId)}
                 </div>
               </div>
             );
