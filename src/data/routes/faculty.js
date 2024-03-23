@@ -6,13 +6,14 @@ const {
   //   isPhone,
   // isString,
   isBlank,
+  getValue,
 } = require("../validate/validation");
 const pool = require("../connection");
 
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "src/images");
+    cb(null, path.join(__dirname, "..", "..", "images"));
   },
   filename: function (req, file, cb) {
     cb(null, "faculty-" + Date.now() + path.extname(file.originalname));
@@ -52,12 +53,16 @@ router.get("/allfaculties", async (req, res) => {
 
 router.post("/insert", uploadImg, (req, res) => {
   try {
-    let fname = req.body.fname;
-    let lname = req.body.lname;
-    let gender = req.body.gender;
-    let qualification = req.body.qualification;
-    let experience = req.body.experience;
-    let imagePath = req.file.filename;
+    let fname = getValue("fname", req.body, "First Name");
+    let lname = getValue("lname", req.body, "Last Name");
+    let gender = getValue("gender", req.body, "Gender");
+    let qualification = getValue("qualification", req.body, "Qualification");
+    let experience = getValue("experience", req.body, "Experience");
+    let password = getValue("password", req.body, "Password");
+    // if (req.file) {
+    //   res.json("geeting files");
+    // }
+    let filename = getValue("filename", req.file, "Profile pic");
 
     if (isBlank(fname)) {
       res.json({
@@ -89,7 +94,13 @@ router.post("/insert", uploadImg, (req, res) => {
         data: "",
         isSuccess: false,
       });
-    } else if (isBlank(imagePath)) {
+    } else if (isBlank(password)) {
+      res.json({
+        displayMessage: "Please enter a password",
+        data: "",
+        isSuccess: false,
+      });
+    } else if (isBlank(filename)) {
       res.json({
         displayMessage: "Please upload a image",
         data: "",
@@ -97,7 +108,7 @@ router.post("/insert", uploadImg, (req, res) => {
       });
     } else {
       let query =
-        "insert into faculties (fname,lname,gender,qualification,experience,profile) value ('" +
+        "insert into faculties (fname,lname,gender,qualification,experience,profile,password) value ('" +
         fname +
         "','" +
         lname +
@@ -108,7 +119,9 @@ router.post("/insert", uploadImg, (req, res) => {
         "','" +
         experience +
         "','" +
-        imagePath +
+        filename +
+        "','" +
+        password +
         "')";
 
       pool.getConnection((err, connection) => {
@@ -127,7 +140,7 @@ router.post("/insert", uploadImg, (req, res) => {
     }
   } catch (error) {
     res.json({
-      displayMessage: "something went wrong, try again some time later!",
+      displayMessage: error.message,
       data: "",
       isSuccess: false,
     });

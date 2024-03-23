@@ -59,17 +59,11 @@ export function validateEmail(formData) {
 }
 
 export function isBlank(string) {
-  if (
-    string === "" ||
-    string === null ||
-    string === "default" ||
-    string.length < 2
-  ) {
+  if (string === "" || string === null || string === "default") {
     return true;
   } else {
     return false;
   }
 }
-
 
 module.export = { validateForm, validatePhone, validateEmail, isBlank };

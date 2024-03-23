@@ -5,7 +5,6 @@ import Loader from "./Loader";
 import CountUp from "react-countup/";
 import { Doughnut } from "react-chartjs-2";
 import DepartmentShortener from "../../../utils/Shortener";
-import user from "../../../resources/images/user.png";
 
 const Main = () => {
   const [Students, setStudents] = useState({});
