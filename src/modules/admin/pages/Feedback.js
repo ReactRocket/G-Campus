@@ -87,7 +87,8 @@ const Feedback = () => {
         {Feedbacks.length > 0 && (
           <button
             className="lg:w-[10%] md:w-1/5 w-1/4 rounded-lg shadow hover:bg-blue-500 cursor-pointer scale-90 hover:scale-95 transition-all duration-1000 bg-blue-600 text-white py-2 px-4 font-medium"
-            onClick={handleClearAll}>
+            onClick={handleClearAll}
+          >
             Clear All
           </button>
         )}
@@ -99,7 +100,8 @@ const Feedback = () => {
               return (
                 <div
                   className="h-16 bg-white rounded-lg shadow hover:bg-blue-100 cursor-pointer scale-90 hover:scale-95 transition-all duration-1000 flex"
-                  key={i}>
+                  key={i}
+                >
                   <div className="lg:w-[95%] md:w-[90%]  w-[85%]">
                     <div className="h-1/2 lg:pl-4 pl-2 font-semibold pt-1">
                       {feedback.fullname} -{" "}
@@ -111,10 +113,11 @@ const Feedback = () => {
                   </div>
                   <div className="lg:w-[5%]  md:w-[10%] w-[15%]">
                     <button
-                      className="w-full h-full flex justify-center items-center"
+                      className="w-full h-full flex  justify-center items-center"
                       id={feedback.srno}
                       value={feedback.srno}
-                      onClick={handleClick}>
+                      onClick={handleClick}
+                    >
                       <img
                         src={deleteImage}
                         alt="delete svg icon"
