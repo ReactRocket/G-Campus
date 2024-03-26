@@ -89,7 +89,7 @@ const Student = () => {
       </section>
 
       {/* verification route section */}
-      <section className="border mt-4 flex justify-between items-center p-2 hover:bg-blue-300 bg-blue-200 rounded-md shadow-lg">
+      <section className="border mt-4 flex justify-between  items-center p-2 pl-4 bg-gray-200 rounded-md shadow-lg">
         <h1 className="capitalize lg:text-base text-xs">
           <span className="font-bold">
             {Students?.studentcount?.unverified ?? 0}{" "}
@@ -99,7 +99,7 @@ const Student = () => {
           </span>
         </h1>
         <button
-          className="bg-sky-700 lg:w-[6%] md:w-[10%] w-[12%] py-1 lg:text-lg text-xs lg:rounded-md rounded text-white"
+          className="bg-blue-700 lg:w-[6%] md:w-[10%] w-[12%] py-1 lg:text-lg text-xs lg:rounded-md rounded text-white"
           // {Students?.studentcount?.unverified <= 0 && "disabled"}
           onClick={handleClick}>
           Verify
