@@ -41,7 +41,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                 <img className="w-full" src={Logo2} alt="logo" />
               </Link>
 
-                {/* <!-- Mobile view --> */}
+              {/* <!-- Mobile view --> */}
 
               <div className="flex items-center justify-end w-3/4  -mr-2 lg:hidden">
                 <div className="flex ">
@@ -67,7 +67,8 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                         {NavLink.map((navlink, i) => {
                           if (navlink.name === "More") {
                             return (
-                              <details key={i}
+                              <details
+                                key={i}
                                 className="mx-4 relative"
                                 open={MoreOptionToggle}
                               >
@@ -113,7 +114,8 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                           Object.hasOwnProperty.call(val, key)
                                         ) {
                                           return (
-                                            <li key={i}
+                                            <li
+                                              key={i}
                                               onClick={() => {
                                                 setMoreOptionToggle(
                                                   !MoreOptionToggle
@@ -121,10 +123,10 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                                 setIsMenuOpen(!isMenuOpen);
                                               }}
                                               className={
-                                                key === "Student Corner" ?
-                                                "border-b-2 pb-2" : ""
+                                                key === "Student Corner"
+                                                  ? "border-b-2 pb-2"
+                                                  : ""
                                               }
-                                             
                                             >
                                               <Link
                                                 key={i}
@@ -141,7 +143,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                           );
                                         }
                                       }
-                                    },[])}
+                                    }, [])}
                                   </ul>
                                 </div>
                               </details>
@@ -169,35 +171,67 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                       </div>
                       <div className="text-center pt-5 w-[90%] ">
                         <div className="h-full  flex justify-between items-center w-full rounded-full shadow">
-                          <Link
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            to="/login"
-                            className={`w-1/2 inline-flex items-center px-4 py-2   ${
-                              path === "/login"
-                                ? "bg-blue-500 text-white font-bold"
-                                : "bg-white text-blue-500 font-bold"
-                            } border border-transparent rounded-full transition-all duration-500 ease-in-out  cursor-pointer font-base  `}
-                          >
-                            Sign In
-                          </Link>
-                          <span className="text-blue-500 font-bold">
-                            {(path !== "/login" && path !== "/signup")
-                              ? "|"
-                              : ""}
-                          </span>
-                          <Link
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            to="/signup"
-                            className={`w-1/2 inline-flex items-center px-4 py-2 text-base 
+                          {sessionStorage.getItem("admin") !== null ? (
+                            <Link
+                              onClick={() => setIsMenuOpen(!isMenuOpen)}
+                              to="/admin"
+                              className={`w-full  items-center px-4 py-2 text-base 
+                ${
+                  path === "/admin"
+                    ? "bg-blue-500 text-white font-bold"
+                    : "bg-white text-blue-500 font-bold"
+                }
+                border border-transparent transition-all duration-500 ease-linear rounded-full cursor-pointer font-base  `}
+                            >
+                              Dashboard
+                            </Link>
+                          ) : sessionStorage.getItem("loggedIn") !== null ? (
+                            <Link
+                              onClick={() => setIsMenuOpen(!isMenuOpen)}
+                              to="/student"
+                              className={`w-full  items-center px-4 py-2 text-base 
+               ${
+                 path === "/student"
+                   ? "bg-blue-500 text-white font-bold"
+                   : "bg-white text-blue-500 font-bold"
+               }
+               border border-transparent transition-all duration-500 ease-linear rounded-full cursor-pointer font-base  `}
+                            >
+                              Dashboard
+                            </Link>
+                          ) : (
+                            <>
+                              <Link
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                to="/login"
+                                className={`w-1/2 inline-flex items-center px-4 py-2   ${
+                                  path === "/login"
+                                    ? "bg-blue-500 text-white font-bold"
+                                    : "bg-white text-blue-500 font-bold"
+                                } border border-transparent rounded-full transition-all duration-500 ease-in-out  cursor-pointer font-base  `}
+                              >
+                                Sign In
+                              </Link>
+                              <span className="text-blue-500 font-bold">
+                                {path !== "/login" && path !== "/signup"
+                                  ? "|"
+                                  : ""}
+                              </span>
+                              <Link
+                                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                                to="/signup"
+                                className={`w-1/2 inline-flex items-center px-4 py-2 text-base 
                 ${
                   path === "/signup"
                     ? "bg-blue-500 text-white font-bold"
                     : "bg-white text-blue-500 font-bold"
                 }
                 border border-transparent transition-all duration-500 ease-linear rounded-full cursor-pointer font-base  `}
-                          >
-                            Sign up
-                          </Link>
+                              >
+                                Sign up
+                              </Link>
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -248,7 +282,11 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
             {NavLink.map((navlink, i) => {
               if (navlink.name === "More") {
                 return (
-                  <details key={i} className="mx-4 relative" open={MoreOptionToggle}>
+                  <details
+                    key={i}
+                    className="mx-4 relative"
+                    open={MoreOptionToggle}
+                  >
                     <summary className=" relative flex justify-center items-center gap-2 cursor-pointer ">
                       <span className="text-center  leading-loose text-gray-500  hover:border-b-2 hover:border-blue-500 hover:transition-colors duration-300 ease-in-out border-b-2 border-transparent">
                         More
@@ -289,15 +327,16 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                           for (const key in val) {
                             if (Object.hasOwnProperty.call(val, key)) {
                               return (
-                                <li key={i}
+                                <li
+                                  key={i}
                                   onClick={() => {
                                     setMoreOptionToggle(!MoreOptionToggle);
                                   }}
                                   className={
-                                    key === "Student Corner" ?
-                                    "border-b-2 pb-2":""
+                                    key === "Student Corner"
+                                      ? "border-b-2 pb-2"
+                                      : ""
                                   }
-                                  
                                 >
                                   <Link
                                     key={i}
@@ -314,7 +353,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                               );
                             }
                           }
-                        },[])}
+                        }, [])}
                       </ul>
                     </div>
                   </details>
@@ -341,31 +380,57 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
           </div>
           <div className="hidden lg:absolute lg:flex lg:items-center lg:justify-end lg:inset-y-0 lg:right-0">
             <div className=" flex justify-center items-center rounded-full shadow">
-              <Link
-                to="/login"
-                className={`inline-flex items-center px-4 py-2 text-base ${
-                  path === "/login"
-                    ? "bg-blue-500 text-white font-bold"
-                    : "bg-white text-blue-500 font-bold"
-                } border border-transparent rounded-full transition-all duration-500 ease-in-out  cursor-pointer font-base  `}
-              >
-                Sign In
-              </Link>
-              <span className="text-blue-500 font-bold">
-                {(path !== "/login" && path !== "/signup" )? "|" : ""}
-              </span>
-              <Link
-                to="/signup"
-                className={`inline-flex items-center px-4 py-2 text-base 
+              {sessionStorage.getItem("admin") !== null ? (
+                <Link
+                  to="/admin"
+                  className={`inline-flex items-center px-4 py-2 text-base ${
+                    path === "/admin"
+                      ? "bg-blue-500 text-white font-bold"
+                      : "bg-white text-blue-500 font-bold"
+                  } border border-transparent rounded-full transition-all duration-500 ease-in-out  cursor-pointer font-base  `}
+                >
+                  Dashboard
+                </Link>
+              ) : sessionStorage.getItem("loggedIn") !== null ? (
+                <Link
+                  to="/student"
+                  className={`inline-flex items-center px-4 py-2 text-base ${
+                    path === "/student"
+                      ? "bg-blue-500 text-white font-bold"
+                      : "bg-white text-blue-500 font-bold"
+                  } border border-transparent rounded-full transition-all duration-500 ease-in-out  cursor-pointer font-base  `}
+                >
+                  Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className={`inline-flex items-center px-4 py-2 text-base ${
+                      path === "/login"
+                        ? "bg-blue-500 text-white font-bold"
+                        : "bg-white text-blue-500 font-bold"
+                    } border border-transparent rounded-full transition-all duration-500 ease-in-out  cursor-pointer font-base  `}
+                  >
+                    Sign In
+                  </Link>
+                  <span className="text-blue-500 font-bold">
+                    {path !== "/login" && path !== "/signup" ? "|" : ""}
+                  </span>
+                  <Link
+                    to="/signup"
+                    className={`inline-flex items-center px-4 py-2 text-base 
                 ${
                   path === "/signup"
                     ? "bg-blue-500 text-white font-bold"
                     : "bg-white text-blue-500 font-bold"
                 }
                 border border-transparent transition-all duration-500 ease-linear rounded-full cursor-pointer font-base  `}
-              >
-                Sign up
-              </Link>
+                  >
+                    Sign up
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </nav>
