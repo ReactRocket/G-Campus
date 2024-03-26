@@ -88,10 +88,10 @@ export default function Verification() {
                   />
                 </div>
 
-                <div className="flex justify-between w-52 py-2 mt-5 ">
-                  <button className="rounded-md bg-blue-500 hover:shadow-md text-white px-4    hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
+                <div className="flex justify-center gap-5 w-52 py-2 mt-5 ">
+                  <p className="rounded-md flex justify-center items-center cursor-pointer bg-blue-500 hover:shadow-md  text-white px-4    hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
                     Verify
-                  </button>
+                  </p>
                   <button className="rounded-md bg-red-500 hover:shadow-md text-white px-4 mr-4 py-2 hover:bg-red-600 focus:outline-none focus:ring focus:ring-green-400 focus:ring-opacity-50">
                     Cancle
                   </button>
