@@ -25,7 +25,7 @@ function BasicDetail({ display, handleNext, formData, setFormData }) {
       <div className="lg:w-1/2 w-full justify-center items-center flex">
         <img
           src={CollegeImage}
-          className="rounded w-[80%] h-[95%]"
+          className="rounded w-[80%] h-[70%]"
           alt="college side view"
         />
       </div>
