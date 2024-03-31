@@ -593,4 +593,53 @@ router.post("/paymentinfo", (req, res) => {
   }
 });
 
+router.post("/forgetpassword", (req, res) => {
+  try {
+    let email = getValue("email", req.body, "Email Address");
+    let npassword = getValue("npassword", req.body, "New Password");
+
+    if (!isEmail(email)) {
+      res.json({
+        displayMessage: "Please Provide a valid email",
+        data: "",
+        isSuccess: false,
+      });
+    } else if (isBlank(npassword)) {
+      res.json({
+        displayMessage: "Please Provide new password",
+        data: "",
+        isSuccess: false,
+      });
+    } else {
+      let query =
+        "update students set password = '" +
+        npassword +
+        "' where email = '" +
+        email +
+        "';";
+      pool.getConnection((err, connection) => {
+        connection.query(query, (err, data, fields) => {
+          if (err) {
+            connection.release();
+            res.json({ displayMessage: err, data: "", isSuccess: false });
+          } else {
+            res.json({
+              displayMessage: "",
+              data: data.affectedRows,
+              isSuccess: true,
+            });
+          }
+        });
+        connection.release();
+      });
+    }
+  } catch (error) {
+    res.json({
+      displayMessage: error.message,
+      data: "",
+      isSuccess: false,
+    });
+  }
+});
+
 module.exports = router;
