@@ -124,13 +124,13 @@ const Student = () => {
           {Students?.students.map((student) => {
             return (
               <li
-                className="px-4 py-2 m-auto flex justify-center  border-b cursor-pointer hover:bg-blue-50"
+                className="px-4 py-2 m-auto flex justify-center gap-4  border-b cursor-pointer hover:bg-blue-50 "
                 key={student?.sid}>
-                <div className="w-1/12 text-center s">
+                <div className="w-1/12 flex justify-center ">
                   <img
                     src={require(`../../../images/${student.profile}`)}
                     alt="student profile"
-                    className="h-12 w-12 rounded-full cursor-pointer"
+                    className="h-12 w-10 rounded-full cursor-pointer"
                   />
                 </div>
                 <div className="capitalize w-1/6 text-center truncate">
@@ -142,10 +142,10 @@ const Student = () => {
                 <div className="capitalize w-1/6 text-center truncate">
                   {student?.class + DepartmentShortener(student?.deptName)}
                 </div>
-                <div className="capitalize w-1/5 text-center truncate">
+                <div className="capitalize  w-1/5 text-center truncate">
                   {student?.email}
                 </div>
-                <div className=" w-1/6 text-center truncate">
+                <div className="capitalize  w-1/6 text-center truncate ">
                   {student?.phone}
                 </div>
               </li>
@@ -184,7 +184,7 @@ const Student = () => {
                 width="16"
                 height="16"
                 fill="currentColor"
-                className="bi bi-chevron-right hover:bg-indigo-400 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
+                className="bi bi-chevron-right hover:bg-blue-50 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -212,7 +212,7 @@ const Student = () => {
                 width="16"
                 height="16"
                 fill="currentColor"
-                className="bi bi-chevron-right hover:bg-indigo-200 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
+                className="bi bi-chevron-right hover:bg-indigo-50 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -240,7 +240,7 @@ const Student = () => {
                 width="16"
                 height="16"
                 fill="currentColor"
-                className="bi bi-chevron-right hover:bg-indigo-600 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
+                className="bi bi-chevron-right hover:bg-white transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
                 viewBox="0 0 16 16"
               >
                 <path
@@ -268,7 +268,7 @@ const Student = () => {
                 width="16"
                 height="16"
                 fill="currentColor"
-                className="bi bi-chevron-right hover:bg-indigo-600 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
+                className="bi bi-chevron-right hover:bg-white transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
                 viewBox="0 0 16 16"
               >
                 <path

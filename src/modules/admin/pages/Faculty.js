@@ -35,11 +35,11 @@ const Faculty = () => {
   return isLoading ? (
     <Loader />
   ) : addModalToggle === true ? (
-    <div className="relative h-full w-full overflow-hidden">
+    <div className="relative h-full  w-full overflow-hidden">
       <AddFacultyModal toggle={setAddModalToggle} />
     </div>
   ) : (
-    <div className="h-auto md:w-[95%] sm:w-[60%] w-[70%]  m-auto my-4">
+    <div className="h-auto md:w-[95%]  sm:w-[60%] w-[70%]  m-auto my-4">
       <nav className="flex">
         <h1 className="lg:w-[93%] md:w-[85%] w-3/4 text-2xl font-semibold font-sans">
           Faculty
@@ -60,10 +60,10 @@ const Faculty = () => {
           <span className="text-lg">Add</span>
         </button>
       </nav>
-      <section className="min-h-full mt-5 grid gap-10  lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
+      <section className="min-h-full bg-slate-100 rounded-md p-9 mt-5  grid gap-10  lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
         {Faculties.length > 0
           ? Faculties.map((faculty, i) => {
-              return <Card faculty={faculty} key={i} />;
+              return <Card faculty={faculty} key={i}  />;
             })
           : `No Faculties`}
       </section>

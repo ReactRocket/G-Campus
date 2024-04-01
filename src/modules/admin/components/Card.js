@@ -5,7 +5,7 @@ const Card = ({ faculty }) => {
   const { fullname, gender, qualification, experience, profile } = faculty;
   return (
     <>
-      <div className="group relative rounded-3xl  space-y-6 overflow-hidden">
+      <div className="group cursor-pointer relative rounded-3xl  space-y-6 overflow-hidden">
         <img
           className="mx-auto h-[26rem] w-full object-cover object-top ransition duration-500 group-hover:scale-105 group-hover:grayscale-0"
           src={
