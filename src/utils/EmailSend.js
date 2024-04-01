@@ -1,7 +1,9 @@
 import emailjs from "emailjs-com";
+import generateRandomNumber from "../utils/generateRandomNumber";
+// const generateRandomNumber = require("../utils/generateRandomNumber");
 // const emailjs = require("emailjs-com");
 
-export const sendEmail = (emailData) => {
+export function sendEmail(emailData) {
   // Replace these values with your EmailJS template information
   const templateId = "template_p0lehsn";
   const userId = "YRZEQC3wYqOWMbasL";
@@ -28,4 +30,25 @@ export const sendEmail = (emailData) => {
       console.error(error.message);
       // console.log(error.message);
     });
-};
+}
+
+export async function sendOTP(emailData) {
+  try {
+    const templateId = "template_9l50ndo";
+    const userId = "RFTXW8UXJ6O8uxDia";
+
+    const data = {
+      to_email: emailData.to_email,
+      message: generateRandomNumber(6).toString(),
+    };
+
+    await emailjs.send("service_ddpm0yn", templateId, data, userId);
+    return data.message;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+// console.log(sendOTP("kishoresunchu412@gmail.com"));
+
+module.export = { sendEmail, sendOTP };

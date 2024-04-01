@@ -111,7 +111,7 @@ function PersonalDetail({
         emaildata
       );
       let responedata = await respone.data;
-      console.log(responedata);
+      // console.log(responedata);
       if (!responedata.data) {
         alert(responedata.displayMessage);
       } else {
