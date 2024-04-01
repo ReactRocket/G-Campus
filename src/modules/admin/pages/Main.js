@@ -146,23 +146,27 @@ const Main = () => {
                   alt="faculty profle"
                   className="mx-auto h-[26rem] w-full object-cover object-top ransition duration-500 group-hover:scale-105 group-hover:grayscale-0"
                 />
-                <div className=" absolute cursor-pointer bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
-                  <div>
+                <div className=" absolute cursor-pointer bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-[114px]  transition duration-300 ease-in-out group-hover:translate-y-0">
+                  <div >
                     <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
                       {faculty.fullname}
                     </h4>
                     <span className="block text-base text-gray-500">
                       Department: {DepartmentShortener(faculty.deptId)}
                     </span>
+                  
                   </div>
-                  <p className="mt-8 text-xs text-gray-300 dark:text-gray-600">
+                  
+                  <p className="mt-2 text-base text-gray-300 dark:text-gray-600">
                     <span>Introducing {faculty.fullname}, </span>a highly
                     experienced {faculty.experience} years
-                    <span className="text-sm ml-2  ">
+                    <span className="text-base ml-2  ">
                       and professional with over {faculty.qualification} in the
                       field.
                     </span>
+
                   </p>
+
                 </div>
               </div>
             );
