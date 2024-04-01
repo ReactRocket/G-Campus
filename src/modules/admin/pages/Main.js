@@ -91,7 +91,7 @@ const Main = () => {
 
       {/* faculty and student display */}
       <section className="mt-8 h-[450px] flex justify-between items-center px-1 py-5">
-        <div className="w-[65%] h-full bg-gray-100 px-5 rounded-md shadow-md shadow-gray-300">
+        <div className="w-[65%]   h-full bg-gray-100 px-5 rounded-md shadow-md shadow-gray-300">
           <h1 className="text-lg px-2 pt-2 font-medium">Faculties</h1>
           <div className="w-full h-[85%] mt-2">
             <div className="h-[10%] text-lg border-b flex justify-around items-center font-medium text-center">
@@ -133,37 +133,34 @@ const Main = () => {
       </section>
 
       {/* head of the departmenst */}
-      <section className="mt-8 h-96 bg-gray-100 rounded-lg  shadow-md shadow-gray-300">
+      <section className="mt-8 min-h-96   bg-gray-100 rounded-lg  shadow-md shadow-gray-300">
         <h1 className="w-full px-4 pt-2 text-2xl font-semibold h-[10%]">
           Heads of the Department
         </h1>
-        <div className="grid grid-cols-3 gap-5 place-content-center min-h-[50vh] py-5  ">
+        <div className="grid grid-cols-4    gap-5 place-content-center min-h-[50vh] py-5 p-10 ">
           {departments?.principal?.map((faculty) => {
             return (
-              <div className="group relative  rounded-3xl h-full  space-y-6 overflow-hidden">
+              <div className="group relative cursor-pointer  rounded-3xl h-full  space-y-6 overflow-hidden">
                 <img
                   src={require(`../../../images/${faculty.profile}`)}
                   alt="faculty profle"
                   className="mx-auto h-[26rem] w-full object-cover object-top ransition duration-500 group-hover:scale-105 group-hover:grayscale-0"
                 />
-                <div className="absolute bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
+                <div className=" absolute cursor-pointer bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-24 transition duration-300 ease-in-out group-hover:translate-y-0">
                   <div>
                     <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
-                      {faculty.fullname},
+                      {faculty.fullname}
                     </h4>
-                    <span className="block text-sm text-gray-500">
+                    <span className="block text-base text-gray-500">
                       Department: {DepartmentShortener(faculty.deptId)}
                     </span>
                   </div>
-                  <p className="mt-8 text-base text-gray-300 dark:text-gray-600">
-                    <span>
-                    Introducing {faculty.fullname},{" "}
-                      
-                    </span>
-                    a highly experienced {faculty.experience} years
-                    <span className="text-lg ml-1  ">
-                      and  
-                        professional with over {faculty.qualification} in the field.
+                  <p className="mt-8 text-xs text-gray-300 dark:text-gray-600">
+                    <span>Introducing {faculty.fullname}, </span>a highly
+                    experienced {faculty.experience} years
+                    <span className="text-sm ml-2  ">
+                      and professional with over {faculty.qualification} in the
+                      field.
                     </span>
                   </p>
                 </div>
