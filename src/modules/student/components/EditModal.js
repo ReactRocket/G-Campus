@@ -1,34 +1,58 @@
 import React, { useState } from "react";
-import Profile from "../../../resources/illustrations/student_dashboard/profile.svg";
-import getDate from "../../../utils/GetDate";
+import DepartmentShortener from "../../../utils/Shortener";
+import axios from "axios";
+import { studentLoader } from "../pages/Dashboard";
 
 const EditModal = ({ toggle }) => {
   const [Student, setStudent] = useState(
     JSON.parse(localStorage.getItem("studentInfo"))
   );
+  const [imgUrl, setImgUrl] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let student = { ...Student };
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      let formData = new FormData(e.target);
+      let formObject = Object.fromEntries(formData.entries());
+      console.log(formObject);
+      await axios
+        .post("http://localhost:5000/students/updatedetails", formObject, {
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then((res) => {
+          if (res.data.isSuccess) {
+            studentLoader().then((response) => {
+              if (response.isSuccess) {
+                localStorage.setItem(
+                  "studentInfo",
+                  JSON.stringify(response.data[0])
+                );
+              }
+              toggle(false);
+            });
+          } else {
+            alert("something went wrong! please try again some time late.");
+          }
+        });
+    } catch (error) {
+      console.error(error);
+    }
   };
   return (
     <div className="z-10  absolute max-h-screen py-10 w-full top-0 left-0 px-10 overflow-y-scroll">
       <form
         onSubmit={handleSubmit}
-        className="h-full w-full  relative border rounded-xl px-10  "
-      >
+        className="h-full w-full  relative border rounded-xl px-10  ">
         <button
           onClick={() => toggle(false)}
-          className="absolute top-3 right-3"
-        >
+          className="absolute top-3 right-3">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             fill="currentColor"
             className="bi bi-x-lg"
-            viewBox="0 0 16 16"
-          >
+            viewBox="0 0 16 16">
             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
           </svg>
         </button>
@@ -40,9 +64,12 @@ const EditModal = ({ toggle }) => {
                   <div className="w-48 h-48 bg-indigo-100 mx-auto rounded-full border border-gray-900   flex items-center justify-center text-indigo-500 scale-100 hover:scale-105 cursor-pointer transition-transform duration-1000">
                     <img
                       src={
-                        Student.profile
+                        imgUrl === null
                           ? require(`../../../images/${Student.profile}`)
-                          : Profile
+                          : imgUrl
+                        // Student.profile
+                        //   ? require(`../../../images/${Student.profile}`)
+                        //   : Profile
                       }
                       alt={`${Student.fname} \n profile`}
                       className="w-full h-full m-auto rounded-full object-cover  "
@@ -50,22 +77,21 @@ const EditModal = ({ toggle }) => {
                   </div>{" "}
                   <input
                     onChange={(e) =>
-                      setStudent({
-                        ...Student,
-                        [e.target.name]: e.target.value,
-                      })
+                      setImgUrl(URL.createObjectURL(e.target.files[0]))
                     }
                     type="file"
-                    hidden
-                    name="profile"
-                    id="profile"
+                    name="profilePic"
+                    id="profilePic"
+                    accept="image/png, image/gif, image/jpeg"
+                    className="hidden"
                   />
                   <button
-                    onClick={() => document.getElementById("profile").click()}
+                    onClick={() =>
+                      document.getElementById("profilePic").click()
+                    }
                     id="profile"
                     type="button"
-                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                  >
+                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                     Change
                   </button>
                 </div>
@@ -74,14 +100,14 @@ const EditModal = ({ toggle }) => {
                   <div className="text-center">
                     {" "}
                     <p className="font-bold text-gray-700 text-xl">
-                      {Student.classId || 0}
+                      {Student.class || 0}
                     </p>{" "}
                     <p className="text-gray-400">Class</p>{" "}
                   </div>{" "}
                   <div className="text-center">
                     {" "}
                     <p className="font-bold text-gray-700 text-xl">
-                      {Student.deptId || 0}
+                      {DepartmentShortener(Student.deptId) || 0}
                     </p>{" "}
                     <p className="text-gray-400">Dept</p>{" "}
                   </div>{" "}
@@ -106,9 +132,9 @@ const EditModal = ({ toggle }) => {
               You can change only the following fields.
             </p>
 
-            <div className="lg:grid grid-cols-3 gap-x-6 gap-y-4 lg:mt-2 p-2 w-full flex flex-col justify-center items-center">
+            <div className="lg:grid grid-cols-2 gap-x-6 gap-y-4 lg:mt-2 p-2 w-full flex flex-col justify-center items-center">
               {/* first name */}
-              <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
+              {/* <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
                 <label htmlFor="fname" className="block">
                   First Name
                 </label>
@@ -121,13 +147,12 @@ const EditModal = ({ toggle }) => {
                   name="fname"
                   id="fname"
                   display-message="First Name"
-                  // onChange={handleChange}
                   placeholder="First Name"
                   className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-grey-200 focus:bg-gray-200"
                 />
-              </div>
+              </div> */}
               {/* middle name */}
-              <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
+              {/* <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
                 <label htmlFor="mname" className="block">
                   Middle Name
                 </label>
@@ -140,13 +165,12 @@ const EditModal = ({ toggle }) => {
                   id="mname"
                   name="mname"
                   display-message="Middle Name"
-                  // onChange={handleChange}
                   placeholder="Middle Name"
                   className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-grey-200 focus:bg-gray-200"
                 />
-              </div>
+              </div> */}
               {/* last name */}
-              <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
+              {/* <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
                 <label htmlFor="lname" className="block">
                   Last Name
                 </label>
@@ -159,13 +183,12 @@ const EditModal = ({ toggle }) => {
                   name="lname"
                   id="lname"
                   display-message="Last Name"
-                  // onChange={handleChange}
                   placeholder="Last Name"
                   className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full border-2 border-grey-200 focus:bg-gray-200"
                 />
-              </div>
+              </div> */}
               {/* email address */}
-              <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
+              {/* <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
                 <label htmlFor="email" className="block">
                   Email
                 </label>
@@ -179,11 +202,11 @@ const EditModal = ({ toggle }) => {
                   name="email"
                   display-message="Email Address"
                   //   onBlur={handleEmail}
-                  //   // onChange={handleChange}
+
                   placeholder="Email Address"
                   className="text-md p-2 rounded-md outline-none lg:w-[97%] w-full border-2 border-grey-200 focus:bg-gray-200"
                 />
-              </div>
+              </div> */}
               {/* password */}
               <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
                 <label htmlFor="Password" className="block">
@@ -199,13 +222,14 @@ const EditModal = ({ toggle }) => {
                   name="password"
                   display-message="Password "
                   //   onBlur={handlePassword}
-                  //   // onChange={handleChange}
+
                   placeholder="Password "
                   className="text-md p-2 rounded-md outline-none lg:w-[97%] w-full border-2 border-grey-200 focus:bg-gray-200"
                 />
               </div>
+              <input type="hidden" name="sid" id="sid" value={Student.sid} />
               {/* gender */}
-              <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
+              {/* <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
                 <label htmlFor="gender" className="block">
                   Gender
                 </label>
@@ -217,17 +241,15 @@ const EditModal = ({ toggle }) => {
                   id="gender"
                   display-message="Gender"
                   value={Student.gender}
-                  // onChange={handleChange}
-                  className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full appearance-none border-2 border-grey-200 focus:bg-gray-200"
-                >
+                  className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full appearance-none border-2 border-grey-200 focus:bg-gray-200">
                   <option value="default">--select gender--</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
                 </select>
-              </div>
+              </div> */}
               {/* date of birth */}
-              <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
+              {/* <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
                 <label htmlFor="dob" className="block">
                   DOB
                 </label>
@@ -235,33 +257,28 @@ const EditModal = ({ toggle }) => {
                   onChange={(e) =>
                     setStudent({ ...Student, [e.target.name]: e.target.value })
                   }
-                  // value={Student.dob}
                   value={getDate(Student.dob)}
-                  // value={"2023-1-11"}
                   type="date"
                   name="dob"
                   id="dob"
                   display-message="Date Of Birth"
-                  // onChange={handleChange}
                   className="text-md p-1.5 rounded-md outline-none lg:w-[95%] w-full appearance-none uppercase border-2 border-grey-200 focus:bg-gray-200"
                 />
-              </div>
+              </div> */}
               {/* blood group */}
-              <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
+              {/* <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
                 <label htmlFor="blood" className="block">
                   Blood Group
                 </label>
                 <select
-                 onChange={(e) =>
+                  onChange={(e) =>
                     setStudent({ ...Student, [e.target.name]: e.target.value })
                   }
                   value={Student.blood}
                   name="blood"
                   id="blood"
                   display-message="Blood Group"
-                  // onChange={handleChange}
-                  className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full appearance-none border-2 border-grey-200 focus:bg-gray-200"
-                >
+                  className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full appearance-none border-2 border-grey-200 focus:bg-gray-200">
                   <option value="default">--select blood--</option>
                   <option value="A+">A+</option>
                   <option value="B+">B+</option>
@@ -272,7 +289,7 @@ const EditModal = ({ toggle }) => {
                   <option value="AB+">AB+</option>
                   <option value="AB-">AB-</option>
                 </select>
-              </div>
+              </div> */}
               {/* phone number */}
               <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
                 <label htmlFor="phone" className="block">
@@ -287,13 +304,12 @@ const EditModal = ({ toggle }) => {
                   name="phone"
                   id="phone"
                   display-message="Phone Number"
-                  // onBlur={handleChange}
                   placeholder="Phone Number"
                   className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none border-2 border-grey-200 focus:bg-gray-200"
                 />
               </div>
               {/* Address */}
-              <div className="lg:col-span-3 text-gray-500 col-span-3 lg:w-auto w-[85%]">
+              <div className="lg:col-span-2 text-gray-500 col-span-3 lg:w-auto w-[85%]">
                 <label htmlFor="address" className="block">
                   Address
                 </label>
@@ -306,106 +322,9 @@ const EditModal = ({ toggle }) => {
                   id="address"
                   name="address"
                   display-message="Residential Address"
-                  // onChange={handleChange}
                   placeholder="Residential Address"
                   className="text-md p-2 rounded-md outline-none lg:w-[97%] w-full border-2 border-grey-200 focus:bg-gray-200"
                 />
-              </div>
-              {/* country */}
-              <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
-                <label htmlFor="country" className="block">
-                  Country
-                </label>
-                <select
-                  onChange={(e) =>
-                    setStudent({ ...Student, [e.target.name]: e.target.value })
-                  }
-                  value={Student.country}
-                  name="country"
-                  id="country"
-                  display-message="Country"
-                  //   onChange={handleState}
-                  className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full appearance-none border-2 border-grey-200 focus:bg-gray-200"
-                >
-                  <option value="default">--select country--</option>
-                  {/* {typeof countries === "object"
-                    ? countries?.map((country) => {
-                        return (
-                          <option
-                            value={country.name}
-                            key={country.id}
-                            id={country.iso2}
-                          >
-                            {country.name}
-                          </option>
-                        );
-                      })
-                    : ""} */}
-                </select>
-              </div>
-              {/* state */}
-              <div className="lg:col-span-1 col-span-3 text-gray-500 lg:w-auto w-[85%]">
-                <label htmlFor="state" className="block">
-                  State
-                </label>
-                <select
-                  onChange={(e) =>
-                    setStudent({ ...Student, [e.target.name]: e.target.value })
-                  }
-                  value={Student.state}
-                  name="state"
-                  id="state"
-                  display-message="State"
-                  //   onChange={handleCity}
-                  className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full appearance-none border-2 border-grey-200 focus:bg-gray-200"
-                >
-                  <option value="default">--select state--</option>
-                  {/* {typeof state === "object"
-                    ? state?.map((state) => {
-                        return (
-                          <option
-                            value={state.name}
-                            key={state.id}
-                            id={state.iso2}
-                          >
-                            {state.name}
-                          </option>
-                        );
-                      })
-                    : ""} */}
-                </select>
-              </div>
-              {/* city */}
-              <div className="lg:col-span-1 col-span-3 text-gray-500 lg:mb-3 lg:w-auto w-[85%]">
-                <label htmlFor="city" className="block">
-                  City
-                </label>
-                <select
-                  onChange={(e) =>
-                    setStudent({ ...Student, [e.target.name]: e.target.value })
-                  }
-                  value={Student.city}
-                  name="city"
-                  id="city"
-                  display-message="City"
-                  // onChange={handleChange}
-                  className="text-md p-2 rounded-md outline-none lg:w-[95%] w-full  appearance-none border-2 border-grey-200 focus:bg-gray-200"
-                >
-                  <option value="default">--select city--</option>
-                  {/* {typeof city === "object"
-                    ? city?.map((city) => {
-                        return (
-                          <option
-                            value={city.name}
-                            key={city.id}
-                            id={city.iso2}
-                          >
-                            {city.name}
-                          </option>
-                        );
-                      })
-                    : ""} */}
-                </select>
               </div>
             </div>
           </div>
@@ -415,14 +334,12 @@ const EditModal = ({ toggle }) => {
           <button
             onClick={() => toggle(false)}
             type="button"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
+            className="text-sm font-semibold leading-6 text-gray-900">
             Cancel
           </button>
           <button
             type="submit"
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          >
+            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
             Save
           </button>
         </div>

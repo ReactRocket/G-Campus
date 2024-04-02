@@ -66,7 +66,9 @@ router.post("/student", (req, res) => {
         isSuccess: false,
       });
     } else {
-      let query = "select * from students where sid =" + sid;
+      let query =
+        "SELECT sid,fname,mname,lname,dob,gender,blood,address,city,state,phone,email,tenthSchool,tenthPassingYear,tenthPercentage,twelfthSchool,twelfthPassingYear,twelfthPercentage,students.deptId,students.classId,password,profile,status,verified,class FROM students,classes where classes.classId = students.classId and sid =" +
+        sid;
       pool.getConnection((err, connection) => {
         connection.query(query, (err, data, fields) => {
           if (err) {
@@ -706,6 +708,85 @@ router.post("/verifystudent", (req, res) => {
     res.json({
       displayMessage: error.message,
       data: "01",
+      isSuccess: false,
+    });
+  }
+});
+
+router.post("/updatedetails", uploadImg, (req, res) => {
+  try {
+    let sid = parseInt(getValue("sid", req.body, "Student unique id"));
+    let address = null;
+    let phone = null;
+    let password = null;
+    let filename = null;
+
+    if (!Number.isFinite(sid)) {
+      res.json({
+        displayMessage: "Please Provide a student unique id",
+        data: "",
+        isSuccess: false,
+      });
+    } else if (!req.body.address) {
+      res.json({
+        displayMessage: "Please Provide a valid address",
+        data: "",
+        isSuccess: false,
+      });
+    } else if (!req.body.phone) {
+      res.json({
+        displayMessage: "Please enter a valid phone",
+        data: "",
+        isSuccess: false,
+      });
+    } else if (!req.body.password) {
+      res.json({
+        displayMessage: "Please upload a password",
+        data: "",
+        isSuccess: false,
+      });
+    } else {
+      phone = getValue("phone", req.body, "phone");
+      address = getValue("address", req.body, "Address");
+      password = getValue("password", req.body, "Password");
+      // filename = getValue("filename", req.file, "Profile pic");
+
+      let query = "update students set";
+
+      if (address) {
+        query += " address = '" + address + "' ";
+      }
+      if (phone) {
+        query += ", phone = '" + phone + "'";
+      }
+      if (password) {
+        query += ", password = '" + password + "'";
+      }
+      if (req?.file?.filename) {
+        query += ", profile = '" + filename + "'";
+      }
+
+      query += " where sid=" + sid + ";";
+      pool.getConnection((err, connection) => {
+        connection.query(query, (err, data, fields) => {
+          if (err) {
+            connection.release();
+            res.json({ displayMessage: err, data: "", isSuccess: false });
+          } else {
+            res.json({
+              displayMessage: "",
+              data: data.affectedRows,
+              isSuccess: true,
+            });
+          }
+        });
+        connection.release();
+      });
+    }
+  } catch (error) {
+    res.json({
+      displayMessage: error.message,
+      data: "",
       isSuccess: false,
     });
   }
