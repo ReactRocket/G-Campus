@@ -94,16 +94,21 @@ const Student = () => {
           <span className="font-bold">
             {Students?.studentcount?.unverified ?? 0}{" "}
           </span>
-          <span className="font-semibold ">
-            students are under verification! click to verify
+          <span className="font-semibold">
+            students are under verification!{" "}
           </span>
+          {Students?.studentcount?.unverified > 0 && (
+            <span className="font-semibold">click to verify</span>
+          )}
         </h1>
-        <button
-          className="bg-blue-700 lg:w-[6%] md:w-[10%] w-[12%] py-1 lg:text-lg text-xs lg:rounded-md rounded text-white"
-          // {Students?.studentcount?.unverified <= 0 && "disabled"}
-          onClick={handleClick}>
-          Verify
-        </button>
+        {Students?.studentcount?.unverified > 0 && (
+          <button
+            className="bg-blue-700 lg:w-[6%] md:w-[10%] w-[12%] py-1 lg:text-lg text-xs lg:rounded-md rounded text-white"
+            // {Students?.studentcount?.unverified <= 0 && "disabled"}
+            onClick={handleClick}>
+            Verify
+          </button>
+        )}
       </section>
 
       {/* student details section  */}
@@ -120,7 +125,7 @@ const Student = () => {
             <div className="w-1/5 text-center font-semibold ">Email</div>
             <div className="w-1/6 text-center font-semibold ">Phone</div>
           </li>
-          
+
           {Students?.students.map((student) => {
             return (
               <li
@@ -151,7 +156,6 @@ const Student = () => {
               </li>
             );
           })}
-         
         </ol>
       </section>
 
@@ -167,8 +171,7 @@ const Student = () => {
           <div className="lg:w-[25%] w-[90%]  lg:h-full md:h-24 h-20 flex lg:flex-col   justify-evenly items-center">
             <Link
               className="lg:w-4/5 w-1/6 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to=""
-            >
+              to="">
               <div className="lg:w-[75%] w-[90%]">
                 <h1 className="font-semibold text-start lg:text-base text-sm">
                   Total Students
@@ -185,8 +188,7 @@ const Student = () => {
                 height="16"
                 fill="currentColor"
                 className="bi bi-chevron-right hover:bg-blue-50 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path
                   fillRule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
@@ -195,8 +197,7 @@ const Student = () => {
             </Link>
             <Link
               className="lg:w-4/5 w-1/5 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to=""
-            >
+              to="">
               <div className="lg:w-[75%] w-[90%]">
                 <h1 className="font-semibold text-start lg:text-base text-sm">
                   BCOM Students
@@ -213,8 +214,7 @@ const Student = () => {
                 height="16"
                 fill="currentColor"
                 className="bi bi-chevron-right hover:bg-indigo-50 transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path
                   fillRule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
@@ -223,8 +223,7 @@ const Student = () => {
             </Link>
             <Link
               className="lg:w-4/5 w-1/5 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to=""
-            >
+              to="">
               <div className="lg:w-[75%] w-[90%]">
                 <h1 className="font-semibold text-start lg:text-base text-sm">
                   BBA Students
@@ -241,8 +240,7 @@ const Student = () => {
                 height="16"
                 fill="currentColor"
                 className="bi bi-chevron-right hover:bg-white transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path
                   fillRule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
@@ -251,8 +249,7 @@ const Student = () => {
             </Link>
             <Link
               className="lg:w-4/5 w-1/5 lg:h-1/5 h-4/5 hover:scale-105 hover:bg-blue-400  hover:shadow-md transition-all duration-1000 bg-blue-200 rounded-lg flex justify-center items-center"
-              to=""
-            >
+              to="">
               <div className="lg:w-[75%] w-[90%]">
                 <h1 className="font-semibold text-start lg:text-base text-sm">
                   BCA Students
@@ -269,8 +266,7 @@ const Student = () => {
                 height="16"
                 fill="currentColor"
                 className="bi bi-chevron-right hover:bg-white transition duration-1000 h-8 w-8 p-2 rounded-full lg:block hidden"
-                viewBox="0 0 16 16"
-              >
+                viewBox="0 0 16 16">
                 <path
                   fillRule="evenodd"
                   d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"

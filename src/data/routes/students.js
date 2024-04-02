@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const pool = require("../connection");
 const path = require("path");
+const generatePassword = require("../../utils/PasswordGenerator");
+
 const {
   isEmail,
   isPhone,
@@ -637,6 +639,73 @@ router.post("/forgetpassword", (req, res) => {
     res.json({
       displayMessage: error.message,
       data: "",
+      isSuccess: false,
+    });
+  }
+});
+
+router.post("/verifystudent", (req, res) => {
+  try {
+    let classId = {
+      101: 1101,
+      102: 1104,
+      103: 1107,
+      104: 1110,
+    };
+
+    let sid = parseInt(getValue("sid", req.body, "Student unique id"));
+    let deptId = parseInt(getValue("deptId", req.body, "Department Id"));
+    let email = getValue("email", req.body, "Email Address");
+
+    if (!Number.isFinite(sid)) {
+      res.json({
+        displayMessage: "Please Provide a student unique id",
+        data: "",
+        isSuccess: false,
+      });
+    } else if (!isEmail(email)) {
+      res.json({
+        displayMessage: "Please Provide a valid email",
+        data: "",
+        isSuccess: false,
+      });
+    } else if (!Number.isFinite(deptId)) {
+      res.json({
+        displayMessage: "Please Provide a department id",
+        data: "",
+        isSuccess: false,
+      });
+    } else {
+      let password = generatePassword(6).toString();
+      let query =
+        "update students set classId = " +
+        classId[deptId] +
+        ", status = 'active', verified = 'true', password= '" +
+        password +
+        "' where sid =" +
+        sid +
+        ";";
+      pool.getConnection((err, connection) => {
+        connection.query(query, async (err, data, fields) => {
+          if (err) {
+            connection.release();
+            res.json({ displayMessage: err, data: "", isSuccess: false });
+          } else {
+            res.json({
+              displayMessage: "",
+              data: password,
+              isSuccess: true,
+            });
+          }
+        });
+        connection.release();
+      });
+      // res.json({ sid: sid, deptId: deptId, classId: classId[deptId],password:generatePassword(6)});
+    }
+  } catch (error) {
+    res.json({
+      displayMessage: error.message,
+      data: "01",
       isSuccess: false,
     });
   }
