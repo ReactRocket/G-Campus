@@ -9,6 +9,7 @@ const Home = () => {
   const [showMore, setShowMore] = useState(false);
   const Student = JSON.parse(localStorage.getItem("studentInfo"));
 
+
   return (
     <div className="z-0  relative min-h-screen py-16 w-full">
       {editModalToggle ? (

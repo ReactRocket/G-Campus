@@ -25,90 +25,90 @@ const asideMenuList = [
     text: "Dashboard",
     path: "/student",
   },
-  // {
-  //   icon: (
-  //     <svg
-  //       xmlns="http://www.w3.org/2000/svg"
-  //       className="h-5 w-5"
-  //       viewBox="0 0 20 20"
-  //       fill="currentColor">
-  //       <path
-  //         className="fill-current text-gray-600 group-hover:text-blue-600"
-  //         fillRule="evenodd"
-  //         d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-  //         clipRule="evenodd"
-  //       />
-  //       <path
-  //         className="fill-current text-gray-300 group-hover:text-blue-300"
-  //         d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
-  //       />
-  //     </svg>
-  //   ),
-  //   text: "Documents",
-  //   path: "/student/documents",
-  // },
-  // {
-  //   icon: (
-  //     <svg
-  //       xmlns="http://www.w3.org/2000/svg"
-  //       className="h-5 w-5"
-  //       viewBox="0 0 20 20"
-  //       fill="currentColor">
-  //       <path
-  //         className="fill-current text-gray-600 group-hover:text-blue-600"
-  //         fillRule="evenodd"
-  //         d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-  //         clipRule="evenodd"
-  //       />
-  //       <path
-  //         className="fill-current text-gray-300 group-hover:text-blue-300"
-  //         d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
-  //       />
-  //     </svg>
-  //   ),
-  //   text: "Reports",
-  //   path: "/student/reports",
-  // },
-  // {
-  //   icon: (
-  //     <svg
-  //       xmlns="http://www.w3.org/2000/svg"
-  //       viewBox="0 0 24 24"
-  //       fill="currentColor"
-  //       className="w-5 h-5">
-  //       <path
-  //         className="fill-current text-gray-600 group-hover:text-blue-600"
-  //         fillRule="evenodd"
-  //         d="M2.25 5.25a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3V15a3 3 0 0 1-3 3h-3v.257c0 .597.237 1.17.659 1.591l.621.622a.75.75 0 0 1-.53 1.28h-9a.75.75 0 0 1-.53-1.28l.621-.622a2.25 2.25 0 0 0 .659-1.59V18h-3a3 3 0 0 1-3-3V5.25Zm1.5 0v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5Z"
-  //         clipRule="evenodd"
-  //       />
-  //     </svg>
-  //   ),
-  //   text: "Exams",
-  //   path: "/student/exams",
-  // },
-  // {
-  //   icon: (
-  //     <svg
-  //       xmlns="http://www.w3.org/2000/svg"
-  //       className="h-5 w-5"
-  //       viewBox="0 0 20 20"
-  //       fill="currentColor">
-  //       <path
-  //         className="fill-current text-gray-300 group-hover:text-blue-300"
-  //         d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"
-  //       />
-  //       <path
-  //         className="fill-current text-gray-600 group-hover:text-blue-600"
-  //         fillRule="evenodd"
-  //         d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
-  //         clipRule="evenodd"
-  //       />
-  //     </svg>
-  //   ),
-  //   text: "Payment",
-  //   path: "/student/payment",
-  // },
+  {
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor">
+        <path
+          className="fill-current text-gray-600 group-hover:text-blue-600"
+          fillRule="evenodd"
+          d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+          clipRule="evenodd"
+        />
+        <path
+          className="fill-current text-gray-300 group-hover:text-blue-300"
+          d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
+        />
+      </svg>
+    ),
+    text: "Documents",
+    path: "/student/documents",
+  },
+  {
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor">
+        <path
+          className="fill-current text-gray-600 group-hover:text-blue-600"
+          fillRule="evenodd"
+          d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+          clipRule="evenodd"
+        />
+        <path
+          className="fill-current text-gray-300 group-hover:text-blue-300"
+          d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"
+        />
+      </svg>
+    ),
+    text: "Reports",
+    path: "/student/reports",
+  },
+  {
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="w-5 h-5">
+        <path
+          className="fill-current text-gray-600 group-hover:text-blue-600"
+          fillRule="evenodd"
+          d="M2.25 5.25a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3V15a3 3 0 0 1-3 3h-3v.257c0 .597.237 1.17.659 1.591l.621.622a.75.75 0 0 1-.53 1.28h-9a.75.75 0 0 1-.53-1.28l.621-.622a2.25 2.25 0 0 0 .659-1.59V18h-3a3 3 0 0 1-3-3V5.25Zm1.5 0v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5Z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ),
+    text: "Exams",
+    path: "/student/exams",
+  },
+  {
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-5 w-5"
+        viewBox="0 0 20 20"
+        fill="currentColor">
+        <path
+          className="fill-current text-gray-300 group-hover:text-blue-300"
+          d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"
+        />
+        <path
+          className="fill-current text-gray-600 group-hover:text-blue-600"
+          fillRule="evenodd"
+          d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+          clipRule="evenodd"
+        />
+      </svg>
+    ),
+    text: "Payment",
+    path: "/student/payment",
+  },
 ];
 
 const Dashboard = () => {
@@ -143,7 +143,6 @@ const Dashboard = () => {
     setTimeout(() => {
       studentLoader().then((response) => {
         if (response.isSuccess) {
-          console.log(typeof response.data[0]);
           localStorage.setItem("studentInfo", JSON.stringify(response.data[0]));
           setStudent(response.data[0]);
           setIsLoading(false);
@@ -158,7 +157,7 @@ const Dashboard = () => {
   ) : (
     <div className="">
       <aside
-        className={`fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] ${
+        className={`fixed overflow-y-scroll z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] ${
           !IsMenuOpen && "ml-[-100%] "
         }`}>
         <div>
@@ -185,7 +184,7 @@ const Dashboard = () => {
             <span className="hidden text-gray-400 lg:block">{Student.sid}</span>
           </div>
 
-          <ul className="space-y-2 tracking-wide mt-8">
+          <ul className="space-y-2 tracking-wide mt-8 ">
             {asideMenuList?.map((menu, index) => {
               return (
                 <li onClick={() => setIsMenuOpen(false)} key={index}>
