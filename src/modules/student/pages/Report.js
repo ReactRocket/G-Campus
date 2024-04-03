@@ -1,9 +1,11 @@
-import React from 'react'
+import React from "react";
 
 const Report = () => {
   return (
-    <div>Report</div>
-  )
-}
+    <div className="h-screen w-full flex justify-center items-center text-xl font-bold text-gray-500">
+      No Reports Issued!
+    </div>
+  );
+};
 
-export default Report
+export default Report;

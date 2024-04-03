@@ -3,12 +3,7 @@ import Profile from "../../../resources/illustrations/student_dashboard/profile.
 import EditModal from "../components/EditModal";
 import getDate from "../../../utils/GetDate";
 
-const dptData = [
-  { id: 101, course: "BCOM", language: "Gujarati" },
-  { id: 102, course: "BCOM", language: "English" },
-  { id: 103, course: "BBA", language: "English" },
-  { id: 104, course: "BCA", language: "English" },
-];
+
 
 const Home = () => {
   const [editModalToggle, setEditModalToggle] = useState(false);
@@ -16,6 +11,7 @@ const Home = () => {
   const [Student, setStudent] = useState(
     JSON.parse(localStorage.getItem("studentInfo"))
   );
+
 
   return (
     <div className="z-0  relative min-h-screen py-16 w-full">
