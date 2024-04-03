@@ -85,8 +85,9 @@ export default function Verification() {
             <section
               key={i}
               id={i}
-              className="group flex flex-col gap-2 shadow-lg  rounded-xl px-5 py-3 border-2 text-black font-semibold"
-              tabIndex="2">
+              className="group hover:bg-slate-50 flex flex-col gap-2 shadow-lg  rounded-xl px-5 py-3 border-2 text-black font-semibold"
+              tabIndex="2"
+            >
               <div className="flex cursor-pointer items-center text-xl justify-between rounded-md ">
                 <span>{student.fname + " " + student.lname}</span>
 
@@ -126,14 +127,8 @@ export default function Verification() {
                   </span>
                 </div>
 
-                {/* <div className="w-[18%] h-full  flex justify-end p-4">
-                <div className="h-48 w-full border  bg-white rounded-md">
-                  <img className="cursor-pointer" src={Profile} />
-                   
-                </div>
-              </div> */}
                 <div className="w-[18%] h-full flex flex-col justify-between p-4">
-                  <div className="h-48 w-full border bg-white rounded-md">
+                  <div className="h-40 w-full border bg-white rounded-md">
                     <img
                       className="cursor-pointer h-full w-full object-cover"
                       src={require(`../../../images/${student.profile}`)}
@@ -141,7 +136,7 @@ export default function Verification() {
                     />
                   </div>
 
-                  <div className="flex justify-center gap-5 w-52 py-2 mt-5 ">
+                  <div className="flex justify-center px-24 gap-5 w-1/2 py-4 ">
                     <p
                       onClick={VerifyStudent}
                       className="rounded-md flex justify-center items-center cursor-pointer bg-blue-500 hover:shadow-md text-white px-4 hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-50">
@@ -152,6 +147,7 @@ export default function Verification() {
                     </button>
                   </div>
                 </div>
+              
               </div>
             </section>
           );
