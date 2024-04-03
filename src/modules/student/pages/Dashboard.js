@@ -360,7 +360,7 @@ const Dashboard = () => {
 
 export default Dashboard;
 
-async function studentLoader() {
+export async function studentLoader() {
   let sid = sessionStorage.getItem("loggedIn");
   let data = {
     sid: sid,

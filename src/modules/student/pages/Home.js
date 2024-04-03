@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Profile from "../../../resources/illustrations/student_dashboard/profile.svg";
-import EditModal from "../components/EditModal";
 import getDate from "../../../utils/GetDate";
-
-
+import DepartmentShortener from "../../../utils/Shortener";
+import EditModal from "../components/EditModal";
 
 const Home = () => {
   const [editModalToggle, setEditModalToggle] = useState(false);
   const [showMore, setShowMore] = useState(false);
-  const [Student, setStudent] = useState(
-    JSON.parse(localStorage.getItem("studentInfo"))
-  );
+  const Student = JSON.parse(localStorage.getItem("studentInfo"));
 
 
   return (
@@ -82,14 +79,15 @@ const Home = () => {
                 {Student.email}
               </a>{" "}
               <p className="mt-8 text-gray-500">
-                {Student.deptId === 104 &&
+                {DepartmentShortener(Student.deptId)}
+                {/* {Student.deptId === 104 &&
                   '"Bachelor of Computer Applications"'}
                 {Student.deptId === 103 &&
                   '"Bachelor of Business Administration"'}
                 {Student.deptId === 102 &&
                   '"Bachelor of Commerce (English Medium)"'}
                 {Student.deptId === 101 &&
-                  '"Bachelor of Commerce (Gujarati Medium)"'}
+                  '"Bachelor of Commerce (Gujarati Medium)"'} */}
               </p>{" "}
               <p className="mt-2 text-gray-900 font-semibold text-xl">
                 <b>G-Campus College</b>
@@ -100,21 +98,21 @@ const Home = () => {
               <div className="text-center">
                 {" "}
                 <p className="font-bold text-gray-700 text-xl">
-                  {Student.classId || 0}
+                  {Student.class + DepartmentShortener(Student.deptId) || 0}
                 </p>{" "}
                 <p className="text-gray-400">Class</p>{" "}
               </div>{" "}
               <div className="text-center">
                 {" "}
                 <p className="font-bold text-gray-700 text-xl">
-                  {Student.deptId || 0}
+                  {DepartmentShortener(Student.deptId) || 0}
                 </p>{" "}
                 <p className="text-gray-400">Dept</p>{" "}
               </div>{" "}
               <div className="text-center">
                 {" "}
                 <p className="font-bold text-gray-700 text-xl">
-                  {Student.sid.toString().slice(4) || 0}
+                  {Student.sid.toString() || 0}
                 </p>{" "}
                 <p className="text-gray-400">R.No</p>{" "}
               </div>{" "}
@@ -132,7 +130,7 @@ const Home = () => {
                           Class Id:
                         </div>
                         <div className="w-2/3 first-letter:capitalize break-words">
-                          {Student.classId}
+                          {Student.class + DepartmentShortener(Student.deptId)}
                         </div>
                       </li>
                       <li className="flex">
@@ -148,7 +146,7 @@ const Home = () => {
                           Department Id:
                         </div>
                         <div className="w-2/3 first-letter:capitalize break-words">
-                          {Student.deptId}
+                          {DepartmentShortener(Student.deptId)}
                         </div>
                       </li>
 
