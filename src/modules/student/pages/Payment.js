@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import logo from "../../../resources/images/Logo.svg";
 import { sendEmail } from "../utils/EmailSend";
+import DepartmentShortener from "../../../utils/Shortener";
 
 const apiKey = "rzp_test_bQDLfruo45eNFU";
 
@@ -42,7 +43,7 @@ const Payment = () => {
   const handleOrderSubmit = (e) => {
     e.preventDefault();
 
-    if (StudentFeesInfo.fees_status == "true") {
+    if (StudentFeesInfo.fees_status === "true") {
       alert("Your fees is already paid.");
     } else {
       const amountInSubunits = amount * 100;
@@ -96,8 +97,8 @@ const Payment = () => {
                   t_id: res.razorpay_payment_id,
                   t_date: Date().toLocaleString(),
                   s_id: Student?.sid,
-                  c_id: Student?.classId,
-                  d_id: Student?.deptId,
+                  c_id: Student?.class,
+                  d_id: DepartmentShortener(Student?.deptId),
                 });
                 return response.json();
               } else {
@@ -158,8 +159,7 @@ const Payment = () => {
                     className="h-6 w-5 flex-none text-indigo-600"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    aria-hidden="true"
-                  >
+                    aria-hidden="true">
                     <path
                       fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
@@ -173,8 +173,7 @@ const Payment = () => {
                     className="h-6 w-5 flex-none text-indigo-600"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    aria-hidden="true"
-                  >
+                    aria-hidden="true">
                     <path
                       fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
@@ -188,8 +187,7 @@ const Payment = () => {
                     className="h-6 w-5 flex-none text-indigo-600"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    aria-hidden="true"
-                  >
+                    aria-hidden="true">
                     <path
                       fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
@@ -203,8 +201,7 @@ const Payment = () => {
                     className="h-6 w-5 flex-none text-indigo-600"
                     viewBox="0 0 20 20"
                     fill="currentColor"
-                    aria-hidden="true"
-                  >
+                    aria-hidden="true">
                     <path
                       fillRule="evenodd"
                       d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z"
@@ -234,8 +231,7 @@ const Payment = () => {
                         StudentFeesInfo.fees_status == "true"
                           ? "text-green-600"
                           : "text-red-600"
-                      } `}
-                    >
+                      } `}>
                       {StudentFeesInfo.fees_status == "true"
                         ? "PAID"
                         : "UNPAID"}
@@ -249,8 +245,7 @@ const Payment = () => {
                       type="submit"
                       className={
                         "mt-10 block w-full rounded-md bg-blue-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:bg-blue-400 disabled:cursor-not-allowed"
-                      }
-                    >
+                      }>
                       {StudentFeesInfo.fees_status == "true"
                         ? "FEES PAID"
                         : "PAY NOW"}

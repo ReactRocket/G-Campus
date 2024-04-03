@@ -103,11 +103,12 @@ const Main = () => {
               <div className="w-1/6">Class</div>
             </div>
             <div className="h-[90%] py-2 flex flex-col gap-4 overflow-y-scroll">
-              {faculties?.faculties?.map((faculty) => {
+              {faculties?.faculties?.map((faculty, index) => {
                 return (
                   <div className="py-1 flex justify-around items-center text-center">
                     <div className="w-1/6 m-auto flex justify-center items-center">
                       <img
+                        key={index}
                         src={require(`../../../images/${faculty.profile}`)}
                         alt="faculty profile"
                         className="w-10 h-10 rounded-full object-cover"
@@ -138,25 +139,25 @@ const Main = () => {
           Heads of the Department
         </h1>
         <div className="grid grid-cols-4    gap-5 place-content-center min-h-[50vh] py-5 p-10 ">
-          {departments?.principal?.map((faculty) => {
+          {departments?.principal?.map((faculty, index) => {
             return (
               <div className="group relative cursor-pointer  rounded-3xl h-full  space-y-6 overflow-hidden">
                 <img
+                  key={index}
                   src={require(`../../../images/${faculty.profile}`)}
                   alt="faculty profle"
                   className="mx-auto h-[26rem] w-full object-cover object-top ransition duration-500 group-hover:scale-105 group-hover:grayscale-0"
                 />
                 <div className=" absolute cursor-pointer bottom-0 inset-x-0 h-max mt-auto px-8 py-6 bg-gray-800 dark:bg-white translate-y-[114px]  transition duration-300 ease-in-out group-hover:translate-y-0">
-                  <div >
+                  <div>
                     <h4 className="text-xl font-semibold dark:text-gray-700 text-white">
                       {faculty.fullname}
                     </h4>
                     <span className="block text-base text-gray-500">
                       Department: {DepartmentShortener(faculty.deptId)}
                     </span>
-                  
                   </div>
-                  
+
                   <p className="mt-2 text-base text-gray-300 dark:text-gray-600">
                     <span>Introducing {faculty.fullname}, </span>a highly
                     experienced {faculty.experience} years
@@ -164,9 +165,7 @@ const Main = () => {
                       and professional with over {faculty.qualification} in the
                       field.
                     </span>
-
                   </p>
-
                 </div>
               </div>
             );
@@ -196,24 +195,5 @@ function loader() {
 
 export default Main;
 {
-  /* <div className="w-1/5 h-5/6 bg-slate-200 rounded-lg shadow-md hover:scale-105 transition-all duration-1000">
-  <div className="h-[70%] w-full">
-    <img
-      src={require(`../../../images/${faculty.profile}`)}
-      // src={user}
-      alt="faculty profle"
-      className="h-full object-center m-auto rounded-md"
-    />
-  </div>
-  <div className="text-sm h-[8%] w-5/6 m-auto">
-    {faculty.experience}+ Years of experience
-  </div>
-  <div className="text-xl font-semibold h-[12%] w-5/6 m-auto truncate">
-    {faculty.fullname}
-    <span className="text-sm ml-1 font-medium ">({faculty.qualification})</span>
-  </div>
-  <div className="h-[10%] w-5/6 m-auto">
-    Department: {DepartmentShortener(faculty.deptId)}
-  </div>
-</div>; */
+   
 }
