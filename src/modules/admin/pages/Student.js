@@ -135,7 +135,7 @@ const Student = () => {
                   <img
                     src={require(`../../../images/${student.profile}`)}
                     alt="student profile"
-                    className="h-12 w-10 rounded-full cursor-pointer"
+                    className="h-12 w-10 object-cover rounded-3xl cursor-pointer"
                   />
                 </div>
                 <div className="capitalize w-1/6 text-center truncate">

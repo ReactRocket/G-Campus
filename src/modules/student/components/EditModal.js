@@ -28,6 +28,7 @@ const EditModal = ({ toggle }) => {
                   JSON.stringify(response.data[0])
                 );
               }
+              alert("You data is updated successfully!")
               toggle(false);
             });
           } else {
