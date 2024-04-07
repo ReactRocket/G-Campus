@@ -66,10 +66,10 @@ const NavLink = [
       { Step: "/step" },
       { "Cell/Club": "/club" },
       { "Student Corner": "/student-corner" },
-      { News: "/news" },
-      { Events: "/event" },
+      // { News: "/news" },
+      // { Events: "/event" },
       { Gallery: "/gallery" },
-      { Saptadhara: "/saptadhara" },
+      // { Saptadhara: "/saptadhara" },
     ],
   },
 ];

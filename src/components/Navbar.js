@@ -72,7 +72,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                 className="mx-4 relative"
                                 open={MoreOptionToggle}
                               >
-                                <summary className="  flex justify-center items-center gap-2 cursor-pointer ">
+                                <summary className="  flex justify-center  items-center gap-2 cursor-pointer ">
                                   <span className="text-center  leading-loose text-gray-500   hover:text-blue-500 hover:transition-colors duration-300 ease-in-out ">
                                     More
                                   </span>
@@ -106,7 +106,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                     </svg>
                                   )}
                                 </summary>
-                                <div className="top-10 -left-10 absolute z-50 border min-w-[160px] min-h-[20vh] bg-gray-50 shadow-sm rounded-lg mt-3 p-2">
+                                <div className="top-5 -left-10 absolute z-50  min-w-[160px]  min-h-[10vh] bg-gray-50 shadow-sm border border-slate-200 rounded-lg mt-3 p-2">
                                   <ul>
                                     {navlink.link.map((val, i) => {
                                       for (const key in val) {
@@ -124,7 +124,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                               }}
                                               className={
                                                 key === "Student Corner"
-                                                  ? "border-b-2 pb-2"
+                                                  ? " pb-2"
                                                   : ""
                                               }
                                             >
@@ -321,7 +321,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                         </svg>
                       )}
                     </summary>
-                    <div className="absolute z-50 border min-w-[15vw] min-h-[20vh] bg-gray-50 shadow-sm rounded-lg mt-3 p-2">
+                    <div className="absolute z-50 border min-w-[11vw] min-h-[10vh] bg-gray-50 shadow-sm rounded-lg mt-3 p-2">
                       <ul>
                         {navlink.link.map((val, i) => {
                           for (const key in val) {
@@ -334,7 +334,7 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                   }}
                                   className={
                                     key === "Student Corner"
-                                      ? "border-b-2 pb-2"
+                                      ? " pb-2"
                                       : ""
                                   }
                                 >
