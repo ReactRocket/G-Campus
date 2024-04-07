@@ -62,9 +62,9 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
   };
 
   return (
-    <footer className="text-gray-500  bg-white body-font">
+    <footer className="text-gray-500   bg-white body-font">
       <hr className=" px-4" />
-      <div className="min-h-[50vh] container px-5 py-24 mx-auto">
+      <div className="min-h-[30vh] container px-5 py-12 mx-auto">
         <div className="flex justify-between flex-wrap md:text-left text-center order-first ">
           <div className="lg:w-1/4 md:w-1/2 w-full px-4 lg:flex flex-col justify-start items-start hidden">
             <h2 className="title-font font-bold text-blue-500 tracking-widest text-md pb-2">
@@ -113,7 +113,7 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                           </svg>
                         )}
                       </summary>
-                      <div className="-top-60 left-16 absolute z-50 border min-w-[15vw] min-h-[20vh] bg-gray-50 shadow-sm rounded-lg mt-3 p-2">
+                      <div className=" left-8 absolute z-50 border min-w-[11vw] min-h-[10vh] bg-gray-50 shadow-sm rounded-lg mt-3 p-2">
                         <ul>
                           {navlink.link.map((val, i) => {
                             for (const key in val) {
@@ -126,7 +126,7 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                     }}
                                     className={
                                       key === "Student Corner"
-                                        ? "border-b-2 pb-2"
+                                        ? " pb-2"
                                         : " "
                                     }
                                   >

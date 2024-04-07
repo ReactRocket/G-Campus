@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import team from "../resources/images/College-img.jpg";
-import team_1 from "../resources/illustrations/home/team-1.jpg";
-import team_2 from "../resources/illustrations/home/team-2.jpg";
-import team_3 from "../resources/illustrations/home/team-3.jpg";
+// import team_1 from "../resources/illustrations/home/team-1.jpg";
+// import team_2 from "../resources/illustrations/home/team-2.jpg";
+// import team_3 from "../resources/illustrations/home/team-3.jpg";
 
 function AboutUs() {
   return (
@@ -107,12 +107,10 @@ function AboutUs() {
               </div>
             </section>
 
-         
-
             {/* Testimonial section */}
 
             <div className="py-20">
-              <div className="xl:container mx-auto px-6 md:px-12">
+              {/* <div className="xl:container mx-auto px-6 md:px-12">
                 <div className="mb-16 sm:px-28 w-full text-center flex flex-col justify-center">
                   <h2 className="mb-4 text-2xl font-bold text-gray-800 dark:text-white md:text-5xl">
                     Our Team
@@ -197,7 +195,38 @@ function AboutUs() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
+              <section className="py-14 lg:py-24 relative">
+                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative ">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-9">
+                    <div className="img-box">
+                      <img
+                        src="https://pagedone.io/asset/uploads/1702034769.png"
+                        alt="About Us tailwind page"
+                        className="max-lg:mx-auto"
+                      />
+                    </div>
+                    <div className="lg:pl-[100px] flex items-center">
+                      <div className="data w-full">
+                        <h2 className="font-manrope font-bold text-xl lg:text-4xl text-indigo-600 mb-9 max-lg:text-center relative">
+                        Crafting the Future{" "}
+                        </h2>
+                        <p className="font-normal text-xl leading-8 text-gray-500 max-lg:text-center max-w-2xl mx-auto">
+                          Welcome to G-Campus, where innovation meets
+                          creativity, and passion fuels seamless user
+                          experiences. At G-Campus, we've meticulously crafted
+                          Pagedone to empower creators, designers, and
+                          developers alike. Our mission? To provide you with a
+                          comprehensive toolkit that enables you to build
+                          intuitive, beautiful interfaces that resonate with
+                          users on every interaction. Join us in our journey to
+                          redefine the art of digital creation
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
             </div>
           </main>
         </div>
