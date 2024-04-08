@@ -392,7 +392,7 @@ router.post("/auth", (req, res) => {
         email +
         "' and password='" +
         password +
-        "';";
+        "' group by sid;";
       pool.getConnection((err, connection) => {
         if (err) res.json({ displayMessage: err, data: "", isSuccess: false });
         connection.query(query, (err, data, fields) => {
@@ -749,7 +749,7 @@ router.post("/updatedetails", uploadImg, (req, res) => {
       phone = getValue("phone", req.body, "phone");
       address = getValue("address", req.body, "Address");
       password = getValue("password", req.body, "Password");
-      // filename = getValue("filename", req.file, "Profile pic");
+      filename = getValue("filename", req.file, "Profile pic");
 
       let query = "update students set";
 

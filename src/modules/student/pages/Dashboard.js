@@ -350,7 +350,7 @@ const Dashboard = () => {
               <Loader />
             </div>
           ) : (
-            <Outlet />
+            <Outlet/>
           )}
         </div>
       </div>
