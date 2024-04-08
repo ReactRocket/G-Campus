@@ -5,6 +5,7 @@ import bcom1 from "../resources/images/bcom/bcom1.svg";
 import bcom2 from "../resources/images/bcom/bcom2.svg";
 import bcom3 from "../resources/images/bcom/bcom3.svg";
 import bcom4 from "../resources/images/bcom/bcom4.svg";
+import { Link } from "react-router-dom";
 
 const Bcom = () => {
   return (
@@ -12,9 +13,30 @@ const Bcom = () => {
       <div className="overflow-hidden px-6">
         <div className="mx-auto mt-7 w-full max-w-6xl lg:mt-14">
           <main className="my-14 lg:mt-20">
-            <h1 className="text-lg text-center underline underline-offset-2 font-bold leading-tight tracking-tight text-heading lg:mt-8 lg:text-3xl">
+           
+             <div className="flex justify-between items-center ">
+              <span></span>
+              <h1 className=" text-lg text-center underline underline-offset-2 font-bold leading-tight tracking-tight text-heading  lg:text-3xl">
               Bachelor of Commerce (BCOM)
-            </h1>
+              </h1>
+              <Link
+                to="/signup"
+                className="text-white flex justify-center gap-5 items-center bg-gradient-to-r   from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-3 text-center "
+              >
+                <span className="">Get Enroll</span>
+                <svg
+               
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  className="bi bi-arrow-right-circle-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
+                </svg>
+              </Link>
+            </div>
 
             <section className="relative flex items-center w-full bg-white">
               <div className="relative items-center w-full px-5 py-24 mx-auto md:px-12 lg:px-16 max-w-7xl">
