@@ -133,8 +133,8 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                                 to={val[key]}
                                                 className={
                                                   path === val[key]
-                                                    ? "mx-4 text-base font-bold  pb-2 list-none  text-blue-600 "
-                                                    : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:text-blue-600"
+                                                    ? "mx-4  text-base font-bold  pb-2 list-none  text-blue-600 "
+                                                    : " mx-4  text-center pb-2 leading-loose text-gray-500 hover:text-blue-600"
                                                 }
                                               >
                                                 {key}
@@ -343,8 +343,8 @@ function Navbar({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                     to={val[key]}
                                     className={
                                       path === val[key]
-                                        ? "mx-4 text-base font-bold  pb-2 list-none  text-blue-600 "
-                                        : " mx-4 text-center pb-2 leading-loose text-gray-500 hover:text-blue-600"
+                                        ? "mx-4 whitespace-nowrap text-ellipsis overflow-hidden text-base font-bold  pb-2 list-none  text-blue-600 "
+                                        : " mx-4 whitespace-nowrap text-ellipsis overflow-hidden text-center pb-2 leading-loose text-gray-500 hover:text-blue-600"
                                     }
                                   >
                                     {key}

@@ -135,8 +135,8 @@ function Footer({ NavLink, MoreOptionToggle, setMoreOptionToggle }) {
                                       to={val[key]}
                                       className={
                                         location.pathname === val[key]
-                                          ? "mx-4 text-base font-bold pb-2 list-none   text-blue-600"
-                                          : " mx-4 text-center pb-2 leading-loose hover:text-blue-600"
+                                          ? "mx-4 whitespace-nowrap text-ellipsis overflow-hidden text-base font-bold pb-2 list-none   text-blue-600"
+                                          : " mx-4 whitespace-nowrap text-ellipsis overflow-hidden text-center pb-2 leading-loose hover:text-blue-600"
                                       }
                                     >
                                       {key}

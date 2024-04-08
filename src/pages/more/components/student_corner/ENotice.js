@@ -49,7 +49,7 @@ const noticeArray = [
 const ENotice = () => {
   return (
     <div className=" min-h-full w-full p-10 ">
-      <ul className=" grid grid-cols-2 gap-10">
+      <ul className=" grid sm:grid-cols-2 grid-cols-1 sm:px-0 px-5 gap-10">
         {noticeArray?.map((notice, index) => {
           return (
             <li>
