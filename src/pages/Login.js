@@ -19,27 +19,27 @@ function Login() {
           .then((res) => {
             let response = res.data;
             if (response.isSuccess) {
-              if (
-                response.data[0].status === "true" &&
-                response.data[0].count > 0
-              ) {
+              if(Object.keys(response.data).length===0 ){
+                alert("invalid email and password");
+              }
+              // else if (
+              //   response.data[0].status === "true" &&
+              //   response.data[0].count > 0
+              // ) {
+              else {
                 let sid = response.data[0].sid;
                 getStudentDetail(sid)
                   .then((res) => {
                     sessionStorage.setItem("loggedIn", sid);
-                    navigate("/student")
+                    navigate("/student");
                   })
                   .catch((err) => {
                     console.error(err);
                   });
-              } else if (
-                response.data[0].status === null &&
-                response.data[0].count === 0
-              ) {
-                alert("invalid email and password");
-              }
+              } 
             } else {
-              alert(response.displayMessage);
+              alert("Something went wrong! please try again later");
+              // alert(response.displayMessage);
             }
           });
       } catch (error) {
@@ -76,18 +76,21 @@ function Login() {
                 />
                 <button
                   type="submit"
-                  className="mt-5 tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                  className="mt-5 tracking-wide font-semibold bg-blue-500 text-gray-100 w-full py-4 rounded-lg hover:bg-blue-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                >
                   <span className="ml-3">Sign In</span>
                 </button>
                 <p className="mt-6 text-xs flex justify-between text-gray-600 text-center">
                   <Link
                     to="/forgot"
-                    className="w-full btn btn-sm btn-link sm:w-auto">
+                    className="w-full btn btn-sm btn-link sm:w-auto"
+                  >
                     Forgot password?
                   </Link>
                   <Link
                     to="/signup"
-                    className="w-full btn btn-sm btn-link sm:w-auto">
+                    className="w-full btn btn-sm btn-link sm:w-auto"
+                  >
                     Create an account
                   </Link>
                 </p>

@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import DepartmentShortener from "../../../utils/Shortener";
 import axios from "axios";
 import { studentLoader } from "../pages/Dashboard";
+import Loader from "./Loader";
 
 const EditModal = ({ toggle }) => {
   const [Student, setStudent] = useState(
     JSON.parse(localStorage.getItem("studentInfo"))
   );
   const [imgUrl, setImgUrl] = useState(null);
+  const [IsLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+
     try {
-      e.preventDefault();
       let formData = new FormData(e.target);
       let formObject = Object.fromEntries(formData.entries());
       console.log(formObject);
@@ -28,8 +31,13 @@ const EditModal = ({ toggle }) => {
                   JSON.stringify(response.data[0])
                 );
               }
-              alert("You data is updated successfully!")
-              toggle(false);
+              alert("You data is updated successfully!");
+              console.log(response.data);
+              setIsLoading(true);
+              setTimeout(() => {
+                toggle(false);
+                setIsLoading(false);
+              }, 2000);
             });
           } else {
             alert("something went wrong! please try again some time late.");
@@ -39,21 +47,28 @@ const EditModal = ({ toggle }) => {
       console.error(error);
     }
   };
-  return (
+  return IsLoading ? (
+    <div className="absolute top-0 left-0 h-full w-full bg-white flex justify-center items-center">
+      <Loader/>
+    </div>
+  ) : (
     <div className="z-10  absolute max-h-screen py-10 w-full top-0 left-0 px-10 overflow-y-scroll">
       <form
         onSubmit={handleSubmit}
-        className="h-full w-full  relative border rounded-xl px-10  ">
+        className="h-full w-full  relative border rounded-xl px-10  "
+      >
         <button
           onClick={() => toggle(false)}
-          className="absolute top-3 right-3">
+          className="absolute top-3 right-3"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
             height="24"
             fill="currentColor"
             className="bi bi-x-lg"
-            viewBox="0 0 16 16">
+            viewBox="0 0 16 16"
+          >
             <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
           </svg>
         </button>
@@ -92,7 +107,8 @@ const EditModal = ({ toggle }) => {
                     }
                     id="profile"
                     type="button"
-                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                  >
                     Change
                   </button>
                 </div>
@@ -335,12 +351,14 @@ const EditModal = ({ toggle }) => {
           <button
             onClick={() => toggle(false)}
             type="button"
-            className="text-sm font-semibold leading-6 text-gray-900">
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Cancel
           </button>
           <button
             type="submit"
-            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+            className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
             Save
           </button>
         </div>
